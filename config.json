@@ -1,0 +1,66 @@
+{
+  "port": "8090",
+  "mongodb": {
+    "local":{
+      "servername": "localhost",
+      "database": "kcoco",
+      "port": 27017,
+      "user": "gy",
+      "pass": "123456"
+    },
+    "dev": {
+      "servername": "121.40.230.6",
+      "database": "kcoco",
+      "port": 27017,
+      "user": "gy",
+      "pass": "123456"
+    },
+    "prd": {
+
+    }
+  },
+  "baseURL": "",
+  "cdn": {
+    "domain": "https://cdn.xxx.com"
+  },
+  "redis": {
+    "host": "",
+    "port": 16379,
+    "timeout": 20000,
+    "password": ""
+  },
+  "log": {
+    "root": "./logs",
+    "level": "on"
+  },
+  "engine": {
+    "name": "ejs",
+    "cache": false
+  },
+  "session": {
+    "key": "kcoco:sess",
+    "maxAge": 10000,
+    "autoCommit": true,
+    "overwrite": true,
+    "httpOnly": true,
+    "signed": false,
+    "rolling": false,
+    "renew": false
+  },
+  "jwt": {
+    "resetWhenReload": true,
+    "secret": "gy2022"
+  },
+  "emailServiceKey": "alimail",
+  "email": {
+    "qq": {
+      "host": "smtp.qq.com",
+      "port": 465,
+      "auth": ""
+    },
+    "aliyun": {
+    },
+    "alimail": {
+    }
+  }
+}
