@@ -16,6 +16,6 @@ db.kcoco_biz_admin_routes.insertMany([
 	status: 1,
 	key: 'user_modify',
 	exact: true,
-	backUrl: 'http://www.test.com/403.html',
+	backUrl: 'http://www.test.com/403',
 }
 ])

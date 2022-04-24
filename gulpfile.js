@@ -48,18 +48,20 @@ function css() {
     .pipe(dest('public/css'))
 }
 
+// css 拆包
 function cssGlobal () {
   // 编译全局css
   const postcssConfig = [
     autoprefixer({overrideBrowserslist: 'last 2 versions'})
   ];
-  return src('views/style/*.styl')
+  return src('views/styles/*.styl')
     .pipe(stylus())
     .pipe(postcss(postcssConfig))
     .pipe(gulpif(env === 'production', cssmin()))
     .pipe(dest('public/css'))
 }
 
+// 处理插件库中的css
 function cssCommon () {
   if(env === 'development'){
     return
@@ -70,6 +72,7 @@ function cssCommon () {
     .pipe(dest('public/css/common'))
 }
 
+// 监听变化（注意开发环境不能加hash值，避免引入的时候）如果要处理缓存，版本号啥的，需要配合其他配置，且用于生产环境
 watch(['views/page/**/*.styl'],function (cb){
   css();
   cb();
@@ -81,4 +84,6 @@ watch(['views/styles/*.styl'],function (cb){
   cb();
 })
 
+// series 链式处理（setEnv是前置条件）
+// parallel 并且处理
 exports.default = series(setEnv, parallel(css, cssGlobal, cssCommon))

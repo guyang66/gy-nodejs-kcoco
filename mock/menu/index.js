@@ -3,7 +3,7 @@ module.exports = [
     name: 'index',
     path: 'page/index',
     title: '首页',
-    href: '/index.html',
+    href: '/index',
     hasHref: true,
   },
   {
@@ -29,15 +29,15 @@ module.exports = [
                 data: [
                   {
                     name: 'AI语音',
-                    href: '/product/ai/speech.html',
+                    href: '/product/ai/speech',
                   },
                   {
                     name: 'AI算法',
-                    href: '/product/ai/algorithm.html',
+                    href: '/product/ai/algorithm',
                   },
                   {
                     name: 'AI识别',
-                    href: '/product/ai/discriminate.html',
+                    href: '/product/ai/discriminate',
                   },
                 ],
               },
@@ -46,11 +46,11 @@ module.exports = [
                 data: [
                   {
                     name: '数字云',
-                    href: '/product/ai/digital.html',
+                    href: '/product/ai/digital',
                   },
                   {
                     name: '企业云',
-                    href: '/product/ai/enterprise.html',
+                    href: '/product/ai/enterprise',
                   },
                 ],
               },
@@ -59,7 +59,7 @@ module.exports = [
                 data: [
                   {
                     name: 'alpha-数影',
-                    href: '/product/ai/shuying.html',
+                    href: '/product/ai/shuying',
                     tags: [
                       {
                         text: 'NEW',
@@ -79,11 +79,11 @@ module.exports = [
                 data: [
                   {
                     name: '智能预判系统——清水',
-                    href: '/product/ai/qingshui.html',
+                    href: '/product/ai/qingshui',
                   },
                   {
                     name: '智能管理系统——菩提',
-                    href: '/product/ai/puti.html',
+                    href: '/product/ai/puti',
                   },
                 ],
               },
@@ -92,11 +92,11 @@ module.exports = [
                 data: [
                   {
                     name: '蹄蹄智能办公',
-                    href: '/product/ai/titi.html',
+                    href: '/product/ai/titi',
                   },
                   {
                     name: '天眼杀',
-                    href: '/product/ai/tianyan.html',
+                    href: '/product/ai/tianyan',
                   },
                 ],
               },
@@ -110,7 +110,7 @@ module.exports = [
                 data: [
                   {
                     name: '细雨风控系统1.0',
-                    href: '/product/ai/xiyu.html',
+                    href: '/product/ai/xiyu',
                     tags: [
                       {
                         text: 'HOT',
@@ -120,7 +120,7 @@ module.exports = [
                   },
                   {
                     name: '智能干预系统——colgi',
-                    href: '/product/ai/colgi.html',
+                    href: '/product/ai/colgi',
                   },
                 ],
               },
@@ -134,7 +134,7 @@ module.exports = [
                 data: [
                   {
                     name: '智能工作无人机',
-                    href: '/product/ai/uav.html',
+                    href: '/product/ai/uav',
                     tags: [
                       {
                         text: 'HOT',
@@ -162,11 +162,11 @@ module.exports = [
                 data: [
                   {
                     name: '离线算法',
-                    href: '/product/dataserver/offlinealgorithm.html',
+                    href: '/product/dataserver/offlinealgorithm',
                   },
                   {
                     name: '智能推荐系统',
-                    href: '/product/dataserver/recommend.html',
+                    href: '/product/dataserver/recommend',
                     tags: [
                       {
                         text: 'HOT',
@@ -176,11 +176,11 @@ module.exports = [
                   },
                   {
                     name: '聚类算法',
-                    href: '/product/dataserver/cluster.html',
+                    href: '/product/dataserver/cluster',
                   },
                   {
                     name: '神经网络',
-                    href: '/product/dataserver/neuralnetwork.html',
+                    href: '/product/dataserver/neuralnetwork',
                   },
                 ],
               },
@@ -194,11 +194,11 @@ module.exports = [
                 data: [
                   {
                     name: '离线开发',
-                    href: '/product/dataserver/offlinedevelop.html',
+                    href: '/product/dataserver/offlinedevelop',
                   },
                   {
                     name: '实时开发',
-                    href: '/product/dataserver/onlinedevelop.html',
+                    href: '/product/dataserver/onlinedevelop',
                   },
                 ],
               },
@@ -220,31 +220,31 @@ module.exports = [
                 data: [
                   {
                     name: '香蕉',
-                    href: '/product/fruits/banana.html',
+                    href: '/product/fruits/banana',
                   },
                   {
                     name: '水蜜桃',
-                    href: '/product/fruits/peach.html',
+                    href: '/product/fruits/peach',
                   },
                   {
                     name: '石榴',
-                    href: '/product/fruits/pomegranate.html',
+                    href: '/product/fruits/pomegranate',
                   },
                   {
                     name: '猕猴桃',
-                    href: '/product/fruits/kiwi.html',
+                    href: '/product/fruits/kiwi',
                   },
                   {
                     name: '牛油果',
-                    href: '/product/fruits/avocado.html',
+                    href: '/product/fruits/avocado',
                   },
                   {
                     name: '芒果',
-                    href: '/product/fruits/mongo.html',
+                    href: '/product/fruits/mongo',
                   },
                   {
                     name: '葡萄',
-                    href: '/product/fruits/grape.html',
+                    href: '/product/fruits/grape',
                     tags: [
                       {
                         text: 'HOT',
@@ -259,7 +259,7 @@ module.exports = [
                 data: [
                   {
                     name: '柠檬',
-                    href: '/product/fruits/lemon.html',
+                    href: '/product/fruits/lemon',
                     tags: [
                       {
                         text: 'HOT',
@@ -269,11 +269,11 @@ module.exports = [
                   },
                   {
                     name: '荔枝',
-                    href: '/product/fruits/litchi.html',
+                    href: '/product/fruits/litchi',
                   },
                   {
                     name: '火龙果',
-                    href: '/product/fruits/piyata.html',
+                    href: '/product/fruits/piyata',
                   },
                 ],
               },
@@ -287,11 +287,11 @@ module.exports = [
                 data: [
                   {
                     name: '羊角蜜',
-                    href: '/product/fruits/croissant.html',
+                    href: '/product/fruits/croissant',
                   },
                   {
                     name: '哈密瓜',
-                    href: '/product/fruits/hami.html',
+                    href: '/product/fruits/hami',
                     tags: [
                       {
                         text: 'NEW',
@@ -306,7 +306,7 @@ module.exports = [
                 data: [
                   {
                     name: '无花果',
-                    href: '/product/fruits/fig.html',
+                    href: '/product/fruits/fig',
                     tags: [
                       {
                         text: 'HOT',
@@ -316,7 +316,7 @@ module.exports = [
                   },
                   {
                     name: '青枣',
-                    href: '/product/fruits/jujube.html',
+                    href: '/product/fruits/jujube',
                   },
                 ],
               },
@@ -330,11 +330,11 @@ module.exports = [
                 data: [
                   {
                     name: '苹果',
-                    href: '/product/fruits/apple.html',
+                    href: '/product/fruits/apple',
                   },
                   {
                     name: '柚子',
-                    href: '/product/fruits/shaddock.html',
+                    href: '/product/fruits/shaddock',
                   },
                 ],
               },
@@ -343,19 +343,19 @@ module.exports = [
                 data: [
                   {
                     name: '橘子',
-                    href: '/product/fruits/orange.html',
+                    href: '/product/fruits/orange',
                   },
                   {
                     name: '李子',
-                    href: '/product/fruits/plum.html',
+                    href: '/product/fruits/plum',
                   },
                   {
                     name: '枇杷',
-                    href: '/product/fruits/loquat.html',
+                    href: '/product/fruits/loquat',
                   },
                   {
                     name: '樱桃',
-                    href: '/product/fruits/cherry.html',
+                    href: '/product/fruits/cherry',
                   },
                 ],
               },
@@ -369,7 +369,7 @@ module.exports = [
                 data: [
                   {
                     name: '柿子',
-                    href: '/product/fruits/persimmon.html',
+                    href: '/product/fruits/persimmon',
                   },
                 ],
               },
@@ -378,7 +378,7 @@ module.exports = [
                 data: [
                   {
                     name: '山竹',
-                    href: '/product/fruits/mangosteen.html',
+                    href: '/product/fruits/mangosteen',
                   },
                 ],
               },
@@ -400,7 +400,7 @@ module.exports = [
                 data: [
                   {
                     name: '红萝卜',
-                    href: '/product/vegetables/radish.html',
+                    href: '/product/vegetables/radish',
                     tags: [
                       {
                         text: 'HOT',
@@ -410,7 +410,7 @@ module.exports = [
                   },
                   {
                     name: '黄瓜',
-                    href: '/product/vegetables/cucumber.html',
+                    href: '/product/vegetables/cucumber',
                     tags: [
                       {
                         text: 'HOT',
@@ -420,11 +420,11 @@ module.exports = [
                   },
                   {
                     name: '大葱',
-                    href: '/product/vegetables/onion.html',
+                    href: '/product/vegetables/onion',
                   },
                   {
                     name: '菜苔',
-                    href: '/product/vegetables/bolt.html',
+                    href: '/product/vegetables/bolt',
                     tags: [
                       {
                         text: 'NEW',
@@ -434,7 +434,7 @@ module.exports = [
                   },
                   {
                     name: '苋菜',
-                    href: '/product/vegetables/amaranthus.html',
+                    href: '/product/vegetables/amaranthus',
                   },
                 ],
               },
@@ -443,7 +443,7 @@ module.exports = [
                 data: [
                   {
                     name: '藕',
-                    href: '/product/vegetables/lotus.html',
+                    href: '/product/vegetables/lotus',
                     tags: [
                       {
                         text: 'HOT',
@@ -453,19 +453,19 @@ module.exports = [
                   },
                   {
                     name: '白菜',
-                    href: '/product/vegetables/cabbage.html',
+                    href: '/product/vegetables/cabbage',
                   },
                   {
                     name: '豌豆',
-                    href: '/product/vegetables/peas.html',
+                    href: '/product/vegetables/peas',
                   },
                   {
                     name: '苦瓜',
-                    href: '/product/vegetables/bilter.html',
+                    href: '/product/vegetables/bilter',
                   },
                   {
                     name: '芹菜',
-                    href: '/product/vegetables/celery.html',
+                    href: '/product/vegetables/celery',
                   },
                 ],
               },
@@ -479,19 +479,19 @@ module.exports = [
                 data: [
                   {
                     name: '香菇',
-                    href: '/product/vegetables/mushroom.html',
+                    href: '/product/vegetables/mushroom',
                   },
                   {
                     name: '生姜',
-                    href: '/product/vegetables/ginger.html',
+                    href: '/product/vegetables/ginger',
                   },
                   {
                     name: '茄子',
-                    href: '/product/vegetables/eggplant.html',
+                    href: '/product/vegetables/eggplant',
                   },
                   {
                     name: '生姜',
-                    href: '/product/vegetables/ginger.html',
+                    href: '/product/vegetables/ginger',
                   },
                 ],
               },
@@ -505,7 +505,7 @@ module.exports = [
                 data: [
                   {
                     name: '南瓜',
-                    href: '/product/vegetables/pumpkin.html',
+                    href: '/product/vegetables/pumpkin',
                   },
                 ],
               },
@@ -519,7 +519,7 @@ module.exports = [
                 data: [
                   {
                     name: '辣椒',
-                    href: '/product/vegetables/chili.html',
+                    href: '/product/vegetables/chili',
                     tags: [
                       {
                         text: 'NEW',
@@ -634,63 +634,63 @@ module.exports = [
     children: [
       {
         name: '教育行业',
-        href: '/solution/education.html',
+        href: '/solution/education',
         iconH: '/images/menu/solution-jiaoyu-h.svg',
         iconN: '/images/menu/solution-jiaoyu-n.svg',
         desc: '商业化，标准化，全新化，服务化领域深耕',
       },
       {
         name: '金融行业',
-        href: '/solution/finance.html',
+        href: '/solution/finance',
         iconH: '/images/menu/solution-jinrong-h.svg',
         iconN: '/images/menu/solution-jinrong-n.svg',
         desc: '走向金融更大更高领域',
       },
       {
         name: '电商行业',
-        href: '/solution/online.html',
+        href: '/solution/online',
         iconH: '/images/menu/solution-dianshang-h.svg',
         iconN: '/images/menu/solution-dianshang-n.svg',
         desc: '电商行业全新升级',
       },
       {
         name: '大数据行业',
-        href: '/solution/bigdata.html',
+        href: '/solution/bigdata',
         iconH: '/images/menu/solution-dashuju-h.svg',
         iconN: '/images/menu/solution-dashuju-n.svg',
         desc: '让数据引领我们进入全新的新时代',
       },
       {
         name: '私有化行业',
-        href: '/solution/personal.html',
+        href: '/solution/personal',
         iconH: '/images/menu/solution-siyouhua-h.svg',
         iconN: '/images/menu/solution-siyouhua-n.svg',
         desc: '私有化企业所有资源，标杆引领行业',
       },
       {
         name: '游戏行业',
-        href: '/solution/game.html',
+        href: '/solution/game',
         iconH: '/images/menu/solution-youxi-h.svg',
         iconN: '/images/menu/solution-youxi-n.svg',
         desc: '打造全新的精英游戏领域行业',
       },
       {
         name: '餐饮行业',
-        href: '/solution/food.html',
+        href: '/solution/food',
         iconH: '/images/menu/solution-canyin-h.svg',
         iconN: '/images/menu/solution-canyin-n.svg',
         desc: '打造数字化贯通增量提升',
       },
       {
         name: '交通行业',
-        href: '/solution/traffic.html',
+        href: '/solution/traffic',
         iconH: '/images/menu/solution-jiaotong-h.svg',
         iconN: '/images/menu/solution-jiaotong-n.svg',
         desc: '让出行生活更加美好',
       },
       {
         name: '传统制造行业',
-        href: '/solution/manufacture.html',
+        href: '/solution/manufacture',
         iconH: '/images/menu/solution-zhizao-h.svg',
         iconN: '/images/menu/solution-zhizao-n.svg',
         desc: '魅力提升传统制造新体验',
@@ -701,14 +701,14 @@ module.exports = [
     name: 'cases',
     path: 'page/cases',
     title: '客户案例',
-    href: '/case.html',
+    href: '/case',
     hasHref: true,
   },
   {
     name: 'activity',
     hasHref: true,
     path: 'page/activity',
-    href: '/activity.html',
+    href: '/activity',
     title: '最新活动',
   },
   {
@@ -721,15 +721,15 @@ module.exports = [
     children: [
       {
         name: '帮助中心',
-        href: '/service/help.html',
+        href: '/service/help',
       },
       {
         name: '联系我们',
-        href: '/service/contact.html',
+        href: '/service/contact',
       },
       {
         name: '资源中心',
-        href: '/service/resource.html',
+        href: '/service/resource',
       },
     ],
   },
@@ -743,15 +743,15 @@ module.exports = [
     children: [
       {
         name: '公司介绍',
-        href: '/about/company.html',
+        href: '/about/company',
       },
       {
         name: '新闻中心',
-        href: '/about/news.html',
+        href: '/about/news',
       },
       {
         name: '加入我们',
-        href: '/about/joinus.html',
+        href: '/about/joinus',
       },
     ],
   },

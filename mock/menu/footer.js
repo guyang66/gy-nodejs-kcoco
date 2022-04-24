@@ -4,19 +4,19 @@ module.exports = [
     child: [
       {
         title: '了解我们',
-        link: '/about/company.html',
+        link: '/about/company',
       },
       {
         title: '文档中心',
-        link: '/service/resource.html',
+        link: '/service/resource',
       },
       {
         title: '联系我们',
-        link: '/service/contact.html',
+        link: '/service/contact',
       },
       {
         title: '人才招聘',
-        link: '/service/contact.html',
+        link: '/service/contact',
       },
     ],
   },
@@ -25,19 +25,19 @@ module.exports = [
     child: [
       {
         title: '水果联盟',
-        link: '/product/fruits/banana.html',
+        link: '/product/fruits/banana',
       },
       {
         title: '素菜',
-        link: '/product/vegetables/amaranthus.html',
+        link: '/product/vegetables/amaranthus',
       },
       {
         title: '智能系统',
-        link: '/product/ai/speech.html',
+        link: '/product/ai/speech',
       },
       {
         title: '数据服务',
-        link: '/product/dataserver/offlinealgorithm.html',
+        link: '/product/dataserver/offlinealgorithm',
       },
     ],
   },
@@ -46,31 +46,31 @@ module.exports = [
     child: [
       {
         title: '游戏行业',
-        link: '/solution/game.html',
+        link: '/solution/game',
       },
       {
         title: '电商行业',
-        link: '/solution/online.html',
+        link: '/solution/online',
       },
       {
         title: '金融行业',
-        link: '/solution/finance.html',
+        link: '/solution/finance',
       },
       {
         title: '教育行业',
-        link: '/solution/education.html',
+        link: '/solution/education',
       },
       {
         title: '餐饮行业',
-        link: '/solution/food.html',
+        link: '/solution/food',
       },
       {
         title: '私有化行业',
-        link: '/solution/personal.html',
+        link: '/solution/personal',
       },
       {
         title: '大数据行业',
-        link: '/solution/bigdata.html',
+        link: '/solution/bigdata',
       },
     ],
   },
@@ -79,19 +79,19 @@ module.exports = [
     child: [
       {
         title: '产品手册',
-        link: '/service/help.html',
+        link: '/service/help',
       },
       {
         title: '使用手册',
-        link: '/service/help.html',
+        link: '/service/help',
       },
       {
         title: '技术文档',
-        link: '/service/help.html',
+        link: '/service/help',
       },
       {
         title: '更多资料',
-        link: '/service/resource.html',
+        link: '/service/resource',
       },
     ],
   },
@@ -100,11 +100,11 @@ module.exports = [
     child: [
       {
         title: '精彩活动',
-        link: '/activity.html',
+        link: '/activity',
       },
       {
         title: '人才招聘',
-        link: '/about/joinus.html',
+        link: '/about/joinus',
       },
     ],
   },

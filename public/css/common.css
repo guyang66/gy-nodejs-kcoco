@@ -1,0 +1,90 @@
+.c-module-title {
+  font-size: 28px;
+  line-height: 42px;
+  color: #181818;
+  margin-top: 60px;
+  text-align: center;
+  width: 100%;
+}
+.c-module-desc {
+  font-size: 14px;
+  color: #999;
+  line-height: 24px;
+  max-width: 800px;
+  text-align: center;
+  padding-top: 12px;
+  margin: 0 auto;
+  padding-bottom: 24px;
+}
+.c-module-b-60 {
+  margin-bottom: 60px;
+}
+.main-content-title {
+  font-family: "PingFang SC";
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 600;
+  color: #181818;
+}
+.main-content-title2 {
+  font-family: "PingFang SC";
+  font-weight: 600;
+  color: #181818;
+  font-size: 18px;
+  line-height: 32px;
+  height: 32px;
+}
+.main-content-text {
+  font-size: 14px;
+  line-height: 24px;
+  color: #444;
+  font-weight: normal;
+}
+.c-title {
+  color: #181818;
+  font-size: 16px;
+  font-family: "PingFang SC";
+  font-weight: bold;
+}
+.transition-hide-bottom {
+  opacity: 0;
+  -webkit-transform: translate(0px, 100px);
+          transform: translate(0px, 100px);
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  visibility: hidden;
+}
+.transition-hide {
+  opacity: 0;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.transition-fade-in {
+  opacity: 1;
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  visibility: visible;
+}
+.p-absolute {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.box-shadow-1 {
+  -webkit-box-shadow: 0 1px 7px 4px #ecf0f5;
+          box-shadow: 0 1px 7px 4px #ecf0f5;
+}
+.box-shadow-2 {
+  -webkit-box-shadow: 0 0 14px 0 rgba(0,0,0,0.15);
+          box-shadow: 0 0 14px 0 rgba(0,0,0,0.15);
+}
+.d-block {
+  display: block;
+}
+.d-none {
+  display: none;
+}
