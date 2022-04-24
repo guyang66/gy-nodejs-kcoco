@@ -7,9 +7,11 @@
   "remark": "",
   "scripts": {
     "clear": "rimraf ./logs/*",
-    "start": "cross-env NODE_ENV=development node app.js",
+    "start": "npm run gulp & npm run server",
+    "server": "cross-env NODE_ENV=development node app.js",
     "start1": "cross-env NODE_ENV=development DB_ENV=development node app.js",
-    "prd": "cross-env NODE_ENV=production pm2 start app.js -n gy-nodejs-kcoco"
+    "prd": "cross-env NODE_ENV=production pm2 start app.js -n gy-nodejs-kcoco",
+    "gulp": "gulp"
   },
   "dependencies": {
     "@alicloud/dysmsapi20170525": "^2.0.9",
@@ -40,6 +42,18 @@
   },
   "devDependencies": {
     "nodemon": "^1.19.1",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "autoprefixer": "^10.3.7",
+    "cssnano": "^5.0.8",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
+    "gulp-csso": "^4.0.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-uglify": "^3.0.2",
+    "gulp-stylus": "^2.7.0",
+    "postcss": "^8.3.11",
+    "source-map-js": "^0.6.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-if": "^3.0.0"
   }
 }

@@ -1,4 +1,4 @@
-const column = {
+module.exports = {
   content: [
     {
       title: '走进科学',
@@ -23,4 +23,3 @@ const column = {
     },
   ],
 };
-export default column;

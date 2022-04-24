@@ -1,4 +1,4 @@
-const data = {
+module.exports = {
   title: '全国羊毛销量数据领跑者',
   content: [
     {
@@ -51,4 +51,3 @@ const data = {
     },
   ],
 };
-export default data;

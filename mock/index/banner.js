@@ -1,10 +1,4 @@
-import a1 from '@/assets/images/banner/index/1.png';
-import a2 from '@/assets/images/banner/index/2.png';
-import a3 from '@/assets/images/banner/index/3.png';
-import a4 from '@/assets/images/banner/index/4.png';
-import a5 from '@/assets/images/banner/index/5.png';
-
-const data = {
+module.exports = {
   content: [
     {
       title: 'yy科技官网',
@@ -18,7 +12,7 @@ const data = {
       button: true,
       style: 'black',
       target: '_blank',
-      backgroundImg: a1,
+      backgroundImg: '/images/banner/index/1.png',
     },
     {
       title: '知识付费',
@@ -32,7 +26,7 @@ const data = {
       button: true,
       type: 'black',
       target: '_blank',
-      backgroundImg: a2,
+      backgroundImg: '/images/banner/index/2.png',
     },
     {
       title: '奈门摩尔',
@@ -47,7 +41,7 @@ const data = {
       type: 'black',
       target: '_blank',
       href: '/form.html',
-      backgroundImg: a3,
+      backgroundImg: '/images/banner/index/3.png',
     },
     {
       title: '伊泽瑞尔',
@@ -62,7 +56,7 @@ const data = {
       btnText: '查看更多',
       type: 'white',
       target: '_blank',
-      backgroundImg: a4,
+      backgroundImg: '/images/banner/index/4.png',
     },
     {
       title: '《傲慢与偏见》',
@@ -77,9 +71,7 @@ const data = {
       href: '/about/news/13.html',
       target: '_blank',
       type: 'black',
-      backgroundImg: a5,
+      backgroundImg: '/images/banner/index/5.png',
     },
   ],
 };
-
-export default data;

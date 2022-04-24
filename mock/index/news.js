@@ -1,12 +1,7 @@
-import a1 from '@/assets/images/news/16/cover.png';
-import a2 from '@/assets/images/news/15/cover.png';
-import a3 from '@/assets/images/news/14/cover.png';
-import a4 from '@/assets/images/news/13/cover.png';
-
-const data = {
+module.exports = {
   content: [
     {
-      cover: a1,
+      cover: '/images/news/16/cover.png',
       title: '《绣春刀》2014年8月7日于中国内地上映',
       href: '/about/news/16.html',
       summary:
@@ -14,7 +9,7 @@ const data = {
       date: '2022-05-30',
     },
     {
-      cover: a2,
+      cover: '/images/news/15/cover.png',
       title: '云顶之弈：12.5版本更新详解，图奇大砍，多枚冷门C位大增强',
       href: '/about/news/15.html',
       summary:
@@ -22,14 +17,14 @@ const data = {
       date: '2022-02-01',
     },
     {
-      cover: a3,
+      cover: '/images/news/14/cover.png',
       title: '阿尔卡再战第4次高考',
       href: '/about/news/14.html',
       summary: '近日，外国友人阿尔卡发表重要言论，他将参加2022届全国高考。',
       date: '2022-02-22',
     },
     {
-      cover: a4,
+      cover: '/images/news/13/cover.png',
       title: '正午阳光为何走“偏”了？',
       href: '/about/news/14.html',
       summary:
@@ -38,4 +33,4 @@ const data = {
     },
   ],
 };
-export default data;
+

@@ -157,6 +157,15 @@ class Application {
     }))
 
     // 公共数据
+    const menus = require('../mock/menu/index.js')
+    const footerData = require('../mock/menu/footer.js')
+    this.$app.use(async (ctx,next)=>{
+      ctx.state = {
+        menus: menus,
+        footerData: footerData,
+      }
+      await next();
+    });
   }
 
   /**
