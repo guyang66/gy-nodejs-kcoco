@@ -2,6 +2,10 @@ module.exports = app => {
   const { router, $controller, $middleware } = app;
 
   // 页面
+  router.get('/', $controller.pageController.index)
+
+
+  router.get('/test', $controller.common.test)
   router.get('/common/test', $controller.common.test)
   router.get('/common/save',$middleware.auth, $controller.common.saveCustomer)
   router.get('/common/getCustomer',$middleware.auth, $controller.common.getCustomer)
