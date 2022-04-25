@@ -3,15 +3,24 @@
   <head>
     <meta charset="utf-8">
     <%- include('../../layout/commonHead')%>
-    <link rel="stylesheet" href="/css/page-index/style.css">
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/component.css">
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <link rel="stylesheet" href="/css/variables.css">
+    <!--预加载-->
+    <link rel="preload" href="/images/logo/white.svg" as="image">
+    <link rel="preload" href="/images/logo/blue.svg" as="image">
+    <link rel="preload" href="/images/phone/phone-blue.svg" as="image">
+    <link rel="preload" href="/images/phone/phone-white.svg" as="image">
 
+    <!--css-->
+    <link rel="stylesheet" href="/css/page-index/style.css">
+    <!--css 也有插入顺序的，不然会发生覆盖的情况，注意优先级-->
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/component.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/common/plugins/css/swiper.css">
     <link rel="stylesheet" href="/common/plugins/video-js/video-js.css">
+
+    <!--js-->
     <script src="/common/plugins/jquery.min.js"></script>
     <script src="/common/plugins/swiper.js"></script>
   </head>
@@ -40,10 +49,12 @@
       </section>
 
       <%- include('../../layout/footer');%>
+      <%- include('../../component/sideMenus');%>
 
     </div>
     <script src="/js/common.js"></script>
     <script src="/js/index/index.js"></script>
+    <%- include('../../layout/commonFoot');%>
   </body>
 </html>
 
