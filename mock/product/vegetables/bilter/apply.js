@@ -1,13 +1,7 @@
-import a1 from '@/assets/images/product/vegetables/bilter/apply/a1.jpg';
-import a2 from '@/assets/images/product/vegetables/bilter/apply/a2.jpg';
-
-import p1 from '@/assets/images/product/logo/vegetables/baicai.svg';
-import p2 from '@/assets/images/product/logo/vegetables/caitai.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/vegetables/bilter/apply/a1.jpg',
       alt: '浸种催芽',
       height: 728,
       imageWidth: 712,
@@ -24,7 +18,7 @@ const data = {
       products: [
         {
           name: '白菜',
-          icon: p1,
+          icon: '/images/product/logo/vegetables/baicai.svg',
           key: 'baicai',
           alt: '白菜',
           href: '/product/vegetables/cabbage.html',
@@ -32,7 +26,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/vegetables/bilter/apply/a2.jpg',
       alt: '营养钵育苗',
       height: 728,
       imageWidth: 712,
@@ -49,7 +43,7 @@ const data = {
       products: [
         {
           name: '菜苔',
-          icon: p2,
+          icon: '/images/product/logo/vegetables/caitai.svg',
           key: 'bolt',
           alt: '菜苔',
           href: '/product/vegetables/bolt.html',
@@ -58,5 +52,3 @@ const data = {
     },
   ],
 };
-
-export default data;

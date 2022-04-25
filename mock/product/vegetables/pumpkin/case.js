@@ -1,11 +1,4 @@
-import c1 from '@/assets/images/product/vegetables/pumpkin/case/c1.svg';
-import c2 from '@/assets/images/product/vegetables/pumpkin/case/c2.svg';
-import c3 from '@/assets/images/product/vegetables/pumpkin/case/c3.svg';
-import c4 from '@/assets/images/product/vegetables/pumpkin/case/c4.svg';
-import c5 from '@/assets/images/product/vegetables/pumpkin/case/c5.svg';
-import c6 from '@/assets/images/product/vegetables/pumpkin/case/c6.svg';
-
-const data = {
+module.exports = {
   bg: '#f4f4f4',
   pointTitle: '痛点描述',
   pointTitle2: '价值说明',
@@ -15,8 +8,8 @@ const data = {
       data: [
         {
           name: '卡莎码',
-          cover: c1,
-          logo: c1,
+          cover: '/images/product/vegetables/pumpkin/case/c1.svg',
+          logo: '/images/product/vegetables/pumpkin/case/c1.svg',
           alt: '卡莎码',
           width: 0,
           height: 0,
@@ -31,8 +24,8 @@ const data = {
         },
         {
           name: '哈儿多克',
-          cover: c2,
-          logo: c2,
+          cover: '/images/product/vegetables/pumpkin/case/c2.svg',
+          logo: '/images/product/vegetables/pumpkin/case/c2.svg',
           alt: '哈儿多克',
           width: 0,
           height: 0,
@@ -52,8 +45,8 @@ const data = {
       data: [
         {
           name: '沙塔斯',
-          cover: c3,
-          logo: c3,
+          cover: '/images/product/vegetables/pumpkin/case/c3.svg',
+          logo: '/images/product/vegetables/pumpkin/case/c3.svg',
           alt: '沙塔斯',
           width: 0,
           height: 0,
@@ -68,8 +61,8 @@ const data = {
         },
         {
           name: '神行百变',
-          cover: c6,
-          logo: c6,
+          cover: '/images/product/vegetables/pumpkin/case/c6.svg',
+          logo: '/images/product/vegetables/pumpkin/case/c6.svg',
           alt: '神行百变',
           width: 0,
           height: 0,
@@ -89,8 +82,8 @@ const data = {
       data: [
         {
           name: '清路',
-          cover: c4,
-          logo: c4,
+          cover: '/images/product/vegetables/pumpkin/case/c4.svg',
+          logo: '/images/product/vegetables/pumpkin/case/c4.svg',
           alt: '清路',
           width: 0,
           height: 0,
@@ -105,8 +98,8 @@ const data = {
         },
         {
           name: '立马回收',
-          cover: c5,
-          logo: c5,
+          cover: '/images/product/vegetables/pumpkin/case/c5.svg',
+          logo: '/images/product/vegetables/pumpkin/case/c5.svg',
           alt: '立马回收',
           width: 0,
           height: 0,
@@ -123,4 +116,3 @@ const data = {
     },
   ],
 };
-export default data;

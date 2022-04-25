@@ -1,16 +1,7 @@
-import a1 from '@/assets/images/product/fruits/litchi/apply/a1.jpg';
-import a2 from '@/assets/images/product/fruits/litchi/apply/a2.jpg';
-
-import p2 from '@/assets/images/product/logo/fruits/hamigua.svg';
-import p3 from '@/assets/images/product/logo/fruits/huolongguo.svg';
-import p11 from '@/assets/images/product/logo/fruits/pingguo.svg';
-import p12 from '@/assets/images/product/logo/fruits/pipa.svg';
-import p13 from '@/assets/images/product/logo/fruits/putao.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/litchi/apply/a1.jpg',
       alt: '克塞音',
       height: 760,
       imageWidth: 712,
@@ -32,21 +23,21 @@ const data = {
       products: [
         {
           name: '苹果',
-          icon: p11,
+          icon: '/images/product/logo/fruits/pingguo.svg',
           key: 'apple',
           alt: '苹果',
           href: '/product/fruits/apple.html',
         },
         {
           name: '枇杷',
-          icon: p12,
+          icon: '/images/product/logo/fruits/pipa.svg',
           key: 'loquat',
           alt: '枇杷',
           href: '/product/fruits/loquat.html',
         },
         {
           name: '葡萄',
-          icon: p13,
+          icon: '/images/product/logo/fruits/putao.svg',
           key: 'grape',
           alt: '葡萄',
           href: '/product/fruits/grape.html',
@@ -54,7 +45,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/fruits/litchi/apply/a2.jpg',
       alt: '神奇小子',
       height: 728,
       imageWidth: 712,
@@ -72,14 +63,14 @@ const data = {
       products: [
         {
           name: '哈密瓜',
-          icon: p2,
+          icon: '/images/product/logo/fruits/hamigua.svg',
           key: 'hami',
           alt: '哈密瓜',
           href: '/product/fruits/hami.html',
         },
         {
           name: '火龙果',
-          icon: p3,
+          icon: '/images/product/logo/fruits/huolongguo.svg',
           key: 'piyata',
           alt: '火龙果',
           href: '/product/fruits/piyata.html',
@@ -88,5 +79,3 @@ const data = {
     },
   ],
 };
-
-export default data;

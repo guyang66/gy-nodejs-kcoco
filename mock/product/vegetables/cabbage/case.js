@@ -1,11 +1,4 @@
-import c1 from '@/assets/images/product/vegetables/cabbage/case/c1.svg';
-import c2 from '@/assets/images/product/vegetables/cabbage/case/c2.svg';
-import c3 from '@/assets/images/product/vegetables/cabbage/case/c3.svg';
-import c4 from '@/assets/images/product/vegetables/cabbage/case/c4.svg';
-import c5 from '@/assets/images/product/vegetables/cabbage/case/c5.svg';
-import c6 from '@/assets/images/product/vegetables/cabbage/case/c6.svg';
-
-const data = {
+module.exports = {
   bg: '#f4f4f4',
   pointTitle: '痛点描述',
   pointTitle2: '价值说明',
@@ -15,8 +8,8 @@ const data = {
       data: [
         {
           name: '巴西烧烤',
-          cover: c1,
-          logo: c1,
+          cover: '/images/product/vegetables/cabbage/case/c1.svg',
+          logo: '/images/product/vegetables/cabbage/case/c1.svg',
           alt: '巴西烧烤',
           width: 0,
           height: 0,
@@ -31,8 +24,8 @@ const data = {
         },
         {
           name: '祛痘专家',
-          cover: c2,
-          logo: c2,
+          cover: '/images/product/vegetables/cabbage/case/c2.svg',
+          logo: '/images/product/vegetables/cabbage/case/c2.svg',
           alt: '祛痘专家',
           width: 0,
           height: 0,
@@ -52,8 +45,8 @@ const data = {
       data: [
         {
           name: '通天塔',
-          cover: c3,
-          logo: c3,
+          cover: '/images/product/vegetables/cabbage/case/c3.svg',
+          logo: '/images/product/vegetables/cabbage/case/c3.svg',
           alt: '通天塔',
           width: 0,
           height: 0,
@@ -68,8 +61,8 @@ const data = {
         },
         {
           name: '食之秘',
-          cover: c6,
-          logo: c6,
+          cover: '/images/product/vegetables/cabbage/case/c6.svg',
+          logo: '/images/product/vegetables/cabbage/case/c6.svg',
           alt: '食之秘',
           width: 0,
           height: 0,
@@ -89,8 +82,8 @@ const data = {
       data: [
         {
           name: '亨利杰克',
-          cover: c4,
-          logo: c4,
+          cover: '/images/product/vegetables/cabbage/case/c4.svg',
+          logo: '/images/product/vegetables/cabbage/case/c4.svg',
           alt: '亨利杰克',
           width: 0,
           height: 0,
@@ -105,8 +98,8 @@ const data = {
         },
         {
           name: '六月苋',
-          cover: c5,
-          logo: c5,
+          cover: '/images/product/vegetables/cabbage/case/c5.svg',
+          logo: '/images/product/vegetables/cabbage/case/c5.svg',
           alt: '六月苋',
           width: 0,
           height: 0,
@@ -123,4 +116,3 @@ const data = {
     },
   ],
 };
-export default data;

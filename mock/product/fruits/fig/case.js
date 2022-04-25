@@ -1,11 +1,4 @@
-import c1 from '@/assets/images/product/fruits/fig/case/c1.svg';
-import c2 from '@/assets/images/product/fruits/fig/case/c2.svg';
-import c3 from '@/assets/images/product/fruits/fig/case/c3.svg';
-import c4 from '@/assets/images/product/fruits/fig/case/c4.svg';
-import c5 from '@/assets/images/product/fruits/fig/case/c5.svg';
-import c6 from '@/assets/images/product/fruits/fig/case/c6.svg';
-
-const data = {
+module.exports = {
   bg: '#f4f4f4',
   pointTitle: '痛点描述',
   pointTitle2: '价值说明',
@@ -15,8 +8,8 @@ const data = {
       data: [
         {
           name: '哈分卡卡',
-          cover: c1,
-          logo: c1,
+          cover: '/images/product/fruits/fig/case/c1.svg',
+          logo: '/images/product/fruits/fig/case/c1.svg',
           alt: '哈分卡卡',
           width: 0,
           height: 0,
@@ -31,8 +24,8 @@ const data = {
         },
         {
           name: '血色军团',
-          cover: c2,
-          logo: c2,
+          cover: '/images/product/fruits/fig/case/c2.svg',
+          logo: '/images/product/fruits/fig/case/c2.svg',
           alt: '血色军团',
           width: 0,
           height: 0,
@@ -52,8 +45,8 @@ const data = {
       data: [
         {
           name: '翡翠嫦',
-          cover: c3,
-          logo: c3,
+          cover: '/images/product/fruits/fig/case/c3.svg',
+          logo: '/images/product/fruits/fig/case/c3.svg',
           alt: '翡翠嫦',
           width: 0,
           height: 0,
@@ -68,8 +61,8 @@ const data = {
         },
         {
           name: '米儿米网络科技',
-          cover: c6,
-          logo: c6,
+          cover: '/images/product/fruits/fig/case/c6.svg',
+          logo: '/images/product/fruits/fig/case/c6.svg',
           alt: '米儿米网络科技',
           width: 0,
           height: 0,
@@ -89,8 +82,8 @@ const data = {
       data: [
         {
           name: '钱德勒教堂',
-          cover: c4,
-          logo: c4,
+          cover: '/images/product/fruits/fig/case/c4.svg',
+          logo: '/images/product/fruits/fig/case/c4.svg',
           alt: '钱德勒教堂',
           width: 0,
           height: 0,
@@ -105,8 +98,8 @@ const data = {
         },
         {
           name: '杭州东湖兔头',
-          cover: c5,
-          logo: c5,
+          cover: '/images/product/fruits/fig/case/c5.svg',
+          logo: '/images/product/fruits/fig/case/c5.svg',
           alt: '杭州东湖兔头',
           width: 0,
           height: 0,
@@ -123,4 +116,3 @@ const data = {
     },
   ],
 };
-export default data;

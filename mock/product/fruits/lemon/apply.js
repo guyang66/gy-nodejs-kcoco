@@ -1,18 +1,7 @@
-import a1 from '@/assets/images/product/fruits/lemon/apply/a1.jpg';
-import a2 from '@/assets/images/product/fruits/lemon/apply/a2.jpg';
-import a3 from '@/assets/images/product/fruits/lemon/apply/a3.jpg';
-
-import p5 from '@/assets/images/product/logo/fruits/lizhi.svg';
-import p18 from '@/assets/images/product/logo/fruits/wuhuaguo.svg';
-import p17 from '@/assets/images/product/logo/fruits/xiangjiao.svg';
-import p19 from '@/assets/images/product/logo/fruits/yingtao.svg';
-import p20 from '@/assets/images/product/logo/fruits/youzi.svg';
-import p21 from '@/assets/images/product/logo/fruits/zao.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/lemon/apply/a1.jpg',
       alt: '忒时儿夸赞',
       height: 760,
       imageWidth: 712,
@@ -34,14 +23,14 @@ const data = {
       products: [
         {
           name: '香蕉',
-          icon: p17,
+          icon: '/images/product/logo/fruits/xiangjiao.svg',
           key: '香蕉',
-          alt: '无花果',
+          alt: '香蕉',
           href: '/product/fruits/banana.html',
         },
         {
           name: '火龙果',
-          icon: p18,
+          icon: '/images/product/logo/fruits/huolongguo.svg',
           key: 'piyata',
           alt: '火龙果',
           href: '/product/fruits/piyata.html',
@@ -49,7 +38,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/fruits/lemon/apply/a2.jpg',
       alt: '青山葵',
       height: 728,
       imageWidth: 712,
@@ -67,21 +56,21 @@ const data = {
       products: [
         {
           name: '柚子',
-          icon: p20,
+          icon: '/images/product/logo/fruits/youzi.svg',
           key: 'shaddock',
           alt: '柚子',
           href: '/product/fruits/shaddock.html',
         },
         {
           name: '青枣',
-          icon: p21,
+          icon: '/images/product/logo/fruits/zao.svg',
           key: 'jujube',
           alt: '青枣',
           href: '/product/fruits/jujube.html',
         },
         {
           name: '荔枝',
-          icon: p5,
+          icon: '/images/product/logo/fruits/lizhi.svg',
           key: 'litchi',
           alt: '荔枝',
           href: '/product/fruits/litchi.html',
@@ -89,7 +78,7 @@ const data = {
       ],
     },
     {
-      image: a3,
+      image: '/images/product/fruits/lemon/apply/a3.jpg',
       alt: '卤味烧烤',
       height: 728,
       imageWidth: 712,
@@ -107,14 +96,14 @@ const data = {
       products: [
         {
           name: '火龙果',
-          icon: p18,
+          icon: '/images/product/logo/fruits/wuhuaguo.svg',
           key: 'piyata',
           alt: '火龙果',
           href: '/product/fruits/piyata.html',
         },
         {
           name: '樱桃',
-          icon: p19,
+          icon: '/images/product/logo/fruits/yingtao.svg',
           key: 'cherry',
           alt: '樱桃',
           href: '/product/fruits/cherry.html',
@@ -123,5 +112,3 @@ const data = {
     },
   ],
 };
-
-export default data;

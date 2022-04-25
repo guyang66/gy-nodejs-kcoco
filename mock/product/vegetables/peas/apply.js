@@ -1,13 +1,7 @@
-import a1 from '@/assets/images/product/vegetables/peas/apply/a1.jpg';
-import a2 from '@/assets/images/product/vegetables/peas/apply/a2.jpg';
-
-import p10 from '@/assets/images/product/logo/vegetables/qiezi.svg';
-import p14 from '@/assets/images/product/logo/vegetables/xiancai.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/vegetables/peas/apply/a1.jpg',
       alt: '黑奶奶',
       height: 728,
       imageWidth: 712,
@@ -24,15 +18,15 @@ const data = {
       products: [
         {
           name: '茄子',
-          icon: p10,
+          icon: '/images/product/logo/vegetables/qiezi.svg',
           key: 'eggplant',
-          alt: '大葱',
+          alt: '茄子',
           href: '/product/vegetables/eggplant.html',
         },
       ],
     },
     {
-      image: a2,
+      image: '/images/product/vegetables/peas/apply/a1.jpg',
       alt: '豌豆射手',
       height: 728,
       imageWidth: 712,
@@ -49,7 +43,7 @@ const data = {
       products: [
         {
           name: '苋菜',
-          icon: p14,
+          icon: '/images/product/logo/vegetables/xiancai.svg',
           key: 'amaranthus',
           alt: '苋菜',
           href: '/product/vegetables/amaranthus.html',
@@ -58,5 +52,3 @@ const data = {
     },
   ],
 };
-
-export default data;

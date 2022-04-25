@@ -1,16 +1,7 @@
-import a1 from '@/assets/images/product/fruits/kiwi/apply/a1.jpg';
-import a2 from '@/assets/images/product/fruits/kiwi/apply/a2.jpg';
-
-import p14 from '@/assets/images/product/logo/fruits/shanzhu.svg';
-import p15 from '@/assets/images/product/logo/fruits/shizi.svg';
-import p16 from '@/assets/images/product/logo/fruits/shiliu.svg';
-import p21 from '@/assets/images/product/logo/fruits/zao.svg';
-import p22 from '@/assets/images/product/logo/fruits/shuimitao.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/kiwi/apply/a1.jpg',
       alt: '虚妄之诺',
       height: 760,
       imageWidth: 712,
@@ -32,14 +23,14 @@ const data = {
       products: [
         {
           name: '青枣',
-          icon: p21,
+          icon: '/images/product/logo/fruits/zao.svg',
           key: 'jujube',
           alt: '青枣',
           href: '/product/fruits/jujube.html',
         },
         {
           name: '水蜜桃',
-          icon: p22,
+          icon: '/images/product/logo/fruits/shuimitao.svg',
           key: 'peach',
           alt: '水蜜桃',
           href: '/product/fruits/peach.html',
@@ -47,7 +38,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/fruits/kiwi/apply/a2.jpg',
       alt: '饭花园',
       height: 728,
       imageWidth: 712,
@@ -65,21 +56,21 @@ const data = {
       products: [
         {
           name: '山竹',
-          icon: p14,
+          icon: '/images/product/logo/fruits/shanzhu.svg',
           key: 'mangosteen',
           alt: '山竹',
           href: '/product/fruits/mangosteen.html',
         },
         {
           name: '柿子',
-          icon: p15,
+          icon: '/images/product/logo/fruits/shizi.svg',
           key: 'persimmon',
           alt: '柿子',
           href: '/product/fruits/persimmon.html',
         },
         {
           name: '石榴',
-          icon: p16,
+          icon: '/images/product/logo/fruits/shiliu.svg',
           key: 'pomegranate',
           alt: '石榴',
           href: '/product/fruits/pomegranate.html',
@@ -88,5 +79,3 @@ const data = {
     },
   ],
 };
-
-export default data;

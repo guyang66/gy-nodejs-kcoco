@@ -1,22 +1,7 @@
-import a1 from '@/assets/images/product/vegetables/bolt/apply/a1.jpg';
-import a2 from '@/assets/images/product/vegetables/bolt/apply/a2.jpg';
-import a3 from '@/assets/images/product/vegetables/bolt/apply/a3.png';
-
-import p1 from '@/assets/images/product/logo/vegetables/baicai.svg';
-import p3 from '@/assets/images/product/logo/vegetables/dacong.svg';
-import p4 from '@/assets/images/product/logo/vegetables/hongluobu.svg';
-import p5 from '@/assets/images/product/logo/vegetables/huanggua.svg';
-import p6 from '@/assets/images/product/logo/vegetables/kugua.svg';
-import p7 from '@/assets/images/product/logo/vegetables/lajiao.svg';
-import p10 from '@/assets/images/product/logo/vegetables/qiezi.svg';
-import p11 from '@/assets/images/product/logo/vegetables/qincai.svg';
-import p12 from '@/assets/images/product/logo/vegetables/shengjiang.svg';
-import p13 from '@/assets/images/product/logo/vegetables/wandou.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/vegetables/bolt/apply/a1.jpg',
       alt: '拉倒生炒',
       height: 728,
       imageWidth: 712,
@@ -32,35 +17,35 @@ const data = {
       products: [
         {
           name: '白菜',
-          icon: p1,
+          icon: '/images/product/logo/vegetables/baicai.svg',
           key: 'baicai',
           alt: '白菜',
           href: '/product/vegetables/cabbage.html',
         },
         {
           name: '红萝卜',
-          icon: p4,
+          icon: '/images/product/logo/vegetables/hongluobu.svg',
           key: 'radish',
           alt: '红萝卜',
           href: '/product/vegetables/radish.html',
         },
         {
           name: '黄瓜',
-          icon: p5,
+          icon: '/images/product/logo/vegetables/huanggua.svg',
           key: 'cucumber',
           alt: '黄瓜',
           href: '/product/vegetables/cucumber.html',
         },
         {
           name: '苦瓜',
-          icon: p6,
+          icon: '/images/product/logo/vegetables/kugua.svg',
           key: 'bilter',
           alt: '苦瓜',
           href: '/product/vegetables/bilter.html',
         },
         {
           name: '辣椒',
-          icon: p7,
+          icon: '/images/product/logo/vegetables/lajiao.svg',
           key: 'chili',
           alt: '辣椒',
           href: '/product/vegetables/chili.html',
@@ -68,7 +53,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/vegetables/bolt/apply/a2.jpg',
       alt: '菜苔炒青菜',
       height: 728,
       imageWidth: 712,
@@ -85,14 +70,14 @@ const data = {
       products: [
         {
           name: '大葱',
-          icon: p3,
+          icon: '/images/product/logo/vegetables/dacong.svg',
           key: 'onion',
           alt: '大葱',
           href: '/product/vegetables/onion.html',
         },
         {
           name: '豌豆',
-          icon: p13,
+          icon: '/images/product/logo/vegetables/wandou.svg',
           key: 'peas',
           alt: '豌豆',
           href: '/product/vegetables/peas.html',
@@ -100,7 +85,7 @@ const data = {
       ],
     },
     {
-      image: a3,
+      image: '/images/product/vegetables/bolt/apply/a3.png',
       alt: '红烧牛肉',
       height: 728,
       imageWidth: 712,
@@ -117,21 +102,21 @@ const data = {
       products: [
         {
           name: '茄子',
-          icon: p10,
+          icon: '/images/product/logo/vegetables/qiezi.svg',
           key: 'eggplant',
-          alt: '大葱',
+          alt: '茄子',
           href: '/product/vegetables/eggplant.html',
         },
         {
           name: '芹菜',
-          icon: p11,
+          icon: '/images/product/logo/vegetables/qincai.svg',
           key: 'celery',
           alt: '芹菜',
           href: '/product/vegetables/celery.html',
         },
         {
           name: '生姜',
-          icon: p12,
+          icon: '/images/product/logo/vegetables/shengjiang.svg',
           key: 'ginger',
           alt: '生姜',
           href: '/product/vegetables/ginger.html',
@@ -140,5 +125,3 @@ const data = {
     },
   ],
 };
-
-export default data;

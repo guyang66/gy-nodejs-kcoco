@@ -1,11 +1,4 @@
-import c1 from '@/assets/images/product/vegetables/cucumber/case/c1.svg';
-import c2 from '@/assets/images/product/vegetables/cucumber/case/c2.svg';
-import c3 from '@/assets/images/product/vegetables/cucumber/case/c3.svg';
-import c4 from '@/assets/images/product/vegetables/cucumber/case/c4.svg';
-import c5 from '@/assets/images/product/vegetables/cucumber/case/c5.svg';
-import c6 from '@/assets/images/product/vegetables/cucumber/case/c6.svg';
-
-const data = {
+module.exports = {
   bg: '#f4f4f4',
   pointTitle: '痛点描述',
   pointTitle2: '价值说明',
@@ -15,8 +8,8 @@ const data = {
       data: [
         {
           name: '108特',
-          cover: c1,
-          logo: c1,
+          cover: '/images/product/vegetables/cucumber/case/c1.svg',
+          logo: '/images/product/vegetables/cucumber/case/c1.svg',
           alt: '108特',
           width: 0,
           height: 0,
@@ -31,8 +24,8 @@ const data = {
         },
         {
           name: '玉米团',
-          cover: c2,
-          logo: c2,
+          cover: '/images/product/vegetables/cucumber/case/c2.svg',
+          logo: '/images/product/vegetables/cucumber/case/c2.svg',
           alt: '玉米团',
           width: 0,
           height: 0,
@@ -52,8 +45,8 @@ const data = {
       data: [
         {
           name: '麦田网络',
-          cover: c3,
-          logo: c3,
+          cover: '/images/product/vegetables/cucumber/case/c3.svg',
+          logo: '/images/product/vegetables/cucumber/case/c3.svg',
           alt: '麦田网络',
           width: 0,
           height: 0,
@@ -68,8 +61,8 @@ const data = {
         },
         {
           name: '狮子倒影',
-          cover: c6,
-          logo: c6,
+          cover: '/images/product/vegetables/cucumber/case/c6.svg',
+          logo: '/images/product/vegetables/cucumber/case/c6.svg',
           alt: '狮子倒影',
           width: 0,
           height: 0,
@@ -89,8 +82,8 @@ const data = {
       data: [
         {
           name: '菊花爱',
-          cover: c4,
-          logo: c4,
+          cover: '/images/product/vegetables/cucumber/case/c4.svg',
+          logo: '/images/product/vegetables/cucumber/case/c4.svg',
           alt: '菊花爱',
           width: 0,
           height: 0,
@@ -105,8 +98,8 @@ const data = {
         },
         {
           name: '首尔古德曼',
-          cover: c5,
-          logo: c5,
+          cover: '/images/product/vegetables/cucumber/case/c5.svg',
+          logo: '/images/product/vegetables/cucumber/case/c5.svg',
           alt: '首尔古德曼',
           width: 0,
           height: 0,
@@ -123,4 +116,3 @@ const data = {
     },
   ],
 };
-export default data;

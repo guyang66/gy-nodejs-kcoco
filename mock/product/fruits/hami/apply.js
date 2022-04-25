@@ -1,15 +1,7 @@
-import a1 from '@/assets/images/product/fruits/hami/apply/a1.jpg';
-import a2 from '@/assets/images/product/fruits/hami/apply/a2.jpg';
-
-import p1 from '@/assets/images/product/logo/fruits/yangjiaomi.svg';
-import p12 from '@/assets/images/product/logo/fruits/pipa.svg';
-import p13 from '@/assets/images/product/logo/fruits/putao.svg';
-import p22 from '@/assets/images/product/logo/fruits/shuimitao.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/hami/apply/a1.jpg',
       alt: '罗刹大厦季',
       height: 760,
       imageWidth: 712,
@@ -31,14 +23,14 @@ const data = {
       products: [
         {
           name: '羊角蜜',
-          icon: p1,
+          icon: '/images/product/logo/fruits/yangjiaomi.svg',
           key: 'croissant',
           alt: '羊角蜜',
           href: '/product/fruits/croissant.html',
         },
         {
           name: '水蜜桃',
-          icon: p22,
+          icon: '/images/product/logo/fruits/shuimitao.svg',
           key: 'peach',
           alt: '水蜜桃',
           href: '/product/fruits/peach.html',
@@ -46,7 +38,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/fruits/hami/apply/a2.jpg',
       alt: '屠逗',
       height: 728,
       imageWidth: 712,
@@ -64,14 +56,14 @@ const data = {
       products: [
         {
           name: '枇杷',
-          icon: p12,
+          icon: '/images/product/logo/fruits/pipa.svg',
           key: 'loquat',
           alt: '枇杷',
           href: '/product/fruits/loquat.html',
         },
         {
           name: '葡萄',
-          icon: p13,
+          icon: '/images/product/logo/fruits/putao.svg',
           key: 'grape',
           alt: '葡萄',
           href: '/product/fruits/grape.html',
@@ -80,5 +72,3 @@ const data = {
     },
   ],
 };
-
-export default data;

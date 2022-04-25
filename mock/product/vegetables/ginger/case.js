@@ -1,11 +1,4 @@
-import c1 from '@/assets/images/product/vegetables/ginger/case/c1.svg';
-import c2 from '@/assets/images/product/vegetables/ginger/case/c2.svg';
-import c3 from '@/assets/images/product/vegetables/ginger/case/c3.svg';
-import c4 from '@/assets/images/product/vegetables/ginger/case/c4.svg';
-import c5 from '@/assets/images/product/vegetables/ginger/case/c5.svg';
-import c6 from '@/assets/images/product/vegetables/ginger/case/c6.svg';
-
-const data = {
+module.exports = {
   bg: '#f4f4f4',
   pointTitle: '痛点描述',
   pointTitle2: '价值说明',
@@ -15,8 +8,8 @@ const data = {
       data: [
         {
           name: '花梨菲亚',
-          cover: c1,
-          logo: c1,
+          cover: '/images/product/vegetables/ginger/case/c1.svg',
+          logo: '/images/product/vegetables/ginger/case/c1.svg',
           alt: '花梨菲亚',
           width: 0,
           height: 0,
@@ -31,8 +24,8 @@ const data = {
         },
         {
           name: '猪五戒',
-          cover: c2,
-          logo: c2,
+          cover: '/images/product/vegetables/ginger/case/c2.svg',
+          logo: '/images/product/vegetables/ginger/case/c2.svg',
           alt: '猪五戒',
           width: 0,
           height: 0,
@@ -52,8 +45,8 @@ const data = {
       data: [
         {
           name: '哈斯卡',
-          cover: c3,
-          logo: c3,
+          cover: '/images/product/vegetables/ginger/case/c3.svg',
+          logo: '/images/product/vegetables/ginger/case/c3.svg',
           alt: '哈斯卡',
           width: 0,
           height: 0,
@@ -68,8 +61,8 @@ const data = {
         },
         {
           name: '复仇者联盟',
-          cover: c6,
-          logo: c6,
+          cover: '/images/product/vegetables/ginger/case/c6.svg',
+          logo: '/images/product/vegetables/ginger/case/c6.svg',
           alt: '复仇者联盟',
           width: 0,
           height: 0,
@@ -89,8 +82,8 @@ const data = {
       data: [
         {
           name: '丽娜电子',
-          cover: c4,
-          logo: c4,
+          cover: '/images/product/vegetables/ginger/case/c4.svg',
+          logo: '/images/product/vegetables/ginger/case/c4.svg',
           alt: '丽娜电子',
           width: 0,
           height: 0,
@@ -105,8 +98,8 @@ const data = {
         },
         {
           name: '巨沛大厦',
-          cover: c5,
-          logo: c5,
+          cover: '/images/product/vegetables/ginger/case/c5.svg',
+          logo: '/images/product/vegetables/ginger/case/c5.svg',
           alt: '巨沛大厦',
           width: 0,
           height: 0,
@@ -123,4 +116,3 @@ const data = {
     },
   ],
 };
-export default data;

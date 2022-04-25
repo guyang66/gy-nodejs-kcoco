@@ -1,11 +1,4 @@
-import c1 from '@/assets/images/product/vegetables/mushroom/case/c1.svg';
-import c2 from '@/assets/images/product/vegetables/mushroom/case/c2.svg';
-import c3 from '@/assets/images/product/vegetables/mushroom/case/c3.svg';
-import c4 from '@/assets/images/product/vegetables/mushroom/case/c4.svg';
-import c5 from '@/assets/images/product/vegetables/mushroom/case/c5.svg';
-import c6 from '@/assets/images/product/vegetables/mushroom/case/c6.svg';
-
-const data = {
+module.exports = {
   bg: '#f4f4f4',
   pointTitle: '痛点描述',
   pointTitle2: '价值说明',
@@ -15,8 +8,8 @@ const data = {
       data: [
         {
           name: '华离洗手液',
-          cover: c1,
-          logo: c1,
+          cover: '/images/product/vegetables/mushroom/case/c1.svg',
+          logo: '/images/product/vegetables/mushroom/case/c1.svg',
           alt: '华离洗手液',
           width: 0,
           height: 0,
@@ -31,8 +24,8 @@ const data = {
         },
         {
           name: '威猛大星星',
-          cover: c2,
-          logo: c2,
+          cover: '/images/product/vegetables/mushroom/case/c2.svg',
+          logo: '/images/product/vegetables/mushroom/case/c2.svg',
           alt: '威猛大星星',
           width: 0,
           height: 0,
@@ -52,8 +45,8 @@ const data = {
       data: [
         {
           name: '哈利joker',
-          cover: c3,
-          logo: c3,
+          cover: '/images/product/vegetables/mushroom/case/c3.svg',
+          logo: '/images/product/vegetables/mushroom/case/c3.svg',
           alt: '哈利joker',
           width: 0,
           height: 0,
@@ -68,8 +61,8 @@ const data = {
         },
         {
           name: '大地之矿',
-          cover: c6,
-          logo: c6,
+          cover: '/images/product/vegetables/mushroom/case/c6.svg',
+          logo: '/images/product/vegetables/mushroom/case/c6.svg',
           alt: '大地之矿',
           width: 0,
           height: 0,
@@ -89,8 +82,8 @@ const data = {
       data: [
         {
           name: '黑蛇',
-          cover: c4,
-          logo: c4,
+          cover: '/images/product/vegetables/mushroom/case/c4.svg',
+          logo: '/images/product/vegetables/mushroom/case/c4.svg',
           alt: '黑蛇',
           width: 0,
           height: 0,
@@ -105,8 +98,8 @@ const data = {
         },
         {
           name: '空气监察局',
-          cover: c5,
-          logo: c5,
+          cover: '/images/product/vegetables/mushroom/case/c5.svg',
+          logo: '/images/product/vegetables/mushroom/case/c5.svg',
           alt: '空气监察局',
           width: 0,
           height: 0,
@@ -123,4 +116,3 @@ const data = {
     },
   ],
 };
-export default data;

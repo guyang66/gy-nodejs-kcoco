@@ -1,14 +1,7 @@
-import a1 from '@/assets/images/product/fruits/grape/apply/a1.jpg';
-import a2 from '@/assets/images/product/fruits/grape/apply/a2.jpg';
-
-import p12 from '@/assets/images/product/logo/fruits/pipa.svg';
-import p19 from '@/assets/images/product/logo/fruits/yingtao.svg';
-import p20 from '@/assets/images/product/logo/fruits/youzi.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/grape/apply/a1.jpg',
       alt: '玩具熊',
       height: 760,
       imageWidth: 712,
@@ -30,14 +23,14 @@ const data = {
       products: [
         {
           name: '樱桃',
-          icon: p19,
+          icon: '/images/product/logo/fruits/yingtao.svg',
           key: 'cherry',
           alt: '樱桃',
           href: '/product/fruits/cherry.html',
         },
         {
           name: '柚子',
-          icon: p20,
+          icon: '/images/product/logo/fruits/youzi.svg',
           key: 'shaddock',
           alt: '柚子',
           href: '/product/fruits/shaddock.html',
@@ -45,7 +38,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/fruits/grape/apply/a2.jpg',
       alt: '粉丝大龙虾',
       height: 728,
       imageWidth: 712,
@@ -63,7 +56,7 @@ const data = {
       products: [
         {
           name: '枇杷',
-          icon: p12,
+          icon: '/images/product/logo/fruits/pipa.svg',
           key: 'loquat',
           alt: '枇杷',
           href: '/product/fruits/loquat.html',
@@ -72,5 +65,3 @@ const data = {
     },
   ],
 };
-
-export default data;

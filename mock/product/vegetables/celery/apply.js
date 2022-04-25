@@ -1,26 +1,7 @@
-import a1 from '@/assets/images/product/vegetables/celery/apply/a1.jpg';
-import a2 from '@/assets/images/product/vegetables/celery/apply/a2.jpg';
-
-import p1 from '@/assets/images/product/logo/vegetables/baicai.svg';
-import p2 from '@/assets/images/product/logo/vegetables/caitai.svg';
-import p3 from '@/assets/images/product/logo/vegetables/dacong.svg';
-import p4 from '@/assets/images/product/logo/vegetables/hongluobu.svg';
-import p5 from '@/assets/images/product/logo/vegetables/huanggua.svg';
-import p6 from '@/assets/images/product/logo/vegetables/kugua.svg';
-import p7 from '@/assets/images/product/logo/vegetables/lajiao.svg';
-import p8 from '@/assets/images/product/logo/vegetables/nangua.svg';
-import p9 from '@/assets/images/product/logo/vegetables/ou.svg';
-import p10 from '@/assets/images/product/logo/vegetables/qiezi.svg';
-import p11 from '@/assets/images/product/logo/vegetables/qincai.svg';
-import p12 from '@/assets/images/product/logo/vegetables/shengjiang.svg';
-import p13 from '@/assets/images/product/logo/vegetables/wandou.svg';
-import p14 from '@/assets/images/product/logo/vegetables/xiancai.svg';
-import p15 from '@/assets/images/product/logo/vegetables/xianggu.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/vegetables/celery/apply/a1.jpg',
       alt: '芹菜杀张飞',
       height: 728,
       imageWidth: 712,
@@ -37,14 +18,14 @@ const data = {
       products: [
         {
           name: '红萝卜',
-          icon: p4,
+          icon: '/images/product/logo/vegetables/hongluobu.svg',
           key: 'radish',
           alt: '红萝卜',
           href: '/product/vegetables/radish.html',
         },
         {
           name: '苋菜',
-          icon: p14,
+          icon: '/images/product/logo/vegetables/xiancai.svg',
           key: 'amaranthus',
           alt: '苋菜',
           href: '/product/vegetables/amaranthus.html',
@@ -52,7 +33,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/vegetables/celery/apply/a2.jpg',
       alt: '芹溪',
       height: 728,
       imageWidth: 712,
@@ -69,14 +50,14 @@ const data = {
       products: [
         {
           name: '南瓜',
-          icon: p8,
+          icon: '/images/product/logo/vegetables/nangua.svg',
           key: 'pumpkin',
           alt: '南瓜',
           href: '/product/vegetables/pumpkin.html',
         },
         {
           name: '豌豆',
-          icon: p13,
+          icon: '/images/product/logo/vegetables/wandou.svg',
           key: 'peas',
           alt: '豌豆',
           href: '/product/vegetables/peas.html',
@@ -85,5 +66,3 @@ const data = {
     },
   ],
 };
-
-export default data;

@@ -1,15 +1,7 @@
-import a1 from '@/assets/images/product/fruits/litchi/apply/a1.jpg';
-import a2 from '@/assets/images/product/fruits/litchi/apply/a2.jpg';
-
-import p4 from '@/assets/images/product/logo/fruits/juzi.svg';
-import p8 from '@/assets/images/product/logo/fruits/mihoutao.svg';
-import p11 from '@/assets/images/product/logo/fruits/pingguo.svg';
-import p22 from '@/assets/images/product/logo/fruits/shuimitao.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/litchi/apply/a1.jpg',
       alt: '哼唧打算人',
       height: 760,
       imageWidth: 712,
@@ -31,14 +23,14 @@ const data = {
       products: [
         {
           name: '猕猴桃',
-          icon: p8,
+          icon: '/images/product/logo/fruits/mihoutao.svg',
           key: 'kiwi',
           alt: '猕猴桃',
           href: '/product/fruits/kiwi.html',
         },
         {
           name: '水蜜桃',
-          icon: p22,
+          icon: '/images/product/logo/fruits/shuimitao.svg',
           key: 'peach',
           alt: '水蜜桃',
           href: '/product/fruits/peach.html',
@@ -46,7 +38,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/fruits/litchi/apply/a2.jpg',
       alt: '死灵飞龙',
       height: 728,
       imageWidth: 712,
@@ -64,14 +56,14 @@ const data = {
       products: [
         {
           name: '橘子',
-          icon: p4,
+          icon: '/images/product/logo/fruits/juzi.svg',
           key: 'orange',
           alt: '橘子',
           href: '/product/fruits/orange.html',
         },
         {
           name: '苹果',
-          icon: p11,
+          icon: '/images/product/logo/fruits/pingguo.svg',
           key: 'apple',
           alt: '苹果',
           href: '/product/fruits/apple.html',
@@ -80,5 +72,3 @@ const data = {
     },
   ],
 };
-
-export default data;

@@ -1,13 +1,7 @@
-import a1 from '@/assets/images/product/vegetables/ginger/apply/a1.jpg';
-import a2 from '@/assets/images/product/vegetables/ginger/apply/a2.jpg';
-
-import p6 from '@/assets/images/product/logo/vegetables/kugua.svg';
-import p8 from '@/assets/images/product/logo/vegetables/nangua.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/vegetables/ginger/apply/a1.jpg',
       alt: '真空1比1',
       height: 728,
       imageWidth: 712,
@@ -24,7 +18,7 @@ const data = {
       products: [
         {
           name: '苦瓜',
-          icon: p6,
+          icon: '/images/product/logo/vegetables/kugua.svg',
           key: 'bilter',
           alt: '苦瓜',
           href: '/product/vegetables/bilter.html',
@@ -32,7 +26,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/vegetables/ginger/apply/a2.jpg',
       alt: '风选系统',
       height: 728,
       imageWidth: 712,
@@ -49,7 +43,7 @@ const data = {
       products: [
         {
           name: '南瓜',
-          icon: p8,
+          icon: '/images/product/logo/vegetables/nangua.svg',
           key: 'pumpkin',
           alt: '南瓜',
           href: '/product/vegetables/pumpkin.html',
@@ -58,5 +52,3 @@ const data = {
     },
   ],
 };
-
-export default data;

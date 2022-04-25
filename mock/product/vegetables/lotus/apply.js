@@ -1,17 +1,7 @@
-import a1 from '@/assets/images/product/vegetables/lotus/apply/a1.jpg';
-import a2 from '@/assets/images/product/vegetables/lotus/apply/a2.png';
-
-import p1 from '@/assets/images/product/logo/vegetables/baicai.svg';
-import p2 from '@/assets/images/product/logo/vegetables/caitai.svg';
-import p5 from '@/assets/images/product/logo/vegetables/huanggua.svg';
-import p6 from '@/assets/images/product/logo/vegetables/kugua.svg';
-import p7 from '@/assets/images/product/logo/vegetables/lajiao.svg';
-import p8 from '@/assets/images/product/logo/vegetables/nangua.svg';
-import p9 from '@/assets/images/product/logo/vegetables/ou.svg';
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/vegetables/lotus/apply/a1.jpg',
       alt: '加时间器',
       height: 728,
       imageWidth: 712,
@@ -28,42 +18,42 @@ const data = {
       products: [
         {
           name: '白菜',
-          icon: p1,
+          icon: '/images/product/logo/vegetables/baicai.svg',
           key: 'baicai',
           alt: '白菜',
           href: '/product/vegetables/cabbage.html',
         },
         {
           name: '黄瓜',
-          icon: p5,
+          icon: '/images/product/logo/vegetables/huanggua.svg',
           key: 'cucumber',
           alt: '黄瓜',
           href: '/product/vegetables/cucumber.html',
         },
         {
           name: '苦瓜',
-          icon: p6,
+          icon: '/images/product/logo/vegetables/kugua.svg',
           key: 'bilter',
           alt: '苦瓜',
           href: '/product/vegetables/bilter.html',
         },
         {
           name: '辣椒',
-          icon: p7,
+          icon: '/images/product/logo/vegetables/lajiao.svg',
           key: 'chili',
           alt: '辣椒',
           href: '/product/vegetables/chili.html',
         },
         {
           name: '南瓜',
-          icon: p8,
+          icon: '/images/product/logo/vegetables/nangua.svg',
           key: 'pumpkin',
           alt: '南瓜',
           href: '/product/vegetables/pumpkin.html',
         },
         {
           name: '藕',
-          icon: p9,
+          icon: '/images/product/logo/vegetables/ou.svg',
           key: 'lotus',
           alt: '藕',
           href: '/product/vegetables/lotus.html',
@@ -71,7 +61,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/vegetables/lotus/apply/a2.jpg',
       alt: '粒子碰撞机',
       height: 728,
       imageWidth: 712,
@@ -88,7 +78,7 @@ const data = {
       products: [
         {
           name: '菜苔',
-          icon: p2,
+          icon: '/images/product/logo/vegetables/caitai.svg',
           key: 'bolt',
           alt: '菜苔',
           href: '/product/vegetables/bolt.html',
@@ -97,5 +87,3 @@ const data = {
     },
   ],
 };
-
-export default data;

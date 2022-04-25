@@ -1,4 +1,4 @@
-const history = {
+module.exports = {
   content: [
     {
       key: 1,
@@ -60,5 +60,3 @@ const history = {
     },
   ],
 };
-
-export default history;

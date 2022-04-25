@@ -1,11 +1,4 @@
-import c1 from '@/assets/images/product/vegetables/celery/case/c1.svg';
-import c2 from '@/assets/images/product/vegetables/celery/case/c2.svg';
-import c3 from '@/assets/images/product/vegetables/celery/case/c3.svg';
-import c4 from '@/assets/images/product/vegetables/celery/case/c4.svg';
-import c5 from '@/assets/images/product/vegetables/celery/case/c5.svg';
-import c6 from '@/assets/images/product/vegetables/celery/case/c6.svg';
-
-const data = {
+module.exports = {
   bg: '#f4f4f4',
   pointTitle: '痛点描述',
   pointTitle2: '价值说明',
@@ -15,8 +8,8 @@ const data = {
       data: [
         {
           name: '吊具五金',
-          cover: c1,
-          logo: c1,
+          cover: '/images/product/vegetables/celery/case/c1.svg',
+          logo: '/images/product/vegetables/celery/case/c1.svg',
           alt: '吊具五金',
           width: 0,
           height: 0,
@@ -31,8 +24,8 @@ const data = {
         },
         {
           name: '血色漫展市',
-          cover: c2,
-          logo: c2,
+          cover: '/images/product/vegetables/celery/case/c2.svg',
+          logo: '/images/product/vegetables/celery/case/c2.svg',
           alt: '血色漫展市',
           width: 0,
           height: 0,
@@ -52,8 +45,8 @@ const data = {
       data: [
         {
           name: '绿萝之州',
-          cover: c3,
-          logo: c3,
+          cover: '/images/product/vegetables/celery/case/c3.svg',
+          logo: '/images/product/vegetables/celery/case/c3.svg',
           alt: '绿萝之州',
           width: 0,
           height: 0,
@@ -68,8 +61,8 @@ const data = {
         },
         {
           name: '夸克NA',
-          cover: c6,
-          logo: c6,
+          cover: '/images/product/vegetables/celery/case/c6.svg',
+          logo: '/images/product/vegetables/celery/case/c6.svg',
           alt: '夸克NA',
           width: 0,
           height: 0,
@@ -89,8 +82,8 @@ const data = {
       data: [
         {
           name: '兰宴家',
-          cover: c4,
-          logo: c4,
+          cover: '/images/product/vegetables/celery/case/c4.svg',
+          logo: '/images/product/vegetables/celery/case/c4.svg',
           alt: '兰宴家',
           width: 0,
           height: 0,
@@ -105,8 +98,8 @@ const data = {
         },
         {
           name: '数盗科技',
-          cover: c5,
-          logo: c5,
+          cover: '/images/product/vegetables/celery/case/c5.svg',
+          logo: '/images/product/vegetables/celery/case/c5.svg',
           alt: '数盗科技',
           width: 0,
           height: 0,
@@ -123,4 +116,3 @@ const data = {
     },
   ],
 };
-export default data;

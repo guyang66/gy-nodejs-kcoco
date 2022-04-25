@@ -1,13 +1,7 @@
-import a1 from '@/assets/images/product/vegetables/cucumber/apply/a1.jpg';
-import a2 from '@/assets/images/product/vegetables/cucumber/apply/a2.jpg';
-
-import p4 from '@/assets/images/product/logo/vegetables/hongluobu.svg';
-import p15 from '@/assets/images/product/logo/vegetables/xianggu.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/vegetables/cucumber/apply/a1.jpg',
       alt: '拍前男友',
       height: 728,
       imageWidth: 712,
@@ -24,7 +18,7 @@ const data = {
       products: [
         {
           name: '香菇',
-          icon: p15,
+          icon: '/images/product/logo/vegetables/xianggu.svg',
           key: 'mushroom',
           alt: '香菇',
           href: '/product/vegetables/mushroom.html',
@@ -32,7 +26,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/vegetables/cucumber/apply/a2.jpg',
       alt: '蒜蓉粉丝黄瓜',
       height: 728,
       imageWidth: 712,
@@ -49,7 +43,7 @@ const data = {
       products: [
         {
           name: '红萝卜',
-          icon: p4,
+          icon: '/images/product/logo/vegetables/hongluobu.svg',
           key: 'radish',
           alt: '红萝卜',
           href: '/product/vegetables/radish.html',
@@ -58,5 +52,3 @@ const data = {
     },
   ],
 };
-
-export default data;

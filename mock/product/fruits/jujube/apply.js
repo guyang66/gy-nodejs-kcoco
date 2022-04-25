@@ -1,12 +1,7 @@
-import a1 from '@/assets/images/product/fruits/jujube/apply/a1.jpg';
-
-import p1 from '@/assets/images/product/logo/fruits/yangjiaomi.svg';
-import p20 from '@/assets/images/product/logo/fruits/youzi.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/jujube/apply/a1.jpg',
       alt: '神谕者',
       height: 760,
       imageWidth: 712,
@@ -28,14 +23,14 @@ const data = {
       products: [
         {
           name: '羊角蜜',
-          icon: p1,
+          icon: '/images/product/logo/fruits/yangjiaomi.svg',
           key: 'croissant',
           alt: '羊角蜜',
           href: '/product/fruits/croissant.html',
         },
         {
           name: '柚子',
-          icon: p20,
+          icon: '/images/product/logo/fruits/youzi.svg',
           key: 'shaddock',
           alt: '柚子',
           href: '/product/fruits/shaddock.html',
@@ -44,5 +39,3 @@ const data = {
     },
   ],
 };
-
-export default data;

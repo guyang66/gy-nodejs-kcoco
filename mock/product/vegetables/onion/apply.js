@@ -1,15 +1,7 @@
-import a1 from '@/assets/images/product/vegetables/onion/apply/a1.png';
-import a2 from '@/assets/images/product/vegetables/onion/apply/a2.jpg';
-
-import p5 from '@/assets/images/product/logo/vegetables/huanggua.svg';
-import p11 from '@/assets/images/product/logo/vegetables/qincai.svg';
-import p13 from '@/assets/images/product/logo/vegetables/wandou.svg';
-import p15 from '@/assets/images/product/logo/vegetables/xianggu.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/vegetables/onion/apply/a1.png',
       alt: '时光穿梭机',
       height: 728,
       imageWidth: 712,
@@ -26,21 +18,21 @@ const data = {
       products: [
         {
           name: '黄瓜',
-          icon: p5,
+          icon: '/images/product/logo/vegetables/huanggua.svg',
           key: 'cucumber',
           alt: '黄瓜',
           href: '/product/vegetables/cucumber.html',
         },
         {
           name: '芹菜',
-          icon: p11,
+          icon: '/images/product/logo/vegetables/qincai.svg',
           key: 'celery',
           alt: '芹菜',
           href: '/product/vegetables/celery.html',
         },
         {
           name: '豌豆',
-          icon: p13,
+          icon: '/images/product/logo/vegetables/wandou.svg',
           key: 'peas',
           alt: '豌豆',
           href: '/product/vegetables/peas.html',
@@ -48,7 +40,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/vegetables/onion/apply/a1.jpg',
       alt: '洋葱潘饭',
       height: 728,
       imageWidth: 712,
@@ -65,7 +57,7 @@ const data = {
       products: [
         {
           name: '香菇',
-          icon: p15,
+          icon: '/images/product/logo/vegetables/xianggu.svg',
           key: 'mushroom',
           alt: '香菇',
           href: '/product/vegetables/mushroom.html',
@@ -74,5 +66,3 @@ const data = {
     },
   ],
 };
-
-export default data;

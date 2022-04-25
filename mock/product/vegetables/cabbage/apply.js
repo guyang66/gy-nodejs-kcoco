@@ -1,12 +1,7 @@
-import a1 from '@/assets/images/product/vegetables/cabbage/apply/a1.jpg';
-
-import p1 from '@/assets/images/product/logo/vegetables/baicai.svg';
-import p15 from '@/assets/images/product/logo/vegetables/xianggu.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/vegetables/cabbage/apply/a1.jpg',
       alt: '白菜猪肉饺子',
       height: 728,
       imageWidth: 712,
@@ -23,14 +18,14 @@ const data = {
       products: [
         {
           name: '白菜',
-          icon: p1,
+          icon: '/images/product/logo/vegetables/baicai.svg',
           key: 'baicai',
           alt: '白菜',
           href: '/product/vegetables/cabbage.html',
         },
         {
           name: '香菇',
-          icon: p15,
+          icon: '/images/product/logo/vegetables/xianggu.svg',
           key: 'mushroom',
           alt: '香菇',
           href: '/product/vegetables/mushroom.html',
@@ -39,5 +34,3 @@ const data = {
     },
   ],
 };
-
-export default data;

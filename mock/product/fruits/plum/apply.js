@@ -1,15 +1,7 @@
-import a1 from '@/assets/images/product/fruits/peach/apply/a1.jpg';
-import a2 from '@/assets/images/product/fruits/peach/apply/a2.jpg';
-
-import p12 from '@/assets/images/product/logo/fruits/pipa.svg';
-import p13 from '@/assets/images/product/logo/fruits/putao.svg';
-import p15 from '@/assets/images/product/logo/fruits/shizi.svg';
-import p16 from '@/assets/images/product/logo/fruits/shiliu.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/peach/apply/a1.jpg',
       alt: '球球码',
       height: 760,
       imageWidth: 712,
@@ -31,14 +23,14 @@ const data = {
       products: [
         {
           name: '枇杷',
-          icon: p12,
+          icon: '/images/product/logo/fruits/pipa.svg',
           key: 'loquat',
           alt: '枇杷',
           href: '/product/fruits/loquat.html',
         },
         {
           name: '葡萄',
-          icon: p13,
+          icon: '/images/product/logo/fruits/putao.svg',
           key: 'grape',
           alt: '葡萄',
           href: '/product/fruits/grape.html',
@@ -46,7 +38,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/fruits/peach/apply/a2.jpg',
       alt: '撒打算',
       height: 728,
       imageWidth: 712,
@@ -64,14 +56,14 @@ const data = {
       products: [
         {
           name: '柿子',
-          icon: p15,
+          icon: '/images/product/logo/fruits/shizi.svg',
           key: 'persimmon',
           alt: '柿子',
           href: '/product/fruits/persimmon.html',
         },
         {
           name: '石榴',
-          icon: p16,
+          icon: '/images/product/logo/fruits/shiliu.svg',
           key: 'pomegranate',
           alt: '石榴',
           href: '/product/fruits/pomegranate.html',
@@ -80,5 +72,3 @@ const data = {
     },
   ],
 };
-
-export default data;

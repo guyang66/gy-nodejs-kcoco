@@ -1,17 +1,7 @@
-import a1 from '@/assets/images/product/fruits/banana/apply/a1.jpg';
-import a2 from '@/assets/images/product/fruits/banana/apply/a2.jpg';
-import a3 from '@/assets/images/product/fruits/banana/apply/a3.jpg';
-
-import p4 from '@/assets/images/product/logo/fruits/juzi.svg';
-import p12 from '@/assets/images/product/logo/fruits/pipa.svg';
-import p14 from '@/assets/images/product/logo/fruits/shanzhu.svg';
-import p15 from '@/assets/images/product/logo/fruits/shizi.svg';
-import p20 from '@/assets/images/product/logo/fruits/youzi.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/banana/apply/a1.jpg',
       alt: '皮兜市',
       height: 760,
       imageWidth: 712,
@@ -33,14 +23,14 @@ const data = {
       products: [
         {
           name: '柚子',
-          icon: p20,
+          icon: '/images/product/logo/fruits/youzi.svg',
           key: 'shaddock',
           alt: '柚子',
           href: '/product/fruits/shaddock.html',
         },
         {
           name: '柿子',
-          icon: p15,
+          icon: '/images/product/logo/fruits/shizi.svg',
           key: 'persimmon',
           alt: '柿子',
           href: '/product/fruits/persimmon.html',
@@ -48,7 +38,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/fruits/banana/apply/a2.jpg',
       alt: 'Golshp',
       height: 728,
       imageWidth: 712,
@@ -66,14 +56,14 @@ const data = {
       products: [
         {
           name: '橘子',
-          icon: p4,
+          icon: '/images/product/logo/fruits/juzi.svg',
           key: 'orange',
           alt: '橘子',
           href: '/product/fruits/orange.html',
         },
         {
           name: '山竹',
-          icon: p14,
+          icon: '/images/product/logo/fruits/shanzhu.svg',
           key: 'mangosteen',
           alt: '山竹',
           href: '/product/fruits/mangosteen.html',
@@ -81,7 +71,7 @@ const data = {
       ],
     },
     {
-      image: a3,
+      image: '/images/product/fruits/banana/apply/a3.jpg',
       alt: '天地大商',
       height: 728,
       imageWidth: 712,
@@ -99,7 +89,7 @@ const data = {
       products: [
         {
           name: '枇杷',
-          icon: p12,
+          icon: '/images/product/logo/fruits/pipa.svg',
           key: 'loquat',
           alt: '枇杷',
           href: '/product/fruits/loquat.html',
@@ -108,5 +98,3 @@ const data = {
     },
   ],
 };
-
-export default data;

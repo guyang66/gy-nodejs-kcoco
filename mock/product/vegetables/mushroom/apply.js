@@ -1,15 +1,7 @@
-import a1 from '@/assets/images/product/vegetables/mushroom/apply/a1.png';
-import a2 from '@/assets/images/product/vegetables/mushroom/apply/a2.jpg';
-
-import p3 from '@/assets/images/product/logo/vegetables/dacong.svg';
-import p4 from '@/assets/images/product/logo/vegetables/hongluobu.svg';
-import p12 from '@/assets/images/product/logo/vegetables/shengjiang.svg';
-import p13 from '@/assets/images/product/logo/vegetables/wandou.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/vegetables/mushroom/apply/a1.png',
       alt: '小鸡炖蘑菇',
       height: 728,
       imageWidth: 712,
@@ -26,14 +18,14 @@ const data = {
       products: [
         {
           name: '大葱',
-          icon: p3,
+          icon: '/images/product/logo/vegetables/dacong.svg',
           key: 'onion',
           alt: '大葱',
           href: '/product/vegetables/onion.html',
         },
         {
           name: '红萝卜',
-          icon: p4,
+          icon: '/images/product/logo/vegetables/hongluobu.svg',
           key: 'radish',
           alt: '红萝卜',
           href: '/product/vegetables/radish.html',
@@ -41,7 +33,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/vegetables/mushroom/apply/a2.jpg',
       alt: '蘑菇头发型',
       height: 728,
       imageWidth: 712,
@@ -58,14 +50,14 @@ const data = {
       products: [
         {
           name: '生姜',
-          icon: p12,
+          icon: 'images/product/logo/vegetables/shengjiang.svg',
           key: 'ginger',
           alt: '生姜',
           href: '/product/vegetables/ginger.html',
         },
         {
           name: '豌豆',
-          icon: p13,
+          icon: 'images/product/logo/vegetables/wandou.svg',
           key: 'peas',
           alt: '豌豆',
           href: '/product/vegetables/peas.html',
@@ -74,5 +66,3 @@ const data = {
     },
   ],
 };
-
-export default data;

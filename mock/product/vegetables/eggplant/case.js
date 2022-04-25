@@ -1,11 +1,4 @@
-import c1 from '@/assets/images/product/vegetables/eggplant/case/c1.svg';
-import c2 from '@/assets/images/product/vegetables/eggplant/case/c2.svg';
-import c3 from '@/assets/images/product/vegetables/eggplant/case/c3.svg';
-import c4 from '@/assets/images/product/vegetables/eggplant/case/c4.svg';
-import c5 from '@/assets/images/product/vegetables/eggplant/case/c5.svg';
-import c6 from '@/assets/images/product/vegetables/eggplant/case/c6.svg';
-
-const data = {
+module.exports = {
   bg: '#f4f4f4',
   pointTitle: '痛点描述',
   pointTitle2: '价值说明',
@@ -15,8 +8,8 @@ const data = {
       data: [
         {
           name: '黑色霸王花',
-          cover: c1,
-          logo: c1,
+          cover: '/images/product/vegetables/eggplant/case/c1.svg',
+          logo: '/images/product/vegetables/eggplant/case/c1.svg',
           alt: '黑色霸王花',
           width: 0,
           height: 0,
@@ -31,8 +24,8 @@ const data = {
         },
         {
           name: '紫气东来',
-          cover: c2,
-          logo: c2,
+          cover: '/images/product/vegetables/eggplant/case/c2.svg',
+          logo: '/images/product/vegetables/eggplant/case/c2.svg',
           alt: '紫气东来',
           width: 0,
           height: 0,
@@ -52,8 +45,8 @@ const data = {
       data: [
         {
           name: '万望',
-          cover: c3,
-          logo: c3,
+          cover: '/images/product/vegetables/eggplant/case/c3.svg',
+          logo: '/images/product/vegetables/eggplant/case/c3.svg',
           alt: '万望',
           width: 0,
           height: 0,
@@ -68,8 +61,8 @@ const data = {
         },
         {
           name: '大绿谷',
-          cover: c6,
-          logo: c6,
+          cover: '/images/product/vegetables/eggplant/case/c6.svg',
+          logo: '/images/product/vegetables/eggplant/case/c6.svg',
           alt: '大绿谷',
           width: 0,
           height: 0,
@@ -89,8 +82,8 @@ const data = {
       data: [
         {
           name: '宠粉见见团',
-          cover: c4,
-          logo: c4,
+          cover: '/images/product/vegetables/eggplant/case/c4.svg',
+          logo: '/images/product/vegetables/eggplant/case/c4.svg',
           alt: '宠粉见见团',
           width: 0,
           height: 0,
@@ -105,8 +98,8 @@ const data = {
         },
         {
           name: '麦田里网络科技',
-          cover: c5,
-          logo: c5,
+          cover: '/images/product/vegetables/eggplant/case/c5.svg',
+          logo: '/images/product/vegetables/eggplant/case/c5.svg',
           alt: '麦田里网络科技',
           width: 0,
           height: 0,
@@ -123,4 +116,3 @@ const data = {
     },
   ],
 };
-export default data;

@@ -1,14 +1,7 @@
-import a1 from '@/assets/images/product/fruits/apple/apply/a1.jpg';
-
-import p18 from '@/assets/images/product/logo/fruits/wuhuaguo.svg';
-import p17 from '@/assets/images/product/logo/fruits/xiangjiao.svg';
-import p20 from '@/assets/images/product/logo/fruits/youzi.svg';
-import p21 from '@/assets/images/product/logo/fruits/zao.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/apple/apply/a1.jpg',
       alt: '圣诞树装扮',
       height: 760,
       imageWidth: 712,
@@ -30,28 +23,28 @@ const data = {
       products: [
         {
           name: '柚子',
-          icon: p20,
+          icon: '/images/product/logo/fruits/youzi.svg',
           key: 'shaddock',
           alt: '柚子',
           href: '/product/fruits/shaddock.html',
         },
         {
           name: '青枣',
-          icon: p21,
+          icon: '/images/product/logo/fruits/zao.svg',
           key: 'jujube',
           alt: '青枣',
           href: '/product/fruits/jujube.html',
         },
         {
           name: '香蕉',
-          icon: p17,
+          icon: '/images/product/logo/fruits/xiangjiao.svg',
           key: '香蕉',
           alt: '无花果',
           href: '/product/fruits/banana.html',
         },
         {
           name: '火龙果',
-          icon: p18,
+          icon: '/images/product/logo/fruits/huolongguo.svg',
           key: 'piyata',
           alt: '火龙果',
           href: '/product/fruits/piyata.html',
@@ -60,5 +53,3 @@ const data = {
     },
   ],
 };
-
-export default data;

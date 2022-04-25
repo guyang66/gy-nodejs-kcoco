@@ -1,15 +1,7 @@
-import a1 from '@/assets/images/product/fruits/piyata/apply/a1.jpg';
-import a2 from '@/assets/images/product/fruits/piyata/apply/a2.jpg';
-
-import p13 from '@/assets/images/product/logo/fruits/putao.svg';
-import p18 from '@/assets/images/product/logo/fruits/wuhuaguo.svg';
-import p19 from '@/assets/images/product/logo/fruits/yingtao.svg';
-import p22 from '@/assets/images/product/logo/fruits/shuimitao.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/piyata/apply/a1.jpg',
       alt: '桂花糕',
       height: 760,
       imageWidth: 712,
@@ -31,14 +23,14 @@ const data = {
       products: [
         {
           name: '葡萄',
-          icon: p13,
+          icon: '/images/product/logo/fruits/putao.svg',
           key: 'grape',
           alt: '葡萄',
           href: '/product/fruits/grape.html',
         },
         {
           name: '水蜜桃',
-          icon: p22,
+          icon: '/images/product/logo/fruits/shuimitao.svg',
           key: 'peach',
           alt: '水蜜桃',
           href: '/product/fruits/peach.html',
@@ -46,7 +38,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/fruits/piyata/apply/a2.jpg',
       alt: 'fashion仕达',
       height: 728,
       imageWidth: 712,
@@ -63,15 +55,15 @@ const data = {
       ],
       products: [
         {
-          name: '火龙果',
-          icon: p18,
+          name: '无花果',
+          icon: '/images/product/logo/fruits/wuhuaguo.svg',
           key: 'piyata',
-          alt: '火龙果',
-          href: '/product/fruits/piyata.html',
+          alt: '无花果',
+          href: '/product/fruits/fig.html',
         },
         {
           name: '樱桃',
-          icon: p19,
+          icon: '/images/product/logo/fruits/yingtao.svg',
           key: 'cherry',
           alt: '樱桃',
           href: '/product/fruits/cherry.html',
@@ -80,5 +72,3 @@ const data = {
     },
   ],
 };
-
-export default data;

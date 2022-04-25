@@ -1,11 +1,4 @@
-import c1 from '@/assets/images/product/vegetables/bilter/case/c1.svg';
-import c2 from '@/assets/images/product/vegetables/bilter/case/c2.svg';
-import c3 from '@/assets/images/product/vegetables/bilter/case/c3.svg';
-import c4 from '@/assets/images/product/vegetables/bilter/case/c4.svg';
-import c5 from '@/assets/images/product/vegetables/bilter/case/c5.svg';
-import c6 from '@/assets/images/product/vegetables/bilter/case/c6.svg';
-
-const data = {
+module.exports = {
   bg: '#f4f4f4',
   pointTitle: '痛点描述',
   pointTitle2: '价值说明',
@@ -15,8 +8,8 @@ const data = {
       data: [
         {
           name: '韩地葫芦',
-          cover: c1,
-          logo: c1,
+          cover: '/images/product/vegetables/bilter/case/c1.svg',
+          logo: '/images/product/vegetables/bilter/case/c1.svg',
           alt: '韩地葫芦',
           width: 0,
           height: 0,
@@ -31,8 +24,8 @@ const data = {
         },
         {
           name: '本地狗窝',
-          cover: c2,
-          logo: c2,
+          cover: '/images/product/vegetables/bilter/case/c2.svg',
+          logo: '/images/product/vegetables/bilter/case/c2.svg',
           alt: '本地狗窝',
           width: 0,
           height: 0,
@@ -52,8 +45,8 @@ const data = {
       data: [
         {
           name: '翠腊鸡',
-          cover: c3,
-          logo: c3,
+          cover: '/images/product/vegetables/bilter/case/c3.svg',
+          logo: '/images/product/vegetables/bilter/case/c3.svg',
           alt: '翠腊鸡',
           width: 0,
           height: 0,
@@ -68,8 +61,8 @@ const data = {
         },
         {
           name: '黑色军团',
-          cover: c6,
-          logo: c6,
+          cover: '/images/product/vegetables/bilter/case/c6.svg',
+          logo: '/images/product/vegetables/bilter/case/c6.svg',
           alt: '黑色军团',
           width: 0,
           height: 0,
@@ -89,8 +82,8 @@ const data = {
       data: [
         {
           name: '千杀计',
-          cover: c4,
-          logo: c4,
+          cover: '/images/product/vegetables/bilter/case/c4.svg',
+          logo: '/images/product/vegetables/bilter/case/c4.svg',
           alt: '千杀计',
           width: 0,
           height: 0,
@@ -105,8 +98,8 @@ const data = {
         },
         {
           name: '神奇online',
-          cover: c5,
-          logo: c5,
+          cover: '/images/product/vegetables/bilter/case/c5.svg',
+          logo: '/images/product/vegetables/bilter/case/c5.svg',
           alt: '神奇online',
           width: 0,
           height: 0,
@@ -123,4 +116,3 @@ const data = {
     },
   ],
 };
-export default data;

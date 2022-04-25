@@ -1,24 +1,7 @@
-import a1 from '@/assets/images/product/fruits/cherry/apply/a1.jpg';
-import a2 from '@/assets/images/product/fruits/cherry/apply/a2.jpg';
-import a3 from '@/assets/images/product/fruits/cherry/apply/a3.jpg';
-import a4 from '@/assets/images/product/fruits/cherry/apply/a4.jpg';
-
-import p2 from '@/assets/images/product/logo/fruits/hamigua.svg';
-import p3 from '@/assets/images/product/logo/fruits/huolongguo.svg';
-import p7 from '@/assets/images/product/logo/fruits/mangguo.svg';
-import p8 from '@/assets/images/product/logo/fruits/mihoutao.svg';
-import p10 from '@/assets/images/product/logo/fruits/niuyouguo.svg';
-import p11 from '@/assets/images/product/logo/fruits/pingguo.svg';
-import p12 from '@/assets/images/product/logo/fruits/pipa.svg';
-import p18 from '@/assets/images/product/logo/fruits/wuhuaguo.svg';
-import p19 from '@/assets/images/product/logo/fruits/yingtao.svg';
-import p20 from '@/assets/images/product/logo/fruits/youzi.svg';
-import p21 from '@/assets/images/product/logo/fruits/zao.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/cherry/apply/a1.jpg',
       alt: '最佳虽有',
       height: 760,
       imageWidth: 712,
@@ -40,14 +23,14 @@ const data = {
       products: [
         {
           name: '芒果',
-          icon: p7,
+          icon: '/images/product/logo/fruits/mangguo.svg',
           key: 'mongo',
           alt: '芒果',
           href: '/product/fruits/mongo.html',
         },
         {
           name: '猕猴桃',
-          icon: p8,
+          icon: '/images/product/logo/fruits/mihoutao.svg',
           key: 'kiwi',
           alt: '猕猴桃',
           href: '/product/fruits/kiwi.html',
@@ -55,7 +38,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/fruits/cherry/apply/a2.jpg',
       alt: '本草纲目',
       height: 728,
       imageWidth: 712,
@@ -73,14 +56,14 @@ const data = {
       products: [
         {
           name: '哈密瓜',
-          icon: p2,
+          icon: '/images/product/logo/fruits/hamigua.svg',
           key: 'hami',
           alt: '哈密瓜',
           href: '/product/fruits/hami.html',
         },
         {
           name: '火龙果',
-          icon: p3,
+          icon: '/images/product/logo/fruits/huolongguo.svg',
           key: 'piyata',
           alt: '火龙果',
           href: '/product/fruits/piyata.html',
@@ -88,7 +71,7 @@ const data = {
       ],
     },
     {
-      image: a3,
+      image: '/images/product/fruits/cherry/apply/a3.jpg',
       alt: '红色大丽花',
       height: 728,
       imageWidth: 712,
@@ -106,28 +89,28 @@ const data = {
       products: [
         {
           name: '火龙果',
-          icon: p18,
+          icon: '/images/product/logo/fruits/wuhuaguo.svg',
           key: 'piyata',
           alt: '火龙果',
           href: '/product/fruits/piyata.html',
         },
         {
           name: '樱桃',
-          icon: p19,
+          icon: '/images/product/logo/fruits/yingtao.svg',
           key: 'cherry',
           alt: '樱桃',
           href: '/product/fruits/cherry.html',
         },
         {
           name: '柚子',
-          icon: p20,
+          icon: '/images/product/logo/fruits/youzi.svg',
           key: 'shaddock',
           alt: '柚子',
           href: '/product/fruits/shaddock.html',
         },
         {
           name: '青枣',
-          icon: p21,
+          icon: '/images/product/logo/fruits/zao.svg',
           key: 'jujube',
           alt: '青枣',
           href: '/product/fruits/jujube.html',
@@ -135,7 +118,7 @@ const data = {
       ],
     },
     {
-      image: a4,
+      image: '/images/product/fruits/cherry/apply/a4.jpg',
       alt: '车厘子',
       height: 728,
       imageWidth: 712,
@@ -153,21 +136,21 @@ const data = {
       products: [
         {
           name: '牛油果',
-          icon: p10,
+          icon: '/images/product/logo/fruits/niuyouguo.svg',
           key: 'avocado',
           alt: '牛油果',
           href: '/product/fruits/avocado.html',
         },
         {
           name: '苹果',
-          icon: p11,
+          icon: '/images/product/logo/fruits/pingguo.svg',
           key: 'apple',
           alt: '苹果',
           href: '/product/fruits/apple.html',
         },
         {
           name: '枇杷',
-          icon: p12,
+          icon: '/images/product/logo/fruits/pipa.svg',
           key: 'loquat',
           alt: '枇杷',
           href: '/product/fruits/loquat.html',
@@ -176,5 +159,3 @@ const data = {
     },
   ],
 };
-
-export default data;

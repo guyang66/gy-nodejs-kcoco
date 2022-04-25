@@ -1,17 +1,7 @@
-import a1 from '@/assets/images/product/vegetables/eggplant/apply/a1.jpg';
-import a2 from '@/assets/images/product/vegetables/eggplant/apply/a2.jpg';
-
-import p6 from '@/assets/images/product/logo/vegetables/kugua.svg';
-import p7 from '@/assets/images/product/logo/vegetables/lajiao.svg';
-import p8 from '@/assets/images/product/logo/vegetables/nangua.svg';
-import p13 from '@/assets/images/product/logo/vegetables/wandou.svg';
-import p14 from '@/assets/images/product/logo/vegetables/xiancai.svg';
-import p15 from '@/assets/images/product/logo/vegetables/xianggu.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/vegetables/eggplant/apply/a1.jpg',
       alt: '粉蒸烤串',
       height: 728,
       imageWidth: 712,
@@ -28,21 +18,21 @@ const data = {
       products: [
         {
           name: '苦瓜',
-          icon: p6,
+          icon: '/images/product/logo/vegetables/kugua.svg',
           key: 'bilter',
           alt: '苦瓜',
           href: '/product/vegetables/bilter.html',
         },
         {
           name: '辣椒',
-          icon: p7,
+          icon: '/images/product/logo/vegetables/lajiao.svg',
           key: 'chili',
           alt: '辣椒',
           href: '/product/vegetables/chili.html',
         },
         {
           name: '南瓜',
-          icon: p8,
+          icon: '/images/product/logo/vegetables/nangua.svg',
           key: 'pumpkin',
           alt: '南瓜',
           href: '/product/vegetables/pumpkin.html',
@@ -50,7 +40,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/vegetables/eggplant/apply/a2.jpg',
       alt: '油焖大茄子',
       height: 728,
       imageWidth: 712,
@@ -67,21 +57,21 @@ const data = {
       products: [
         {
           name: '豌豆',
-          icon: p13,
+          icon: '/images/product/logo/vegetables/wandou.svg',
           key: 'peas',
           alt: '豌豆',
           href: '/product/vegetables/peas.html',
         },
         {
           name: '苋菜',
-          icon: p14,
+          icon: '/images/product/logo/vegetables/xiancai.svg',
           key: 'amaranthus',
           alt: '苋菜',
           href: '/product/vegetables/amaranthus.html',
         },
         {
           name: '香菇',
-          icon: p15,
+          icon: '/images/product/logo/vegetables/xianggu.svg',
           key: 'mushroom',
           alt: '香菇',
           href: '/product/vegetables/mushroom.html',
@@ -90,5 +80,3 @@ const data = {
     },
   ],
 };
-
-export default data;

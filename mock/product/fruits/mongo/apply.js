@@ -1,15 +1,7 @@
-import a1 from '@/assets/images/product/fruits/mongo/apply/a1.jpg';
-import a2 from '@/assets/images/product/fruits/mongo/apply/a2.jpg';
-
-import p4 from '@/assets/images/product/logo/fruits/juzi.svg';
-import p5 from '@/assets/images/product/logo/fruits/lizhi.svg';
-import p16 from '@/assets/images/product/logo/fruits/shiliu.svg';
-import p21 from '@/assets/images/product/logo/fruits/zao.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/mongo/apply/a1.jpg',
       alt: '杨枝甘露',
       height: 760,
       imageWidth: 712,
@@ -31,14 +23,14 @@ const data = {
       products: [
         {
           name: '石榴',
-          icon: p16,
+          icon: '/images/product/logo/fruits/shiliu.svg',
           key: 'pomegranate',
           alt: '石榴',
           href: '/product/fruits/pomegranate.html',
         },
         {
           name: '青枣',
-          icon: p21,
+          icon: '/images/product/logo/fruits/zao.svg',
           key: 'jujube',
           alt: '青枣',
           href: '/product/fruits/jujube.html',
@@ -46,7 +38,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/fruits/mongo/apply/a2.jpg',
       alt: '皇家同花顺',
       height: 728,
       imageWidth: 712,
@@ -64,14 +56,14 @@ const data = {
       products: [
         {
           name: '橘子',
-          icon: p4,
+          icon: '/images/product/logo/fruits/juzi.svg',
           key: 'orange',
           alt: '橘子',
           href: '/product/fruits/orange.html',
         },
         {
           name: '荔枝',
-          icon: p5,
+          icon: '/images/product/logo/fruits/lizhi.svg',
           key: 'litchi',
           alt: '荔枝',
           href: '/product/fruits/litchi.html',
@@ -80,5 +72,3 @@ const data = {
     },
   ],
 };
-
-export default data;

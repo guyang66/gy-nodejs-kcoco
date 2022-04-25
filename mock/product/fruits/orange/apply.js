@@ -1,18 +1,7 @@
-import a1 from '@/assets/images/product/fruits/orange/apply/a1.jpg';
-import a2 from '@/assets/images/product/fruits/orange/apply/a2.jpg';
-
-import p1 from '@/assets/images/product/logo/fruits/yangjiaomi.svg';
-import p4 from '@/assets/images/product/logo/fruits/juzi.svg';
-import p5 from '@/assets/images/product/logo/fruits/lizhi.svg';
-import p9 from '@/assets/images/product/logo/fruits/ningmeng.svg';
-import p10 from '@/assets/images/product/logo/fruits/niuyouguo.svg';
-import p16 from '@/assets/images/product/logo/fruits/shiliu.svg';
-import p22 from '@/assets/images/product/logo/fruits/shuimitao.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/orange/apply/a1.jpg',
       alt: '防空哨',
       height: 760,
       imageWidth: 712,
@@ -34,21 +23,21 @@ const data = {
       products: [
         {
           name: '羊角蜜',
-          icon: p1,
+          icon: '/images/product/logo/fruits/yangjiaomi.svg',
           key: 'croissant',
           alt: '羊角蜜',
           href: '/product/fruits/croissant.html',
         },
         {
           name: '水蜜桃',
-          icon: p22,
+          icon: '/images/product/logo/fruits/shuimitao.svg',
           key: 'peach',
           alt: '水蜜桃',
           href: '/product/fruits/peach.html',
         },
         {
           name: '石榴',
-          icon: p16,
+          icon: '/images/product/logo/fruits/shiliu.svg',
           key: 'pomegranate',
           alt: '石榴',
           href: '/product/fruits/pomegranate.html',
@@ -56,7 +45,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/fruits/orange/apply/a2.jpg',
       alt: '牛油果火锅',
       height: 728,
       imageWidth: 712,
@@ -74,28 +63,28 @@ const data = {
       products: [
         {
           name: '橘子',
-          icon: p4,
+          icon: '/images/product/logo/fruits/juzi.svg',
           key: 'orange',
           alt: '橘子',
           href: '/product/fruits/orange.html',
         },
         {
           name: '柠檬',
-          icon: p9,
+          icon: '/images/product/logo/fruits/ningmeng.svg',
           key: 'lemon',
           alt: '柠檬',
           href: '/product/fruits/lemon.html',
         },
         {
           name: '牛油果',
-          icon: p10,
+          icon: '/images/product/logo/fruits/niuyouguo.svg',
           key: 'avocado',
           alt: '牛油果',
           href: '/product/fruits/avocado.html',
         },
         {
           name: '荔枝',
-          icon: p5,
+          icon: '/images/product/logo/fruits/lizhi.svg',
           key: 'litchi',
           alt: '荔枝',
           href: '/product/fruits/litchi.html',
@@ -104,5 +93,3 @@ const data = {
     },
   ],
 };
-
-export default data;

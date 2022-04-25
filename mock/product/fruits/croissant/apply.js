@@ -1,11 +1,7 @@
-import a1 from '@/assets/images/product/fruits/croissant/apply/a1.jpg';
-
-import p16 from '@/assets/images/product/logo/fruits/shiliu.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/fruits/croissant/apply/a1.jpg',
       alt: '思旺哒',
       height: 760,
       imageWidth: 712,
@@ -27,7 +23,7 @@ const data = {
       products: [
         {
           name: '石榴',
-          icon: p16,
+          icon: '/images/product/logo/fruits/shiliu.svg',
           key: 'pomegranate',
           alt: '石榴',
           href: '/product/fruits/pomegranate.html',
@@ -36,5 +32,3 @@ const data = {
     },
   ],
 };
-
-export default data;
