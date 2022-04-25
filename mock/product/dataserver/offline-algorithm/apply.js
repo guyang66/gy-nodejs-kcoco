@@ -1,14 +1,7 @@
-import a1 from '@/assets/images/product/dataserver/offline-algorithm/apply/a1.jpg';
-import a2 from '@/assets/images/product/dataserver/offline-algorithm/apply/a2.jpg';
-
-import p1 from '@/assets/images/product/logo/dataserver/lixiankaifa.svg';
-import p2 from '@/assets/images/product/logo/dataserver/shishikaifa.svg';
-import p3 from '@/assets/images/product/logo/dataserver/shenjingwangluo.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/dataserver/offline-algorithm/apply/a1.jpg',
       alt: '离线分类算法',
       height: 728,
       imageWidth: 712,
@@ -25,14 +18,14 @@ const data = {
       products: [
         {
           name: '实时开发',
-          icon: p2,
+          icon: '/images/product/logo/dataserver/shishikaifa.svg',
           key: 'sskf',
           alt: '实时开发',
           href: '/product/dataserver/onlinedevelop.html',
         },
         {
           name: '离线开发',
-          icon: p1,
+          icon: '/images/product/logo/dataserver/lixiankaifa.svg',
           key: 'lxkf',
           alt: '离线开发',
           href: '/product/dataserver/offlinedevelop.html',
@@ -40,7 +33,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/dataserver/offline-algorithm/apply/a2.jpg',
       alt: '离线分子引擎',
       height: 728,
       imageWidth: 712,
@@ -57,7 +50,7 @@ const data = {
       products: [
         {
           name: '神经网络',
-          icon: p3,
+          icon: '/images/product/logo/dataserver/shenjingwangluo.svg',
           key: 'sjwl',
           alt: '神经网络',
           href: '/product/dataserver/neuralnetwork.html',
@@ -66,5 +59,3 @@ const data = {
     },
   ],
 };
-
-export default data;

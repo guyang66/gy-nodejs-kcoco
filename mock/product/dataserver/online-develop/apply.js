@@ -1,17 +1,7 @@
-import a1 from '@/assets/images/product/dataserver/online-develop/apply/a1.jpg';
-import a2 from '@/assets/images/product/dataserver/online-develop/apply/a2.jpg';
-import a3 from '@/assets/images/product/dataserver/online-develop/apply/a3.jpg';
-
-import p1 from '@/assets/images/product/logo/dataserver/lixiankaifa.svg';
-import p2 from '@/assets/images/product/logo/dataserver/shishikaifa.svg';
-import p3 from '@/assets/images/product/logo/dataserver/lixiansuanfa.svg';
-import p4 from '@/assets/images/product/logo/dataserver/tuijiansuanfa.svg';
-import p5 from '@/assets/images/product/logo/dataserver/julei.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/dataserver/online-develop/apply/a1.jpg',
       alt: '应用开发',
       height: 728,
       imageWidth: 712,
@@ -28,7 +18,7 @@ const data = {
       products: [
         {
           name: '神经网络',
-          icon: p3,
+          icon: '/images/product/logo/dataserver/lixiansuanfa.svg',
           key: 'sjwl',
           alt: '神经网络',
           href: '/product/dataserver/neuralnetwork.html',
@@ -36,7 +26,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/dataserver/online-develop/apply/a2.jpg',
       alt: '桌面开发',
       height: 728,
       imageWidth: 712,
@@ -52,14 +42,14 @@ const data = {
       products: [
         {
           name: '实时开发',
-          icon: p2,
+          icon: '/images/product/logo/dataserver/shishikaifa.svg',
           key: 'sskf',
           alt: '实时开发',
           href: '/product/dataserver/onlinedevelop.html',
         },
         {
           name: '离线开发',
-          icon: p1,
+          icon: '/images/product/logo/dataserver/lixiankaifa.svg',
           key: 'lxkf',
           alt: '离线开发',
           href: '/product/dataserver/offlinedevelop.html',
@@ -67,7 +57,7 @@ const data = {
       ],
     },
     {
-      image: a3,
+      image: '/images/product/dataserver/online-develop/apply/a3.jpg',
       alt: '部署开发',
       height: 728,
       imageWidth: 712,
@@ -83,14 +73,14 @@ const data = {
       products: [
         {
           name: '智能推荐系统',
-          icon: p4,
+          icon: '/images/product/logo/dataserver/tuijiansuanfa.svg',
           key: 'sskf',
           alt: 'recommend',
           href: '/product/dataserver/recommend.html',
         },
         {
           name: '聚类算法',
-          icon: p5,
+          icon: '/images/product/logo/dataserver/julei.svg',
           key: 'cluster',
           alt: '聚类算法',
           href: '/product/dataserver/cluster.html',
@@ -99,5 +89,3 @@ const data = {
     },
   ],
 };
-
-export default data;

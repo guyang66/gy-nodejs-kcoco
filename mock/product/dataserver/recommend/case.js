@@ -1,11 +1,10 @@
-import p1 from '@/assets/images/product/dataserver/recommend/case/c1.svg';
-const data = {
+module.exports = {
   pointTitle: '背景说明',
   pointTitle2: '价值说明',
   content: {
     name: '大力肯达鸡',
     desc: '美式Hip-Hop加饶舌组合',
-    logo: p1,
+    logo: '/images/product/dataserver/recommend/case/c1.svg',
     alt: '大力肯达鸡',
     painPoint: [
       '发迹于英国伦敦的BLUE由Duncan James、Antony Costa、Lee Ryan和Simon Webbe 4人所组成，2001年5月，Blue以一支饶富都会节奏感的All Rise，以平地一声雷之姿抢滩2001年初英国金榜Top 4。',
@@ -17,4 +16,3 @@ const data = {
     ],
   },
 };
-export default data;

@@ -1,11 +1,10 @@
-import p1 from '@/assets/images/product/dataserver/neural-network/case/c1.svg';
-const data = {
+module.exports = {
   pointTitle: '背景说明',
   pointTitle2: '价值说明',
   content: {
     name: '痛苦拳师',
     desc: '',
-    logo: p1,
+    logo: '/images/product/dataserver/neural-network/case/c1.svg',
     alt: '痛苦拳师',
     painPoint: [
       '年降水量的空间分布 从中国年降水量分布图可看出：800毫米等降水量线大致在淮河—秦岭—青藏高原东南边缘一线铵的晶体及水溶液的旋光现象，从而得出物质的旋光性与分子内部结构有关，提出了对映异构体的概念。',
@@ -17,4 +16,3 @@ const data = {
     ],
   },
 };
-export default data;

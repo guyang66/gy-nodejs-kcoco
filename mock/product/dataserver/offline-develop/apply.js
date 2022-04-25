@@ -1,12 +1,7 @@
-import a1 from '@/assets/images/product/dataserver/offline-develop/apply/a1.jpg';
-
-import p2 from '@/assets/images/product/logo/dataserver/shishikaifa.svg';
-import p3 from '@/assets/images/product/logo/dataserver/shenjingwangluo.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/dataserver/offline-develop/apply/a1.jpg',
       alt: '麦田网络',
       height: 728,
       imageWidth: 712,
@@ -23,14 +18,14 @@ const data = {
       products: [
         {
           name: '实时开发',
-          icon: p2,
+          icon: '/images/product/logo/dataserver/shishikaifa.svg',
           key: 'sskf',
           alt: '实时开发',
           href: '/product/dataserver/onlinedevelop.html',
         },
         {
           name: '神经网络',
-          icon: p3,
+          icon: '/images/product/logo/dataserver/shenjingwangluo.svg',
           key: 'sjwl',
           alt: '神经网络',
           href: '/product/dataserver/neuralnetwork.html',
@@ -39,5 +34,3 @@ const data = {
     },
   ],
 };
-
-export default data;

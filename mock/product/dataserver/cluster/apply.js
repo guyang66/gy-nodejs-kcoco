@@ -1,14 +1,7 @@
-import a1 from '@/assets/images/product/dataserver/cluster/apply/a1.png';
-import a2 from '@/assets/images/product/dataserver/cluster/apply/a2.png';
-
-import p3 from '@/assets/images/product/logo/dataserver/tuijiansuanfa.svg';
-import p2 from '@/assets/images/product/logo/dataserver/lixiankaifa.svg';
-import p1 from '@/assets/images/product/logo/dataserver/shishikaifa.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/dataserver/cluster/apply/a1.png',
       alt: 'matlab聚类分析',
       height: 728,
       imageWidth: 712,
@@ -24,7 +17,7 @@ const data = {
       products: [
         {
           name: '智能推荐系统',
-          icon: p3,
+          icon: '/images/product/logo/dataserver/tuijiansuanfa.svg',
           key: 'recommend',
           alt: '智能推荐系统',
           href: '/product/dataserver/recommend.html',
@@ -32,7 +25,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/dataserver/cluster/apply/a2.png',
       alt: '超引擎聚类',
       height: 728,
       imageWidth: 712,
@@ -49,14 +42,14 @@ const data = {
       products: [
         {
           name: '实时开发',
-          icon: p1,
+          icon: '/images/product/logo/dataserver/shishikaifa.svg',
           key: 'sskf',
           alt: '实时开发',
           href: '/product/dataserver/onlinedevelop.html',
         },
         {
           name: '离线开发',
-          icon: p2,
+          icon: '/images/product/logo/dataserver/lixiankaifa.svg',
           key: 'lxkf',
           alt: '离线开发',
           href: '/product/dataserver/offlinedevelop.html',
@@ -65,5 +58,3 @@ const data = {
     },
   ],
 };
-
-export default data;

@@ -1,11 +1,10 @@
-import p1 from '@/assets/images/product/dataserver/offline-develop/case/c1.svg';
-const data = {
+module.exports = {
   pointTitle: '背景说明',
   pointTitle2: '价值说明',
   content: {
     name: '主马龙',
     desc: '主马龙教主协会',
-    logo: p1,
+    logo: '/images/product/dataserver/offline-develop/case/c1.svg',
     alt: '主马龙',
     painPoint: [
       '截至2020年底，河北省已发现矿产130种，其中有查明资源储量的矿产104种，无查明资源储量的矿产26种。列入《2020年河北省矿产资源储量表》（以下简称《储量表》）的矿产73种，未列入《储量表》的矿产31种。列入《储量表》矿产地1530处，按矿产大类划分：能源矿产167处、金属矿产891处念。',
@@ -17,4 +16,3 @@ const data = {
     ],
   },
 };
-export default data;

@@ -413,4 +413,179 @@ module.exports = app => ({
     })
   },
 
+  /**
+   * 聚类算法
+   * @returns {Promise<void>}
+   */
+  async cluster () {
+    const { ctx } = app;
+    const bannerData = require('../mock/product/dataserver/cluster/banner')
+    const advantageData = require('../mock/product/dataserver/cluster/advantage')
+    const coreData = require('../mock/product/dataserver/cluster/core')
+    const applyData = require('../mock/product/dataserver/cluster/apply')
+    const historyData = require('../mock/product/dataserver/cluster/history')
+    const caseData = require('../mock/product/dataserver/cluster/case')
+    const tabsData = require('../mock/product/dataserver/cluster/tabsData')
+    let pagePath = 'page/product/dataserver/page-cluster/template'
+    await ctx.render(pagePath, {
+      title: '聚类算法',
+      key: 'cluster',
+      navKey: 'product',
+      hasBanner: true,
+      bannerData: bannerData,
+      advantageData: advantageData,
+      coreData: coreData,
+      applyData: applyData,
+      historyData: historyData,
+      caseData: caseData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 离线算法
+   * @returns {Promise<void>}
+   */
+  async offlinealgorithm () {
+    const { ctx } = app;
+    const bannerData = require('../mock/product/dataserver/offline-algorithm/banner')
+    const advantageData = require('../mock/product/dataserver/offline-algorithm/advantage')
+    const coreData = require('../mock/product/dataserver/offline-algorithm/core')
+    const applyData = require('../mock/product/dataserver/offline-algorithm/apply')
+    const historyData = require('../mock/product/dataserver/offline-algorithm/history')
+    const caseData = require('../mock/product/dataserver/offline-algorithm/case')
+    const tabsData = require('../mock/product/dataserver/offline-algorithm/tabsData')
+    let pagePath = 'page/product/dataserver/page-offline-algorithm/template'
+    await ctx.render(pagePath, {
+      title: '离线算法',
+      key: 'offlinealgorithm',
+      navKey: 'product',
+      hasBanner: true,
+      bannerData: bannerData,
+      advantageData: advantageData,
+      coreData: coreData,
+      applyData: applyData,
+      historyData: historyData,
+      caseData: caseData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 实时开发
+   * @returns {Promise<void>}
+   */
+  async onlinedevelop () {
+    const { ctx } = app;
+    const bannerData = require('../mock/product/dataserver/online-develop/banner')
+    const advantageData = require('../mock/product/dataserver/online-develop/advantage')
+    const coreData = require('../mock/product/dataserver/online-develop/core')
+    const applyData = require('../mock/product/dataserver/online-develop/apply')
+    const historyData = require('../mock/product/dataserver/online-develop/history')
+    const caseData = require('../mock/product/dataserver/online-develop/case')
+    const tabsData = require('../mock/product/dataserver/online-develop/tabsData')
+    let pagePath = 'page/product/dataserver/page-online-develop/template'
+    await ctx.render(pagePath, {
+      title: '实时开发',
+      key: 'onlinedevelop',
+      navKey: 'product',
+      hasBanner: true,
+      bannerData: bannerData,
+      advantageData: advantageData,
+      coreData: coreData,
+      applyData: applyData,
+      historyData: historyData,
+      caseData: caseData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 离线开发
+   * @returns {Promise<void>}
+   */
+  async offlinedevelop () {
+    const { ctx } = app;
+    const bannerData = require('../mock/product/dataserver/offline-develop/banner')
+    const advantageData = require('../mock/product/dataserver/offline-develop/advantage')
+    const coreData = require('../mock/product/dataserver/offline-develop/core')
+    const applyData = require('../mock/product/dataserver/offline-develop/apply')
+    const historyData = require('../mock/product/dataserver/offline-develop/history')
+    const caseData = require('../mock/product/dataserver/offline-develop/case')
+    const tabsData = require('../mock/product/dataserver/offline-develop/tabsData')
+    let pagePath = 'page/product/dataserver/page-offline-develop/template'
+    await ctx.render(pagePath, {
+      title: '离线开发',
+      key: 'offlinedevelop',
+      navKey: 'product',
+      hasBanner: true,
+      bannerData: bannerData,
+      advantageData: advantageData,
+      coreData: coreData,
+      applyData: applyData,
+      historyData: historyData,
+      caseData: caseData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 神经网络
+   * @returns {Promise<void>}
+   */
+  async neuralnetwork () {
+    const { ctx } = app;
+    const bannerData = require('../mock/product/dataserver/neural-network/banner')
+    const advantageData = require('../mock/product/dataserver/neural-network/advantage')
+    const coreData = require('../mock/product/dataserver/neural-network/core')
+    const applyData = require('../mock/product/dataserver/neural-network/apply')
+    const historyData = require('../mock/product/dataserver/neural-network/history')
+    const caseData = require('../mock/product/dataserver/neural-network/case')
+    const tabsData = require('../mock/product/dataserver/neural-network/tabsData')
+    let pagePath = 'page/product/dataserver/page-neural-network/template'
+    await ctx.render(pagePath, {
+      title: '神经网络',
+      key: 'neuralnetwork',
+      navKey: 'product',
+      hasBanner: true,
+      bannerData: bannerData,
+      advantageData: advantageData,
+      coreData: coreData,
+      applyData: applyData,
+      historyData: historyData,
+      caseData: caseData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 智能推荐系统
+   * @returns {Promise<void>}
+   */
+  async recommend () {
+    const { ctx } = app;
+    const bannerData = require('../mock/product/dataserver/recommend/banner')
+    const advantageData = require('../mock/product/dataserver/recommend/advantage')
+    const coreData = require('../mock/product/dataserver/recommend/core')
+    const applyData = require('../mock/product/dataserver/recommend/apply')
+    const historyData = require('../mock/product/dataserver/recommend/history')
+    const caseData = require('../mock/product/dataserver/recommend/case')
+    const tabsData = require('../mock/product/dataserver/recommend/tabsData')
+    let pagePath = 'page/product/dataserver/page-recommend/template'
+    await ctx.render(pagePath, {
+      title: '智能推荐系统',
+      key: 'recommend',
+      navKey: 'product',
+      hasBanner: true,
+      bannerData: bannerData,
+      advantageData: advantageData,
+      coreData: coreData,
+      applyData: applyData,
+      historyData: historyData,
+      caseData: caseData,
+      tabsData: tabsData
+    })
+  },
+
+
 })

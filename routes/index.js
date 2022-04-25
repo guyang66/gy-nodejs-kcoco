@@ -18,6 +18,14 @@ module.exports = app => {
   router.get('/product/ai/xiyu', $controller.pageController.xiyu)
   router.get('/product/ai/uav', $controller.pageController.uav)
 
+  router.get('/product/dataserver/cluster', $controller.pageController.cluster)
+  router.get('/product/dataserver/offlinealgorithm', $controller.pageController.offlinealgorithm)
+  router.get('/product/dataserver/onlinedevelop', $controller.pageController.onlinedevelop)
+  router.get('/product/dataserver/offlinedevelop', $controller.pageController.offlinedevelop)
+  router.get('/product/dataserver/neuralnetwork', $controller.pageController.neuralnetwork)
+  router.get('/product/dataserver/recommend', $controller.pageController.recommend)
+
+
 
   router.get('/test', $controller.common.test)
   router.get('/common/test', $controller.common.test)

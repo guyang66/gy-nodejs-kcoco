@@ -1,16 +1,7 @@
-import a1 from '@/assets/images/product/dataserver/neural-network/apply/a1.jpg';
-import a2 from '@/assets/images/product/dataserver/neural-network/apply/a2.jpg';
-
-import p1 from '@/assets/images/product/logo/dataserver/lixiankaifa.svg';
-import p2 from '@/assets/images/product/logo/dataserver/shishikaifa.svg';
-import p3 from '@/assets/images/product/logo/dataserver/lixiansuanfa.svg';
-import p4 from '@/assets/images/product/logo/dataserver/tuijiansuanfa.svg';
-import p5 from '@/assets/images/product/logo/dataserver/julei.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/dataserver/neural-network/apply/a1.jpg',
       alt: '三突触',
       height: 728,
       imageWidth: 712,
@@ -26,35 +17,35 @@ const data = {
       products: [
         {
           name: '实时开发',
-          icon: p2,
+          icon: '/images/product/logo/dataserver/shishikaifa.svg',
           key: 'sskf',
           alt: '实时开发',
           href: '/product/dataserver/onlinedevelop.html',
         },
         {
           name: '离线开发',
-          icon: p1,
+          icon: '/images/product/logo/dataserver/lixiankaifa.svg',
           key: 'lxkf',
           alt: '离线开发',
           href: '/product/dataserver/offlinedevelop.html',
         },
         {
           name: '离线算法',
-          icon: p3,
+          icon: '/images/product/logo/dataserver/lixiansuanfa.svg',
           key: 'offlinealgorithm',
           alt: '离线算法',
           href: '/product/dataserver/offlinealgorithm.html',
         },
         {
           name: '推荐算法',
-          icon: p4,
+          icon: '/images/product/logo/dataserver/tuijiansuanfa.svg',
           key: 'lxkf',
           alt: 'recommend',
           href: '/product/dataserver/recommend.html',
         },
         {
           name: '聚类算法',
-          icon: p5,
+          icon: '/images/product/logo/dataserver/julei.svg',
           key: 'cluster',
           alt: '聚类算法',
           href: '/product/dataserver/cluster.html',
@@ -62,7 +53,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/dataserver/neural-network/apply/a2.jpg',
       alt: '量子神经元',
       height: 728,
       imageWidth: 712,
@@ -79,7 +70,7 @@ const data = {
       products: [
         {
           name: '聚类算法',
-          icon: p5,
+          icon: '/images/product/logo/dataserver/julei.svg',
           key: 'cluster',
           alt: '聚类算法',
           href: '/product/dataserver/cluster.html',
@@ -88,5 +79,3 @@ const data = {
     },
   ],
 };
-
-export default data;

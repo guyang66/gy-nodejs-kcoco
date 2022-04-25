@@ -1,11 +1,10 @@
-import p1 from '@/assets/images/product/dataserver/offline-algorithm/case/c1.svg';
-const data = {
+module.exports = {
   pointTitle: '背景说明',
   pointTitle2: '价值说明',
   content: {
     name: '爱接力协会',
     desc: '分子运动分析大会',
-    logo: p1,
+    logo: '/images/product/dataserver/offline-algorithm/case/c1.svg',
     alt: '爱接力协会',
     painPoint: [
       '在偏振光发现之后，人们很快认识到某些物质能使偏振光的偏振面发生偏转，产生旋光现象。1848年法国巴黎师范大学年轻的化学家Pastenr细心研究了酒石酸钠铵的晶体及水溶液的旋光现象，从而得出物质的旋光性与分子内部结构有关，提出了对映异构体的概念。',
@@ -18,4 +17,3 @@ const data = {
     ],
   },
 };
-export default data;

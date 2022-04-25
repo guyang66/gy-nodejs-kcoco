@@ -1,11 +1,10 @@
-import p1 from '@/assets/images/product/dataserver/cluster/case/c1.svg';
-const data = {
+module.exports = {
   pointTitle: '背景说明',
   pointTitle2: '价值说明',
   content: {
     name: '八哥优选',
     desc: '八哥优选最权威的项目之一',
-    logo: p1,
+    logo: '/images/product/dataserver/cluster/case/c1.svg',
     alt: '八哥优选',
     painPoint: [
       '绵掌本为内家功夫，流传于河北、河南等地。其特点是外柔内刚，以爆发劲为主。手法以掌为主，运转舒展，动作连绵不断，掌法运行成环。',
@@ -18,4 +17,3 @@ const data = {
     ],
   },
 };
-export default data;

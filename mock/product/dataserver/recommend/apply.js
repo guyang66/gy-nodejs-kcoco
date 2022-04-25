@@ -1,14 +1,7 @@
-import a1 from '@/assets/images/product/dataserver/recommend/apply/a1.jpg';
-import a2 from '@/assets/images/product/dataserver/recommend/apply/a2.png';
-
-import p1 from '@/assets/images/product/logo/dataserver/lixiankaifa.svg';
-import p2 from '@/assets/images/product/logo/dataserver/shishikaifa.svg';
-import p3 from '@/assets/images/product/logo/dataserver/shenjingwangluo.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      image: a1,
+      image: '/images/product/dataserver/recommend/apply/a1.jpg',
       alt: '智能推荐马桶',
       height: 728,
       imageWidth: 712,
@@ -25,7 +18,7 @@ const data = {
       products: [
         {
           name: '神经网络',
-          icon: p3,
+          icon: '/images/product/logo/dataserver/shenjingwangluo.svg',
           key: 'sjwl',
           alt: '神经网络',
           href: '/product/dataserver/neuralnetwork.html',
@@ -33,7 +26,7 @@ const data = {
       ],
     },
     {
-      image: a2,
+      image: '/images/product/dataserver/recommend/apply/a2.png',
       alt: '千人千面系统',
       height: 728,
       imageWidth: 712,
@@ -50,14 +43,14 @@ const data = {
       products: [
         {
           name: '实时开发',
-          icon: p2,
+          icon: '/images/product/logo/dataserver/shishikaifa.svg',
           key: 'sskf',
           alt: '实时开发',
           href: '/product/dataserver/onlinedevelop.html',
         },
         {
           name: '离线开发',
-          icon: p1,
+          icon: '/images/product/logo/dataserver/lixiankaifa.svg',
           key: 'lxkf',
           alt: '离线开发',
           href: '/product/dataserver/offlinedevelop.html',

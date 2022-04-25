@@ -1,11 +1,10 @@
-import p1 from '@/assets/images/product/dataserver/online-develop/case/c1.svg';
-const data = {
+module.exports = {
   pointTitle: '背景说明',
   pointTitle2: '价值说明',
   content: {
     name: '魔法少女团',
     desc: '分子运动分析大会',
-    logo: p1,
+    logo: '/images/product/dataserver/online-develop/case/c1.svg',
     alt: '魔法少女团',
     painPoint: [
       '定期放掉它脸颊上的电力也是很重要的。皮卡丘独有的能力是在紧张时通过它脸上的电气袋释放电气。这个电能可用各种方式操纵，常被用在对战中，不过有时它也被皮卡丘用来烤树果。皮卡丘由于把电能储存在体内。',
@@ -19,4 +18,3 @@ const data = {
     ],
   },
 };
-export default data;
