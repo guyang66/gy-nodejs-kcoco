@@ -3,6 +3,8 @@ module.exports = app => {
 
   // 页面
   router.get('/', $controller.pageController.index)
+  router.get('/index', $controller.pageController.index)
+  router.get('/index.html', $controller.pageController.index)
 
   router.get('/product/ai/algorithm', $controller.pageController.algorithm)
   router.get('/product/ai/speech', $controller.pageController.speech)
@@ -63,6 +65,12 @@ module.exports = app => {
   router.get('/product/vegetables/eggplant', $controller.pageController.eggplant)
   router.get('/product/vegetables/chili', $controller.pageController.chili)
   router.get('/product/vegetables/pumpkin', $controller.pageController.pumpkin)
+
+  router.get('/case', $controller.pageController.caseList)
+  router.get('/case/detail', $controller.pageController.caseDetail)
+
+  router.get('/activity', $controller.pageController.activityList)
+  router.get('/activity/detail', $controller.pageController.activityDetail)
 
 
   router.get('/test', $controller.common.test)

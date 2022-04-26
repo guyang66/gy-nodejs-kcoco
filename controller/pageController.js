@@ -1660,4 +1660,91 @@ module.exports = app => ({
     })
   },
 
+  /**
+   * 客户案例
+   * @returns {Promise<void>}
+   */
+  async caseList () {
+    const { ctx } = app;
+    const bannerData = require('../mock/case/banner')
+    const tagData = require('../mock/case/tag')
+    const casesData = require('../mock/case/cases')
+    let pagePath = 'page/case/page-case-main/template'
+    await ctx.render(pagePath, {
+      title: '客户案例',
+      key: 'case',
+      navKey: 'caseS',
+      hasBanner: true,
+      bannerData: bannerData,
+      tagData: tagData,
+      casesData: casesData,
+      tabsData: []
+    })
+  },
+
+  /**
+   * 案例详情
+   * @returns {Promise<void>}
+   */
+  async caseDetail () {
+    const { ctx } = app;
+    const detailData = require('../mock/case/example')
+    const recommendData = require('../mock/case/recommend')
+    let pagePath = 'page/case/page-case-detail/template'
+    await ctx.render(pagePath, {
+      title: '案例详情',
+      key: 'case-detail',
+      navKey: 'cases',
+      hasBanner: false,
+      bannerData: {},
+      detailData: detailData,
+      recommendData: recommendData,
+      tabsData: []
+    })
+  },
+
+  /**
+   * 活动列表
+   * @returns {Promise<void>}
+   */
+  async activityList () {
+    const { ctx } = app;
+    const bannerData = require('../mock/activity/banner')
+    const favoriteData = require('../mock/activity/favorite')
+    const brandData = require('../mock/activity/brand')
+    const hotData = require('../mock/activity/hot')
+    const tabsData = require('../mock/activity/tabsData')
+    let pagePath = 'page/activity/page-activity-main/template'
+    await ctx.render(pagePath, {
+      title: '活动列表',
+      key: 'activity',
+      navKey: 'activity',
+      hasBanner: true,
+      bannerData: bannerData,
+      favoriteData: favoriteData,
+      brandData: brandData,
+      hotData: hotData,
+      tabsData: tabsData,
+    })
+  },
+
+  /**
+   * 活动详情
+   * @returns {Promise<void>}
+   */
+  async activityDetail () {
+    const { ctx } = app;
+    const detailData = require('../mock/activity/example')
+    const recommendData = require('../mock/case/recommend')
+    let pagePath = 'page/activity/page-activity-detail/template'
+    await ctx.render(pagePath, {
+      title: '活动详情',
+      key: 'activity-detail',
+      navKey: 'activity',
+      hasBanner: false,
+      bannerData: {},
+      detailData: detailData,
+      tabsData: []
+    })
+  },
 })

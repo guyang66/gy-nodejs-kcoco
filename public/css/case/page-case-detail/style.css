@@ -1,0 +1,9 @@
+.case-detail-wrap {
+  width: 100%;
+  background: #fff;
+}
+.case-detail-wrap .case-detail-content {
+  width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
