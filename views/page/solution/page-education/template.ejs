@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh">
+<head>
+  <meta charset="utf-8">
+  <%- include('../../../layout/commonHead')%>
+  <!--css-->
+  <link rel="stylesheet" href="/css/solution/page-education/style.css">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/component.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/article.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/common/plugins/css/swiper.css">
+  <link rel="stylesheet" href="/common/plugins/video-js/video-js.css">
+
+  <!--js-->
+  <script src="/common/plugins/jquery.min.js"></script>
+  <script src="/common/plugins/swiper.js"></script>
+</head>
+<body>
+<div class="main-layout">
+  <%- include('../../../layout/header');%>
+  <% if(hasBanner) { %>
+    <%- include('../../../component/banner');%>
+  <% } %>
+  <% if(tabsData.length) { %>
+    <%- include('../../../component/tabs');%>
+  <% } %>
+  <section class="main-wrap">
+    <div class="main-content">
+      <section>
+
+        <div class="tabs-content-wrap" data-anchor="pain">
+          <%- include('../../../component/pain/layout-n-4');%>
+        </div>
+
+        <div class="tabs-content-wrap" data-anchor="framewrok">
+          <%- include('./module-framework');%>
+        </div>
+
+        <div class="tabs-content-wrap" data-anchor="advantage">
+          <%- include('../../../component/advantages/n-3-a');%>
+        </div>
+
+        <div class="tabs-content-wrap" data-anchor="apply">
+          <%- include('../../../component/apply/layout_float');%>
+        </div>
+
+        <div class="tabs-content-wrap" data-anchor="case">
+          <%- include('../../../component/case/layout-n-2');%>
+        </div>
+
+        <div class="tabs-content-wrap" data-anchor="recommend">
+          <%- include('../../../component/recommend/layout-3');%>
+        </div>
+        <%- include('../../../component/form');%>
+      </section>
+    </div>
+  </section>
+
+  <%- include('../../../layout/footer');%>
+  <%- include('../../../component/sideMenus');%>
+
+</div>
+<script src="/js/common.js"></script>
+<%- include('../../../layout/commonFoot');%>
+</body>
+</html>
+

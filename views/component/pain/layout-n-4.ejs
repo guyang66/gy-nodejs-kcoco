@@ -1,0 +1,28 @@
+<div class="advantage-layout-n-4-wrap" <% if(painData.bg){ %>style="background: <%=painData.bg%>" <% } %>>
+  <div class="advantage-content">
+    <!--标题-->
+    <% if(painData.title) { %>
+    <div class="c-module-title <% if(!painData.desc){ %>c-module-b-60<% } %>"><%=painData.title%></div>
+    <% } else { %>
+    <div class="c-module-title <% if(!painData.desc){ %>c-module-b-60<% } %>">产品优势</div>
+    <% } %>
+
+    <!--描述-->
+    <% if(painData.desc) { %>
+    <div class="c-module-desc"><%=painData.desc%></div>
+    <% } %>
+
+    <!--内容-->
+    <div class="advantage-view c-module-b-60">
+      <% painData.content.forEach(function(item, index){ %>
+      <div class="advantage-n-4-cell fn-left <% if((index + 1) % painData.content.length !== 0){ %>mar-r128<% } %> <% if( index < painData.content.length - 4){ %>mar-b20<% } %>">
+        <div class="module-icon-wrap fn-left">
+          <img src="<%=item.icon%>" alt="<%=item.alt%>" />
+        </div>
+        <div class="tit main-content-title"><%=item.title%></div>
+        <div class="desc main-content-text"><%=item.text%></div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+</div>

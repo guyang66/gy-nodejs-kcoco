@@ -66,6 +66,17 @@ module.exports = app => {
   router.get('/product/vegetables/chili', $controller.pageController.chili)
   router.get('/product/vegetables/pumpkin', $controller.pageController.pumpkin)
 
+  router.get('/solution/education', $controller.pageController.education)
+  router.get('/solution/bigdata', $controller.pageController.bigdata)
+  router.get('/solution/finance', $controller.pageController.finance)
+  router.get('/solution/food', $controller.pageController.food)
+  router.get('/solution/game', $controller.pageController.game)
+  router.get('/solution/manufacture', $controller.pageController.manufacture)
+  router.get('/solution/online', $controller.pageController.online)
+  router.get('/solution/personal', $controller.pageController.personal)
+  router.get('/solution/traffic', $controller.pageController.traffic)
+
+
   router.get('/case', $controller.pageController.caseList)
   router.get('/case/detail', $controller.pageController.caseDetail)
 

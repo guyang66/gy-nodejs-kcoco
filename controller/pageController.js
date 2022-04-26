@@ -1747,4 +1747,293 @@ module.exports = app => ({
       tabsData: []
     })
   },
+
+  /**
+   * 教育行业解决方案
+   * @returns {Promise<void>}
+   */
+  async education () {
+    const { ctx } = app;
+    const bannerData = require('../mock/solution/education/banner')
+    const painData = require('../mock/solution/education/pain')
+    const advantageData = require('../mock/solution/education/advantage')
+    const frameworkData = require('../mock/solution/education/framework')
+    const applyData = require('../mock/solution/education/value')
+    const caseData = require('../mock/solution/education/case')
+    const recommendData = require('../mock/solution/education/recommend')
+    const tabsData = require('../mock/solution/education/tabsData')
+
+    let pagePath = 'page/solution/page-education/template'
+    await ctx.render(pagePath, {
+      title: '教育行业解决方案',
+      key: 'education',
+      navKey: 'solution',
+      hasBanner: false,
+      bannerData: bannerData,
+      painData: painData,
+      advantageData: advantageData,
+      frameworkData: frameworkData,
+      applyData: applyData,
+      caseData: caseData,
+      recommendData: recommendData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 大数据行业解决方案
+   * @returns {Promise<void>}
+   */
+  async bigdata () {
+    const { ctx } = app;
+    const bannerData = require('../mock/solution/bigdata/banner')
+    const painData = require('../mock/solution/bigdata/pain')
+    const advantageData = require('../mock/solution/bigdata/advantage')
+    const frameworkData = require('../mock/solution/bigdata/framework')
+    const applyData = require('../mock/solution/bigdata/value')
+    const caseData = require('../mock/solution/bigdata/case')
+    const recommendData = require('../mock/solution/bigdata/recommend')
+    const tabsData = require('../mock/solution/bigdata/tabsData')
+
+    let pagePath = 'page/solution/page-bigdata/template'
+    await ctx.render(pagePath, {
+      title: '大数据行业解决方案',
+      key: 'bigdata',
+      navKey: 'solution',
+      hasBanner: false,
+      bannerData: bannerData,
+      painData: painData,
+      advantageData: advantageData,
+      frameworkData: frameworkData,
+      applyData: applyData,
+      caseData: caseData,
+      recommendData: recommendData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 金融行业解决方案
+   * @returns {Promise<void>}
+   */
+  async finance () {
+    const { ctx } = app;
+    const bannerData = require('../mock/solution/finance/banner')
+    const painData = require('../mock/solution/finance/pain')
+    const advantageData = require('../mock/solution/finance/advantage')
+    const frameworkData = require('../mock/solution/finance/framework')
+    const applyData = require('../mock/solution/finance/value')
+    const caseData = require('../mock/solution/finance/case')
+    const recommendData = require('../mock/solution/finance/recommend')
+    const tabsData = require('../mock/solution/finance/tabsData')
+
+    let pagePath = 'page/solution/page-finance/template'
+    await ctx.render(pagePath, {
+      title: '金融行业解决方案',
+      key: 'finance',
+      navKey: 'solution',
+      hasBanner: false,
+      bannerData: bannerData,
+      painData: painData,
+      advantageData: advantageData,
+      frameworkData: frameworkData,
+      applyData: applyData,
+      caseData: caseData,
+      recommendData: recommendData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 餐饮行业解决方案
+   * @returns {Promise<void>}
+   */
+  async food () {
+    const { ctx } = app;
+    const bannerData = require('../mock/solution/food/banner')
+    const painData = require('../mock/solution/food/pain')
+    const advantageData = require('../mock/solution/food/advantage')
+    const frameworkData = require('../mock/solution/food/framework')
+    const applyData = require('../mock/solution/food/value')
+    const caseData = require('../mock/solution/food/case')
+    const recommendData = require('../mock/solution/food/recommend')
+    const tabsData = require('../mock/solution/food/tabsData')
+
+    let pagePath = 'page/solution/page-food/template'
+    await ctx.render(pagePath, {
+      title: '餐饮行业解决方案',
+      key: 'food',
+      navKey: 'solution',
+      hasBanner: false,
+      bannerData: bannerData,
+      painData: painData,
+      advantageData: advantageData,
+      frameworkData: frameworkData,
+      applyData: applyData,
+      caseData: caseData,
+      recommendData: recommendData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 游戏行业解决方案
+   * @returns {Promise<void>}
+   */
+  async game () {
+    const { ctx } = app;
+    const bannerData = require('../mock/solution/game/banner')
+    const painData = require('../mock/solution/game/pain')
+    const advantageData = require('../mock/solution/game/advantage')
+    const frameworkData = require('../mock/solution/game/framework')
+    const applyData = require('../mock/solution/game/value')
+    const caseData = require('../mock/solution/game/case')
+    const recommendData = require('../mock/solution/game/recommend')
+    const tabsData = require('../mock/solution/game/tabsData')
+
+    let pagePath = 'page/solution/page-game/template'
+    await ctx.render(pagePath, {
+      title: '游戏行业解决方案',
+      key: 'game',
+      navKey: 'solution',
+      hasBanner: false,
+      bannerData: bannerData,
+      painData: painData,
+      advantageData: advantageData,
+      frameworkData: frameworkData,
+      applyData: applyData,
+      caseData: caseData,
+      recommendData: recommendData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 传统制造行业
+   * @returns {Promise<void>}
+   */
+  async manufacture () {
+    const { ctx } = app;
+    const bannerData = require('../mock/solution/manufacture/banner')
+    const painData = require('../mock/solution/manufacture/pain')
+    const advantageData = require('../mock/solution/manufacture/advantage')
+    const frameworkData = require('../mock/solution/manufacture/framework')
+    const applyData = require('../mock/solution/manufacture/value')
+    const caseData = require('../mock/solution/manufacture/case')
+    const recommendData = require('../mock/solution/manufacture/recommend')
+    const tabsData = require('../mock/solution/manufacture/tabsData')
+
+    let pagePath = 'page/solution/page-manufacture/template'
+    await ctx.render(pagePath, {
+      title: '传统制造行业',
+      key: 'manufacture',
+      navKey: 'solution',
+      hasBanner: false,
+      bannerData: bannerData,
+      painData: painData,
+      advantageData: advantageData,
+      frameworkData: frameworkData,
+      applyData: applyData,
+      caseData: caseData,
+      recommendData: recommendData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 电商行业解决方案
+   * @returns {Promise<void>}
+   */
+  async online () {
+    const { ctx } = app;
+    const bannerData = require('../mock/solution/online/banner')
+    const painData = require('../mock/solution/online/pain')
+    const advantageData = require('../mock/solution/online/advantage')
+    const frameworkData = require('../mock/solution/online/framework')
+    const applyData = require('../mock/solution/online/value')
+    const caseData = require('../mock/solution/online/case')
+    const recommendData = require('../mock/solution/online/recommend')
+    const tabsData = require('../mock/solution/online/tabsData')
+
+    let pagePath = 'page/solution/page-online/template'
+    await ctx.render(pagePath, {
+      title: '电商行业解决方案',
+      key: 'online',
+      navKey: 'solution',
+      hasBanner: false,
+      bannerData: bannerData,
+      painData: painData,
+      advantageData: advantageData,
+      frameworkData: frameworkData,
+      applyData: applyData,
+      caseData: caseData,
+      recommendData: recommendData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 私有化行业
+   * @returns {Promise<void>}
+   */
+  async personal () {
+    const { ctx } = app;
+    const bannerData = require('../mock/solution/personal/banner')
+    const painData = require('../mock/solution/personal/pain')
+    const advantageData = require('../mock/solution/personal/advantage')
+    const frameworkData = require('../mock/solution/personal/framework')
+    const applyData = require('../mock/solution/personal/value')
+    const caseData = require('../mock/solution/personal/case')
+    const recommendData = require('../mock/solution/personal/recommend')
+    const tabsData = require('../mock/solution/personal/tabsData')
+
+    let pagePath = 'page/solution/page-personal/template'
+    await ctx.render(pagePath, {
+      title: '私有化行业',
+      key: 'personal',
+      navKey: 'solution',
+      hasBanner: false,
+      bannerData: bannerData,
+      painData: painData,
+      advantageData: advantageData,
+      frameworkData: frameworkData,
+      applyData: applyData,
+      caseData: caseData,
+      recommendData: recommendData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 交通行业解决方案
+   * @returns {Promise<void>}
+   */
+  async traffic () {
+    const { ctx } = app;
+    const bannerData = require('../mock/solution/education/banner')
+    const painData = require('../mock/solution/traffic/pain')
+    const advantageData = require('../mock/solution/traffic/advantage')
+    const frameworkData = require('../mock/solution/traffic/framework')
+    const applyData = require('../mock/solution/traffic/value')
+    const caseData = require('../mock/solution/traffic/case')
+    const recommendData = require('../mock/solution/traffic/recommend')
+    const tabsData = require('../mock/solution/traffic/tabsData')
+
+    let pagePath = 'page/solution/page-traffic/template'
+    await ctx.render(pagePath, {
+      title: '交通行业解决方案',
+      key: 'traffic',
+      navKey: 'solution',
+      hasBanner: false,
+      bannerData: bannerData,
+      painData: painData,
+      advantageData: advantageData,
+      frameworkData: frameworkData,
+      applyData: applyData,
+      caseData: caseData,
+      recommendData: recommendData,
+      tabsData: tabsData
+    })
+  }
+
 })
