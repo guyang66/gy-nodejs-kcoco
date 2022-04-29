@@ -1,4 +1,4 @@
-const data = {
+module.exports = {
   secTitle: '找不到你想要的答案？看看这里吧',
   content: [
     {
@@ -38,5 +38,3 @@ const data = {
     },
   ],
 };
-
-export default data;

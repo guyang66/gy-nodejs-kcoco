@@ -1,15 +1,11 @@
-import a1 from '@/assets/images/service/help/quick/a1.svg';
-import a2 from '@/assets/images/service/help/quick/a2.svg';
-import a3 from '@/assets/images/service/help/quick/a3.svg';
-
-const data = {
+module.exports = {
   content: [
     {
       index: 0,
       key: 'contents',
       title: '导航目录',
       desc: '全局搜索查询',
-      icon: a1,
+      icon: '/images/service/help/quick/a1.svg',
       alt: '导航目录',
       data: [
         '新手入门',
@@ -26,7 +22,7 @@ const data = {
       key: 'resource',
       title: '资源整合',
       desc: '帮助企业治理问题',
-      icon: a2,
+      icon: '/images/service/help/quick/a2.svg',
       alt: '导航目录',
       data: [
         '问题反馈',
@@ -42,7 +38,7 @@ const data = {
       key: 'common',
       title: '常见功能',
       desc: '为客户提供最贴切的服务',
-      icon: a3,
+      icon: '/images/service/help/quick/a3.svg',
       alt: '常见功能',
       data: [
         '客户成交',
@@ -56,5 +52,3 @@ const data = {
     },
   ],
 };
-
-export default data;

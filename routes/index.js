@@ -76,12 +76,20 @@ module.exports = app => {
   router.get('/solution/personal', $controller.pageController.personal)
   router.get('/solution/traffic', $controller.pageController.traffic)
 
-
   router.get('/case', $controller.pageController.caseList)
   router.get('/case/detail', $controller.pageController.caseDetail)
 
   router.get('/activity', $controller.pageController.activityList)
   router.get('/activity/detail', $controller.pageController.activityDetail)
+
+  router.get('/service/contact', $controller.pageController.contact)
+  router.get('/service/help', $controller.pageController.help)
+  router.get('/service/resource', $controller.pageController.resource)
+  router.get('/service/declare', $controller.pageController.declares)
+
+
+
+
 
 
   router.get('/test', $controller.common.test)

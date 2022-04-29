@@ -1,6 +1,4 @@
-import a1 from '@/assets/images/banner/product/ai/a1.png';
-
-const bannerData = {
+module.exports = {
   title: '联系我们',
   text: '迎接新时代的到来，yy科技诚邀与你共同见证',
   button: true,
@@ -8,7 +6,5 @@ const bannerData = {
   href: '/form.html',
   // 是否背景图
   useBg: true,
-  bg: a1,
+  bg: '/images/banner/product/ai/a1.png',
 };
-
-export default bannerData;

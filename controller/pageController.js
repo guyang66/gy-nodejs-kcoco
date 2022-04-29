@@ -2034,6 +2034,96 @@ module.exports = app => ({
       recommendData: recommendData,
       tabsData: tabsData
     })
+  },
+
+  /**
+   * 联系我们
+   * @returns {Promise<void>}
+   */
+  async contact () {
+    const { ctx } = app;
+    const bannerData = require('../mock/service/contact/banner')
+    const contactData = require('../mock/service/contact/contact')
+    const addressData = require('../mock/service/contact/address')
+    const tabsData = require('../mock/service/contact/tabsData')
+
+    let pagePath = 'page/service/page-contact/template'
+    await ctx.render(pagePath, {
+      title: '联系我们',
+      key: 'contact',
+      navKey: 'service',
+      hasBanner: false,
+      bannerData: bannerData,
+      contactData: contactData,
+      addressData: addressData,
+      tabsData: tabsData,
+    })
+  },
+
+  /**
+   * 帮助中心
+   * @returns {Promise<void>}
+   */
+  async help () {
+    const { ctx } = app;
+    const bannerData = require('../mock/service/help/banner')
+    const quickData = require('../mock/service/help/quick')
+    const commonData = require('../mock/service/help/common')
+    const tabsData = require('../mock/service/help/tabsData')
+
+    let pagePath = 'page/service/page-help/template'
+    await ctx.render(pagePath, {
+      title: '帮助中心',
+      key: 'help',
+      navKey: 'service',
+      hasBanner: false,
+      bannerData: bannerData,
+      quickData: quickData,
+      commonData: commonData,
+      tabsData: tabsData,
+    })
+  },
+
+  /**
+   * 资源中心
+   * @returns {Promise<void>}
+   */
+  async resource () {
+    const { ctx } = app;
+    const bannerData = require('../mock/service/resource/banner')
+    const newsData = require('../mock/service/resource/news')
+    const downloadData = require('../mock/service/resource/download')
+
+    let pagePath = 'page/service/page-resource/template'
+    await ctx.render(pagePath, {
+      title: '资源中心',
+      key: 'resource',
+      navKey: 'service',
+      hasBanner: false,
+      bannerData: bannerData,
+      newsData: newsData,
+      downloadData: downloadData,
+      tabsData: [],
+    })
+  },
+
+  /**
+   * 隐私政策
+   * @returns {Promise<void>}
+   */
+  async declares () {
+    const { ctx } = app;
+    const detailData = require('../mock/service/declare/main')
+    let pagePath = 'page/service/page-declare/template'
+    await ctx.render(pagePath, {
+      title: '隐私政策',
+      key: 'declare',
+      navKey: 'service',
+      hasBanner: false,
+      bannerData: {},
+      detailData: detailData,
+      tabsData: [],
+    })
   }
 
 })

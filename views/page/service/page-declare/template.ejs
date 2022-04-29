@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh">
+<head>
+  <meta charset="utf-8">
+  <%- include('../../../layout/commonHead')%>
+  <!--css-->
+  <link rel="stylesheet" href="/css/service/page-declare/style.css">
+  <link rel="stylesheet" href="/css/article.css">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/component.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/common/plugins/css/swiper.css">
+  <link rel="stylesheet" href="/common/plugins/video-js/video-js.css">
+
+  <!--js-->
+  <script src="/common/plugins/jquery.min.js"></script>
+  <script src="/common/plugins/swiper.js"></script>
+</head>
+<body>
+<div class="main-layout">
+  <%- include('../../../layout/header');%>
+  <% if(tabsData.length) { %>
+    <%- include('../../../component/tabs');%>
+  <% } %>
+  <section class="main-wrap">
+    <div class="main-content">
+      <section class="declare-main-wrap">
+        <div class="declare-wrap">
+          <div class="declare-content">
+            <div class="fake-header"></div>
+
+            <div class="module-article-crumbs mar-t20">
+              <span style="margin-right: 10px;"><a href="/service/help.html">帮助中心</a></span>>
+              <span style="margin-left: 5px;">隐私政策声明</span>
+            </div>
+
+            <div class="main-view">
+              <div class="module-article-main-view">
+                <div class="info-view" style="width: 1280px;padding: 32px">
+                  <% detailData.content.forEach(function(item){ %>
+                    <div class="info-item">
+                      <% if(item.key === 'img') { %>
+                      <div class="img-item mar-t10 mar-b10">
+                        <img src="<%=item.data%>" alt="<%=detailData.title%>" />
+                      </div>
+                      <!--可以多定义一些自定义样式-->
+                      <% } else if(item.key === 'title-text'){ %>
+                      <span class="title-text-item mar-t10"><%=item.data%></span>
+                      <% } else if(item.key === 'text'){ %>
+                      <div class="normal-text-item mar-t20 mar-b20">
+                        <%=item.data%>
+                      </div>
+                      <% } %>
+                    </div>
+                  <% }); %>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <%- include('../../../component/form');%>
+      </section>
+    </div>
+  </section>
+
+  <%- include('../../../layout/footer');%>
+  <%- include('../../../component/sideMenus');%>
+
+</div>
+<script src="/js/common.js"></script>
+<%- include('../../../layout/commonFoot');%>
+</body>
+</html>
+

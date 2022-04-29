@@ -1,4 +1,4 @@
-const data = {
+module.exports = {
   title: '资料下载',
   desc: '行业数据等你挑战，海量资源任你下载',
   tabs: [
@@ -91,5 +91,3 @@ const data = {
     },
   ],
 };
-
-export default data;

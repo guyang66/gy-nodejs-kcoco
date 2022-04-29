@@ -1,4 +1,4 @@
-const data = {
+module.exports = {
   content: [
     {
       key: 'text',
@@ -50,4 +50,3 @@ const data = {
     },
   ],
 };
-export default data;
