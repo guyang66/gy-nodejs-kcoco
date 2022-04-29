@@ -1,15 +1,8 @@
-import a1 from '@/assets/images/about/joinus/welfare/a1.png';
-import a2 from '@/assets/images/about/joinus/welfare/a2.png';
-import a3 from '@/assets/images/about/joinus/welfare/a3.png';
-import b1 from '@/assets/images/about/joinus/welfare/b1.svg';
-import b2 from '@/assets/images/about/joinus/welfare/b2.svg';
-import b3 from '@/assets/images/about/joinus/welfare/b3.svg';
-
-const data = {
+module.exports = {
   content: [
     {
-      icon: b1,
-      cover: a1,
+      icon: '/images/about/joinus/welfare/b1.svg',
+      cover: '/images/about/joinus/welfare/a1.png',
       title: '超值放松福利多多给力员工关怀',
       desc: [
         '法定年假、带薪病假、年度大团建',
@@ -18,8 +11,8 @@ const data = {
       ],
     },
     {
-      icon: b2,
-      cover: a2,
+      icon: '/images/about/joinus/welfare/b2.svg',
+      cover: '/images/about/joinus/welfare/a2.png',
       title: '关爱每一个员工成长路线全面匹配',
       desc: [
         '季度团建、红包群发、高温补贴',
@@ -28,8 +21,8 @@ const data = {
       ],
     },
     {
-      icon: b3,
-      cover: a3,
+      icon: '/images/about/joinus/welfare/b3.svg',
+      cover: '/images/about/joinus/welfare/a3.png',
       title: '环境优美让你每天都有好心情',
       desc: [
         '地铁打开让你无压力迟到',
@@ -39,4 +32,3 @@ const data = {
     },
   ],
 };
-export default data;

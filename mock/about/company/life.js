@@ -1,12 +1,8 @@
-import a1 from '@/assets/images/about/company/life/a1.png';
-import a2 from '@/assets/images/about/company/life/a2.png';
-import a3 from '@/assets/images/about/company/life/a3.png';
-
-const data = {
+module.exports = {
   content: [
     {
       title: '多元文化的碰撞交流',
-      cover: a1,
+      cover: '/images/about/company/life/a1.png',
       data: [
         {
           title: '相互借鉴，取长补短',
@@ -24,7 +20,7 @@ const data = {
     },
     {
       title: '健身与工作完美结合',
-      cover: a2,
+      cover: '/images/about/company/life/a2.png',
       data: [
         {
           title: '主观感觉',
@@ -42,7 +38,7 @@ const data = {
     },
     {
       title: '感谢每一个人的陪伴与支持',
-      cover: a3,
+      cover: '/images/about/company/life/a3.png',
       data: [
         {
           title: '动量定理',
@@ -60,4 +56,3 @@ const data = {
     },
   ],
 };
-export default data;

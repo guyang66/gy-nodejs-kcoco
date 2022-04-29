@@ -2124,6 +2124,163 @@ module.exports = app => ({
       detailData: detailData,
       tabsData: [],
     })
+  },
+
+  /**
+   * 了解我们
+   * @returns {Promise<void>}
+   */
+  async company () {
+    const { ctx } = app;
+    const bannerData = require('../mock/about/company/banner')
+    const usData = require('../mock/about/company/us')
+    const teamData = require('../mock/about/company/team')
+    const valueData = require('../mock/about/company/value')
+    const lifeData = require('../mock/about/company/life')
+    const historyData = require('../mock/about/company/history')
+    const prizeData = require('../mock/about/company/prize')
+    const tabsData = require('../mock/about/company/tabsData')
+
+    let pagePath = 'page/about/page-company/template'
+    await ctx.render(pagePath, {
+      title: '了解我们',
+      key: 'company',
+      navKey: 'about',
+      hasBanner: false,
+      bannerData: bannerData,
+      usData: usData,
+      teamData: teamData,
+      valueData: valueData,
+      lifeData: lifeData,
+      historyData: historyData,
+      prizeData: prizeData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 新闻列表
+   * @returns {Promise<void>}
+   */
+  async news () {
+    const { ctx } = app;
+    const bannerData = require('../mock/about/news/banner')
+    const categoryData = require('../mock/about/news/category')
+    const articleList = require('../mock/about/news/list')
+    const tagList = require('../mock/about/tag/tag')
+    const searchHot = require('../mock/about/news/search')
+
+    let pagePath = 'page/about/page-news-main/template'
+    await ctx.render(pagePath, {
+      title: '新闻列表',
+      key: 'news',
+      navKey: 'about',
+      hasBanner: false,
+      bannerData: bannerData,
+      categoryData: categoryData,
+      articleList: articleList,
+      tagList: tagList,
+      searchHot: searchHot,
+      tabsData: []
+    })
+  },
+
+  /**
+   *
+   * @returns {Promise<void>}
+   */
+  async newsDetail () {
+    const { ctx } = app;
+    const bannerData = require('../mock/about/news/banner')
+
+    const articleList = require('../mock/about/news/list')
+    const tagList = require('../mock/about/tag/tag')
+    const searchHot = require('../mock/about/news/search')
+
+    let pagePath = 'page/about/page-news-detail/template'
+    await ctx.render(pagePath, {
+      title: '新闻详情',
+      key: 'news',
+      navKey: 'about',
+      hasBanner: false,
+      bannerData: bannerData,
+      articleList: articleList,
+      tagList: tagList,
+      searchHot: searchHot,
+      tabsData: []
+    })
+  },
+
+  /**
+   * 加入我们
+   * @returns {Promise<void>}
+   */
+  async joinus () {
+    const { ctx } = app;
+    const bannerData = require('../mock/about/joinus/banner')
+    const envData = require('../mock/about/joinus/env')
+    const welfareData = require('../mock/about/joinus/welfare')
+    const resumeData = require('../mock/about/joinus/resume')
+    const tabsData = require('../mock/about/joinus/tabsData')
+
+    let pagePath = 'page/about/page-joinus/template'
+    await ctx.render(pagePath, {
+      title: '加入我们',
+      key: 'joinus',
+      navKey: 'about',
+      hasBanner: false,
+      bannerData: bannerData,
+      envData: envData,
+      welfareData: welfareData,
+      resumeData: resumeData,
+      tabsData: tabsData
+    })
+  },
+
+  /**
+   * 内容标签
+   * @returns {Promise<void>}
+   */
+  async tag () {
+    const { ctx } = app;
+    const articleList = require('../mock/about/news/list')
+    const tagList = require('../mock/about/tag/tag')
+    const recommendData = require('../mock/case/recommend')
+    const resourceList = require('../mock/service/resource/download')
+
+    let pagePath = 'page/about/page-tag/template'
+    await ctx.render(pagePath, {
+      title: '内容标签',
+      key: 'tag',
+      navKey: 'about',
+      hasBanner: false,
+      bannerData: {},
+      resourceList: resourceList,
+      articleList: articleList,
+      tagList: tagList,
+      recommendData: recommendData,
+      tabsData: []
+    })
+  },
+
+  /**
+   * 表单
+   * @returns {Promise<void>}
+   */
+  async form () {
+    const { ctx } = app;
+    let pagePath = 'page/page-form/template'
+    const logoData = require('../mock/form/logo')
+    await ctx.render(pagePath, {
+      title: '内容标签',
+      key: 'form',
+      navKey: 'about',
+      hasBanner: false,
+      hasFooter: false,
+      bannerData: {},
+      logoData: logoData,
+      tabsData: []
+    })
   }
 
 })

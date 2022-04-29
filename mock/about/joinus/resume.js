@@ -1,4 +1,4 @@
-const data = {
+module.exports = {
   bg: '#ffffff',
   href: 'https://www.zhipin.com',
   tabs: [
@@ -313,4 +313,3 @@ const data = {
     },
   ],
 };
-export default data;

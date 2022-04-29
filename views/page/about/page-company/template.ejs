@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh">
+<head>
+  <meta charset="utf-8">
+  <%- include('../../../layout/commonHead')%>
+  <!--css-->
+  <link rel="stylesheet" href="/css/about/page-company/style.css">
+
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/component.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/common/plugins/css/swiper.css">
+  <link rel="stylesheet" href="/common/plugins/video-js/video-js.css">
+
+  <!--js-->
+  <script src="/common/plugins/jquery.min.js"></script>
+  <script src="/common/plugins/swiper.js"></script>
+</head>
+<body>
+<div class="main-layout">
+  <%- include('../../../layout/header');%>
+  <%- include('../../../component/banner');%>
+  <% if(tabsData.length) { %>
+    <%- include('../../../component/tabs');%>
+  <% } %>
+  <section class="main-wrap">
+    <div class="main-content">
+      <section class="company-main-wrap">
+        <div class="tabs-content-wrap" data-anchor="us">
+          <%- include('./module-us');%>
+        </div>
+
+        <div class="tabs-content-wrap" data-anchor="team">
+          <%- include('./module-team');%>
+        </div>
+
+        <div class="tabs-content-wrap" data-anchor="value">
+          <%- include('./module-value');%>
+        </div>
+
+        <div class="tabs-content-wrap" data-anchor="life">
+          <%- include('./module-life');%>
+        </div>
+
+        <div class="tabs-content-wrap" data-anchor="history">
+          <%- include('./module-history');%>
+        </div>
+
+        <div class="tabs-content-wrap" data-anchor="prize">
+          <%- include('./module-prize');%>
+        </div>
+
+        <%- include('../../../component/form');%>
+      </section>
+    </div>
+  </section>
+
+  <%- include('../../../layout/footer');%>
+  <%- include('../../../component/sideMenus');%>
+
+</div>
+<script src="/js/common.js"></script>
+<script src="/js/about/company/index.js"></script>
+
+<%- include('../../../layout/commonFoot');%>
+</body>
+</html>
+

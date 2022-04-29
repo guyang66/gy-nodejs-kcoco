@@ -1,4 +1,4 @@
-const data = [
+module.exports = [
   {
     key: 'all',
     text: '全部',
@@ -20,5 +20,3 @@ const data = [
     text: '客户案例',
   },
 ];
-
-export default data;

@@ -1,4 +1,3 @@
-const data = {
+module.exports = {
   content: [],
 };
-export default data;

@@ -1,4 +1,4 @@
-const data = {
+module.exports = {
   content: [
     {
       title: '坚持自我',
@@ -29,4 +29,3 @@ const data = {
     },
   ],
 };
-export default data;

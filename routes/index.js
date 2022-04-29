@@ -87,7 +87,13 @@ module.exports = app => {
   router.get('/service/resource', $controller.pageController.resource)
   router.get('/service/declare', $controller.pageController.declares)
 
+  router.get('/about/company', $controller.pageController.company)
+  router.get('/about/news', $controller.pageController.news)
+  router.get('/about/news/detail', $controller.pageController.newsDetail)
+  router.get('/about/joinus', $controller.pageController.joinus)
+  router.get('/about/tag', $controller.pageController.tag)
 
+  router.get('/form', $controller.pageController.form)
 
 
 

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh">
+<head>
+  <meta charset="utf-8">
+  <%- include('../../layout/commonHead')%>
+  <link rel="stylesheet" href="/css/page-form/style.css">
+  <!--css 也有插入顺序的，不然会发生覆盖的情况，注意优先级-->
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/component.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/common/plugins/css/swiper.css">
+  <link rel="stylesheet" href="/common/plugins/video-js/video-js.css">
+
+  <!--js-->
+  <script src="/common/plugins/jquery.min.js"></script>
+  <script src="/common/plugins/swiper.js"></script>
+</head>
+<body>
+<div class="main-layout">
+  <%- include('../../layout/header');%>
+  <section class="main-wrap">
+    <div class="main-content">
+      <section class="form-main-wrap">
+
+        <div class="form-wrap">
+          <div class="fake-header"></div>
+          <div class="form-content">
+            <div class="form-view">
+              <h2 class="title-view">免费产品试用</h2>
+              <div class="desc-view">留下你的联系方式，我们会尽快和你取得联系</div>
+              <div class="info-view mar-t10">
+                <div class="left-view fn-left">
+                  <img class="cover" src="/images/common/form.jpg" alt="合作" />
+                  <div class="logo-view">
+                    <% logoData.forEach(function(item){ %>
+                    <div class="logo-cell fn-left">
+                      <img src="<%=item%>" alt="logo" />
+                    </div>
+                    <% }) %>
+                  </div>
+                </div>
+                <div class="right-view fn-right">
+                  <form>
+                    <div class="form-cell-item h-64">
+                      <div class="h-40">
+                        <div class="input-title fn-left"><span class="start">*</span>您的手机号：</div>
+                        <div class="normal-input-wrap fn-left">
+                          <input name="phone" placeholder="请输入您的手机号" autocomplete="off" />
+                        </div>
+                      </div>
+                      <div class="form-verify mar-l110">
+                        <div class="phone-input-error">请填写您的手机号</div>
+                      </div>
+                    </div>
+
+
+                    <div class="form-cell-item h-64">
+                      <div class="h-40">
+                        <div class="input-title fn-left"><span class="start">*</span>验证码：</div>
+                        <div class="code-input-wrap fn-right">
+                          <div class="verify-code-wrap">
+                            <input name="code" placeholder="请输入验证码" autocomplete="off" />
+                          </div>
+                          <div class="send-button" second="-1">获取验证码</div>
+                        </div>
+                      </div>
+                      <div class="form-verify mar-l110">
+                        <div class="code-input-error">请填写您的验证码</div>
+                      </div>
+                    </div>
+
+                    <div class="form-cell-item h-64">
+                      <div class="h-40">
+                        <div class="input-title fn-left"><span class="start">*</span>您的姓名：</div>
+                        <div class="normal-input-wrap fn-right">
+                          <input name="name" placeholder="请输入您的姓名" autocomplete="off" />
+                        </div>
+                      </div>
+                      <div class="form-verify mar-l110">
+                        <div class="name-input-error">请填写您的姓名</div>
+                      </div>
+                    </div>
+
+                    <div class="form-cell-item h-64">
+                      <div class="h-40">
+                        <div class="input-title fn-left"><span class="start">*</span>您所在公司：</div>
+                        <div class="normal-input-wrap fn-right">
+                          <input name="company" placeholder="请输入您的公司名称" autocomplete="off" />
+                        </div>
+                      </div>
+                      <div class="form-verify mar-l110">
+                        <div class="company-input-error">请填写您的公司名称</div>
+                      </div>
+                    </div>
+
+                    <div class="form-cell-item h-64">
+                      <div class="h-40">
+                        <div class="input-title fn-left"><span class="start">&nbsp;</span>您的职位：</div>
+                        <div class="normal-input-wrap fn-right">
+                          <input name="position" placeholder="请输入您的职位" autocomplete="off" />
+                        </div>
+
+                      </div>
+                      <div class="form-verify mar-l110">
+                        <div class="position-input-error">请填写您的职位</div>
+                      </div>
+                    </div>
+
+                    <div class="form-cell-item h-64">
+                      <div class="h-40">
+                        <div class="input-title fn-left"><span class="start">*</span>您的需求：</div>
+                        <div class="normal-input-wrap cursor-pointer fn-right">
+                          <input class="cursor-pointer" name="need" placeholder="请选择具体需求" disabled="disabled" autocomplete="off" />
+                          <div class="select-icon">
+                            <img src="/images/common/tabxiala.svg" alt="下拉" />
+                          </div>
+                          <div class="select-view">
+                            <div class="select-cell">成为合作伙伴</div>
+                            <div class="select-cell">商务合作</div>
+                            <div class="select-cell">智能系统</div>
+                            <div class="select-cell">水果素菜联盟</div>
+                            <div class="select-cell">免费试用产品</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-verify mar-l110">
+                        <div class="need-input-error">请选择您的需求</div>
+                      </div>
+                    </div>
+
+                    <div class="form-cell-item">
+                      <div>
+                        <div class="declare-wrap cursor-pointer">
+                          <input name="declare" class="radio-box" type="checkbox" style="cursor: pointer" />
+                          <a class="declare-text declare-action" href="/service/declare.html" target="_blank">我已阅读并同意《隐私政策声明》</a>
+                        </div>
+                      </div>
+                      <div class="form-verify">
+                        <div class="declare-input-error">请查看并同意隐私政策声明</div>
+                      </div>
+                    </div>
+
+                    <div class="form-cell-item">
+                      <div class="h-40">
+                        <div class="button-submit">立即提交</div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</div>
+<script src="/js/common.js"></script>
+<script src="/js/form/index.js"></script>
+<%- include('../../layout/commonFoot');%>
+</body>
+</html>
+
