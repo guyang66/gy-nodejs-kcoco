@@ -7,13 +7,13 @@ module.exports = {
           mode: 'top',
           year: '2018-08-12',
           content: '中国人民培育的桃树沿“丝绸之路”从甘肃',
-          href: '/banana.html',
+          href: '/banana',
         },
         {
           mode: 'bottom',
           year: '2018-09-22',
           content: '大部分印度的桃树也是从中国引种的',
-          href: '/banana.html',
+          href: '/banana',
         },
         {
           mode: 'top',
