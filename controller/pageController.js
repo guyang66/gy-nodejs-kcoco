@@ -1665,10 +1665,17 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async caseList () {
-    const { ctx } = app;
+    const { ctx, $config, $service, $model, $format } = app;
+    const { pageCase } = $model
     const bannerData = require('../mock/case/banner')
     const tagData = require('../mock/case/tag')
-    const casesData = require('../mock/case/cases')
+    let casesData
+
+    if($config.dataMock){
+      casesData = require('../mock/case/cases')
+    } else {
+      casesData = await $service.baseService.query(pageCase, {status: 1})
+    }
     let pagePath = 'page/case/page-case-main/template'
     await ctx.render(pagePath, {
       title: '客户案例',
@@ -1708,13 +1715,65 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async activityList () {
-    const { ctx } = app;
+    const { ctx, $service, $config, $model } = app;
+    const { pageActivity, pageHotActivity, pageFavoriteActivity, pageBrandActivity } = $model;
     const bannerData = require('../mock/activity/banner')
-    const favoriteData = require('../mock/activity/favorite')
-    const brandData = require('../mock/activity/brand')
-    const hotData = require('../mock/activity/hot')
     const tabsData = require('../mock/activity/tabsData')
+    let favoriteData
+    let brandData
+    let hotData
     let pagePath = 'page/activity/page-activity-main/template'
+
+    let activity = await $service.baseService.query(pageActivity)
+    let activityMap = {}
+    activity.forEach(item=>{
+      activityMap[item.key] = item
+    })
+    if($config.dataMock){
+      // 如果不走数据库
+      hotData = require('../mock/activity/hot')
+      favoriteData = require('../mock/activity/favorite')
+      brandData = require('../mock/activity/brand')
+    } else {
+      // 查找上线（statues=1）
+      let hotActivityList = await $service.baseService.query(pageHotActivity, {status: 1})
+      let favoriteActivityList = await $service.baseService.query(
+        pageFavoriteActivity,
+        {status: 1},
+        {},
+        {sort:
+            {
+              order: -1, // 布局需要type = main的放第一个，查询时order 要放在_id前面，优先order排序 ，order越大，越靠前
+              _id: -1,
+            }
+        })
+      let brandActivityList = await $service.baseService.query(pageBrandActivity, {status: 1})
+
+      // 这里可以降级处理，避免服务端发布，sql还未执行。
+      // if(!activity || activity.length < 1){
+      //   hotData = require('../mock/activity/hot')
+      // }
+      //
+      hotData = {
+        title: activityMap['hot'].title,
+        desc: activityMap['hot'].desc,
+        key: activityMap['hot'].key,
+        content: hotActivityList
+      }
+      favoriteData = {
+        title: activityMap['favorite'].title,
+        desc: activityMap['favorite'].desc,
+        key: activityMap['favorite'].key,
+        content: favoriteActivityList
+      }
+      brandData = {
+        title: activityMap['brand'].title,
+        desc: activityMap['brand'].desc,
+        key: activityMap['brand'].key,
+        content: brandActivityList
+      }
+    }
+
     await ctx.render(pagePath, {
       title: '活动列表',
       key: 'activity',

@@ -13,7 +13,7 @@
 
     <div class="favorite-view">
       <% favoriteData.content.forEach(function(item, index){ %>
-      <% if(item.key === 'main') { %>
+      <% if(item.type === 'main') { %>
       <div class="main-cell fn-left">
         <div class="top-wrap">
           <div class="title"><%=item.name%></div>

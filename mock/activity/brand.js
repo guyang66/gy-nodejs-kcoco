@@ -1,5 +1,6 @@
 module.exports = {
   title: '品牌活动',
+  key: 'brand',
   desc: '品牌宣传，带你打卡各个城市，边走边学',
   content: [
     {

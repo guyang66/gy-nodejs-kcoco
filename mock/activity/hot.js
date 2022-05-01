@@ -1,5 +1,6 @@
 module.exports = {
   title: '热门活动',
+  key: 'hot',
   desc: '课程教学，直播带货，跟着老师学习走向成功',
   content: [
     {

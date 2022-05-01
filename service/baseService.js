@@ -16,6 +16,7 @@ module.exports = app => ({
       return false
     }
   },
+
   async queryOne (model, options) {
     const { errorLogger } = app.$log4
     try {
@@ -26,20 +27,33 @@ module.exports = app => ({
       return false
     }
   },
+
   /**
    * 条件查询list
    * @param model
    * @param params
-   * @returns {Promise<boolean>}
+   * @param projection
+   * @param opt
+   *           —— false：不设置options，不设置options为空
+   *           —— null or undefined（默认）：默认按id排序
+   *           —— object
+   * @returns {Promise<*|boolean>}
    */
-  async query (model, params) {
+  async query (model, params, projection, opt) {
     const { errorLogger } = app.$log4
-    let queryParams = {...params}
-    let queryOptions = {
-      sort: {_id: -1}
+
+    let queryOptions
+    if(!opt){
+      queryOptions = { sort: { _id: -1 } }
+    } else {
+      queryOptions = Object.assign({},{ sort: { _id: -1 } },opt)
     }
+    if(opt === 'false' || opt === false){
+      queryOptions = {}
+    }
+
     try {
-      return await model.find(queryParams, null, queryOptions)
+      return await model.find(params, projection, queryOptions)
     } catch (e){
       errorLogger.error(e)
       console.log(e)

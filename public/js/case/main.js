@@ -42,7 +42,6 @@ $(function () {
     $('.case-main-wrap .case-view').append(string);
     $('.case-main-wrap .case-view').attr('count', count);
     $('.case-main-wrap .case-view').attr('search', value);
-    console.log(count);
     if (count < 9) {
       // 下拉取完
       $('.expand-img-wrap').hide();

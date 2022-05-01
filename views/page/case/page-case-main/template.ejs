@@ -43,6 +43,28 @@
               </div>
             </div>
 
+            <!--这里和纯静态页面ecoco逻辑不能保持一样，纯静态页面那个项目是通过js来操作数据，做的假的分页加载效果。
+            服务端渲染的话最好的方式还是和新闻列表页面那样用分页器（好处在于所有的页面都通过a标签链接起来，对seo友好毕竟js交互越少越好）来做
+            或者用ajax来做下拉加载更多（这样爬虫第一次抓取只能抓到一部分页面和文案数据）
+
+            这里和纯静态页面ecoco的区别在于，ecoco是纯静态页面，没有和服务端交互，所有在js中会有个（全局）变量保存caseList数据，然后通过js处理逻辑加载渲染指定部分就行。
+            这里服务端渲染的话，是没有保存全局变量到js中，要强行走纯静态页面ecoco的路的话，方式有下面2个去保存全局变量
+
+            一、把数据保存到html上 比如div标签挂个属性data="{json化的数据}"，需要的时候再用jquery去取，不推荐这种方式，数据量大的话返回的html文件体积变得巨大且难看
+            二、很恶心的来回操作——由服务端写入js中（ejs这一点就完全不如hbs这样的模板引擎，可以直接在服务端把数据写入到js中）
+               1、服务端需要返回
+                  如res.render('page/index/template', {"caseData": {"a":1,"b":2 }})
+               2、js中:
+                  var caseDataCopy = '< % - JSON.stringify(casesData) % >' ,不能使用< % = % > 来转义,且必须用单引号，因为如果是JSON数据，就是双引号
+                  var caseData = JSON.parse(caseDataCopy)
+                  var item0 = caseData[0]
+
+                  这样才算是完成...
+                  ejs只会被解析为字符串，所以如果是简单的字符串变量就直接< % - % >转义就行，如果是object对象就得转化一下。
+                  用起来就已经很蛋疼了，而且还没测试正则可不可以通过，或者一些其他一些特殊的字符。
+
+            因为我们数据量不多，我们这里还是用js来做个假的下拉加载更多效果即可，感兴趣的朋友可以参考单页面应用（如react、vue）的js下拉加载更多实现逻辑即可
+            只不过是用ajax来做，然后服务端需要处理好对应的参数，返回正确的数据即可。-->
             <div class="case-view" count="<%=Math.min(9, casesData.length)%>">
               <% casesData.slice(0,9).forEach(function(item, index){ %>
                 <div class="case-cell fn-left mar-b40 <% if((index + 1) % 3 !== 0){ %>mar-r40<% } %>">
@@ -70,6 +92,11 @@
   <%- include('../../../component/sideMenus');%>
 
 </div>
+<script type="text/javascript">
+  // 把服务端的数组插入js中
+  var casesListJSON = '<%- JSON.stringify(casesData) %>'
+  var casesList = JSON.parse(casesListJSON)
+</script>
 <script src="/js/common.js"></script>
 <script src="/js/case/main.js"></script>
 <%- include('../../../layout/commonFoot');%>

@@ -1,10 +1,11 @@
 module.exports = {
   title: '猜你喜欢',
+  key: 'favorite',
   desc: '大牌特价，猜你喜欢，各种优惠尽请期待',
   content: [
     {
       index: 0,
-      key: 'main',
+      type: 'main',
       name: '水果零售价',
       bg: '/images/activity/favorite/main.svg',
       desc: '节日特价，8.8折再加会员折扣，折扣多多，惊喜连连，欢迎新老用户购买',
@@ -32,7 +33,7 @@ module.exports = {
     },
     {
       index: 1,
-      key: 'normal',
+      type: 'normal',
       name: '看守无人机',
       desc: '超高续航，耐力十足，现在购买即送收纳盒',
       btnText: '查看详情',
@@ -51,12 +52,12 @@ module.exports = {
     },
     {
       index: 2,
-      key: 'normal',
+      type: 'normal',
       name: '智能马桶',
       desc: '智能马桶，现免费试用1个月，先到先得',
       btnText: '申请试用',
       bg: '/images/activity/favorite/b2.svg',
-      href: '/activity/detail',
+      href: '/form',
       tag: [
         {
           key: 'fill',
@@ -70,7 +71,7 @@ module.exports = {
     },
     {
       index: 3,
-      key: 'normal',
+      type: 'normal',
       name: '智能研判系统-清水',
       desc: '智能研判系统，在线直播，直播购买',
       btnText: '点击查看',
@@ -89,11 +90,11 @@ module.exports = {
     },
     {
       index: 4,
-      key: 'normal',
+      type: 'normal',
       name: '巴西瓜子',
       desc: '巴西瓜子，毛利互相可拉到烧烤店啊啊',
       btnText: '申请试用',
-      href: '/activity/detail',
+      href: '/form',
       bg: '/images/activity/favorite/b4.svg',
       tag: [
         {
@@ -112,11 +113,11 @@ module.exports = {
     },
     {
       index: 5,
-      key: 'normal',
+      type: 'normal',
       name: '智能语音',
       desc: '智能语音，现免费试用1个月，先到先得',
       btnText: '申请试用',
-      href: '/activity/detail',
+      href: '/form',
       bg: '/images/activity/favorite/b5.svg',
       tag: [
         {
@@ -131,7 +132,7 @@ module.exports = {
     },
     {
       index: 6,
-      key: 'normal',
+      type: 'normal',
       name: '智能在线客户',
       desc: '智能在线客户，上千套模板训练，效率100%',
       btnText: '查看详情',
@@ -154,7 +155,7 @@ module.exports = {
     },
     {
       index: 7,
-      key: 'normal',
+      type: 'normal',
       name: '蔬菜沙拉',
       desc: '多种果蔬多重营养，呵护你的全家健康',
       btnText: '立即购买',
