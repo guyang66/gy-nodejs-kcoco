@@ -1,3 +1,4 @@
+
 module.exports = app => ({
 
   /**
@@ -1665,7 +1666,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async caseList () {
-    const { ctx, $config, $service, $model, $format } = app;
+    const { ctx, $config, $service, $model } = app;
     const { pageCase } = $model
     const bannerData = require('../mock/case/banner')
     const tagData = require('../mock/case/tag')
@@ -2275,12 +2276,113 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async joinus () {
-    const { ctx } = app;
+    const { ctx, $config, $service, $model, $format } = app;
+    const { commonConfig, pageResume, pageResumeDetail, pageResumeCategory, pageResumePlace, pageCommonTag } = $model
     const bannerData = require('../mock/about/joinus/banner')
     const envData = require('../mock/about/joinus/env')
     const welfareData = require('../mock/about/joinus/welfare')
-    const resumeData = require('../mock/about/joinus/resume')
+    let resumeData
     const tabsData = require('../mock/about/joinus/tabsData')
+
+    if($config.dataMock){
+      resumeData = require('../mock/about/joinus/resume')
+    } else {
+      // 组装数据，ecoco那里的数据格式定义的比较糟糕，应该都分开，唉....
+      resumeData = require('../mock/about/joinus/resume')
+
+      let target = {}
+      let resumeConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_resume_link'})
+      let resumeConfigValue = JSON.parse(resumeConfig.v1)
+      target.bg = resumeConfigValue.bg
+      target.href = resumeConfigValue.href
+
+      let resumePlace = await $service.baseService.query(pageResumePlace, {status: 1})
+      let resumePlaceMap = {}
+      resumePlace.forEach(item=>{
+        resumePlaceMap[item.key] = item
+      })
+
+      let resumeCategory = await $service.baseService.query(pageResumeCategory, {status: 1})
+      let resumeCategoryMap = {}
+      resumeCategory.forEach(item=>{
+        resumeCategoryMap[item.key] = item
+      })
+      // console.log(resumeCategoryMap)
+
+      let resume = await $service.baseService.query(pageResume, {status: 1})
+      let resumeMap = {}
+      resume.forEach(item=>{
+        resumeMap[item.key] = item
+      })
+
+      let commonTag = await $service.baseService.query(pageCommonTag, {status: 1, maiKey: 'resume_tag'})
+      let resumeTagMap = {}
+      commonTag.forEach(item=>{
+        resumeTagMap[item.key] = item
+      })
+
+      let tabs = []
+      for(let i = 0; i < resume.length; i++){
+        let item = resume[i]
+        // 创建map 表
+        let resumeList = await $service.baseService.query(pageResumeDetail, {status: 1, key: item.key })
+        let targetResumeList = []
+        resumeList.forEach(detail=>{
+
+          let obj = {
+            title: detail.title,
+            desc: detail.desc,
+            category: detail.category,
+            categoryString: resumeCategoryMap[detail.category].name,
+            place: detail.place,
+            placeString: resumePlaceMap[detail.place].name,
+            department: detail.department,
+            date: detail.date,
+            experience: detail.experience,
+            education: detail.education,
+            href: detail.href,
+            contact: detail.contact,
+          }
+
+          if(detail.tag && detail.tag.length > 0){
+            obj.tag = $format.transTag(resumeTagMap, detail.tag)
+          }
+
+          if(detail.duty && detail.duty.length > 0){
+            obj.duty = { title: '岗位职责', data: detail.duty }
+          }
+
+          if(detail.require && detail.require.length > 0){
+            obj.require = { title: '岗位要求', data: detail.require }
+          }
+
+          if(detail.pluses && detail.pluses.length > 0){
+            obj.pluses = { title: '加分项', data: detail.pluses }
+          }
+          targetResumeList.push(obj)
+        })
+
+        tabs.push({
+          key: item.key,
+          name: item.name,
+          content: targetResumeList
+        })
+      }
+
+
+      target.tabs = tabs
+      target.category = resumeCategory
+      target.place = resumePlace
+      resumeData = target
+    }
+
+    //todo: 数据量一大必定慢！优化方案:
+    // 1.优化查询，查询没办法优化了，再怎么样两个二重for循环，而且带await同步操作，必定会慢的。
+    // 2.表结构优化，字段冗余或者加字段，尽量把二重for循环变成一重循环
+    // 3.前端改造/优化数据结构，把嵌套的object数据拍平，让数据更清晰，这样前后端都要改，但是这个方案应该是最简单最舒服的
+    // 4.进缓存，一般简历不会频繁改，半个月更新一次，把构造好的数据缓存起来（比如进nodecache），第一次查询构建好就存储起来，
+    //   之后第二次查询直接用缓存的数据即可，更新数据之后，把对应的缓存刷掉即可。进一步可以更新之后刷掉缓存，立马人为的调用构建
+    //   方法一次，构建好数据，并生成新的缓存。
 
     let pagePath = 'page/about/page-joinus/template'
     await ctx.render(pagePath, {

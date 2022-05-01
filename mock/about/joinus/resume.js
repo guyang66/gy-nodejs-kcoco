@@ -19,10 +19,11 @@ module.exports = {
           experience: '1~3年',
           education: '不限',
           href: 'https://www.zhipin.com',
+          contact: 'xxx@hr.com',
           tag: [
             {
               key: 'quick',
-              text: '急',
+              name: '急',
             },
           ],
           duty: {
@@ -64,10 +65,11 @@ module.exports = {
           experience: '1~3年',
           education: '不限',
           href: 'https://www.zhipin.com',
+          contact: 'xxx@hr.com',
           tag: [
             {
               key: 'quick',
-              text: '急',
+              name: '急',
             },
           ],
           duty: {
@@ -108,6 +110,7 @@ module.exports = {
           experience: '不限',
           education: '不限',
           href: 'https://www.zhipin.com',
+          contact: 'xxx@hr.com',
           duty: {
             title: '岗位职责',
             data: [
@@ -131,6 +134,7 @@ module.exports = {
           title: '视频剪辑',
           desc: '负责公司产品的视频后期处理，对视频制作数量负责',
           category: 'function',
+          department: '广告部',
           categoryString: '职能类',
           place: 'hangzhou',
           placeString: '杭州',
@@ -138,6 +142,7 @@ module.exports = {
           experience: '不限',
           education: '大专及以上',
           href: 'https://www.zhipin.com',
+          contact: 'xxx@hr.com',
           duty: {
             title: '岗位职责',
             data: [
@@ -171,6 +176,7 @@ module.exports = {
           experience: '5年以上',
           education: '不限',
           href: 'https://www.zhipin.com',
+          contact: 'xxx@hr.com',
           duty: {
             title: '岗位职责',
             data: [
@@ -216,6 +222,7 @@ module.exports = {
           experience: '不限',
           education: '本科及以上',
           href: 'https://www.zhipin.com',
+          contact: 'xxx@hr.com',
           duty: {
             title: '岗位职责',
             data: ['负责事业部产品（Saas）核心功能研发'],
@@ -243,6 +250,7 @@ module.exports = {
           experience: '不限',
           education: '不限',
           href: 'https://www.zhipin.com',
+          contact: 'xxx@hr.com',
           duty: {
             title: '岗位职责',
             data: [

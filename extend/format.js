@@ -42,6 +42,31 @@ module.exports = app => ({
       copy[key] = this.jsonObject(obj[key], true)
     })
     return copy
+  },
+
+  /**
+   *
+   * @param map
+   * @param array
+   * @returns {[]|*[]|*}
+   */
+  transTag (map, array) {
+    const { $helper } = app
+    if(!Array.isArray(array) || !map || $helper.isEmptyObject(map)){
+      return array
+    }
+    if(!array || array.length < 1){
+      return  []
+    }
+    let tmp = []
+    array.forEach(item=>{
+      let t = {
+        key: item,
+        name: map[item].name
+      }
+      tmp.push(t)
+    })
+    return tmp
   }
 
 })

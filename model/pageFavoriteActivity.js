@@ -12,6 +12,7 @@ module.exports = app => {
       remark: { type: String, default: 'hot' }, // 其他备注
 
       href: { type: String, default: ''}, // 活动详情
+      //todo: 前端加一下nofollow和target的处理逻辑
       /**
        * nofollow —— a标签的ref属性
        * ture：为a标签添加 ref=nofollow属性，告诉搜索引擎不必跟踪该链接，seo优化，一般站外链接使用。

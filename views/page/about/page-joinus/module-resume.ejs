@@ -42,7 +42,7 @@
           <div class="title">
             <% if(item.tag && item.tag.length > 0) { %>
             <% item.tag.forEach(function(tag){ %>
-            <span class="tag-span fn-left"><%=tag.text%></span>
+            <span class="tag-span fn-left"><%=tag.name%></span>
             <% }); %>
             <% } %>
             <span class="text"><%=item.title%></span>
@@ -92,7 +92,7 @@
             <% }); %>
             <% } %>
             <div class="line mar-b20 mar-t20"></div>
-            <div class="email mar-b10">（简历投递：xxx@hr.com）</div>
+            <div class="email mar-b10">（简历投递：<%=item.contact%>）</div>
             <a class="btn" href="<%=item.href%>" target="_blank">申请职位</a>
           </div>
         </div>
