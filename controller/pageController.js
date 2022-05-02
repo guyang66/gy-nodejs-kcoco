@@ -2149,10 +2149,41 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async resource () {
-    const { ctx } = app;
+    const { ctx, $config, $service, $model } = app;
+    const { commonConfig, pageResourceColumn, pageResourceCategory, pageResourceDownload } = $model
     const bannerData = require('../mock/service/resource/banner')
-    const newsData = require('../mock/service/resource/news')
-    const downloadData = require('../mock/service/resource/download')
+    let columnData
+    let downloadData
+
+    if($config.dataMock){
+      columnData = require('../mock/service/resource/column')
+      downloadData = require('../mock/service/resource/download')
+    } else {
+      columnData = await $service.baseService.query(pageResourceColumn, {status: 1})
+      let target = {}
+      let category = await $service.baseService.query(
+        pageResourceCategory,
+        {status: 1},
+        {},
+        {sort:
+            {
+              order: -1,
+              _id: -1,
+            }
+        })
+
+      target.tabs = category
+
+      let downloadConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_resource_download'})
+      let downloadConfigValue = JSON.parse(downloadConfig.v1)
+      target.title = downloadConfigValue.title
+      target.desc = downloadConfigValue.desc
+
+      let downloadList = await $service.baseService.query(pageResourceDownload, {status: 1})
+      target.content = downloadList
+
+      downloadData = target
+    }
 
     let pagePath = 'page/service/page-resource/template'
     await ctx.render(pagePath, {
@@ -2161,7 +2192,7 @@ module.exports = app => ({
       navKey: 'service',
       hasBanner: false,
       bannerData: bannerData,
-      newsData: newsData,
+      columnData: columnData,
       downloadData: downloadData,
       tabsData: [],
     })
@@ -2315,12 +2346,10 @@ module.exports = app => ({
         resumeMap[item.key] = item
       })
 
-      let commonTag = await $service.baseService.query(pageCommonTag, {status: 1, maiKey: 'resume_tag'})
-      let resumeTagMap = {}
+      let commonTag = await $service.baseService.query(pageCommonTag, {status: 1, mainKey: 'resume_tag'})
       commonTag.forEach(item=>{
-        resumeTagMap[item.key] = item
+        resumeTagMap[item.secKey] = item
       })
-
       let tabs = []
       for(let i = 0; i < resume.length; i++){
         let item = resume[i]
@@ -2368,7 +2397,6 @@ module.exports = app => ({
           content: targetResumeList
         })
       }
-
 
       target.tabs = tabs
       target.category = resumeCategory

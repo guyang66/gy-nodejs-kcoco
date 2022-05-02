@@ -79,6 +79,7 @@
 .resource-main-wrap .resource-news-wrap .news-content .news-slide-container .slide-news-item .info-wrap .btn {
   color: #4169e1;
   font-size: 14px;
+  display: block;
   cursor: pointer;
 }
 .resource-main-wrap .resource-news-wrap .page-view {
