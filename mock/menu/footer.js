@@ -28,7 +28,7 @@ module.exports = [
         link: '/product/fruits/banana',
       },
       {
-        title: '素菜',
+        title: '蔬菜',
         link: '/product/vegetables/amaranthus',
       },
       {

@@ -2149,7 +2149,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async resource () {
-    const { ctx, $config, $service, $model } = app;
+    const { ctx, $config, $service, $model, $helper } = app;
     const { commonConfig, pageResourceColumn, pageResourceCategory, pageResourceDownload } = $model
     const bannerData = require('../mock/service/resource/banner')
     let columnData
@@ -2288,6 +2288,42 @@ module.exports = app => ({
     const tagList = require('../mock/about/tag/tag')
     const searchHot = require('../mock/about/news/search')
 
+
+    // 计算分页器初始化参数
+    let cellCount = 7
+    let total = 5
+    if(total / 10 < 7 ){
+      cellCount = Math.ceil(total / 10)
+    }
+    let page = 1
+    let paginationContent = []
+    for (let i = 0; i < cellCount; i ++){
+      let text = $helper.getPaginationCellText(total, cellCount, page, i)
+      let href = '/about/news/' + text + ctx.search
+      let item = {
+        text: text,
+        href: (text - 0 > 0) ? href : null
+      }
+      if(page + '' === text){
+        item.cellActive = true
+      }
+      if(text !== '...'){
+        item.cursorPointer = true
+      }
+      paginationContent.push(item)
+    }
+
+    let paginationData = {
+      content: paginationContent,
+      textDisable: page === 1 ,
+      leftDisable: page === 1,
+      rightDisable: page === cellCount,
+      firstHref: page === 1 ? null : '/about/news/1' + ctx.search,
+      endHref: page === 1 ? null : '/about/news/1' + ctx.search,
+      preHref: (page === 1 || page - 1 < 1) ? null : '/about/news/' + (page - 1) + ctx.search,
+      nextHref: (page === cellCount || page + 1 > Math.ceil(total / 10)) ? null : '/about/news/' + (page + 1) + ctx.search
+    }
+
     let pagePath = 'page/about/page-news-detail/template'
     await ctx.render(pagePath, {
       title: '新闻详情',
@@ -2347,6 +2383,7 @@ module.exports = app => ({
       })
 
       let commonTag = await $service.baseService.query(pageCommonTag, {status: 1, mainKey: 'resume_tag'})
+      let resumeTagMap = {}
       commonTag.forEach(item=>{
         resumeTagMap[item.secKey] = item
       })

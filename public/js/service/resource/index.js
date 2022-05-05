@@ -1,6 +1,56 @@
+function cell (item) {
+
+  // ecoco的cell组件是用来渲染资源cell的，通过webpack可以解析成html，但是在服务端没有webpack，就得自己解析，好在ejs模板规则很简单，就是简单的替换，倒也问题不大。
+  // todo: cell.ejs也不需要了
+  // 这里有点像在写react
+  // 这里基本是沿用了ecoco项目的js逻辑（对seo不太友好，但是对于这里的资源也无所谓了，本来东西也不多，），如果要处理成服务端渲染，就参照新闻模式
+
+  function renderTagView(list) {
+    let result = ''
+    for(let i = 0; i < list.length; i++){
+      result = result + ' <span class="tag">' + list[i] + '</span>'
+    }
+    return result
+  }
+
+  let r =
+    '<div class="content-cell">' +
+    '  <img class="icon fn-left" src="/images/common/wenjian.svg" alt="文件" />' +
+    '  <div class="title">' +
+         item.title +
+         ((item.tag && item.tag.length > 0) ? renderTagView(item.tag) : '') +
+    '  </div>' +
+       ((item.desc && item.desc !== '') ? '<div class="desc">' + item.desc + '</div>' : '') +
+    '  <div class="extra-wrap">' +
+    '    <div class="fn-left text-wrap">' +
+    '      <img src="/images/service/resource/other/shijian.svg" alt="时间" />' +
+    '      <span>' + item.date +'</span>' +
+    '    </div>' +
+    '    <div class="fn-left text-wrap">' +
+    '      <img src="/images/service/resource/other/xiazai.svg" alt="下载" />' +
+    '      <span>' + item.download +'次下载</span>' +
+    '    </div>' +
+    '    <div class="fn-left text-wrap">' +
+    '      <img src="/images/service/resource/other/daxiao.svg" alt="文件大小" />' +
+    '      <span>' + item.size +'</span>' +
+    '    </div>' +
+    '    <div class="fn-left text-wrap">' +
+    '      <img src="/images/service/resource/other/ziyuan.svg" alt="文件类型" />' +
+    '      <span>' + item.type +'</span>' +
+    '    </div>' +
+    '  </div>' +
+    '' +
+    '  <div class="btn-wrap">' +
+    '    <span class="txt" href="/pdf/1.pdf" download="/pdf/1.pdf">点击下载</span>' +
+    '    <img src="/images/common/xiangyou-fill.svg" alt="下载" />' +
+    '  </div>' +
+    '</div>'
+  return r
+}
+
 $(function() {
+
   $('.resource-main-wrap .btn-wrap').on('click', function() {
-    console.log('>>')
     let name = $.cookie("name")
     let phone = $.cookie("phone")
     if (!name || !phone) {
@@ -13,8 +63,8 @@ $(function() {
       return
     }
     let a = document.createElement('a')
-    a.href = '/assets/pdf/1.pdf'
-    a.download = '/assets/pdf/1.pdf'
+    a.href = '/pdf/1.pdf'
+    a.download = '/pdf/1.pdf'
     a.click()
   })
 })
@@ -78,9 +128,7 @@ $(function () {
     filterList.slice(0, 10).forEach((item) => {
       html =
         html +
-        cell({
-          item: item,
-        });
+        cell(item);
     });
     $('#resource-list').append(html);
     initPagination(filterList);
@@ -88,7 +136,7 @@ $(function () {
     $('.download-sort').attr('download', '');
     $('.download-sort')
       .children('.download-icon')
-      .attr('src', '/assets/images/common/paixu-n.svg');
+      .attr('src', '/images/common/paixu-n.svg');
     $('.download-sort').children('.download-icon').css({
       transform: 'rotateZ(0deg)',
     });
@@ -116,7 +164,7 @@ $(function () {
       $(this).attr('download', 'asc');
       $(this)
         .children('.download-icon')
-        .attr('src', '/assets/images/common/paixu-h.svg');
+        .attr('src', '/images/common/paixu-h.svg');
       $(this).children('.download-icon').css({
         transform: 'rotateZ(180deg)',
       });
@@ -129,9 +177,7 @@ $(function () {
         if (item.key === key || key === 'all') {
           html =
             html +
-            cell({
-              item: item,
-            });
+            cell(item);
         }
       });
       $('#resource-list').empty();
@@ -151,9 +197,7 @@ $(function () {
         if (item.key === key || key === 'all') {
           html =
             html +
-            cell({
-              item: item,
-            });
+            cell(item);
         }
       });
       $('#resource-list').empty();
@@ -163,7 +207,7 @@ $(function () {
       $(this).attr('download', '');
       $(this)
         .children('.download-icon')
-        .attr('src', '/assets/images/common/paixu-n.svg');
+        .attr('src', '/images/common/paixu-n.svg');
       $(this).children('.download-icon').css({
         transform: 'rotateZ(0deg)',
       });
@@ -174,9 +218,7 @@ $(function () {
         if (item.key === key || key === 'all') {
           html =
             html +
-            cell({
-              item: item,
-            });
+            cell(item);
         }
       });
       $('#resource-list').empty();
@@ -204,9 +246,7 @@ function initPagination(list) {
       let end = index + '0';
 
       list.slice(+start, +end).forEach(function (item) {
-        html += cell({
-          item: item,
-        });
+        html += cell(item);
       });
       $('#resource-list').append(html);
       document.body.scrollTop = document.documentElement.scrollTop = 424 + 380;
@@ -232,6 +272,7 @@ function searchAction() {
     );
   });
 
+  // todo: es6 的箭头函数 没有babel处理的话，在前端就不要用了（nodejs端是可以用的）
   $('#resource-list').empty();
   let key = $('.resource-view .tabs-view').attr('key') || 'all';
   let html = '';
@@ -239,9 +280,7 @@ function searchAction() {
     if (item.key === key || key === 'all') {
       html =
         html +
-        cell({
-          item: item,
-        });
+        cell(item);
     }
   });
   $('#resource-list').append(html);

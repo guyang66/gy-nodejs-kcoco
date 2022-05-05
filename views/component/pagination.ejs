@@ -1,0 +1,33 @@
+<div class="pagination-view">
+  <div class="pagination-content" total="<%=total%>">
+    <a class="normal-text text-button <% if(paginationData.textDisable){ %>no-pointer<% } %>"
+       <% if(paginationData.firstHref){ %>href="<%=paginationData.firstHref%>#download-direct"<% } %>
+    >
+      首页
+    </a>
+    <a class="arrow-left <% if(paginationData.leftDisable){ %>no-pointer<% } %>"
+       <% if(paginationData.preHref){ %>href="<%=paginationData.preHref%> #download-direct"<% } %>
+    >上一页</a>
+    <% paginationData.content.forEach(function(pa){ %>
+      <a class="number-cell <% if(pa.cellActive){ %>number-cell-active<% } %> <% if(pa.cursorPointer){ %>cursor-pointer<% } %>"
+         <% if(pa.href){ %>href="<%=pa.href%>#download-direct"<% } %>
+      >
+        <%=pa.text%>
+      </a>
+    <% }); %>
+    <a class="arrow-right <% if(paginationData.rightDisable){ %>no-pointer<% } %>"
+       <% if(paginationData.nextHref){ %>href="<%=paginationData.nextHref%>#download-direct"<% } %>
+    >下一页</a>
+    <a class="normal-text text-button <% if(paginationData.textDisable){ %>no-pointer<% } %>"
+       <% if(paginationData.endHref){ %>href="<%=paginationData.endHref%>#download-direct"<% } %>
+    >
+      尾页
+    </a>
+    <div class="normal-text-1 margin-12">共<%=Math.ceil(total / 10) %>页</div>
+    <div class="normal-text-1 no-margin">前往</div>
+    <div class="input-wrap">
+      <input />
+    </div>
+    <div class="normal-text-1 no-margin">页</div>
+  </div>
+</div>

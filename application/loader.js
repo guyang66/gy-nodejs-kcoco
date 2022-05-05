@@ -133,7 +133,7 @@ function initMongodb(app) {
 
   db.on('error', (error)=>{
     logger.error('数据库连接失败！' + error)
-    console.log(error)
+    console.log(chalk.red('数据库连接失败！' + error));
   });
   db.once('open', ()=> {
     logger.info("mongoDB connect success");
