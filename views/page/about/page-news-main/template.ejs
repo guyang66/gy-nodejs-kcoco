@@ -13,12 +13,11 @@
   <link rel="stylesheet" href="/css/global.css">
   <link rel="stylesheet" href="/common/plugins/css/swiper.css">
   <link rel="stylesheet" href="/common/plugins/video-js/video-js.css">
-  <link rel="stylesheet" href="/common/plugins/css/pagination.css">
 
   <!--js-->
   <script src="/common/plugins/jquery.min.js"></script>
   <script src="/common/plugins/swiper.js"></script>
-  <script src="/common/plugins/pagination.js"></script>
+  <script src="/common/plugins/utils.js"></script>
 
 </head>
 <body>
@@ -37,13 +36,14 @@
               <div class="left-wrap fn-left">
                 <div class="tabs-view" key="all">
                   <div class="text-wrap">
-                    <% categoryData.forEach(function(cate, index){ %>
-                      <div class="tab-cell fn-left <% if(index === 0){ %>active<% } %>" key="<%=cate.key%>">
+                    <% categoryData.forEach(function(cate){ %>
+                      <div class="tab-cell fn-left <% if(tabActiveKey === cate.key){ %>active<% } %>" key="<%=cate.key%>">
                         <%=cate.name%>
+                        <span class="active-line"></span>
                       </div>
                     <% }); %>
                   </div>
-                  <div class="tab-line"></div>
+                <!--<div class="tab-line"></div>-->
                 </div>
                 <div class="article-view">
                   <div id="article-list">
@@ -74,14 +74,14 @@
                     </div>
                     <% }); %>
                   </div>
-                  <div id="pages"></div>
+                  <%- include('../../../component/pagination');%>
                 </div>
               </div>
               <div class="right-wrap fn-right">
                 <div class="search-view">
                   <div class="tit">搜索</div>
                   <div class="search">
-                    <input class="input" type="text" name="search" value="">
+                    <input class="input" type="text" name="search" value="<%=searchKey%>">
                     <p class="icon"><img src="/images/common/search-white.svg" alt="搜索"></p>
                   </div>
                   <div class="search-text">
@@ -108,7 +108,7 @@
                 </div>
                 <div class="news-link-view mar-b40">
                   <div class="tit">最新文章</div>
-                  <% articleList.slice(0,5).forEach(function(news){ %>
+                  <% latestArticleList.slice(0,5).forEach(function(news){ %>
                   <a class="news-item-wrap" href="<%=news.href%>">
                     <div class="point fn-left"></div>
                     <div class="news-item fn-left"><%=news.title%></div>

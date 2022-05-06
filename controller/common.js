@@ -44,7 +44,7 @@ module.exports = app => ({
       company: '这是公司' + new Date().toString()
     }
 
-    let r = await $service.baseService.save(obj, customer)
+    let r = await $service.baseService.save(customer, obj)
     if(r){
       ctx.body = $helper.Result.success('ok')
     } else {

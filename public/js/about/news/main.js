@@ -1,53 +1,19 @@
 $(function () {
-  // 初始化
-  initPagination(articleList);
 
+  // 规则
+  // 1.点击搜索，tab自动切回「全部」，分页器回到第一页
+  // 2.页面存在searchKey，再点击tab切换的话，带上searchKey参数，分页器回到第一页
+  // 3.点击pagination，tabKey和searchKey都要同步带上（基本上都是在a标签上处理）
+
+  // tabs 切换
   $('.news-view .tabs-view .tab-cell').on('click', function () {
-    let index = $(this).index();
-    let viewLeftPadding = 12,
-      cellLeftMargin = 12,
-      cellRightMargin = 12;
-    let firstNodeWidth = 28;
-    let cellPadding = 6 + 6;
-    if (index === 0) {
-      $('.news-view .tab-line').css({
-        left: viewLeftPadding + cellLeftMargin + 'px',
-        width: firstNodeWidth + cellPadding + 'px',
-      });
-    } else {
-      let target = viewLeftPadding + cellLeftMargin;
-      for (let i = 0; i < index; i++) {
-        target =
-          target +
-          $('.news-view .tabs-view .tab-cell').eq(i).width() +
-          cellPadding +
-          cellLeftMargin +
-          cellRightMargin;
-      }
-      $('.news-view .tab-line').css({
-        left: target + 'px',
-        width: $(this).width() + cellPadding + 'px',
-      });
-    }
-
     let key = $(this).attr('key');
-    $('.news-wrap .news-view .tabs-view').attr('key', key);
-
-    $('#article-list').empty();
-    let html = '';
-    let filterList = articleList.filter(function (v) {
-      return v.type === key || key === 'all';
-    });
-    filterList.slice(0, 10).forEach((item) => {
-      html =
-        html +
-        cell({
-          news: item,
-        });
-    });
-    $('#article-list').append(html);
-    initPagination(filterList);
-    $('.search-view').find('.input').val('');
+    let targetUrl = location.protocol + '//' + location.host + '/about/news/1' + '?type=' + key
+    // 规则2
+    targetUrl = targetUrl + localUrlSearchParams(
+      'search',
+    )
+    window.location.href = targetUrl
   });
 
   $('.search-view')
@@ -64,67 +30,23 @@ $(function () {
         searchAction();
       }
     });
+
+  $('.search-view .search-text .search-item').on('click',function (){
+    searchAction($(this).text())
+  })
+
 });
 
-function initPagination(list) {
-  new Pagination({
-    element: '#pages',
-    pageIndex: 1,
-    pageSize: 10,
-    total: list.length,
-    jumper: true,
-    singlePageHide: false,
-    prevText: '上一页',
-    nextText: '下一页',
-    disabled: true,
-    currentChange: function (index) {
-      $('#article-list').empty();
-      let html = '';
-      let start = index - 1 === 0 ? 0 : index - 1 + '0';
-      let end = index + '0';
-
-      list.slice(+start, +end).forEach(function (item) {
-        html += cell({
-          news: item,
-        });
-      });
-      $('#article-list').append(html);
-      document.body.scrollTop = document.documentElement.scrollTop = 424;
-    },
-  });
-
-  $('.search-text .search-item').on('click', function () {
-    let searchKey = $(this).text();
-    $('.search-view').find('.input').val(searchKey);
-    searchAction();
-  });
-}
-
-function searchAction() {
+function searchAction(search) {
   let searchString = $('.search-view').find('.input').val();
-  let filterList = articleList.filter(function (v) {
-    return (
-      v.title.toLowerCase().indexOf(searchString.toLowerCase()) >= 0 ||
-      v.summary.toLowerCase().indexOf(searchString.toLowerCase()) >= 0 ||
-      v.author.toLowerCase().indexOf(searchString.toLowerCase()) >= 0 ||
-      v.date.toLowerCase().indexOf(searchString.toLowerCase()) >= 0 ||
-      v.type.toLowerCase().indexOf(searchString.toLowerCase()) >= 0 ||
-      (v.tag && v.tag.includes(searchString))
-    );
-  });
-
-  $('#article-list').empty();
-  let key = $('.news-view .tabs-view').attr('key') || 'all';
-  let html = '';
-  filterList.slice(0, 10).forEach((item) => {
-    if (item.type === key || key === 'all') {
-      html =
-        html +
-        cell({
-          news: item,
-        });
-    }
-  });
-  $('#article-list').append(html);
-  initPagination(filterList);
+  // 规则1
+  if(search && search !== ''){
+    window.location.href = location.protocol + '//' + location.host + '/about/news/1' + '?search=' + search
+    return
+  }
+  if(searchString && searchString !== ''){
+    window.location.href = location.protocol + '//' + location.host + '/about/news/1' + '?search=' + searchString
+    return
+  }
+  window.location.href = location.protocol + '//' + location.host + '/about/news/1'
 }

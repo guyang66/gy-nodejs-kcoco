@@ -2250,12 +2250,29 @@ module.exports = app => ({
   },
 
   /**
+   * 新闻列表(第一页)
+   * @returns {Promise<void>}
+   */
+  async newsMain () {
+    const { ctx } = app;
+    ctx.redirect('/about/news/1')
+  },
+  /**
    * 新闻列表
    * @returns {Promise<void>}
    */
   async news () {
-    const { ctx, $config, $service, $model } = app;
+    const { ctx, $config, $service, $model, $helper } = app;
     const { pageNewsCategory, commonConfig, pageNews } = $model
+
+    let page = ctx.params._page - 0
+    if(!page || page <= 0){
+      page = 1
+    }
+
+    let type = ctx.query.type ? ctx.query.type : null
+    let search = ctx.query.search ? ctx.query.search : ''
+
     const bannerData = require('../mock/about/news/banner')
     const tagList = require('../mock/about/tag/tag')
 
@@ -2263,12 +2280,16 @@ module.exports = app => ({
     let categoryData
     let searchHot
     let hotArticleList
+    let latestArticleList
+    let total
+    let paginationData
 
     if($config.dataMock){
       categoryData = require('../mock/about/news/category')
       searchHot = require('../mock/about/news/search')
       articleList = require('../mock/about/news/list')
       hotArticleList = articleList.filter(function (v) { return !!v.isHot})
+      latestArticleList = articleList
     } else {
       categoryData = await $service.baseService.query(
         pageNewsCategory,
@@ -2284,10 +2305,55 @@ module.exports = app => ({
       let newsSearchConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_news_hot_search'})
       searchHot = JSON.parse(newsSearchConfig.v1)
 
-      articleList = await $service.baseService.query(pageNews, {status: 1})
-      hotArticleList = await $service.baseService.query(pageNews, {status: 1, isHot: 1 })
+      let searchParams = {
+        status: 1
+      }
+      if(type && type !== '' && type !== 'all'){
+        searchParams.type = type
+      }
+      if(search && search !== ''){
+        searchParams.searchKey = search
+      }
 
+      let queryResult = await $service.newsService.getMatchList(page, 10, searchParams)
+      articleList = queryResult.list
+      total = queryResult.total
+      hotArticleList = await $service.baseService.query(pageNews, {status: 1, isHot: 1 })
+      latestArticleList = await $service.baseService.query(pageNews, {status: 1})
+      // 计算分页器初始化参数
+      let cellCount = 7
+      if(total / 10 < 7 ){
+        cellCount = Math.ceil(total / 10)
+      }
+      let paginationContent = []
+      for (let i = 0; i < cellCount; i ++){
+        let text = $helper.getPaginationCellText(total, cellCount, page, i)
+        let href = '/about/news/' + text + ctx.search
+        let item = {
+          text: text,
+          href: (text - 0 > 0) ? href : null
+        }
+        if(page + '' === text){
+          item.cellActive = true
+        }
+        if(text !== '...'){
+          item.cursorPointer = true
+        }
+        paginationContent.push(item)
+      }
+
+      paginationData = {
+        content: paginationContent,
+        textDisable: page === 1 ,
+        leftDisable: page === 1,
+        rightDisable: page === cellCount,
+        firstHref: page === 1 ? null : '/about/news/1' + ctx.search,
+        endHref: page === 1 ? null : '/about/news/1' + ctx.search,
+        preHref: (page === 1 || page - 1 < 1) ? null : '/about/news/' + (page - 1) + ctx.search,
+        nextHref: (page === cellCount || page + 1 > Math.ceil(total / 10)) ? null : '/about/news/' + (page + 1) + ctx.search
+      }
     }
+
     let pagePath = 'page/about/page-news-main/template'
     await ctx.render(pagePath, {
       title: '新闻列表',
@@ -2298,9 +2364,15 @@ module.exports = app => ({
       categoryData: categoryData,
       articleList: articleList,
       hotArticleList: hotArticleList,
+      latestArticleList: latestArticleList,
       tagList: tagList,
       searchHot: searchHot,
-      tabsData: []
+      tabsData: [],
+
+      paginationData: paginationData,
+      total: total,
+      tabActiveKey: type ? type : 'all',
+      searchKey: search ? search : ''
     })
   },
 
@@ -2315,42 +2387,6 @@ module.exports = app => ({
     const articleList = require('../mock/about/news/list')
     const tagList = require('../mock/about/tag/tag')
     const searchHot = require('../mock/about/news/search')
-
-
-    // 计算分页器初始化参数
-    let cellCount = 7
-    let total = 5
-    if(total / 10 < 7 ){
-      cellCount = Math.ceil(total / 10)
-    }
-    let page = 1
-    let paginationContent = []
-    for (let i = 0; i < cellCount; i ++){
-      let text = $helper.getPaginationCellText(total, cellCount, page, i)
-      let href = '/about/news/' + text + ctx.search
-      let item = {
-        text: text,
-        href: (text - 0 > 0) ? href : null
-      }
-      if(page + '' === text){
-        item.cellActive = true
-      }
-      if(text !== '...'){
-        item.cursorPointer = true
-      }
-      paginationContent.push(item)
-    }
-
-    let paginationData = {
-      content: paginationContent,
-      textDisable: page === 1 ,
-      leftDisable: page === 1,
-      rightDisable: page === cellCount,
-      firstHref: page === 1 ? null : '/about/news/1' + ctx.search,
-      endHref: page === 1 ? null : '/about/news/1' + ctx.search,
-      preHref: (page === 1 || page - 1 < 1) ? null : '/about/news/' + (page - 1) + ctx.search,
-      nextHref: (page === cellCount || page + 1 > Math.ceil(total / 10)) ? null : '/about/news/' + (page + 1) + ctx.search
-    }
 
     let pagePath = 'page/about/page-news-detail/template'
     await ctx.render(pagePath, {
@@ -2400,7 +2436,6 @@ module.exports = app => ({
       resumeCategory.forEach(item=>{
         resumeCategoryMap[item.key] = item
       })
-      // console.log(resumeCategoryMap)
 
       let resume = await $service.baseService.query(pageResume, {status: 1})
       let resumeMap = {}

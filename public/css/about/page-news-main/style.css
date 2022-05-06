@@ -38,6 +38,17 @@
   height: 46px;
   line-height: 46px;
   color: #1d2129;
+  position: relative;
+}
+.news-main-wrap .news-wrap .news-content .news-view .left-wrap .tabs-view .text-wrap .tab-cell .active-line {
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 100%;
+}
+.news-main-wrap .news-wrap .news-content .news-view .left-wrap .tabs-view .text-wrap .active .active-line {
+  background-color: #4169e1;
 }
 .news-main-wrap .news-wrap .news-content .news-view .left-wrap .tabs-view .tab-line {
   width: 40px;

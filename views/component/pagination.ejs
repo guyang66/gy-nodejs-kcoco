@@ -1,25 +1,25 @@
 <div class="pagination-view-wrap">
   <div class="pagination-content" total="<%=total%>">
     <a class="normal-text text-button <% if(paginationData.textDisable){ %>no-pointer<% } %>"
-       <% if(paginationData.firstHref){ %>href="<%=paginationData.firstHref%>#download-direct"<% } %>
+       <% if(paginationData.firstHref){ %>href="<%=paginationData.firstHref%>"<% } %>
     >
       首页
     </a>
     <a class="arrow-left <% if(paginationData.leftDisable){ %>no-pointer<% } %>"
-       <% if(paginationData.preHref){ %>href="<%=paginationData.preHref%> #download-direct"<% } %>
+       <% if(paginationData.preHref){ %>href="<%=paginationData.preHref%>"<% } %>
     >上一页</a>
     <% paginationData.content.forEach(function(pa){ %>
       <a class="number-cell <% if(pa.cellActive){ %>number-cell-active<% } %> <% if(pa.cursorPointer){ %>cursor-pointer<% } %>"
-         <% if(pa.href){ %>href="<%=pa.href%>#download-direct"<% } %>
+         <% if(pa.href){ %>href="<%=pa.href%>"<% } %>
       >
         <%=pa.text%>
       </a>
     <% }); %>
     <a class="arrow-right <% if(paginationData.rightDisable){ %>no-pointer<% } %>"
-       <% if(paginationData.nextHref){ %>href="<%=paginationData.nextHref%>#download-direct"<% } %>
+       <% if(paginationData.nextHref){ %>href="<%=paginationData.nextHref%>"<% } %>
     >下一页</a>
     <a class="normal-text text-button <% if(paginationData.textDisable){ %>no-pointer<% } %>"
-       <% if(paginationData.endHref){ %>href="<%=paginationData.endHref%>#download-direct"<% } %>
+       <% if(paginationData.endHref){ %>href="<%=paginationData.endHref%>"<% } %>
     >
       尾页
     </a>

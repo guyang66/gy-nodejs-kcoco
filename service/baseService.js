@@ -17,6 +17,12 @@ module.exports = app => ({
     }
   },
 
+  /**
+   * 查询满足条件的一个记录
+   * @param model
+   * @param options
+   * @returns {Promise<*|boolean>}
+   */
   async queryOne (model, options) {
     const { errorLogger } = app.$log4
     try {
@@ -67,7 +73,7 @@ module.exports = app => ({
    * @param model
    * @returns {Promise<boolean>}
    */
-  async save (content, model) {
+  async save (model, content) {
     const { errorLogger } = app.$log4
     let newInstance = new model({...content})
     let p = new Promise((resolve,reject)=>{
@@ -87,4 +93,23 @@ module.exports = app => ({
       return false
     }
   },
+
+  /**
+   * 计数
+   * @param model
+   * @param params
+   * @returns {Promise<*|boolean>}
+   */
+  async count (model, params) {
+    const { errorLogger } = app.$log4
+    let searchParams = {...params}
+    try {
+      return  await model.find(searchParams).countDocuments()
+    } catch (e){
+      errorLogger.error('保存失败！' + e)
+      console.log(e)
+      return false
+    }
+  }
+
 })
