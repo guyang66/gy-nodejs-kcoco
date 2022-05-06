@@ -2254,13 +2254,40 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async news () {
-    const { ctx } = app;
+    const { ctx, $config, $service, $model } = app;
+    const { pageNewsCategory, commonConfig, pageNews } = $model
     const bannerData = require('../mock/about/news/banner')
-    const categoryData = require('../mock/about/news/category')
-    const articleList = require('../mock/about/news/list')
     const tagList = require('../mock/about/tag/tag')
-    const searchHot = require('../mock/about/news/search')
 
+    let articleList
+    let categoryData
+    let searchHot
+    let hotArticleList
+
+    if($config.dataMock){
+      categoryData = require('../mock/about/news/category')
+      searchHot = require('../mock/about/news/search')
+      articleList = require('../mock/about/news/list')
+      hotArticleList = articleList.filter(function (v) { return !!v.isHot})
+    } else {
+      categoryData = await $service.baseService.query(
+        pageNewsCategory,
+        {status: 1},
+        {},
+        {sort:
+            {
+              order: -1,
+              _id: -1,
+            }
+        })
+
+      let newsSearchConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_news_hot_search'})
+      searchHot = JSON.parse(newsSearchConfig.v1)
+
+      articleList = await $service.baseService.query(pageNews, {status: 1})
+      hotArticleList = await $service.baseService.query(pageNews, {status: 1, isHot: 1 })
+
+    }
     let pagePath = 'page/about/page-news-main/template'
     await ctx.render(pagePath, {
       title: '新闻列表',
@@ -2270,6 +2297,7 @@ module.exports = app => ({
       bannerData: bannerData,
       categoryData: categoryData,
       articleList: articleList,
+      hotArticleList: hotArticleList,
       tagList: tagList,
       searchHot: searchHot,
       tabsData: []
@@ -2355,8 +2383,6 @@ module.exports = app => ({
       resumeData = require('../mock/about/joinus/resume')
     } else {
       // 组装数据，ecoco那里的数据格式定义的比较糟糕，应该都分开，唉....
-      resumeData = require('../mock/about/joinus/resume')
-
       let target = {}
       let resumeConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_resume_link'})
       let resumeConfigValue = JSON.parse(resumeConfig.v1)

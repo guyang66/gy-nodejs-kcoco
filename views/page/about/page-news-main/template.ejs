@@ -13,10 +13,13 @@
   <link rel="stylesheet" href="/css/global.css">
   <link rel="stylesheet" href="/common/plugins/css/swiper.css">
   <link rel="stylesheet" href="/common/plugins/video-js/video-js.css">
+  <link rel="stylesheet" href="/common/plugins/css/pagination.css">
 
   <!--js-->
   <script src="/common/plugins/jquery.min.js"></script>
   <script src="/common/plugins/swiper.js"></script>
+  <script src="/common/plugins/pagination.js"></script>
+
 </head>
 <body>
 <div class="main-layout">
@@ -36,7 +39,7 @@
                   <div class="text-wrap">
                     <% categoryData.forEach(function(cate, index){ %>
                       <div class="tab-cell fn-left <% if(index === 0){ %>active<% } %>" key="<%=cate.key%>">
-                        <%=cate.text%>
+                        <%=cate.name%>
                       </div>
                     <% }); %>
                   </div>
@@ -96,7 +99,7 @@
                 </div>
                 <div class="news-link-view">
                   <div class="tit">热门文章</div>
-                  <% articleList.filter(function (v) { return !!v.isHot}).forEach(function(news){ %>
+                  <% hotArticleList.forEach(function(news){ %>
                   <a class="news-item-wrap" href="<%=news.href%>">
                     <div class="point fn-left"></div>
                     <div class="news-item fn-left"><%=news.title%></div>
@@ -126,6 +129,11 @@
   <%- include('../../../component/sideMenus');%>
 
 </div>
+<script type="text/javascript">
+  // 把服务端的数组插入js中
+  var articleListJSON = '<%- JSON.stringify(articleList) %>'
+  var articleList = JSON.parse(articleListJSON)
+</script>
 <script src="/js/common.js"></script>
 <script src="/js/about/news/main.js"></script>
 
