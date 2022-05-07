@@ -2321,34 +2321,38 @@ module.exports = app => ({
       hotArticleList = await $service.baseService.query(pageNews, {status: 1, isHot: 1 })
       latestArticleList = await $service.baseService.query(pageNews, {status: 1})
       // 计算分页器初始化参数
-      let cellCount = 7
-      if(total / 10 < 7 ){
-        cellCount = Math.ceil(total / 10)
-      }
+      let allPage = Math.ceil(total / 10)
+      let cellCount = Math.min(allPage, 7)
       let paginationContent = []
-      for (let i = 0; i < cellCount; i ++){
-        let text = $helper.getPaginationCellText(total, cellCount, page, i)
+      let keyMap = {}
+      for (let i = 0; i < allPage; i ++){
+        let text = $helper.getPaginationCellText(total, cellCount, page, i + 1)
         let href = '/about/news/' + text + ctx.search
         let item = {
           text: text,
-          href: (text - 0 > 0) ? href : null
+          href: (text - 0 > 0) ? href : null,
+          cursorPointer: true
         }
+        if(keyMap[text]){
+          continue
+        }
+        keyMap[text] = text
         if(page + '' === text){
           item.cellActive = true
         }
-        if(text !== '...'){
-          item.cursorPointer = true
+        if(text === 'omitFront' || text === 'omitBack'){
+          item.cursorPointer = false
+          item.text = '...'
         }
         paginationContent.push(item)
       }
 
       paginationData = {
         content: paginationContent,
-        textDisable: page === 1 ,
+        textDisable: page === 1,
         leftDisable: page === 1,
-        rightDisable: page === cellCount,
+        rightDisable: page === Math.ceil(total / 10),
         firstHref: page === 1 ? null : '/about/news/1' + ctx.search,
-        endHref: page === 1 ? null : '/about/news/1' + ctx.search,
         preHref: (page === 1 || page - 1 < 1) ? null : '/about/news/' + (page - 1) + ctx.search,
         nextHref: (page === cellCount || page + 1 > Math.ceil(total / 10)) ? null : '/about/news/' + (page + 1) + ctx.search
       }
