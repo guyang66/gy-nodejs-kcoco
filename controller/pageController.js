@@ -6,9 +6,8 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async index() {
-    const { ctx, $helper, $service, $nodeCache } = app;
-    const bannerData = require('../mock/index/banner')
-    const columnData = require('../mock/index/column')
+    const { ctx, $helper, $service, $config, $model } = app;
+    const { commonConfig } = $model
     const productData = require('../mock/index/product')
     const logoData = require('../mock/index/logo')
     const staticsData = require('../mock/index/statics')
@@ -16,8 +15,30 @@ module.exports = app => ({
     const solutionData = require('../mock/index/solution')
     const certifyData = require('../mock/index/certify')
     const resourceData = require('../mock/index/resource')
-    const newsData = require('../mock/index/news')
+    let bannerData
+    let columnData
+    let newsData
+    if($config.dataMock){
+      bannerData = require('../mock/index/banner')
+      newsData = require('../mock/index/news')
+      columnData = require('../mock/index/column')
+    } else {
+      // todo: 用json string， 方便扩展
+      let indexBannerConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_index_banners'})
+      bannerData = JSON.parse(indexBannerConfig.v2)
 
+      let indexNewsConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_index_news'})
+      let newsModuleInfo = JSON.parse(indexNewsConfig.v1)
+      let newsDataContent = JSON.parse(indexNewsConfig.v2)
+      newsData = {
+        title: newsModuleInfo.title || null,
+        desc: newsModuleInfo.desc || null,
+        content: newsDataContent
+      }
+
+      let indexColumnConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_index_columns'})
+      columnData = JSON.parse(indexColumnConfig.v2)
+    }
     let pagePath = 'page/page-index/template'
     await ctx.render(pagePath, {
       title: '首页',

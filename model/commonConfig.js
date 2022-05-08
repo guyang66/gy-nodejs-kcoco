@@ -10,8 +10,8 @@ module.exports = app => {
       description: { type: String, default: '' }, // 描述
       remark: { type: String, default: '' },
       v1: { type: String }, // 配置值 JSON字符串
-      v2: { type: String }, // 配置值 （类型待定 —— 带扩展）
-      v3: { type: String },
+      v2: { type: String }, // 数据值
+      v3: { type: String }, // 其它...
       v4: { type: Number },
       v5: { type: Array },
       status: { type: Number, default: 1 }, // 1：启用；0：停用
