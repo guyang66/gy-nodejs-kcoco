@@ -20,19 +20,23 @@ module.exports = app => ({
   },
 
   /**
-   *  判断是否是对象
+   *
+   * @param success
+   * @param msg
+   * @param code
+   * @returns {{result}}
    */
-  isEmptyObject  (object) {
-
-    if(!object || typeof object !== 'object'){
-      return  true
+  wrapResult (success, msg, code) {
+    let obj = {
+      result: !!success,
     }
-
-    if (JSON.stringify(object) === '{}') {
-      return true
+    if(success){
+      obj.data = msg
+    } else {
+      obj.errorMessage = msg
+      obj.errorCode = code
     }
-
-    return  Object.keys(object).length < 1
+    return obj
   },
 
   /**
@@ -154,5 +158,33 @@ module.exports = app => ({
       preHref: (page === 1 || page - 1 < 1) ? null : preHref + (page - 1) + ctx.search,
       nextHref: (page === cellCount || page + 1 > Math.ceil(total / 10)) ? null : preHref + (page + 1) + ctx.search
     }
-  }
+  },
+
+  /**
+   *
+   * @param path
+   * @param force 为true是未匹配到path对应的tdk则返回 null, 否则返回默认配置项，为true可能会在某些值为null的时候导致页面渲染错误
+   * @returns {null|{path: string, keywords: string, description: string, title: string}|*}
+   */
+
+  getTdkByPath (path, force = false) {
+    // 这里只能拿到url的path，如果有唯一key来处理会舒服很多，因为新闻详情的path会被改变
+    let nodeCache = app.$nodeCache
+    let constants = app.$constants
+
+    if(!nodeCache.get('page_tdk_config')){
+      return force ? null : constants.TDK_DEFAULT
+    }
+
+    let config = nodeCache.get('page_tdk_config')
+    if(path && path !== '' && config[path]) {
+      return config[path]
+    }
+
+    if(config['default'] && !force){
+      return config['default']
+    }
+
+    return force ? null : constants.TDK_DEFAULT
+  },
 })

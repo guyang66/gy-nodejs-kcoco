@@ -1,11 +1,10 @@
 module.exports = app => {
   const { router, $controller, $middleware } = app;
 
-  // 页面
+  // 页面路由
   router.get('/', $controller.pageController.index)
   router.get('/index', $controller.pageController.index)
   router.get('/index.html', $controller.pageController.index)
-
   router.get('/product/ai/algorithm', $controller.pageController.algorithm)
   router.get('/product/ai/speech', $controller.pageController.speech)
   router.get('/product/ai/discriminate', $controller.pageController.discriminate)
@@ -19,14 +18,12 @@ module.exports = app => {
   router.get('/product/ai/colgi', $controller.pageController.colgi)
   router.get('/product/ai/xiyu', $controller.pageController.xiyu)
   router.get('/product/ai/uav', $controller.pageController.uav)
-
   router.get('/product/dataserver/cluster', $controller.pageController.cluster)
   router.get('/product/dataserver/offlinealgorithm', $controller.pageController.offlinealgorithm)
   router.get('/product/dataserver/onlinedevelop', $controller.pageController.onlinedevelop)
   router.get('/product/dataserver/offlinedevelop', $controller.pageController.offlinedevelop)
   router.get('/product/dataserver/neuralnetwork', $controller.pageController.neuralnetwork)
   router.get('/product/dataserver/recommend', $controller.pageController.recommend)
-
   router.get('/product/fruits/banana', $controller.pageController.banana)
   router.get('/product/fruits/peach', $controller.pageController.peach)
   router.get('/product/fruits/pomegranate', $controller.pageController.pomegranate)
@@ -49,7 +46,6 @@ module.exports = app => {
   router.get('/product/fruits/orange', $controller.pageController.orange)
   router.get('/product/fruits/cherry', $controller.pageController.cherry)
   router.get('/product/fruits/persimmon', $controller.pageController.persimmon)
-
   router.get('/product/vegetables/radish', $controller.pageController.radish)
   router.get('/product/vegetables/onion', $controller.pageController.onion)
   router.get('/product/vegetables/cucumber', $controller.pageController.cucumber)
@@ -65,7 +61,6 @@ module.exports = app => {
   router.get('/product/vegetables/eggplant', $controller.pageController.eggplant)
   router.get('/product/vegetables/chili', $controller.pageController.chili)
   router.get('/product/vegetables/pumpkin', $controller.pageController.pumpkin)
-
   router.get('/solution/education', $controller.pageController.education)
   router.get('/solution/bigdata', $controller.pageController.bigdata)
   router.get('/solution/finance', $controller.pageController.finance)
@@ -75,49 +70,27 @@ module.exports = app => {
   router.get('/solution/online', $controller.pageController.online)
   router.get('/solution/personal', $controller.pageController.personal)
   router.get('/solution/traffic', $controller.pageController.traffic)
-
   router.get('/case', $controller.pageController.caseList)
   router.get('/case/detail', $controller.pageController.caseDetail)
-
   router.get('/activity', $controller.pageController.activityList)
   router.get('/activity/detail', $controller.pageController.activityDetail)
-
   router.get('/service/contact', $controller.pageController.contact)
   router.get('/service/help', $controller.pageController.help)
   router.get('/service/resource', $controller.pageController.resource)
   router.get('/service/declare', $controller.pageController.declares)
-
   router.get('/about/company', $controller.pageController.company)
   router.get('/about/news', $controller.pageController.newsMain)
-
   // 新闻做成网状内容结构，可以通过a标签访问到所有新闻，方便爬虫抓取，搜索引擎收录
   router.get('/about/news/:_page', $controller.pageController.news)
-
   router.get('/about/news/detail', $controller.pageController.newsDetailMain)
   router.get('/about/news/detail/:id', $controller.pageController.newsDetail)
-
   router.get('/about/joinus', $controller.pageController.joinus)
   router.get('/about/tag', $controller.pageController.tag)
-
   router.get('/form', $controller.pageController.form)
 
+  // 普通接口
 
-
-
-  router.get('/test', $controller.common.test)
-  router.get('/common/test', $controller.common.test)
-  router.get('/common/save',$middleware.auth, $controller.common.saveCustomer)
-  router.get('/common/getCustomer',$middleware.auth, $controller.common.getCustomer)
-
-  // 简单的鉴权，测试的时候用postman 在 header中添加 appid = gy
-  router.post('/common/getUserInfo/auth',$middleware.auth, $controller.common.getUserInfo)
-
-  // 菜单
-  router.get('/menu/list',$middleware.auth, $controller.menu.getMenus)
-
-  // 客户
-  // 接口：/common/save 多调用几次，往数据库插入一些数据，然后访问 http://localhost:8090/customer/list?name=data3，查询指定列表
-  router.get('/customer/list',$middleware.auth, $controller.customer.getList)
+  router.get('/test', $controller.commonController.test)
 
   return router
 }

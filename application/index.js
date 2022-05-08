@@ -160,9 +160,14 @@ class Application {
     const menus = require('../mock/menu/index.js')
     const footerData = require('../mock/menu/footer.js')
     this.$app.use(async (ctx,next)=>{
+      let tdk = this.$helper.getTdkByPath(ctx.path, true)
+      // todo:
+      // 公共数据的优先级大于模板引擎参数，如果在pageController中给template页传入tdk，则会被这里的公共tdk所覆盖
+      // 特殊页面，如新闻页面的tdk还需要额外去处理，所以需要区别开来两个参数(template参数用pageTdk)
       ctx.state = {
         menus: menus,
         footerData: footerData,
+        tdk: tdk
       }
       await next();
     });
@@ -173,6 +178,8 @@ class Application {
    * @param app
    */
   beforeAll (app){
+    // 初始化page config
+    app.$app.use(app.$middleware.cache)
   }
 
   /**

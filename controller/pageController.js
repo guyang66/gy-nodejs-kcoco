@@ -2266,7 +2266,10 @@ module.exports = app => ({
       lifeData: lifeData,
       historyData: historyData,
       prizeData: prizeData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      tdk: {
+        title: 111,
+      }
     })
   },
 
@@ -2304,7 +2307,7 @@ module.exports = app => ({
     let latestArticleList
     let total
     let paginationData
-
+    let pageTdk = $helper.getTdkByPath('/about/news')
     if($config.dataMock){
       let originList = require('../mock/about/news/list')
       categoryData = require('../mock/about/news/category')
@@ -2366,7 +2369,9 @@ module.exports = app => ({
       paginationData: paginationData,
       total: total,
       tabActiveKey: type ? type : 'all',
-      searchKey: search ? search : ''
+      searchKey: search ? search : '',
+
+      pageTdk: pageTdk,
     })
   },
 
@@ -2379,23 +2384,48 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async newsDetail () {
-    const { ctx, $config, $service, $model, } = app;
+    const { ctx, $config, $service, $model, $helper } = app;
     const { pageNews } = $model
     let id = ctx.params.id
-    const articleList = require('../mock/about/news/list')
     const tagList = require('../mock/about/tag/tag')
-    const searchHot = require('../mock/about/news/search')
+    let articleList
+    let hotArticleList
+    let latestArticleList
     let next
     let prev
     let article
+    let pageTdk
     if($config.dataMock){
-      article = require('../mock/about/joinus/resume')
+      let articleList = require('../mock/about/news/list')
+      hotArticleList = articleList.filter(function (v) { return !!v.isHot})
+      latestArticleList = articleList
+      article = articleList.find((article)=>{
+        return article.id + '' === id + ''
+      })
+      article.body = '<div class="article"><div>这是mock出来的新闻内容，如需浏览正确新闻内容，请设置config.dataMock为false，并连接正确数据库</div></div>'
+      next = articleList.find((article)=>{
+        return article.id + '' === (id - 1) + ''
+      })
+      prev = articleList.find((article)=>{
+        return article.id + '' === (id - 0 + 1) + ''
+      })
+      pageTdk = $helper.getTdkByPath('/about/news/detail')
     } else {
+
+      hotArticleList = await $service.baseService.query(pageNews, {status: 1, isHot: 1 })
+      latestArticleList = await $service.baseService.query(pageNews, {status: 1})
+
       article = await $service.baseService.queryOne(pageNews, {id: id})
       // 获取上一篇文章
       next = await $service.newsService.getAdjacentDetailById(id, 'prev')
       // 获取下一篇文章
       prev = await $service.newsService.getAdjacentDetailById(id)
+      // 新闻tdk根据新闻详情来获取
+      pageTdk = {
+        title: article ? article.title : '',
+        description: article ? article.description : '',
+        keywords: article ? article.keywords : '',
+      }
     }
 
     //todo: 入库的时候找个html在线压缩,然后图片啥的路径要换一下
@@ -2408,12 +2438,14 @@ module.exports = app => ({
       hasBanner: false,
       articleList: articleList,
       tagList: tagList,
-      searchHot: searchHot,
       tabsData: [],
-
+      hotArticleList: hotArticleList,
+      latestArticleList: latestArticleList,
       article: article,
       next: next,
       prev: prev,
+
+      pageTdk: pageTdk,
     })
   },
 

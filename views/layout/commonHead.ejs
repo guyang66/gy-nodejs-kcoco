@@ -1,4 +1,12 @@
-<title>123</title>
+<% if(!tdk){ %>
+<title><%=pageTdk.title%></title>
+<meta name="description" content="<%=pageTdk.description%>">
+<meta name="keywords" content="<%=pageTdk.keywords%>"><% }
+else { %>
+<title><%=tdk.title%></title>
+<meta name="description" content="<%=tdk.description%>">
+<meta name="keywords" content="<%=tdk.keywords%>">
+<% } %>
 <meta name="description" content="123">
 <meta name="keywords" content="123">
 <meta charset="utf-8">

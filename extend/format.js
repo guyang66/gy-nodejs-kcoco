@@ -9,7 +9,6 @@ module.exports = app => ({
     if(!t){
       t = new Date()
     }
-
     if(!(t instanceof Date)){
       t = new Date(t)
     }
@@ -20,7 +19,7 @@ module.exports = app => ({
   },
 
   /**
-   * object 补全双引号 转化为JSON格式
+   * object 补全双引号 转化为JSON格式 {a:1,b:'2'} => {"a":1,"b":"2"}
    * @param obj
    * @param isRecurse 是否是在递归中调用该函数
    * @returns {*[]|*}
@@ -51,8 +50,8 @@ module.exports = app => ({
    * @returns {[]|*[]|*}
    */
   transTag (map, array) {
-    const { $helper } = app
-    if(!Array.isArray(array) || !map || $helper.isEmptyObject(map)){
+    const { $utils } = app
+    if(!Array.isArray(array) || !map || $utils.isEmptyObject(map)){
       return array
     }
     if(!array || array.length < 1){
