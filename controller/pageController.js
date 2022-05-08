@@ -1,4 +1,3 @@
-
 module.exports = app => ({
 
   /**
@@ -15,6 +14,8 @@ module.exports = app => ({
     const solutionData = require('../mock/index/solution')
     const certifyData = require('../mock/index/certify')
     const resourceData = require('../mock/index/resource')
+    const pageTdk = $helper.getTdkByPath('/index')
+
     let bannerData
     let columnData
     let newsData
@@ -54,7 +55,8 @@ module.exports = app => ({
       solutionData: solutionData,
       certifyData: certifyData,
       resourceData: resourceData,
-      newsData: newsData
+      newsData: newsData,
+      pageTdk: pageTdk
     })
   },
 
@@ -2454,7 +2456,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async joinus () {
-    const { ctx, $config, $service, $model, $format } = app;
+    const { ctx, $config, $service, $model, $helper } = app;
     const { commonConfig, pageResume, pageResumeDetail, pageResumeCategory, pageResumePlace, pageCommonTag } = $model
     const bannerData = require('../mock/about/joinus/banner')
     const envData = require('../mock/about/joinus/env')
@@ -2519,7 +2521,7 @@ module.exports = app => ({
           }
 
           if(detail.tag && detail.tag.length > 0){
-            obj.tag = $format.transTag(resumeTagMap, detail.tag)
+            obj.tag = $helper.transTag(resumeTagMap, detail.tag)
           }
 
           if(detail.duty && detail.duty.length > 0){

@@ -42,30 +42,4 @@ module.exports = app => ({
     })
     return copy
   },
-
-  /**
-   *
-   * @param map
-   * @param array
-   * @returns {[]|*[]|*}
-   */
-  transTag (map, array) {
-    const { $utils } = app
-    if(!Array.isArray(array) || !map || $utils.isEmptyObject(map)){
-      return array
-    }
-    if(!array || array.length < 1){
-      return  []
-    }
-    let tmp = []
-    array.forEach(item=>{
-      let t = {
-        key: item,
-        name: map[item].name
-      }
-      tmp.push(t)
-    })
-    return tmp
-  }
-
 })

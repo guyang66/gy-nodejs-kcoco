@@ -17,7 +17,6 @@ const {
   initConstants,
   initNodeCache,
   initMongodb,
-  initMysql,
   initMongoDBModel,
 } = require('./loader')
 
@@ -58,9 +57,6 @@ class Application {
 
     // 初始化数据库
     initMongodb(this);
-
-    // 初始化mysql
-    // initMysql(this)
 
     // 初始化extend类
     initExtend(this)

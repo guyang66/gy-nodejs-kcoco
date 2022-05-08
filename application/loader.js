@@ -143,52 +143,6 @@ function initMongodb(app) {
   app.$db = db
 }
 
-function initMysql (app) {
-  const config = process.env.NODE_ENV === 'production' ? app.$config.mysqlPrd : app.$config.mysql
-  const mysqlDb = require("mysql");
-  let options = {
-    host: config.host,
-    user: config.user,
-    password: config.password,
-    database: config.database,
-    multipleStatements: true,
-  }
-  const pool = mysqlDb.createPool(options)
-  app.$mysql = pool
-
-  let mysqlQuery = function (sql, values) {
-    return new Promise((resolve, reject) => {
-      pool.getConnection(function (err, connection) {
-        if (err) {
-          reject(err)
-          //console.log(err, "数据库连接失败");
-          resolve({
-            status: 500,
-          });
-        } else {
-          //console.log("数据库连接成功");
-          connection.query(sql, values, (err, results) => {
-            if (err) {
-              reject(err);
-              resolve({
-                status: 400
-              });
-            } else {
-              connection.release();
-              resolve({
-                status: 200,
-                results,
-              });
-            }
-            //connection.release() // 释放连接池
-          });
-        }
-      })
-    })
-  }
-  app.$mysql = mysqlQuery
-}
-
 // 初始化中间件middleware
 function initMiddleware(app){
   let middleware = {}
@@ -229,7 +183,6 @@ module.exports = {
   initExtend,
   initMongoDBModel,
   initMongodb,
-  initMysql,
   initSchedule,
   initConstants,
 }

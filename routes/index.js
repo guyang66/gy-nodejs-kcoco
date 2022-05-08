@@ -89,8 +89,10 @@ module.exports = app => {
   router.get('/form', $controller.pageController.form)
 
   // 普通接口
+  // todo: 普通接口 /api 开头，否则一律返回页面路由，找不到路由就返回404错误页面 ，/api开头找不到的就处理成404错误。
 
-  router.get('/test', $controller.commonController.test)
+  router.get('/api/sms/send', $controller.smsController.send)
+  // router.get('/api/sms/verify', $controller.smsController.verify)
 
   return router
 }

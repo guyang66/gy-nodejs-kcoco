@@ -1,3 +1,4 @@
+const errorCode = require('../common/errorCode')
 module.exports = app => ({
   Result : {
     success (content) {
@@ -15,6 +16,16 @@ module.exports = app => ({
         data: null,
         errorCode: code,
         errorMessage: message ? message : ''
+      }
+    },
+
+    error (errorKey) {
+      let body = errorCode[errorKey] ? errorCode[errorKey] : errorCode['DEFAULT_ERROR']
+      return {
+        success: false,
+        data: null,
+        errorCode: body.code,
+        errorMessage: body.message
       }
     }
   },
@@ -120,7 +131,7 @@ module.exports = app => ({
   },
 
   /**
-   * 获取分页器初始化参数
+   * 获取分页器初始化参数（前端）
    */
   getPaginationData (total, page, preHref, ctx) {
     let allPage = Math.ceil(total / 10)
@@ -161,7 +172,7 @@ module.exports = app => ({
   },
 
   /**
-   *
+   * 获取页面tdk信息
    * @param path
    * @param force 为true是未匹配到path对应的tdk则返回 null, 否则返回默认配置项，为true可能会在某些值为null的时候导致页面渲染错误
    * @returns {null|{path: string, keywords: string, description: string, title: string}|*}
@@ -187,4 +198,29 @@ module.exports = app => ({
 
     return force ? null : constants.TDK_DEFAULT
   },
+
+  /**
+   * 转化tag为标准object格式
+   * @param map
+   * @param array
+   * @returns {[]|*[]|*}
+   */
+  transTag (map, array) {
+    const { $utils } = app
+    if(!Array.isArray(array) || !map || $utils.isEmptyObject(map)){
+      return array
+    }
+    if(!array || array.length < 1){
+      return  []
+    }
+    let tmp = []
+    array.forEach(item=>{
+      let t = {
+        key: item,
+        name: map[item].name
+      }
+      tmp.push(t)
+    })
+    return tmp
+  }
 })
