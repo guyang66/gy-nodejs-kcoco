@@ -63,7 +63,5 @@
     "alimail": {
     }
   },
-  "project": {
-    "dataMock": false
-  }
+  "dataMock": false
 }

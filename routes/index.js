@@ -93,7 +93,9 @@ module.exports = app => {
   // 新闻做成网状内容结构，可以通过a标签访问到所有新闻，方便爬虫抓取，搜索引擎收录
   router.get('/about/news/:_page', $controller.pageController.news)
 
-  router.get('/about/news/detail', $controller.pageController.newsDetail)
+  router.get('/about/news/detail', $controller.pageController.newsDetailMain)
+  router.get('/about/news/detail/:id', $controller.pageController.newsDetail)
+
   router.get('/about/joinus', $controller.pageController.joinus)
   router.get('/about/tag', $controller.pageController.tag)
 

@@ -24,7 +24,6 @@ module.exports = app => ({
 
   /**
    * 获取官网查询的新闻列表
-   * @returns {Promise<void>}
    */
   async getMatchList (page = 1, pageSize = 10, params) {
     const { errorLogger } = app.$log4
@@ -85,5 +84,30 @@ module.exports = app => ({
       }
     })
     return { list, total }
-  }
+  },
+
+  /**
+   * 客户端获取相邻文章
+   * @param id
+   * @param key
+   * @returns {Promise<*|null>}
+   */
+  async getAdjacentDetailById (id, key){
+    const { pageNews } = app.$model
+    let result
+    try{
+      if(key && key === 'prev'){
+        result = await pageNews.findOne({'id': { '$lt': id }}).sort({ _id: -1})
+      } else {
+        result = await pageNews.findOne({'id': { '$gt': id }}).sort({ _id: 1})
+      }
+    } catch (e) {
+      return null
+    }
+    if(!result || result.status < 1){
+      // 未被使用
+      return null
+    }
+    return  result
+  },
 })

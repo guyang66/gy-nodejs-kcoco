@@ -69,12 +69,22 @@
                       </div>
                       <% } %>
                       <div class="desc <% if(news.cover){ %>w-small<% } %>"><%=news.summary%></div>
-                      <a class="btn" href="<%=news.href%>">查看详情 > </a>
+                      <a class="btn" href="<%=news.href%>">查看详情 ></a>
                       <div class="seq-line"></div>
                     </div>
                     <% }); %>
+
+                    <% if(articleList.length < 1) { %>
+                    <div class="empty-view-wrap">
+                      <img src="/images/common/empty.svg"/>
+                      <div class="empty-text">暂无数据</div>
+                    </div>
+                    <% } %>
+
                   </div>
-                  <%- include('../../../component/pagination');%>
+                  <% if(articleList.length > 0) { %>
+                    <%- include('../../../component/pagination');%>
+                  <% } %>
                 </div>
               </div>
               <div class="right-wrap fn-right">
@@ -99,7 +109,7 @@
                 </div>
                 <div class="news-link-view">
                   <div class="tit">热门文章</div>
-                  <% hotArticleList.forEach(function(news){ %>
+                  <% hotArticleList.slice(0,5).forEach(function(news){ %>
                   <a class="news-item-wrap" href="<%=news.href%>">
                     <div class="point fn-left"></div>
                     <div class="news-item fn-left"><%=news.title%></div>

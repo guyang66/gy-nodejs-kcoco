@@ -114,4 +114,45 @@ module.exports = app => ({
       return 'omitBack'
     }
   },
+
+  /**
+   * 获取分页器初始化参数
+   */
+  getPaginationData (total, page, preHref, ctx) {
+    let allPage = Math.ceil(total / 10)
+    let cellCount = Math.min(allPage, 7)
+    let paginationContent = []
+    let keyMap = {}
+    for (let i = 0; i < allPage; i ++){
+      let text = this.getPaginationCellText(total, cellCount, page, i + 1)
+      let href = preHref + text + ctx.search
+      let item = {
+        text: text,
+        href: (text - 0 > 0) ? href : null,
+        cursorPointer: true
+      }
+      if(keyMap[text]){
+        continue
+      }
+      keyMap[text] = text
+      if(page + '' === text){
+        item.cellActive = true
+      }
+      if(text === 'omitFront' || text === 'omitBack'){
+        item.cursorPointer = false
+        item.text = '...'
+      }
+      paginationContent.push(item)
+    }
+
+    return  {
+      content: paginationContent,
+      textDisable: page === 1,
+      leftDisable: page === 1,
+      rightDisable: page === Math.ceil(total / 10),
+      firstHref: page === 1 ? null : (preHref + '1') + ctx.search,
+      preHref: (page === 1 || page - 1 < 1) ? null : preHref + (page - 1) + ctx.search,
+      nextHref: (page === cellCount || page + 1 > Math.ceil(total / 10)) ? null : preHref + (page + 1) + ctx.search
+    }
+  }
 })

@@ -2285,11 +2285,15 @@ module.exports = app => ({
     let paginationData
 
     if($config.dataMock){
+      let originList = require('../mock/about/news/list')
       categoryData = require('../mock/about/news/category')
       searchHot = require('../mock/about/news/search')
-      articleList = require('../mock/about/news/list')
-      hotArticleList = articleList.filter(function (v) { return !!v.isHot})
-      latestArticleList = articleList
+      //做个假的分页
+      articleList = originList.slice((page - 1) * 10, 10 + (page - 1) * 10)
+      hotArticleList = originList.filter(function (v) { return !!v.isHot})
+      latestArticleList = originList
+      total = originList.length
+      paginationData = $helper.getPaginationData(total, page, '/about/news/', ctx)
     } else {
       categoryData = await $service.baseService.query(
         pageNewsCategory,
@@ -2321,43 +2325,8 @@ module.exports = app => ({
       hotArticleList = await $service.baseService.query(pageNews, {status: 1, isHot: 1 })
       latestArticleList = await $service.baseService.query(pageNews, {status: 1})
       // 计算分页器初始化参数
-      let allPage = Math.ceil(total / 10)
-      let cellCount = Math.min(allPage, 7)
-      let paginationContent = []
-      let keyMap = {}
-      for (let i = 0; i < allPage; i ++){
-        let text = $helper.getPaginationCellText(total, cellCount, page, i + 1)
-        let href = '/about/news/' + text + ctx.search
-        let item = {
-          text: text,
-          href: (text - 0 > 0) ? href : null,
-          cursorPointer: true
-        }
-        if(keyMap[text]){
-          continue
-        }
-        keyMap[text] = text
-        if(page + '' === text){
-          item.cellActive = true
-        }
-        if(text === 'omitFront' || text === 'omitBack'){
-          item.cursorPointer = false
-          item.text = '...'
-        }
-        paginationContent.push(item)
-      }
-
-      paginationData = {
-        content: paginationContent,
-        textDisable: page === 1,
-        leftDisable: page === 1,
-        rightDisable: page === Math.ceil(total / 10),
-        firstHref: page === 1 ? null : '/about/news/1' + ctx.search,
-        preHref: (page === 1 || page - 1 < 1) ? null : '/about/news/' + (page - 1) + ctx.search,
-        nextHref: (page === cellCount || page + 1 > Math.ceil(total / 10)) ? null : '/about/news/' + (page + 1) + ctx.search
-      }
+      paginationData = $helper.getPaginationData(total, page, '/about/news/', ctx)
     }
-
     let pagePath = 'page/about/page-news-main/template'
     await ctx.render(pagePath, {
       title: '新闻列表',
@@ -2380,17 +2349,35 @@ module.exports = app => ({
     })
   },
 
+  async newsDetailMain () {
+    const { ctx } = app;
+    ctx.redirect('/about/news/detail/1')
+  },
   /**
    *
    * @returns {Promise<void>}
    */
   async newsDetail () {
-    const { ctx } = app;
-    const bannerData = require('../mock/about/news/banner')
-
+    const { ctx, $config, $service, $model, } = app;
+    const { pageNews } = $model
+    let id = ctx.params.id
     const articleList = require('../mock/about/news/list')
     const tagList = require('../mock/about/tag/tag')
     const searchHot = require('../mock/about/news/search')
+    let next
+    let prev
+    let article
+    if($config.dataMock){
+      article = require('../mock/about/joinus/resume')
+    } else {
+      article = await $service.baseService.queryOne(pageNews, {id: id})
+      // 获取上一篇文章
+      next = await $service.newsService.getAdjacentDetailById(id, 'prev')
+      // 获取下一篇文章
+      prev = await $service.newsService.getAdjacentDetailById(id)
+    }
+
+    //todo: 入库的时候找个html在线压缩,然后图片啥的路径要换一下
 
     let pagePath = 'page/about/page-news-detail/template'
     await ctx.render(pagePath, {
@@ -2398,11 +2385,14 @@ module.exports = app => ({
       key: 'news',
       navKey: 'about',
       hasBanner: false,
-      bannerData: bannerData,
       articleList: articleList,
       tagList: tagList,
       searchHot: searchHot,
-      tabsData: []
+      tabsData: [],
+
+      article: article,
+      next: next,
+      prev: prev,
     })
   },
 

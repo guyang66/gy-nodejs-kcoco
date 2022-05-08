@@ -17,6 +17,7 @@ module.exports = app => {
       type: { type: String, required: [true,'新闻分类不能为空！'] },
       cover: { type: String, default: '' }, // 文章头图
       tag: [],
+      href: { type: String, default: ''}, // 跳转
       description: { type: String, default: 'yy科技是一家很强大的公司。' }, // html description (seo)
       keywords: { type: String, default: '科技,水果,蔬菜,智能系统,供应商'}, // html keywords (seo)
 
