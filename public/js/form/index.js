@@ -60,6 +60,7 @@ $(function() {
       }
     }, 1000)
   }
+
   $('.send-button').on('click', function() {
     if (intervalInstance > 0) {
       return
@@ -123,27 +124,34 @@ $(function() {
     let code = $("input[name='code']").val()
     let phone = $("input[name='phone']").val()
 
-    //todo： 拿到code 和 phone 用ajax调接口验证验证码，验证成功进行下一步。
-    let mockResult = {
-      success: true,
-      data: 'ok',
-      errorCode: null,
-      errorMessage: null,
-    }
-
-    if (mockResult.success) {
-      // alert('校验验证码不需要交互，校验成功进行下一步，否则alert错误信息')
-      sendAction()
-    } else {
-      $.toast({
-        loader: false,
-        text: '' + ((mockResult && mockResult.error) ? ('(' + mockResult.error.message + ')') : '') + '!',
-        position: 'top-center',
-        icon: 'error',
-        hideAfter: 2000,
-        allowToastClose: false
-      })
-    }
+    $.ajax({
+      url: '/api/sms/verify',
+      type: 'get',
+      contentType: 'application/json',
+      async: false,
+      data: {
+        phone: phone,
+        verifyCode: code
+      },
+      success: function (data) {
+        if(data.success){
+          // 验证码验证成功
+          saveAction()
+        } else {
+          $.toast({
+            loader: false,
+            text: (data && data.errorMessage) ? data.message : '服务异常！请稍候再试',
+            position: 'top-center',
+            icon: 'error',
+            hideAfter: 3000,
+            allowToastClose: false
+          })
+        }
+      },
+      error: function (data) {
+        // 不处理error
+      }
+    })
   })
 
   // 校验输入值准确性
@@ -234,7 +242,7 @@ $(function() {
   }
 
   // 下一步
-  function sendAction() {
+  function saveAction() {
     let params = {
       company: $("input[name='company']").val(),
       name: $("input[name='name']").val(),
@@ -245,37 +253,36 @@ $(function() {
       remark: '',
       date: new Date().toLocaleDateString()
     }
-    //todo: 拿到params  调用ajax 把信息保存到后台
-    let mockResult = {
-      success: true,
-      data: 'ok',
-      errorCode: null,
-      errorMessage: null,
-    }
 
-    if (mockResult.success) {
-      $.toast({
-        loader: false,
-        text: '提交成功！',
-        allowToastClose: false,
-        position: 'mid-center',
-        icon: 'success'
-      })
-      nextStep()
-    } else {
-      $.toast({
-        loader: false,
-        text: '' + ((mockResult && mockResult.error) ? ('(' + mockResult.error.message + ')') : '') + '!',
-        position: 'top-center',
-        icon: 'error',
-        hideAfter: 2000,
-        allowToastClose: false
-      })
-    }
+    $.get(
+      '/api/clue/save',
+      params,
+      function (data){
+        if(data.success){
+          $.toast({
+            loader: false,
+            text:'提交成功！',
+            allowToastClose: false,
+            position: 'mid-center',
+            icon: 'success'
+          })
+          nextStep()
+        } else {
+          $.toast({
+            loader: false,
+            text: '提交失败！' + data.errorMessage,
+            position: 'top-center',
+            icon: 'error',
+            hideAfter: 2000,
+            allowToastClose: false
+          })
+        }
+      }
+    )
   }
 
   function nextStep() {
-
+    // cookie 保存用户状态，避免重复提交
     $.cookie("phone", $("input[name='phone']").val(), {
       expires: 1
     })
@@ -283,6 +290,7 @@ $(function() {
       expires: 1
     })
 
+    // input全部重置
     $("input[name='phone']").val("")
     $("input[name='code']").val("")
     $("input[name='name']").val("")
@@ -298,7 +306,6 @@ $(function() {
       localStorage.setItem('pageScroll', object.scrollY)
       window.location.href = object.redirect
     }
-
   }
 
   /**************  验证表单  **************/

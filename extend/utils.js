@@ -32,6 +32,33 @@ module.exports = app => ({
   },
 
   /**
+   * 校验sms 验证码格式
+   * @param value
+   * @param length
+   * @returns {boolean}
+   */
+
+  validateCodeFormat (value, length) {
+    const { $constants } = app
+    const { SMS_CODE_LENGTH } = $constants
+
+    // 开发环境跳过验证码校验
+    if(process.env.NODE_ENV === 'development'){
+      return true
+    }
+
+    if (length && value && value.length !== length) {
+      return false
+    }
+    let rule = length || SMS_CODE_LENGTH
+    let regexp = new RegExp("^\\d{" + rule + "}$")
+    if(!regexp.test(value)){
+      return false
+    }
+    return true
+  },
+
+  /**
    * 判断时间是否超出判定值
    * @param t1
    * @param t2

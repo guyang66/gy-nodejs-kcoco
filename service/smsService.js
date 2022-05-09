@@ -15,7 +15,6 @@ module.exports = app => ({
     const { userVisit, smsCode } = $model
     const { SMS_VISIT_ACTION, SMS_SEND_TIME_CIRCLE, SMS_SEND_DAY_TIMES } = $constants
     // todo: 怎么设计短信限制规则
-
     //增加访问记录，用来记录同一个人的发送记录
     let uv = await $service.baseService.queryOne(userVisit,{
       phone: phone,
@@ -76,5 +75,45 @@ module.exports = app => ({
     // 发送成功的话
     return $helper.wrapResult(true, '发送验证码成功！')
   },
+
+  /**
+   * 校验验证码
+   * @param phone
+   * @param code
+   * @returns {Promise<void>}
+   */
+  async verifySms (phone, code) {
+    const { $helper, $constants, $service, $model, $utils } = app
+    const { SMS_CODE_EXPIRE } = $constants
+    const { smsCode } = $model
+
+    let verifyCodeList = await $service.baseService.query(smsCode,{phone: phone}, null, {sort: {createTime: -1}})
+    if(!verifyCodeList || verifyCodeList.length < 1){
+      // 未查询到数据
+      return $helper.wrapResult(false, 'SMS_NO_AVAILABLE_INFO_ERROR')
+    }
+
+    let latestVerifyCode = verifyCodeList[0]
+    if (latestVerifyCode.used) {
+      // 验证码已被标记为使用过
+      return $helper.wrapResult(false, 'SMS_CODE_USED_ERROR')
+    }
+
+    let intervalTime = $utils.getIntervalForGmt(new Date(), latestVerifyCode.createTime)
+    if(intervalTime > SMS_CODE_EXPIRE){
+      // 验证码已经失效
+      return $helper.wrapResult(false, 'SMS_CODE_EXPIRED_ERROR')
+    }
+
+    let verifyCode = latestVerifyCode.code - 0
+    if(verifyCode !== (code - 0)){
+      // 验证码错误
+      return $helper.wrapResult(false, 'SMS_CODE_VERIFY_ERROR')
+    }
+
+    // 验证成功
+    await $service.baseService.updateById(smsCode, latestVerifyCode._id, {used: true})
+    return $helper.wrapResult(true, '验证成功')
+  }
 
 })

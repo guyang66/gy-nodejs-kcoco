@@ -28,5 +28,36 @@ module.exports = app => ({
     } else {
       ctx.body = $helper.Result.fail(r.errorCode, r.errorMessage)
     }
+  },
+
+  /**
+   * 验证短信验证码
+   * @returns {Promise<void>}
+   */
+  async verify () {
+    const { ctx, $helper, $service, $utils } = app;
+    const { phone, code } = ctx.query
+    if(!phone || !code || phone === '' || code === ''){
+      ctx.body = $helper.Result.error('PARAM_EMPTY_ERROR')
+      return
+    }
+
+    if(!$utils.validatePhoneFormat(phone)){
+      ctx.body = $helper.Result.error('PHONE_FORMAT_ERROR')
+      return
+    }
+
+    if(!$utils.validateCodeFormat(code)){
+      ctx.body = $helper.Result.error('SMS_CODE_FORMAT_ERROR')
+      return
+    }
+
+    let r = await $service.smsService.verifySms(phone, code)
+    if(r.result){
+      ctx.body = $helper.Result.success(r.data)
+    } else {
+      ctx.body = $helper.Result.fail(r.errorCode, r.errorMessage)
+    }
+
   }
 })
