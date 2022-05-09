@@ -53,7 +53,7 @@
     "secret": "gy2022"
   },
   "smtp": {
-    "serviceType": "alimail",
+    "serviceType": "qq",
     "qq": {
       "host": "smtp.qq.com",
       "port": 465,
@@ -73,6 +73,18 @@
     "receiver": {
       "common": "719xxxxxx@qq.com",
       "partner": "719xxxxxx@qq.com"
+    }
+  },
+  "sms": {
+    "type": "aliyun",
+    "aliyun": {
+      "accessKeyId": "your accessKeyId",
+      "accessKeySecret": "your accessKeySecret",
+      "endpoint": "https://dysmsapi.aliyuncs.com",
+      "apiVersion": "2017-05-25",
+      "SignName": "阿里云短信测试",
+      "TemplateCode": "SMS_154950909",
+      "TemplateParamFormatString": "{\"phone\":\"{your phone}\",\"code\":\"{your code}\"}"
     }
   },
   "dataMock": false,

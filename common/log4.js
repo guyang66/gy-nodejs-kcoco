@@ -63,4 +63,4 @@ const errorLogger = log4js.getLogger('error')
 const mongoDBLogger = log4js.getLogger('mongodb')
 const commonLogger = log4js.getLogger('common')
 const smsLogger = log4js.getLogger('sms')
-module.exports = { commonLogger, errorLogger, mongoDBLogger}
+module.exports = { commonLogger, errorLogger, mongoDBLogger, smsLogger}

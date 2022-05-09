@@ -265,7 +265,8 @@ module.exports = app => ({
   getRandomCode () {
     const {SMS_CODE_LENGTH, SMS_CODE_CHAR_LENGTH, SMS_CODE_CHAR_SET } = app.$constants
     // 开发环境没必要发真的验证码，直接返回1，固定死
-    if(process.env.NODE_ENV === 'development'){
+    // todo: 增加一个qa环境，方便测试环境也能真正的发送验证码，方便测试
+    if(process.env.NODE_ENV !== 'production' && process.env.SMS_ENV !== 'qa'){
       return '1'
     }
     let str = '';

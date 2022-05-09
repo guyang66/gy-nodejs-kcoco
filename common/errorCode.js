@@ -43,8 +43,8 @@ module.exports = {
 
   SMS_SERVER_ERROR: {
     code: 3000,
-    message: '验证码发送次数过多',
-    description: '短信验证码发送次数过多,超过了今天的次数限制'
+    message: '验证服务异常，请稍后再试',
+    description: '验证服务异常，请联系管理员'
   },
 
   SMS_SEND_FREQUENT_ERROR: {

@@ -54,6 +54,8 @@ function scanFilesByFolder(dir, cb) {
 const initConfig = function () {
   let config = {};
   const projectConfig = require('../config.json')
+  // 使用本地的配置文件
+  // const projectConfig = require('../config_local.json')
   config = {...config, ...projectConfig};
   return config;
 }
