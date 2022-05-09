@@ -11,7 +11,7 @@ module.exports = app => ({
     try {
       return await model.findById(id)
     } catch (e){
-      errorLogger.error(e)
+      errorLogger.error('【baseService】—— queryById：' + e.toString())
       console.log(e)
       return false
     }
@@ -28,7 +28,7 @@ module.exports = app => ({
     try {
       return await model.findOne(options)
     } catch (e){
-      errorLogger.error(e)
+      errorLogger.error('【baseService】—— findOne：' + e.toString())
       console.log(e)
       return false
     }
@@ -61,7 +61,7 @@ module.exports = app => ({
     try {
       return await model.find(params, projection, queryOptions)
     } catch (e){
-      errorLogger.error(e)
+      errorLogger.error('【baseService】—— query：' + e.toString())
       console.log(e)
       return false
     }
@@ -88,8 +88,8 @@ module.exports = app => ({
     try {
       return await p
     } catch (e){
-      errorLogger.error('保存失败！' + e)
-      console.log(e)
+      errorLogger.error('【baseService】—— save：' + e.toString())
+      console.log('保存失败：' + e)
       return false
     }
   },
@@ -106,7 +106,7 @@ module.exports = app => ({
     try {
       return  await model.find(searchParams).countDocuments()
     } catch (e){
-      errorLogger.error('保存失败！' + e)
+      errorLogger.error('【baseService】—— count：' + e.toString())
       console.log(e)
       return false
     }
@@ -124,8 +124,7 @@ module.exports = app => ({
     try {
       return await model.findByIdAndUpdate(id, data)
     } catch (e){
-      errorLogger.error(e)
-      // 在控制台打印错误信息，生产环境不打印
+      errorLogger.error('【baseService】—— updateById：' + e.toString())
       console.log(e)
       return false
     }
@@ -148,8 +147,7 @@ module.exports = app => ({
         }
       )
     } catch (e){
-      errorLogger.error(e)
-      // 在控制台打印错误信息，生产环境不打印
+      errorLogger.error('【baseService】—— batchUpdate：' + e.toString())
       console.log(e)
       return false
     }
@@ -170,12 +168,10 @@ module.exports = app => ({
         {...content}
       )
     } catch (e){
-      errorLogger.error(e)
-      // 在控制台打印错误信息，生产环境不打印
+      errorLogger.error('【baseService】—— updateOne：' + e.toString())
       console.log(e)
       return false
     }
   },
-
 
 })

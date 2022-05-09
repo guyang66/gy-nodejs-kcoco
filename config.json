@@ -30,7 +30,8 @@
     "password": ""
   },
   "log": {
-    "root": "./logs",
+    "rootPath": "./logs",
+    "prdRootPath": "../logs/kcoco",
     "level": "on"
   },
   "engine": {

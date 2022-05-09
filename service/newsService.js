@@ -16,7 +16,7 @@ module.exports = app => ({
 
     list = await pageNews.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: pageSize, sort : sortParam }, function (err, docs){
       if(err){
-        errorLogger.error(err)
+        errorLogger.error('【newsService】—— getList：' + err.toString())
       }
     })
     return list
@@ -80,7 +80,7 @@ module.exports = app => ({
     let total = await pageNews.find(searchParams).countDocuments()
     list = await pageNews.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: pageSize, sort : sortParam }, function (err, docs){
       if(err){
-        errorLogger.error(err)
+        errorLogger.error('【newsService】—— getMatchList：' + err.toString())
       }
     })
     return { list, total }
@@ -94,6 +94,7 @@ module.exports = app => ({
    */
   async getAdjacentDetailById (id, key){
     const { pageNews } = app.$model
+    const { errorLogger } = app.$log4
     let result
     try{
       if(key && key === 'prev'){
@@ -102,6 +103,7 @@ module.exports = app => ({
         result = await pageNews.findOne({'id': { '$gt': id }}).sort({ _id: 1})
       }
     } catch (e) {
+      errorLogger.error('【newsService】—— getAdjacentDetailById：' + e.toString())
       return null
     }
     if(!result || result.status < 1){

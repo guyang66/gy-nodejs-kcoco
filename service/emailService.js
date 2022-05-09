@@ -52,8 +52,9 @@ module.exports = app => ({
    */
 
   async clueToEmail (content) {
-    const { $helper, $config, $utils } = app
+    const { $helper, $config, $utils, $log4 } = app
     const { smtp } = $config
+    const { errorLogger, commonLogger } = $log4
     //todo: qq邮箱需要开启smtp授权码
     const qqEmailConfig = {
       service: 'qq',
@@ -68,9 +69,11 @@ module.exports = app => ({
 
     const mailOptions = getEmailConfigOptions(smtp.qq.auth.user, smtp.receiver.common, '官网线索', emailContent)
     try {
+      commonLogger.info('发送邮件成功' + emailContent)
       await trySend(emailTransporter, mailOptions)
       return $helper.wrapResult(true,'发送成功')
     } catch (e){
+      errorLogger.error('【emailService】—— clueToEmail' + e.toString())
       return $helper.wrapResult(false, e.toString(), -3)
     }
   },

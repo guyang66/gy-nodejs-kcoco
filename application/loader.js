@@ -105,7 +105,7 @@ function initExtend(app) {
 
 function initMongodb(app) {
   const chalk = require('chalk');
-  const { logger, mongoDBLogger,  } = app.$log4
+  const { commonLogger, mongoDBLogger,  } = app.$log4
   const localStringify = require('../utils').localStringify
   const mongoose = require('mongoose').set('debug', function (collectionName, method, query, doc) {
     let str = collectionName + '.' + method + '(' + localStringify(query) + ',' + localStringify(doc) + ')'
@@ -132,11 +132,11 @@ function initMongodb(app) {
   let db = mongoose.connection
 
   db.on('error', (error)=>{
-    logger.error('数据库连接失败！' + error)
+    commonLogger.error('数据库连接失败！' + error)
     console.log(chalk.red('数据库连接失败！' + error));
   });
   db.once('open', ()=> {
-    logger.info("mongoDB connect success");
+    commonLogger.info("mongoDB connect success");
     console.log(chalk.green('============== mongoDB connect success================='));
   })
   app.$mongoose = mongoose
