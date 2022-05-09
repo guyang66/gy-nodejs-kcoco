@@ -51,17 +51,29 @@
     "resetWhenReload": true,
     "secret": "gy2022"
   },
-  "emailServiceKey": "alimail",
-  "email": {
+  "smtp": {
+    "serviceType": "alimail",
     "qq": {
       "host": "smtp.qq.com",
       "port": 465,
-      "auth": ""
-    },
-    "aliyun": {
+      "auth": {
+        "user": "719xxxxxx@qq.com",
+        "pass": ""
+      }
     },
     "alimail": {
+      "host": "smtp.mxhichina.com",
+      "port": 465,
+      "auth": {
+        "user": "test@xxx.com",
+        "pass": ""
+      }
+    },
+    "receiver": {
+      "common": "719xxxxxx@qq.com",
+      "partner": "719xxxxxx@qq.com"
     }
   },
-  "dataMock": false
+  "dataMock": false,
+  "clueBackup": false
 }

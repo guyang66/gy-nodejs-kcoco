@@ -41,6 +41,24 @@ module.exports = app => ({
   },
 
   /**
+   * 对象的仿照toString方法
+   * @param object
+   * @param format 使用指定符号链接
+   * @returns {string}
+   */
+  plainObjectToString (object, format = '') {
+    if(!object){
+      return ''
+    }
+
+    let str = ''
+    for(let keyStr in object){
+      str =  str + keyStr + '：' + object[keyStr] + format
+    }
+    return str
+  },
+
+  /**
    * 校验sms 验证码格式
    * @param value
    * @param length

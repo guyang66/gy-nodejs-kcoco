@@ -96,7 +96,7 @@ module.exports = app => {
 
   router.get('/api/clue/save', $controller.clueController.save)
 
-  // router.get('/test', $controller.smsController.up)
+  // router.get('/test', $controller.commonController.test2)
 
   return router
 }
