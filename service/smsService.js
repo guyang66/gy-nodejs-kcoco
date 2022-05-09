@@ -65,7 +65,7 @@ module.exports = app => ({
     await $service.baseService.updateOne(userVisit, {
       phone: phone,
       ip: ipString,
-      dataTag: dateTag,
+      dateTag: dateTag,
       action: SMS_VISIT_ACTION,
     },{
       $inc: { count: 1 },

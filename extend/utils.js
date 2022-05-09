@@ -1,4 +1,13 @@
 module.exports = app => ({
+
+  isEmptyString (string) {
+    if(!string || string === ''){
+      return true
+    }
+    let str =  string.replace(/^\s+|\s+$/g,"");
+    return (str === '' || str === ' ');
+  },
+
   /**
    *  判断是否是对象
    */

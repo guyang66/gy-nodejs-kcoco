@@ -59,5 +59,6 @@ module.exports = app => ({
       ctx.body = $helper.Result.fail(r.errorCode, r.errorMessage)
     }
 
-  }
+  },
+
 })

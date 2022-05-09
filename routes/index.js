@@ -94,5 +94,9 @@ module.exports = app => {
   router.get('/api/sms/send', $controller.smsController.send)
   router.get('/api/sms/verify', $controller.smsController.verify)
 
+  router.get('/api/clue/save', $controller.clueController.save)
+
+  // router.get('/test', $controller.smsController.up)
+
   return router
 }

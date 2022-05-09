@@ -21,6 +21,12 @@ module.exports = {
     description: 'mongodb查询错误'
   },
 
+  COMMON_ERROR: {
+    code: -3,
+    message: '异常错误',
+    description: '异常错误'
+  },
+
   PARAM_EMPTY_ERROR: {
     code: 1000,
     message: '参数有误',

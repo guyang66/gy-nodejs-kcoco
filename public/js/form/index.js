@@ -123,7 +123,6 @@ $(function() {
 
     let code = $("input[name='code']").val()
     let phone = $("input[name='phone']").val()
-
     $.ajax({
       url: '/api/sms/verify',
       type: 'get',
@@ -131,7 +130,7 @@ $(function() {
       async: false,
       data: {
         phone: phone,
-        verifyCode: code
+        code: code
       },
       success: function (data) {
         if(data.success){
@@ -140,7 +139,7 @@ $(function() {
         } else {
           $.toast({
             loader: false,
-            text: (data && data.errorMessage) ? data.message : '服务异常！请稍候再试',
+            text: (data && data.errorMessage) ? data.errorMessage : '服务异常！请稍候再试',
             position: 'top-center',
             icon: 'error',
             hideAfter: 3000,
@@ -249,7 +248,8 @@ $(function() {
       phone: $("input[name='phone']").val(),
       need: $("input[name='need']").val(),
       position: $("input[name='position']").val(),
-      origin: window.location.href,
+      originHref: window.location.href,
+      origin: '官网',
       remark: '',
       date: new Date().toLocaleDateString()
     }
@@ -290,6 +290,8 @@ $(function() {
       expires: 1
     })
 
+    console.log('我老了')
+    console.log($.cookie('name'))
     // input全部重置
     $("input[name='phone']").val("")
     $("input[name='code']").val("")
