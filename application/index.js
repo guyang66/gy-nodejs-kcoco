@@ -92,6 +92,9 @@ class Application {
     // 全局异常捕获
     process.on('uncaughtException',function (err){
       console.log('uncaughtException:' + err)
+      const { errorLogger } = this.$log4
+      errorLogger.error('=============【全局异常捕获】=============')
+      errorLogger.error(err)
     })
 
     this.afterAll(this)
@@ -161,9 +164,13 @@ class Application {
       // 公共数据的优先级大于模板引擎参数，如果在pageController中给template页传入tdk，则会被这里的公共tdk所覆盖
       // 特殊页面，如新闻页面的tdk还需要额外去处理，所以需要区别开来两个参数(template参数用pageTdk)
       ctx.state = {
+        getContext: function (){}, // 可以用来处理静态资源，cdn
         menus: menus,
         footerData: footerData,
-        tdk: tdk
+        tdk: tdk,
+        // todo: 从源码中看到模板是可以被缓存的，有点像vue中静态部分被缓存（就是纯静态的部分，不随外部变量变化的片段），追求极致渲染速度是可以开启这个优化的
+
+        cache: !!this.$config.engine.cache // consolidate层 针对compile函数的缓存
       }
       await next();
     });

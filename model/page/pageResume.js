@@ -1,4 +1,4 @@
-const baseModel = require('./baseModel')
+const baseModel = require('../baseModel')
 module.exports = app => {
   const { mongoose } = app;
   const Resume = new mongoose.Schema(

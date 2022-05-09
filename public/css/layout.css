@@ -144,7 +144,7 @@
   background: linear-gradient(315deg, #01ebdd 13.19%, #5360fb 74.07%);
 }
 .main-layout .header-wrap .header-content .header-nav .menu-wrap .m-tabs-left .m-tabs-title-wrap-active .text-title {
-  color: color-primary;
+  color: #4169e1;
   font-weight: 500;
 }
 .main-layout .header-wrap .header-content .header-nav .menu-wrap .m-tabs-right {
@@ -160,7 +160,7 @@
 }
 .main-layout .header-wrap .header-content .header-nav .menu-wrap .m-tabs-right .m-tabs-item-wrap .content-item-wrap-column .content-item-title {
   font-size: 14px;
-  color: color-primary;
+  color: #4169e1;
   font-weight: 500;
   font-family: "PingFang SC";
   height: 40px;
@@ -178,7 +178,7 @@
   padding: 0;
 }
 .main-layout .header-wrap .header-content .header-nav .menu-wrap .m-tabs-right .m-tabs-item-wrap .content-item-wrap-column .data-item:hover {
-  color: color-primary;
+  color: #4169e1;
 }
 .main-layout .header-wrap .header-content .header-nav .menu-wrap .m-tabs-right .m-tabs-item-wrap .content-item-wrap-cell {
   width: 100%;
@@ -202,7 +202,7 @@
   line-height: 24px;
 }
 .main-layout .header-wrap .header-content .header-nav .menu-wrap .m-tabs-right .m-tabs-item-wrap .content-item-wrap-cell:hover .content-item-title {
-  color: color-primary;
+  color: #4169e1;
 }
 .main-layout .header-wrap .header-content .header-nav .menu-wrap .m-tabs-right .m-tabs-item-wrap .content-item-wrap-cell:hover .content-item-desc {
   color: #444;
@@ -318,7 +318,7 @@
   cursor: pointer;
 }
 .main-layout .header-wrap .header-content .header-nav .menu-wrap .m-view-wrap .m-n-1-wrap .title:hover {
-  color: color-primary;
+  color: #4169e1;
 }
 .main-layout .header-wrap .header-content .header-nav .menu-wrap .m-view-wrap .m-n-1-wrap .line {
   width: 100%;
@@ -405,7 +405,7 @@
   transition: all 0.3s ease-in-out;
 }
 .main-layout .footer-wrap .footer-content .footer-top-wrap .footer-item-wrap .item-hover:hover {
-  color: color-primary;
+  color: #4169e1;
   padding-left: 10px;
   all: 0.5s ease-in-out;
 }
@@ -459,7 +459,7 @@
   color: rgba(255,255,255,0.4);
 }
 .main-layout .footer-wrap .footer-content .footer-middle-wrap .middle-cell .link-text:hover {
-  color: color-primary;
+  color: #4169e1;
   cursor: pointer;
 }
 .main-layout .footer-wrap .footer-content .footer-middle-wrap .middle-cell .icon-link {

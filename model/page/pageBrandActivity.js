@@ -1,16 +1,12 @@
-const baseModel = require('./baseModel')
+const baseModel = require('../baseModel')
 module.exports = app => {
   const { mongoose } = app;
   const Activity = new mongoose.Schema(
     Object.assign({}, baseModel, {
       title: { type: String, required: [true,'活动标题不能为空！'] },
       desc: { type: String, default: ''}, // 描述
-      order: { type: Number, default: 1 }, // 排序
-      date: { type: String, default: ''}, // 活动日期
-      location: { type: String, default: ''}, // 活动地点
       btnText: { type: String, default: '点击查看' }, // 按钮名字
       cover: { type: String, default: ''}, // 封面
-      type: { type: String, default: '' }, // 类型
       remark: { type: String, default: 'hot' }, // 其他备注
 
       href: { type: String, default: ''}, // 活动详情
@@ -27,12 +23,13 @@ module.exports = app => {
        */
       target: { type: String, default: null },
 
+      order: { type: Number, default: 1 }, // 排序
       status: { type: Number, default: 1 }, // 1：启用；0：停用
     }), {
       timestamps: { createdAt: 'createTime', updatedAt: 'modifyTime'},
-      collection: "kcoco_page_hot_activity",
+      collection: "kcoco_page_brand_activity",
     }
   )
-  return mongoose.model('kcoco_page_hot_activity', Activity);
+  return mongoose.model('kcoco_page_brand_activity', Activity);
 }
 

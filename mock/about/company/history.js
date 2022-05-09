@@ -226,7 +226,7 @@ module.exports = {
           date: '2020-01-02',
           title: '完成c轮融资，获取天狮资金联合投资',
           desc: '曾经作为库卡隆先锋的强大后援军团，部落方精锐中的精锐军团，为攻打愤怒之门的小萨鲁法尔提供安全的后方补给以及解决天灾军团盘踞于艾卓-尼鲁布的蛛魔以及纳克萨玛斯所带来的亡灵袭扰，同时也跟龙骨荒野的唐卡牦牛人建立的盟友关系以协助先锋军的战略决策，萨鲁法尔大王甚至将自己的禁卫的一股黑马，公司创立即拿到了100w的合同。',
-          cover: 'images/about/company/history/2020/a1.jpg',
+          cover: '/images/about/company/history/2020/a1.jpg',
         },
         {
           date: '2020-03-08',
@@ -320,6 +320,7 @@ module.exports = {
           cover: '/images/about/company/history/2022/a2.jpg',
         },
       ],
+
     },
   ],
 };

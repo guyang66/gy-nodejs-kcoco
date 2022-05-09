@@ -1,18 +1,15 @@
-const baseModel = require('./baseModel')
+const baseModel = require('../baseModel')
 module.exports = app => {
   const { mongoose } = app;
-  const Case = new mongoose.Schema(
+  const Column = new mongoose.Schema(
     Object.assign({}, baseModel, {
-      /**
-       * id —— 伪id
-       * 这里的id不是数据库id，mongodb自带的是_id，且_id是一个hash值，乱踏踏的，非自增，所以不好阅读
-       * 用id来模仿mysql这样的数据库自增id，也方便数据查询和肉眼检验啥的。
-       */
       id: { type: Number, required: [true,'id不能为空！'], unique: true},
-      title: { type: String, required: [true,'案例标题不能为空！'] },
+      title: { type: String, required: [true,'资源栏目标题不能为空！'] },
       desc: { type: String, default: ''}, // 副标题
-      key: [],                            // 关键词，可以被检索到的关键字，
-      icon: { type: String, default: ''}, // 案例logo
+      key: { type: String, unique: true, required: [ true,'资源栏目key不能为空！'], }, // 关键字key，唯一性校验值
+      remark: { type: String, default: '' }, // 其他备注
+      tag: [], // 标签
+      cover: { type: String, default: ''}, // 封面
       href: { type: String, default: ''}, // 跳转
       /**
        * nofollow —— a标签的ref属性
@@ -27,14 +24,13 @@ module.exports = app => {
        */
       target: { type: String, default: null },
 
-      remark: { type: String, default: 'hot' }, // 其他备注
       status: { type: Number, default: 1 }, // 1：启用；0：停用
       order: { type: Number, default: 1 }, // 排序
     }), {
       timestamps: { createdAt: 'createTime', updatedAt: 'modifyTime'},
-      collection: "kcoco_page_case",
+      collection: "kcoco_page_resource_column",
     }
   )
-  return mongoose.model('kcoco_page_case', Case);
+  return mongoose.model('kcoco_page_resource_column', Column);
 }
 

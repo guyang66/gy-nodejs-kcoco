@@ -1,19 +1,19 @@
-const baseModel = require('./baseModel')
+const baseModel = require('../baseModel')
 module.exports = app => {
   const { mongoose } = app;
   const Activity = new mongoose.Schema(
     Object.assign({}, baseModel, {
-      name: { type: String, required: [true,'活动名称不能为空！'] },
+      title: { type: String, required: [true,'活动标题不能为空！'] },
       desc: { type: String, default: ''}, // 描述
-      type: { type: String, default: 'normal' }, // 活动类型 main/normal
-      bg: { type: String, default: ''}, // 封面
+      order: { type: Number, default: 1 }, // 排序
+      date: { type: String, default: ''}, // 活动日期
+      location: { type: String, default: ''}, // 活动地点
       btnText: { type: String, default: '点击查看' }, // 按钮名字
-      advantage: [], // 优势点
-      tag: [], // 标签
+      cover: { type: String, default: ''}, // 封面
+      type: { type: String, default: '' }, // 类型
       remark: { type: String, default: 'hot' }, // 其他备注
 
       href: { type: String, default: ''}, // 活动详情
-      //todo: 前端加一下nofollow和target的处理逻辑
       /**
        * nofollow —— a标签的ref属性
        * ture：为a标签添加 ref=nofollow属性，告诉搜索引擎不必跟踪该链接，seo优化，一般站外链接使用。
@@ -28,12 +28,11 @@ module.exports = app => {
       target: { type: String, default: null },
 
       status: { type: Number, default: 1 }, // 1：启用；0：停用
-      order: { type: Number, default: 1 }, // 排序
     }), {
       timestamps: { createdAt: 'createTime', updatedAt: 'modifyTime'},
-      collection: "kcoco_page_favorite_activity",
+      collection: "kcoco_page_hot_activity",
     }
   )
-  return mongoose.model('kcoco_page_favorite_activity', Activity);
+  return mongoose.model('kcoco_page_hot_activity', Activity);
 }
 

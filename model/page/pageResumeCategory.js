@@ -1,4 +1,4 @@
-const baseModel = require('./baseModel')
+const baseModel = require('../baseModel')
 module.exports = app => {
 
   // 可以都归入pageCommonTag 表中

@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const Router = require('koa-router');
 const Session = require("koa-session")
+const {errorLogger} = require('../common/log4')
 
 //自动扫指定目录下面的文件并且加载
 
@@ -23,10 +24,14 @@ function scanFilesByFolder(dir, cb) {
     const files = fs.readdirSync(_folder);
     files.forEach((file) => {
 
+      // 剔除一些隐藏文件
       if(file.match(/.DS/)){
         return;
       }
       if(file.match(/._v/)){
+        return;
+      }
+      if(file.match(/._/)){
         return;
       }
       // 递归搜索
@@ -47,6 +52,7 @@ function scanFilesByFolder(dir, cb) {
     })
 
   } catch (error) {
+    errorLogger.error('【application - loader】文件自动加载失败...', error)
     console.log('文件自动加载失败...', error);
   }
 }

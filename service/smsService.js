@@ -1,6 +1,4 @@
-
 const log4 = require('../common/log4');
-
 const sendAction = async function(config, phone, code) {
   const { smsLogger } = log4
   if(process.env.NODE_ENV !== 'production' && process.env.SMS_ENV !== 'qa'){
