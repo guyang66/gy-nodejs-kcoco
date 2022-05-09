@@ -1,5 +1,6 @@
+const baseModel = require('./baseModel')
 module.exports = app => {
-  const { mongoose, baseModel } = app;
+  const { mongoose } = app;
   const Activity = new mongoose.Schema(
     Object.assign({}, baseModel, {
       title: { type: String, required: [true,'活动标题不能为空！'] },

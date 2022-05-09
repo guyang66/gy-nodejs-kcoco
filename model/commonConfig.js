@@ -1,5 +1,7 @@
+// baseModel不能从从app取，因为可能还没有初始化好
+const baseModel = require('./baseModel')
 module.exports = app => {
-  const { mongoose, baseModel } = app;
+  const { mongoose } = app;
   const Config = new mongoose.Schema(
     Object.assign({}, baseModel, {
       /**

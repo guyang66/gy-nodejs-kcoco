@@ -110,6 +110,72 @@ module.exports = app => ({
       console.log(e)
       return false
     }
-  }
+  },
+
+  /**
+   * 通过id更新
+   * @param model
+   * @param id
+   * @param data
+   * @returns {Promise<*|boolean>}
+   */
+  async updateById (model, id, data) {
+    const { errorLogger } = app.$log4
+    try {
+      return await model.findByIdAndUpdate(id, data)
+    } catch (e){
+      errorLogger.error(e)
+      // 在控制台打印错误信息，生产环境不打印
+      console.log(e)
+      return false
+    }
+  },
+
+  /**
+   * 批量更新
+   * @param model
+   * @param id
+   * @param data
+   * @returns {Promise<*|boolean>}
+   */
+  async batchUpdate (model, params, data) {
+    const { errorLogger } = app.$log4
+    try {
+      return await model.update(
+        {...params},
+        {
+          $set: {...data}
+        }
+      )
+    } catch (e){
+      errorLogger.error(e)
+      // 在控制台打印错误信息，生产环境不打印
+      console.log(e)
+      return false
+    }
+  },
+
+  /**
+   * 更新一个
+   * @param model
+   * @param params
+   * @param data
+   * @returns {Promise<*|boolean>}
+   */
+  async updateOne (model, params, content) {
+    const { errorLogger } = app.$log4
+    try {
+      return await model.findOneAndUpdate(
+        {...params},
+        {...content}
+      )
+    } catch (e){
+      errorLogger.error(e)
+      // 在控制台打印错误信息，生产环境不打印
+      console.log(e)
+      return false
+    }
+  },
+
 
 })

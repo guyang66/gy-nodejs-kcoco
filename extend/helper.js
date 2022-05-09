@@ -1,4 +1,16 @@
 const errorCode = require('../common/errorCode')
+
+const getRandom = function (n, m) {
+  n = Number(n);
+  m = Number(m);
+  if(n > m){
+    let tmp = n;
+    n = m;
+    m = tmp
+  }
+  return Math.floor(Math.random() * (m - n) + n);
+}
+
 module.exports = app => ({
   Result : {
     success (content) {
@@ -44,8 +56,8 @@ module.exports = app => ({
     if(success){
       obj.data = msg
     } else {
-      obj.errorMessage = msg
-      obj.errorCode = code
+      obj.errorMessage = errorCode[msg] ? errorCode[msg].message : msg
+      obj.errorCode = errorCode[msg] ? errorCode[msg].code :code
     }
     return obj
   },
@@ -222,5 +234,46 @@ module.exports = app => ({
       tmp.push(t)
     })
     return tmp
+  },
+
+  /**
+   * 获取ip
+   * @param req
+   * @returns {string|null}
+   */
+
+  getClientIP (req) {
+    if(!req.headers){
+      return null
+    }
+    let ip = req.headers['x-forwarded-for'] ||
+      req.ip ||
+      req.connection.remoteAddress ||
+      req.socket.remoteAddress ||
+      req.connection.socket.remoteAddress || '';
+    if(ip.split(',').length>0){
+      ip = ip.split(',')[0]
+    }
+    ip = ip.substr(ip.lastIndexOf(':') + 1, ip.length)
+    return ip
+  },
+
+  /**
+   * 获取随机验证码
+   * @returns {string}
+   */
+  getRandomCode () {
+    const {SMS_CODE_LENGTH, SMS_CODE_CHAR_LENGTH, SMS_CODE_CHAR_SET } = app.$constants
+    // 开发环境没必要发真的验证码，直接返回1，固定死
+    if(process.env.NODE_ENV === 'development'){
+      return '1'
+    }
+    let str = '';
+    // 验证码有几位就循环几次
+    for (let i = 0; i < SMS_CODE_LENGTH; i ++) {
+      let ran = getRandom(0, SMS_CODE_CHAR_LENGTH);
+      str += SMS_CODE_CHAR_SET.charAt(ran);
+    }
+    return str
   }
 })

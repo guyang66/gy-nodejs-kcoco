@@ -1,6 +1,7 @@
+const baseModel = require('./baseModel')
 module.exports = app => {
   // 可以都归入pageCommonTag 表中
-  const { mongoose, baseModel } = app;
+  const { mongoose } = app;
   const Place = new mongoose.Schema(
     Object.assign({}, baseModel, {
       status: { type: Number, default: 1 }, // 1：启用；0：停用

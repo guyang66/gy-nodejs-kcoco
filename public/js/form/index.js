@@ -76,33 +76,34 @@ $(function() {
       })
       return
     }
-    //todo: ajax 调用后端接口发验证码
-    let mockResult = {
-      success: true,
-      data: 'ok',
-      errorCode: null,
-      errorMessage: null
-    }
-    if (mockResult.success) {
-      $.toast({
-        loader: false,
-        text: '验证码发送成功!',
-        position: 'top-center',
-        allowToastClose: false,
-        hideAfter: 3000,
-        icon: 'success'
-      })
-      startInterval()
-    } else {
-      $.toast({
-        loader: false,
-        text: '验证码发送失败' + ((data && data.error) ? ('(' + data.error.message + ')') : '') + '!',
-        position: 'top-center',
-        icon: 'error',
-        hideAfter: 2000,
-        allowToastClose: false
-      })
-    }
+
+    $.get(
+      '/api/sms/send',
+      {
+        phone: phone
+      },function (data){
+        if(data.success){
+          $.toast({
+            loader: false,
+            text: '验证码发送成功!',
+            position: 'top-center',
+            allowToastClose: false,
+            hideAfter: 3000,
+            icon: 'success'
+          })
+          startInterval()
+        } else {
+          $.toast({
+            loader: false,
+            text: '验证码发送失败' + ((data && data.error) ? ('(' + data.error.message + ')') : '') + '!',
+            position: 'top-center',
+            icon: 'error',
+            hideAfter: 2000,
+            allowToastClose: false
+          })
+        }
+      }
+    )
   })
   /**************  发送验证码  **************/
 

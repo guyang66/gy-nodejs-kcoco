@@ -1,5 +1,6 @@
+const baseModel = require('./baseModel')
 module.exports = app => {
-  const { mongoose, baseModel } = app;
+  const { mongoose } = app;
   const Download = new mongoose.Schema(
     Object.assign({}, baseModel, {
       id: { type: Number, required: [true,'id不能为空！'], unique: true},

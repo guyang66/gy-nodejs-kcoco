@@ -1,5 +1,6 @@
+const baseModel = require('./baseModel')
 module.exports = app => {
-  const { mongoose, baseModel } = app;
+  const { mongoose } = app;
   const Tdk = new mongoose.Schema(
     Object.assign({}, baseModel, {
       key: { type: String, default: '' },

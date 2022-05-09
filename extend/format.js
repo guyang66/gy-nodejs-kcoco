@@ -1,4 +1,17 @@
 module.exports = app => ({
+  /**
+   *  格式Date 返回格式：YYYY-MM-DD
+   */
+
+  formatDateYYMMDD (t) {
+    if(!(t instanceof Date)){
+      t = new Date(t)
+    }
+    let y = t.getFullYear()
+    let m = t.getMonth() + 1
+    let d = t.getDate()
+    return '' + y + '-' + (m < 10 ? ('0' + m) : m) + '-' + (d < 10 ? ('0' + d) : d)
+  },
 
   /**
    * 格式化Date YYMMDD hhmmss
