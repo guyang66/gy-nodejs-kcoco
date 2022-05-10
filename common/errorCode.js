@@ -46,7 +46,7 @@ module.exports = {
   },
 
   EMAIL_FORMAT_ERROR: {
-    code: 2000,
+    code: 2001,
     message: '邮箱格式有误',
     description: '邮箱格式有误'
   },
@@ -99,5 +99,38 @@ module.exports = {
     code: 3007,
     message: '验证码错误',
     description: '短信验证码输入错误'
+  },
+
+  // 管理后台
+
+  PASSWORD_WRONG_ERROR: {
+    code: 4001,
+    message: '密码错误',
+    description: '用户密码错误'
+  },
+
+  USER_NOT_EXIST_ERROR: {
+    code: 4002,
+    message: '用户不存在或者已被禁用',
+    description: '用户不存在或者已被禁用，请联系管理员！'
+  },
+
+  SYS_TOKEN_CHECK_ERROR: {
+    code: 4003,
+    message: 'token解析失败(check)',
+    description: '系统token解析失败(check)'
+  },
+
+  SYS_TOKEN_DECODE_ERROR: {
+    code: 4004,
+    message: 'token解析失败(decode)',
+    description: '系统token解析失败(decode)'
+  },
+
+  USER_NOT_LOGIN: {
+    code: 4005,
+    message: '无权访问（用户未登录或登录信息已失效）',
+    description: '无权访问（用户未登录或登录信息已失效）'
   }
+
 }

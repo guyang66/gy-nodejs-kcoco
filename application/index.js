@@ -17,6 +17,7 @@ const {
   initConstants,
   initNodeCache,
   initMongodb,
+  initJwtKey,
   initMongoDBModel,
 } = require('./loader')
 
@@ -63,7 +64,6 @@ class Application {
     initExtend(this)
     console.log("========= extends-helper ==========")
     // console.log(this.$helper)
-
 
     // 初始化service
     this.$service = initService(this);
@@ -145,6 +145,9 @@ class Application {
 
     // json格式化response数据
     this.$app.use(json())
+
+    // 初始化jwt
+    this.$jwtKey = initJwtKey(this)
 
     // error处理
     onerror(this.$app)

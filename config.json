@@ -56,6 +56,9 @@
     "resetWhenReload": true,
     "secret": "gy2022"
   },
+  "crypto": {
+    "secret": "gy_kcoco_2022"
+  },
   "smtp": {
     "serviceType": "qq",
     "qq": {

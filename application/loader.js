@@ -181,6 +181,13 @@ function initSchedule (app) {
   });
 }
 
+function initJwtKey (app) {
+  const config = app.$config
+  const preKey = config.jwt.secret
+  // 加一个随机值，这样服务重启之后，之前登录过的用户登录信息全部失效，强制重新登录
+  return '' + preKey + Math.random()
+}
+
 module.exports = {
   initController,
   initRouter,
@@ -193,5 +200,6 @@ module.exports = {
   initMongoDBModel,
   initMongodb,
   initSchedule,
+  initJwtKey,
   initConstants,
 }

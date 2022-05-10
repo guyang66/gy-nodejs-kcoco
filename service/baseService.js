@@ -8,6 +8,8 @@ module.exports = app => ({
    */
   async queryById (model, id) {
     const { errorLogger } = app.$log4
+
+    // todo: try catch 不是万能的，有些是错误而非异常，错误就应该被可视，然后被解决，try catch处理异常是为了捕获不知道的意外情况。
     try {
       return await model.findById(id)
     } catch (e){

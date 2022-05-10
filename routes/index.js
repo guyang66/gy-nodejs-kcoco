@@ -1,7 +1,9 @@
 module.exports = app => {
   const { router, $controller, $middleware } = app;
 
-  // 页面路由
+  /**
+   * 官网页面路由
+   */
   router.get('/', $controller.pageController.index)
   router.get('/index', $controller.pageController.index)
   router.get('/index.html', $controller.pageController.index)
@@ -88,13 +90,32 @@ module.exports = app => {
   router.get('/about/tag', $controller.pageController.tag)
   router.get('/form', $controller.pageController.form)
 
-  // 普通接口
+  /**
+   * 普通接口
+   */
   // todo: 普通接口 /api 开头，否则一律返回页面路由，找不到路由就返回404错误页面 ，/api开头找不到的就处理成404错误。
 
   router.get('/api/sms/send', $controller.smsController.send)
   router.get('/api/sms/verify', $controller.smsController.verify)
 
   router.get('/api/clue/save', $controller.clueController.save)
+
+  /**
+   * 管理后台接口
+   */
+
+  // 菜单
+  router.get('/api/menu/user/auth',$middleware.auth, $controller.adminMenuController.getMenu)
+
+
+  // 路由
+  router.get('/api/route/user/auth',$middleware.auth, $controller.adminRouteController.getRoute)
+
+  // user相关
+  router.get('/api/user/getUserInfo/auth', $middleware.auth, $controller.adminUserController.getUserInfo)
+
+  // 登录
+  router.post('/api/login', $controller.adminAuthController.login)
 
   // router.get('/test', $controller.commonController.test2)
 

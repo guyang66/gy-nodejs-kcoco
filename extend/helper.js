@@ -1,4 +1,6 @@
 const errorCode = require('../common/errorCode')
+const jwt = require('jsonwebtoken')
+const crypto = require('crypto');
 
 const getRandom = function (n, m) {
   n = Number(n);
@@ -276,5 +278,63 @@ module.exports = app => ({
       str += SMS_CODE_CHAR_SET.charAt(ran);
     }
     return str
-  }
+  },
+
+  /**
+   * 生成token
+   * @returns {Promise<void>}
+   */
+  async createToken( data ) {
+    let { $config, $jwtKey } = app;
+    // 测试环境用固定secret，不然一直重启，管理后台一直需要重新登录，影响开发效率
+    if($config.jwt.resetWhenReload && process.env.NODE_ENV === 'production'){
+      return await jwt.sign(data, $jwtKey, {expiresIn: 30 * 24 * 60 * 60 + 's'});
+    }
+    return await jwt.sign(data, $config.jwt.secret, {expiresIn: 30 * 24 * 60 * 60 + 's'});
+  },
+
+  /**
+   * 检查token
+   * @param token
+   * @returns {Promise<void>}
+   */
+  async checkToken (token) {
+    let { $config, $jwtKey } = app;
+    if($config.jwt.resetWhenReload && process.env.NODE_ENV === 'production'){
+      return await jwt.verify(token, $jwtKey)
+    }
+    return await jwt.verify(token, $config.jwt.secret)
+  },
+
+  /**
+   * decode token
+   * @param token
+   * @returns {Promise<*>}
+   */
+  async decodeToken (token) {
+    return await jwt.decode(token)
+  },
+
+  /**
+   * 密码加密
+   * @param password
+   * @returns {Promise<string>}
+   */
+  async createPassword (password) {
+    let { $config } = app;
+    const hmac = crypto.createHash("sha256", $config.crypto.secret);
+    hmac.update(password.toString());
+    return hmac.digest("hex");
+  },
+
+  /**
+   * 校验密码
+   * @param password
+   * @param dbPassword
+   * @returns {Promise<boolean>}
+   */
+  async checkPassword (password, dbPassword) {
+    let target = await this.createPassword(password);
+    return target === dbPassword
+  },
 })
