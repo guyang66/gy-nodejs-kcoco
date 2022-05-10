@@ -11,12 +11,11 @@
   <link rel="stylesheet" href="/css/article.css">
   <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="/css/global.css">
-  <link rel="stylesheet" href="/common/plugins/css/swiper.css">
-  <link rel="stylesheet" href="/common/plugins/video-js/video-js.css">
+  <link rel="stylesheet" href="<%=getContext('swiper.css','css')%>">
 
   <!--js-->
-  <script src="/common/plugins/jquery.min.js"></script>
-  <script src="/common/plugins/swiper.js"></script>
+  <script src="<%=getContext('jquery.min.js','commonjs')%>"></script>
+  <script src="<%=getContext('swiper.js','commonjs')%>"></script>
 </head>
 <body>
 <div class="main-layout">
@@ -63,7 +62,7 @@
   <%- include('../../../component/sideMenus');%>
 
 </div>
-<script src="/js/common.js"></script>
+<script src="<%=getContext('common.js')%>"></script>
 <%- include('../../../layout/commonFoot');%>
 </body>
 </html>
