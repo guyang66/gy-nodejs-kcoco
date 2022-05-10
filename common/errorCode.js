@@ -27,6 +27,12 @@ module.exports = {
     description: '异常错误'
   },
 
+  MOCK_DATA_ERROR: {
+    code: 999,
+    message: '当前接口功能不能使用，请设置config.json->dataMock为true，并正确连接数据库',
+    description: '当前接口功能不能使用，请设置config.json->dataMock为true，并正确连接数据库'
+  },
+
   PARAM_EMPTY_ERROR: {
     code: 1000,
     message: '参数有误',
@@ -39,12 +45,18 @@ module.exports = {
     description: '手机号码格式有误'
   },
 
+  EMAIL_FORMAT_ERROR: {
+    code: 2000,
+    message: '邮箱格式有误',
+    description: '邮箱格式有误'
+  },
+
   // 短信相关错误
 
   SMS_SERVER_ERROR: {
     code: 3000,
-    message: '验证服务异常，请稍后再试',
-    description: '验证服务异常，请联系管理员'
+    message: '短信服务异常，请稍后再试',
+    description: '短信服务异常，请联系管理员'
   },
 
   SMS_SEND_FREQUENT_ERROR: {
@@ -68,7 +80,7 @@ module.exports = {
   SMS_NO_AVAILABLE_INFO_ERROR: {
     code: 3004,
     message: '验证码错误',
-    description: '未查到该手机号码的验证码相关信息'
+    description: '未查到该手机号码有相关验证码信息'
   },
 
   SMS_CODE_USED_ERROR: {

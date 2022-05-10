@@ -4,13 +4,11 @@ const sendAction = async function(config, phone, code) {
   if(process.env.NODE_ENV !== 'production' && process.env.SMS_ENV !== 'qa'){
     return true
   }
-  // todo: 如果要测试发短信，请预读一下文档，按照文档配置即可。
-  // 发送测试短信  文档：https://help.aliyun.com/document_detail/108064.html
-  // openAPI: https://next.api.aliyun.com/api/Dysmsapi/2017-05-25/SendSms?spm=a2c4g.11186623.0.0.5b2f7218tUIgxh&params=%7B%7D&sdkStyle=old&lang=NODEJS
   let smsType = config.type
-
   if(smsType === 'aliyun'){
-
+    // todo: 如果要测试发短信，请预读一下文档，按照文档配置即可。
+    // 发送测试短信  文档：https://help.aliyun.com/document_detail/108064.html
+    // openAPI: https://next.api.aliyun.com/api/Dysmsapi/2017-05-25/SendSms?spm=a2c4g.11186623.0.0.5b2f7218tUIgxh&params=%7B%7D&sdkStyle=old&lang=NODEJS
     const Core = require('@alicloud/pop-core');
     let aliyunSmsConfig = config['aliyun']
     let smsClient = new Core({
@@ -38,7 +36,7 @@ const sendAction = async function(config, phone, code) {
     try {
       let r = await smsClient.request('SendSms', smsParams, requestOption)
       smsLogger.info('【阿里云短信服务】短信订单：','phone:' + phone + ';','code:' + code + ';')
-      smsLogger.info('【阿里云短信服务】短信结果信息：', 'RequestId：' + r.RequestId + ';', 'Message' + r.Message + ';', 'BizId' + r.BizId + ';', 'Code' + r.Code + ';')
+      smsLogger.info('【阿里云短信服务】短信结果信息：', 'RequestId：' + r.RequestId + ';', 'Message：' + r.Message + ';', 'BizId：' + r.BizId + ';', 'Code：' + r.Code + ';')
       return {
         result: true,
         data: r.Message
@@ -72,6 +70,11 @@ module.exports = app => ({
     const { userVisit, smsCode } = $model
     const { errorLogger, smsLogger } = $log4
     const { SMS_VISIT_ACTION, SMS_SEND_TIME_CIRCLE, SMS_SEND_DAY_TIMES } = $constants
+
+    if($config.dataMock){
+      // 当前是数据使用mock数据，表单相关接口不能使用
+      return $helper.wrapResult(false, 'MOCK_DATA_ERROR')
+    }
     // todo: 怎么设计短信限制规则
     //增加访问记录，用来记录同一个人的发送记录
     let uv = await $service.baseService.queryOne(userVisit,{
@@ -110,7 +113,6 @@ module.exports = app => ({
     }
 
     const randomCode = $helper.getRandomCode()
-    //todo: 使用真的短信服务的时候，需要try catch
     let sendResult = await sendAction($config.sms, phone, randomCode)
     if(!sendResult.result){
       errorLogger.error('【短信验证码发送】验证码服务出错：' + JSON.stringify({phone, ipString, dateTag}))
@@ -149,11 +151,14 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async verifySms (phone, code) {
-    const { $helper, $constants, $service, $model, $utils, $log4 } = app
+    const { $helper, $constants, $service, $model, $utils, $log4, $config } = app
     const { SMS_CODE_EXPIRE } = $constants
     const { smsLogger } = $log4
     const { smsCode } = $model
-
+    if($config.dataMock){
+      // 当前是数据使用mock数据，表单相关接口不能使用
+      return $helper.wrapResult(false, 'MOCK_DATA_ERROR')
+    }
     let verifyCodeList = await $service.baseService.query(smsCode,{phone: phone}, null, {sort: {createTime: -1}})
     if(!verifyCodeList || verifyCodeList.length < 1){
       // 未查询到数据

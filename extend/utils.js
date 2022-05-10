@@ -116,4 +116,18 @@ module.exports = app => ({
     }
     return Math.abs(t1.getTime() - t2.getTime())
   },
+
+  /**
+   * @param object
+   * @returns {string}
+   */
+  localStringify (object) {
+    return JSON.stringify(object, function (k, v) {
+      if (v instanceof RegExp) {
+        return v.toString();
+      }
+      return v;
+    })
+  }
+
 })

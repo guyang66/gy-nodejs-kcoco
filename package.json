@@ -6,14 +6,15 @@
   "author": "goyoung",
   "remark": "",
   "scripts": {
+    "kill": "kill `lsof -t -i:8090`",
     "clear": "rimraf ./logs/*",
     "start": "npm run gulp & npm run server",
     "server": "cross-env NODE_ENV=development node app.js",
     "qa": "npm run gulp & npm run qa-server",
     "qa-server": "cross-env NODE_ENV=development SMS_ENV=qa node app.js",
     "prd": "cross-env NODE_ENV=production pm2 start app.js -n gy-nodejs-kcoco",
-    "test": "jest --colors --coverage --verbose ./test/unit/specs",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "test": "jest --colors --coverage --verbose ./test/unit/specs"
   },
   "dependencies": {
     "@alicloud/dysmsapi20170525": "^2.0.9",

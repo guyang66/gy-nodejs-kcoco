@@ -71,14 +71,11 @@ class Application {
 
     // 初始化controller
     this.$controller = initController(this);
-
     console.log("========= controllers ==========")
     // console.log(this.$controller)
 
     // 初始化路router
     this.$router = initRouter(this);
-
-    // 初始化oss clinet
 
     // 将ctx挂到到app上
     this.$app.use(async (ctx, next) => {
@@ -168,8 +165,8 @@ class Application {
         menus: menus,
         footerData: footerData,
         tdk: tdk,
-        // todo: 从源码中看到模板是可以被缓存的，有点像vue中静态部分被缓存（就是纯静态的部分，不随外部变量变化的片段），追求极致渲染速度是可以开启这个优化的
-
+        // todo: 从源码中看到模板是可以被缓存的，有点像vue中静态部分被缓存（就是纯静态的部分，没有绑定动态数据，不随外部变量变化的片段），
+        // 追求极致渲染速度是可以开启这个优化的，目前没有感受到速度上质的变化
         cache: !!this.$config.engine.cache // consolidate层 针对compile函数的缓存
       }
       await next();
@@ -199,7 +196,7 @@ class Application {
    */
   start(port){
     let server = this.$app.listen(port, ()=>{
-      console.log(chalk.green('server start on ' + port + '..........'))
+      console.log(chalk.green('============== server start on ' + port + ' =============='))
     });
     // server.timeout = 1000 * 60 * 5
   }

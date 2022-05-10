@@ -114,7 +114,8 @@ function initExtend(app) {
 function initMongodb(app) {
   const chalk = require('chalk');
   const { commonLogger, mongoDBLogger,  } = app.$log4
-  const localStringify = require('../utils').localStringify
+  const utils = require('../extend/utils')
+  const { localStringify } = utils(app)
   const mongoose = require('mongoose').set('debug', function (collectionName, method, query, doc) {
     let str = collectionName + '.' + method + '(' + localStringify(query) + ',' + localStringify(doc) + ')'
     // 开启sql log
@@ -135,7 +136,7 @@ function initMongodb(app) {
   }
   const uri = 'mongodb://' + `${dbConfig.user}` + ':' + `${encodeURIComponent(dbConfig.pass)}` + '@' + `${dbConfig.servername}`  + ':' + `${dbConfig.port}` + '/' + `${dbConfig.database}`
   let url = uri + '?gssapiServiceName=mongodb'
-  console.log(url)
+  console.log(chalk.cyan('【mongodb url】：' + url));
   mongoose.connect(url,options,function (){})
   let db = mongoose.connection
 
@@ -145,7 +146,7 @@ function initMongodb(app) {
   });
   db.once('open', ()=> {
     commonLogger.info("mongoDB connect success");
-    console.log(chalk.green('============== mongoDB connect success================='));
+    console.log(chalk.green('============== mongoDB connect success ================='));
   })
   app.$mongoose = mongoose
   app.$db = db
