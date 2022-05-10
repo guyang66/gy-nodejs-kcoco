@@ -16,25 +16,27 @@ function setEnv (cb) {
 }
 
 // 策略是
-// function js() {
-//   // 压缩js
-//   if(env === 'development'){
-//     return
-//   }
-//   return src('public/js/**/*.js')
-//     .pipe(uglify())
-//     .pipe(dest('public/javascripts'))
-// }
-//
-// function jsCommon(){
-//   // 压缩全局js
-//   if(env === 'development'){
-//     return
-//   }
-//   return src('public/common/plugins/**/*.js')
-//     .pipe(uglify())
-//     .pipe(dest('public/javascripts/common'))
-// }
+function js() {
+  // 压缩js
+  if(env === 'development'){
+    return
+  }
+  // 输出到/public/javascripts/目录下
+  // 如果开发环境（或者生产环境不想使用压缩后的js）则引入/public/js 下未压缩的js
+  return src('public/js/**/*.js')
+    .pipe(uglify())
+    .pipe(dest('public/javascripts'))
+}
+
+function jsCommon(){
+  // 压缩plugins中的插件js
+  if(env === 'development'){
+    return
+  }
+  return src('public/common/plugins/**/*.js')
+    .pipe(uglify())
+    .pipe(dest('public/javascripts/common'))
+}
 
 function css() {
   // 编译css
@@ -67,7 +69,7 @@ function cssCommon () {
     return
   }
   // 压缩common css
-  return src('public/common/css/**.css')
+  return src('public/common/plugins/css/**.css')
     .pipe(cssmin())
     .pipe(dest('public/css/common'))
 }
@@ -86,4 +88,4 @@ watch(['views/styles/*.styl'],function (cb){
 
 // series 链式处理（setEnv是前置条件）
 // parallel 并且处理
-exports.default = series(setEnv, parallel(css, cssGlobal, cssCommon))
+exports.default = series(setEnv, parallel(js, jsCommon, css, cssGlobal, cssCommon))

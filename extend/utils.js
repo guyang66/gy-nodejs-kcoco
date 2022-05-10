@@ -128,6 +128,34 @@ module.exports = app => ({
       }
       return v;
     })
+  },
+
+  /**
+   * 处理静态资源的引入方式
+   * @param path 相对路径
+   * @param key
+   *    1、js => 普通js
+   *    2、commonjs => 插件中的js
+   *    3、css => css
+   * @param useCdn 是否使用cdn
+   * @returns {string}
+   */
+  getContext (path, key='js', useCdn) {
+    const { $config } = app
+    // 开发环境不使用压缩后的文件
+    let url = process.env.NODE_ENV === 'production' ? '/javascripts/' + path : '/js/' + path
+    if(key === 'css'){
+      url = process.env.NODE_ENV === 'production' ? '/css/common/' + path : '/common/css/' + path
+    }
+    if(key === 'commonjs'){
+      url = process.env.NODE_ENV === 'production' ? '/javascripts/common/' + path : '/common/plugins/' + path
+    }
+    if(useCdn){
+      // todo: 使用cdn的时候，将public目录直接上传到cdn上即可，然后$config.cdn.domain设置为相应的前缀即可
+      // 如果部署发布的时候是替换整个项目（不是用git pull增量更新），那么public路面需要给相应权限，不然静态资源会无法访问，所以推荐使用cdn
+      url = $config.cdn.domain + url
+    }
+    return  url
   }
 
 })

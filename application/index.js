@@ -45,7 +45,7 @@ class Application {
     this.initSettings(this)
 
     //初始化中间件
-    this.initDefaultMiddleware()
+    this.initDefaultMiddleware(this)
 
     // 初始化日志系统
     this.$log4 = initLog4(this)
@@ -111,13 +111,15 @@ class Application {
   /**
    * 初始化koa常用中间件
    */
-  initDefaultMiddleware () {
+  initDefaultMiddleware (app) {
     const json = require('koa-json');
     const onerror = require('koa-onerror');
     const koaStatic = require('koa-static');
     const koaBody = require('koa-body');
     const cors = require('koa2-cors');
     const views = require('koa-views');
+    const utils = require('../extend/utils')
+    const { getContext } = utils(app)
 
     // 日志打点 最顶层中间件
     if(process.env.NODE_ENV === 'development'){
@@ -125,7 +127,7 @@ class Application {
     }
 
     // 静态资源 - 1天的缓存
-    let opts = process.env.NODE_ENV === 'production' ? { maxage: 24 * 60 * 60  * 1000} : {}
+    let opts = process.env.NODE_ENV === 'production' ? { maxage: 24 * 60 * 60  * 1000 } : { maxage: 1000 }
     this.$app.use(koaStatic(path.resolve(__dirname, '../public'), opts))
 
     // body接口数据处理(用koa-body 替代koa-bodyparser和koa-multer，前者处理post的参数为json格式，后者为文件上传相关)
@@ -161,7 +163,7 @@ class Application {
       // 公共数据的优先级大于模板引擎参数，如果在pageController中给template页传入tdk，则会被这里的公共tdk所覆盖
       // 特殊页面，如新闻页面的tdk还需要额外去处理，所以需要区别开来两个参数(template参数用pageTdk)
       ctx.state = {
-        getContext: function (){}, // 可以用来处理静态资源，cdn
+        getContext: getContext, // 可以用来处理静态资源，cdn
         menus: menus,
         footerData: footerData,
         tdk: tdk,

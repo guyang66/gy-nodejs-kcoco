@@ -16,7 +16,11 @@
       "pass": "123456"
     },
     "prd": {
-
+      "servername": "localhost",
+      "database": "kcoco",
+      "port": 27017,
+      "user": "gy",
+      "pass": "123456"
     }
   },
   "baseURL": "",

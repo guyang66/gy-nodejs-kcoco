@@ -12,6 +12,7 @@
     "server": "cross-env NODE_ENV=development node app.js",
     "qa": "npm run gulp & npm run qa-server",
     "qa-server": "cross-env NODE_ENV=development SMS_ENV=qa node app.js",
+    "build": "rimraf ./logs/* & cross-env NODE_ENV=production npm run gulp",
     "prd": "cross-env NODE_ENV=production pm2 start app.js -n gy-nodejs-kcoco",
     "gulp": "gulp",
     "test": "jest --colors --coverage --verbose ./test/unit/specs"
