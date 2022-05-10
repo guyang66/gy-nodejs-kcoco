@@ -57,6 +57,7 @@ class Application {
 
     // 初始化数据库
     initMongodb(this);
+    console.log(this.$db)
 
     // 初始化extend类
     initExtend(this)

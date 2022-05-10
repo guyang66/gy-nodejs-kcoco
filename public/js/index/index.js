@@ -1,5 +1,7 @@
 // 处理导航栏
 $(function () {
+  $('.header-bg').css('opacity', 0.4);
+
   if ($(document).scrollTop() > 535 - 95 - 64) {
     $('.header-bg').css('opacity', 1);
   }

@@ -145,7 +145,7 @@ module.exports = app => ({
     // 开发环境不使用压缩后的文件
     let url = process.env.NODE_ENV === 'production' ? '/javascripts/' + path : '/js/' + path
     if(key === 'css'){
-      url = process.env.NODE_ENV === 'production' ? '/css/common/' + path : '/common/css/' + path
+      url = process.env.NODE_ENV === 'production' ? '/css/common/' + path : '/common/plugins/css/' + path
     }
     if(key === 'commonjs'){
       url = process.env.NODE_ENV === 'production' ? '/javascripts/common/' + path : '/common/plugins/' + path
