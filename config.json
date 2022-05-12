@@ -94,6 +94,27 @@
       "TemplateParamFormatString": "{\"phone\":\"{your phone}\",\"code\":\"{your code}\"}"
     }
   },
+  "oss": {
+    "region": "your oss region",
+    "accessKeyId": "your accessKeyId",
+    "accessKeySecret": "your accessKeySecret",
+    "bucket": "your bucket",
+    "imgDir": "/kcoco/dev/img/",
+    "rootDir": "/kcoco/dev/resource/",
+    "prdImgDir": "/kcoco/prd/img/",
+    "prdRootDir": "/kcoco/prd/resource",
+    "remark": ""
+  },
+  "captcha": {
+    "size": 4,
+    "width": 160,
+    "height": 60,
+    "fontSize": 50,
+    "ignoreChars": "0oO1ilI",
+    "noise": 2,
+    "color": true,
+    "background": "#eee"
+  },
   "dataMock": false,
   "clueBackup": false
 }

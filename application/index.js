@@ -18,7 +18,9 @@ const {
   initNodeCache,
   initMongodb,
   initJwtKey,
+  initSession,
   initMongoDBModel,
+  initOss,
 } = require('./loader')
 
 class Application {
@@ -78,6 +80,12 @@ class Application {
     // 初始化路router
     this.$router = initRouter(this);
 
+    // 初始化session
+    initSession(this)
+
+    // 初始化oss
+    this.$oss = initOss(this)
+
     // 将ctx挂到到app上
     this.$app.use(async (ctx, next) => {
       this.ctx = ctx;
@@ -88,12 +96,15 @@ class Application {
     this.$app.use(this.$router.routes());
 
     // 全局异常捕获
-    process.on('uncaughtException',function (err){
-      console.log('uncaughtException:' + err)
-      const { errorLogger } = this.$log4
-      errorLogger.error('=============【全局异常捕获】=============')
-      errorLogger.error(err)
-    })
+    // 生产环境才需要全局捕获，避免程序崩溃，不要影响其他功能，能继续运行
+    // 开发环境不需要全局捕获，有异常立马抛出并在控制台打印，并处理解决。
+    if(process.env.NODE_ENV === 'product'){
+      process.on('uncaughtException',function (err){
+        const { errorLogger } = this.$log4
+        errorLogger.error('=============【全局异常捕获】=============')
+        errorLogger.error(err)
+      })
+    }
 
     this.afterAll(this)
   }

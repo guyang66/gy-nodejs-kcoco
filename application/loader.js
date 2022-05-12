@@ -24,13 +24,15 @@ function scanFilesByFolder(dir, cb) {
     const files = fs.readdirSync(_folder);
     files.forEach((file) => {
 
-      // 剔除一些隐藏文件
+      // 剔除一些隐藏文件（如.DS_Store）这些隐藏文件会导致加载失败，本地没啥问题，但是服务器上可能会有 todo:后续可以再优化
+      // pm2 默认日志  root/.pm2/log
       if(file.match(/.DS/)){
         return;
       }
       if(file.match(/._v/)){
         return;
       }
+
       if(file.match(/._/)){
         return;
       }
@@ -188,6 +190,43 @@ function initJwtKey (app) {
   return '' + preKey + Math.random()
 }
 
+function initSession (app) {
+  const config = app.$config
+  // 1.koa-session同时支持cookie和外部存储, 外部存储看用户量，可以放本地或者数据库。
+  //   如果session采用外部存储的方式，安全性是比较容易保证的，因为cookie中保存的只是session的external key，默认实现是一个时间戳加随机字符串，因此不用担心被恶意篡改或者暴露信息。
+  //   当然如果cookie本身被窃取，那么在过期之前还是可以被用来访问session信息（当然我们可以在标识中加入更多的信息，比如ip地址，设备id等信息，从而增加更多校验来减少风险
+  //   这里session就用来保存下验证码，不做登录，所以不需要太多考虑安全性
+  //   httpOnly 选项，就是不允许浏览器中的js代码来获取cookie，避免遭到一些恶意代码的攻击
+  //   signed=true 会自动给cookie加上一个sha256的签名, 我们设置为false，以免session访问失败。
+
+  // 2.当然表单的验证码也是可以存储在session中的
+  /**
+   "key": "kcoco:sess",
+   "maxAge": 10000,
+   "autoCommit": true,
+   "overwrite": true,
+   "httpOnly": true,
+   "signed": false,
+   "rolling": false,
+   "renew": false
+   */
+  const sessionInstance = Session(config.session, app.$app)
+  app.$app.use(sessionInstance)
+}
+
+// 初始化oss客户端
+
+const initOss = function (app){
+  const { $config } = app
+  let client = new OSS({
+    region: $config.oss.region,
+    accessKeyId: $config.oss.accessKeyId,
+    accessKeySecret: $config.oss.accessKeySecret,
+    bucket: $config.oss.bucket
+  })
+  return client
+}
+
 module.exports = {
   initController,
   initRouter,
@@ -202,4 +241,6 @@ module.exports = {
   initSchedule,
   initJwtKey,
   initConstants,
+  initSession,
+  initOss,
 }

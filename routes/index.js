@@ -105,18 +105,21 @@ module.exports = app => {
    */
 
   // 菜单
-  router.get('/api/menu/user/auth',$middleware.auth, $controller.adminMenuController.getMenu)
+  router.get('/api/menu/auth',$middleware.auth, $controller.adminMenuController.getMenu)
 
 
   // 路由
-  router.get('/api/route/user/auth',$middleware.auth, $controller.adminRouteController.getRoute)
+  router.get('/api/route/auth',$middleware.auth, $controller.adminRouteController.getRoute)
 
   // user相关
   router.get('/api/user/getUserInfo/auth', $middleware.auth, $controller.adminUserController.getUserInfo)
+  router.post('/api/user/updateUserInfo/auth', $middleware.auth, $controller.adminUserController.updateUserInfo)
+  router.post('/api/user/updatePassword/auth', $middleware.auth, $controller.adminUserController.updatePassword)
+
 
   // 登录
   router.post('/api/login', $controller.adminAuthController.login)
-
+  router.get('/api/getCaptcha', $controller.commonController.getCaptcha)
   // router.get('/test', $controller.commonController.test2)
 
   return router

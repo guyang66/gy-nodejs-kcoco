@@ -19,4 +19,76 @@ module.exports = app => ({
     let realUser = await $service.userService.getUserInfoById(user._id)
     ctx.body = $helper.Result.success(realUser)
   },
+
+  /**
+   * 更新用户信息
+   * @returns {Promise<void>}
+   */
+  async updateUserInfo () {
+    const { ctx, $service, $helper, $model, $utils } = app
+    const { adminUser } = $model
+    const { content, id } = ctx.request.body
+    if(!id){
+      ctx.body = $helper.Result.fail(-1,'参数有误（id不存在）！')
+      return
+    }
+
+    if($utils.isEmptyObject(content)){
+      ctx.body = $helper.Result.success('更新成功！')
+      return
+    }
+
+    // todo: 处理默认角色name
+
+    let r = await $service.baseService.updateById(adminUser, id, content)
+    if(r){
+      ctx.body = $helper.Result.success('更新成功！')
+    } else {
+      ctx.body = $helper.Result.error('SYSTEM_ERROR')
+    }
+  },
+
+  /**
+   * 修改密码
+   * @returns {Promise<void>}
+   */
+  async updatePassword () {
+    const { ctx, $service, $model, $helper } = app
+    const { adminUser } = $model
+    let { password, verifyCode } = ctx.request.body
+    let code =  ctx.session.captcha
+    if(!password || password === ''){
+      ctx.body = $helper.Result.fail(-1,'密码不能设置为空！')
+      return
+    }
+
+    if(!verifyCode || verifyCode === '' || verifyCode.length !== 4){
+      ctx.body = $helper.Result.fail(-1,'验证码格式有误！')
+      return
+    }
+
+    if(verifyCode.toLowerCase() !== code){
+      ctx.body = $helper.Result.fail(-1,'验证码错误！')
+      return
+    }
+    const token = ctx.header.authorization
+    let userInfo;
+    try {
+      userInfo = await $helper.decodeToken(token)
+    } catch (e) {
+      $helper.Result.fail(-1,e)
+    }
+    if(!userInfo){
+      $helper.Result.fail(-1, '用户信息不存在或者用户未登录')
+    }
+
+    let pass = await $helper.createPassword(password.toString())
+    let r = await $service.baseService.updateById(adminUser, userInfo._id, {password: pass})
+    if(r){
+      ctx.body = $helper.Result.success('ok')
+    } else {
+      ctx.body = $helper.Result.fail(-1, 'fail')
+    }
+  }
+
 })
