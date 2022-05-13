@@ -24,8 +24,8 @@
     }
   },
   "baseUrl": {
-    "dev": "http://localhost:8090",
-    "prd": "www.yyyangyang.com"
+    "dev": "http://localhost:8090/",
+    "prd": "www.yyyangyang.com/"
   },
   "cdn": {
     "domain": "https://cdn.xxx.com"

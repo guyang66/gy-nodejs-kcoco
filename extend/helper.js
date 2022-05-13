@@ -1,6 +1,8 @@
 const errorCode = require('../common/errorCode')
 const jwt = require('jsonwebtoken')
 const crypto = require('crypto');
+const fs = require('fs')
+const path = require('path')
 
 const getRandom = function (n, m) {
   n = Number(n);
@@ -11,6 +13,32 @@ const getRandom = function (n, m) {
     m = tmp
   }
   return Math.floor(Math.random() * (m - n) + n);
+}
+
+const getStat = function (filePath) {
+  // 封装为promise
+  return new Promise((resolve, reject) => {
+    fs.stat(filePath, (err, stats) => {
+      if (err) {
+        resolve(false)
+      } else {
+        resolve(stats);
+      }
+    })
+  })
+}
+
+const mkdir = function (dir) {
+  // 封装为promise
+  return new Promise((resolve, reject) => {
+    fs.mkdir(dir, (err) => {
+      if (err) {
+        resolve(false)
+      } else {
+        resolve(true)
+      }
+    })
+  })
 }
 
 module.exports = app => ({
@@ -336,5 +364,29 @@ module.exports = app => ({
   async checkPassword (password, dbPassword) {
     let target = await this.createPassword(password);
     return target === dbPassword
+  },
+
+  /**
+   * 根据path创建指定文件目录
+   * @param dir
+   * @returns {Promise<boolean|*>}
+   */
+  async pathToDir (dir) {
+    let stat = await getStat(dir)
+    // 如果该路径存在且不是文件，返回true
+    if (stat && stat.isDirectory()) {
+      return true
+    } else if (stat) {  // 这个路径对应一个文件，无法再创建文件了
+      return false
+    }
+    // 如果该路径不存在
+    let tempDir = path.parse(dir).dir  //拿到上级路径
+    // 递归判断，如果上级路径也不存在，则继续循环执行，直到存在
+    let status = await this.pathToDir(tempDir)
+    let mkdirStatus
+    if (status) {
+      mkdirStatus = await mkdir(dir)
+    }
+    return mkdirStatus
   },
 })

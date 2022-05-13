@@ -114,26 +114,49 @@ module.exports = app => ({
     }
 
     // todo: 自定义文件目录和名字，以及写入目录不存在时需要创建
-    // 注意，服务器目录权限，可能会发生没有写入权限的问题
-    let file = ctx.request.files[name]
-    const filepath = file.path
-    const filename = file.name
+    // 注意：服务器目录权限，可能会发生没有写入权限的问题
+    // 注意：关注一下暂存目录的文件会不会定时被清理，如果没有是否需要手动清理？不然随着上传，服务器磁盘内存会被一点点吃掉
+    const file = ctx.request.files[name]
+    const filePath = file.path // 文件暂存目录
+    const filename = file.name // 文件全名
+    const uploadRootPath = path.join(__dirname, '../public/upload')
+    const newFilePath = path.join(uploadRootPath, dir, filename); // 文件指定存放目录
     const prefix = file.name.split('.')[1]; // 文件后缀
-    const reader = fs.createReadStream(filepath); // reader流
-    const filePath = path.join(__dirname, '../public/upload/') + filename;
-    const upStream = fs.createWriteStream(filePath);
 
-    // 这里可以做监听操作
-    reader.on('data',function (chunk){
-      console.log('chunk');
+    // 判断同名覆盖设置规则
+    if(overwrite === 'N'){
+      // 同步读取
+      if(fs.existsSync(newFilePath)){
+        ctx.body = $helper.Result.error('UPLOAD_FILE_EXIST_ERROR')
+        return
+      }
+    }
+
+    // 处理目录不存在的情况
+    await $helper.pathToDir(path.join(uploadRootPath, dir))
+
+    const reader = fs.createReadStream(filePath); // reader流
+    reader.on('error',function (err){
+      console.log(err)
+      errorLogger.error('【commonController】 —— uploadV2 —— createReadStream：', err)
     })
+    const upStream = fs.createWriteStream(newFilePath);
+
+    // createWriteStream不抛出异常，它传递一个错误的异步回调，所以用try catch包裹是无法捕获异常的
+    // 不监听error 时间，createWriteStream一旦异常 会导致程序崩溃
+    upStream.on('error',function (err){
+      console.log(err)
+      errorLogger.error('【commonController】 —— uploadV2 —— createWriteStream：', err)
+    })
+
     await reader.pipe(upStream);
 
     let preUrl = $config.baseUrl.dev
     if(process.env.NODE_ENV === 'product'){
       preUrl = $config.baseUrl.prd
     }
-    ctx.body = $helper.Result.success(preUrl + '/upload/' + filename)
+    let url = path.join('upload', dir, filename)
+    ctx.body = $helper.Result.success(preUrl + url)
   }
 
 })

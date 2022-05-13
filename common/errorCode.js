@@ -63,6 +63,11 @@ module.exports = {
     description: '没有指定上传文件的名字'
   },
 
+  UPLOAD_FILE_EXIST_ERROR: {
+    code: 2004,
+    message: '该文件已存在（不允许同名覆盖）',
+    description: '该文件已存在（不允许同名覆盖）'
+  },
 
 
   // 短信相关错误
