@@ -51,6 +51,20 @@ module.exports = {
     description: '邮箱格式有误'
   },
 
+  UPLOAD_NO_FILE_ERROR: {
+    code: 2002,
+    message: '没有需要上传的文件',
+    description: '没有需要上传的文件'
+  },
+
+  UPLOAD_FILE_NAME_EMPTY_ERROR: {
+    code: 2003,
+    message: '上传文件名字为空',
+    description: '没有指定上传文件的名字'
+  },
+
+
+
   // 短信相关错误
 
   SMS_SERVER_ERROR: {

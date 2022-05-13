@@ -122,5 +122,10 @@ module.exports = app => {
   router.get('/api/getCaptcha', $controller.commonController.getCaptcha)
   // router.get('/test', $controller.commonController.test2)
 
+  // 上传
+  router.post('/api/upload/auth', $middleware.auth, $controller.commonController.upload)
+  router.post('/api/multiUpload/auth', $middleware.auth, $controller.commonController.multiUpload)
+  router.post('/api/uploadV2/auth', $middleware.auth, $controller.commonController.uploadV2)
+
   return router
 }

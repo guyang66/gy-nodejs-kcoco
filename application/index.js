@@ -56,11 +56,11 @@ class Application {
     // 初始化model
     this.$model = initMongoDBModel(this);
     console.log("========= models ==========")
-    console.log(this.$model)
+    // console.log(this.$model)
 
     // 初始化数据库
     initMongodb(this);
-    console.log(this.$db)
+    // console.log(this.$db)
 
     // 初始化extend类
     initExtend(this)

@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const Router = require('koa-router');
 const Session = require("koa-session")
+const OSS = require('ali-oss');
 const {errorLogger} = require('../common/log4')
 
 //自动扫指定目录下面的文件并且加载

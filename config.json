@@ -23,7 +23,10 @@
       "pass": "123456"
     }
   },
-  "baseURL": "",
+  "baseUrl": {
+    "dev": "http://localhost:8090",
+    "prd": "www.yyyangyang.com"
+  },
   "cdn": {
     "domain": "https://cdn.xxx.com"
   },
@@ -95,10 +98,10 @@
     }
   },
   "oss": {
-    "region": "your oss region",
+    "region": "oss-cn-shanghai",
     "accessKeyId": "your accessKeyId",
     "accessKeySecret": "your accessKeySecret",
-    "bucket": "your bucket",
+    "bucket": "kcoco",
     "imgDir": "/kcoco/dev/img/",
     "rootDir": "/kcoco/dev/resource/",
     "prdImgDir": "/kcoco/prd/img/",
