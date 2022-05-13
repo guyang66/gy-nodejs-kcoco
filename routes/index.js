@@ -126,6 +126,10 @@ module.exports = app => {
   router.post('/api/upload/auth', $middleware.auth, $controller.commonController.upload)
   router.post('/api/multiUpload/auth', $middleware.auth, $controller.commonController.multiUpload)
   router.post('/api/uploadV2/auth', $middleware.auth, $controller.commonController.uploadV2)
+  // multer单文件上传，必须指定文件名字,
+  router.post('/api/uploadV3/auth', $middleware.auth, $middleware.multer.single('userAvatar'), $controller.commonController.uploadV3)
+  // multer多文件上传
+  // router.post('/api/uploadV3/auth', $middleware.auth, $middleware.multer.array('userAvatar'), $controller.commonController.xxx)
 
   return router
 }

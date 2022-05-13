@@ -143,13 +143,16 @@ class Application {
     this.$app.use(koaStatic(path.resolve(__dirname, '../public'), opts))
 
     // body接口数据处理(用koa-body 替代koa-bodyparser和koa-multer，前者处理post的参数为json格式，后者为文件上传相关)
-    this.$app.use(koaBody({
-      multipart: true,
-      // encoding: 'gzip',
-      formidable: {
-        maxFileSize: 3000 * 1024 * 1024    // 设置上传文件大小最大限制，默认30M
-      }
-    }));
+    // koa-body和multer、busboy有冲突
+    if(this.$config.bodyParse){
+      this.$app.use(koaBody({
+        multipart: true,
+        // encoding: 'gzip',
+        formidable: {
+          maxFileSize: 3000 * 1024 * 1024    // 设置上传文件大小最大限制，默认30M
+        }
+      }));
+    }
 
     // 跨域处理
     this.$app.use(cors());

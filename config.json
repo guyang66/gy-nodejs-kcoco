@@ -23,10 +23,6 @@
       "pass": "123456"
     }
   },
-  "baseUrl": {
-    "dev": "http://localhost:8090/",
-    "prd": "www.yyyangyang.com/"
-  },
   "cdn": {
     "domain": "https://cdn.xxx.com"
   },
@@ -118,6 +114,14 @@
     "color": true,
     "background": "#eee"
   },
+  "upload": {
+    "devBaseUrl": "http://localhost:8090/",
+    "prdBaseUrl": "www.yyyangyang.com/",
+    "multerPath": "upload/multer",
+    "rootPath": "upload",
+    "staticResourcePath": "public"
+  },
   "dataMock": false,
-  "clueBackup": false
+  "clueBackup": false,
+  "bodyParse": true
 }

@@ -93,7 +93,7 @@ module.exports = app => ({
   },
 
   /**
-   * 上传到服务器上(nodejs原生)
+   * 上传到服务器上(koa-body + nodejs原生)
    * @returns {Promise<void>}
    */
   async uploadV2 () {
@@ -108,6 +108,7 @@ module.exports = app => ({
     // 3.使用fs.createWriteStream将读取的内容写入指定目录即可（一般指向我们的静态资目录，当服务启动的时候，就可以访问这个资源了）
     // 4.关闭流，完成
 
+    // 使用koa-body中间件files才会挂到ctx.request上
     if(!ctx.request.files){
       ctx.body = $helper.Result.error('UPLOAD_NO_FILE_ERROR')
       return
@@ -119,7 +120,9 @@ module.exports = app => ({
     const file = ctx.request.files[name]
     const filePath = file.path // 文件暂存目录
     const filename = file.name // 文件全名
-    const uploadRootPath = path.join(__dirname, '../public/upload')
+    const uploadRootPath = path.join(__dirname, '../public', $config.upload.rootPath)
+    console.log(__dirname)
+    console.log(uploadRootPath)
     const newFilePath = path.join(uploadRootPath, dir, filename); // 文件指定存放目录
     const prefix = file.name.split('.')[1]; // 文件后缀
 
@@ -151,12 +154,36 @@ module.exports = app => ({
 
     await reader.pipe(upStream);
 
-    let preUrl = $config.baseUrl.dev
+    let preUrl = $config.upload.devBaseUrl
     if(process.env.NODE_ENV === 'product'){
-      preUrl = $config.baseUrl.prd
+      preUrl = $config.upload.prdBaseUrl
     }
     let url = path.join('upload', dir, filename)
     ctx.body = $helper.Result.success(preUrl + url)
+  },
+
+  /**
+   * 使用multer中间件来上传文件
+   * @returns {Promise<void>}
+   */
+  async uploadV3 () {
+    const { ctx, $helper, $config } = app;
+    let file = ctx.req.file
+    let preUrl = $config.upload.devBaseUrl
+    if(process.env.NODE_ENV === 'product'){
+      preUrl = $config.upload.prdBaseUrl
+    }
+    if(file){
+      let url = path.join($config.upload.multerPath, file.originalname)
+      ctx.body = $helper.Result.success(preUrl + url)
+    } else {
+      // koa-body中间件替代koa-bodyparser和koa-multer，所以koa-body和koa-multer、@koa/multer、multer、busboy等都有冲突
+      // 使用multer上传文件
+      // 方法1：注释掉application中对koa-body的初始化
+      // 方法2: config.json设置bodyParse为false，重启应用
+      console.log(chalk.red('ctx.req.file不存在，如果使用milter上传文件，需要取消koa-body中间使用！'))
+      ctx.body = $helper.Result.fail(-3, '上传失败！')
+    }
   }
 
 })
