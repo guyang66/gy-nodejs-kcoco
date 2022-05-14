@@ -276,48 +276,59 @@ module.exports = {
     {
       key: 'technology',
       name: '技术',
+      order: 70,
     },
     {
       key: 'operating',
       name: '运营',
+      order: 60,
     },
     {
       key: 'product',
       name: '产品',
+      order: 50,
     },
     {
       key: 'sells',
       name: '销售',
+      order: 40,
     },
     {
       key: 'data',
       name: '数据',
+      order: 30,
     },
     {
       key: 'function',
       name: '职能',
+      order: 20,
     },
     {
       key: 'brand',
       name: '品牌',
+      order: 10,
     },
     {
       key: 'other',
       name: '其他',
+      order: 1,
     },
   ],
   place: [
     {
       key: 'hangzhou',
       name: '杭州',
+      order: 20,
     },
     {
       key: 'beijing',
       name: '北京',
+      order: 10,
     },
     {
       key: 'shanghai',
       name: '上海',
+      order: 10,
     },
   ],
 };

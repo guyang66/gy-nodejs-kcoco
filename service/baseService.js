@@ -176,4 +176,25 @@ module.exports = app => ({
     }
   },
 
+  /**
+   * 根据id删除
+   * @param id
+   * @param model
+   * @returns {Promise<boolean>}
+   */
+  async delete (id, model) {
+    const { errorLogger } = app.$log4
+    if(!model){
+      return false
+    }
+    try {
+      await model.findByIdAndRemove(id)
+      return true
+    } catch (e){
+      errorLogger.error('删除失败！' + e)
+      console.log(e)
+      return false
+    }
+  },
+
 })

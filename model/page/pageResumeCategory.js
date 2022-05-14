@@ -5,6 +5,7 @@ module.exports = app => {
   const { mongoose } = app;
   const Category = new mongoose.Schema(
     Object.assign({}, baseModel, {
+      order: { type: Number, default: 1 }, // 排序
       status: { type: Number, default: 1 }, // 1：启用；0：停用
       name: { type: String, required: [true, '简历分类标题不能为空！'] },
       desc: { type: String, default: ''}, // 副标题

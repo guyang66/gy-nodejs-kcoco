@@ -131,6 +131,21 @@ module.exports = app => {
   // 文章新闻
   router.get('/api/news/list/online/auth', $middleware.auth, $controller.adminNewsController.getAllOnlineNews)
 
+  // 招聘
+  router.get('/api/resume/column/auth', $middleware.auth, $controller.adminResumeController.getResumeColumn)
+  router.get('/api/resume/category/auth', $middleware.auth, $controller.adminResumeController.getResumeCategory)
+  router.get('/api/resume/place/auth', $middleware.auth, $controller.adminResumeController.getResumePlace)
+  router.post('/api/resume/list/auth', $middleware.auth, $controller.adminResumeController.getResumeList)
+  router.post('/api/resume/update/auth', $middleware.auth, $controller.adminResumeController.updateResume)
+  router.get('/api/resume/delete/auth', $middleware.auth, $controller.adminResumeController.deleteResume)
+  router.post('/api/resume/category/list/auth', $middleware.auth, $controller.adminResumeController.getResumeCategoryList)
+  router.post('/api/resume/category/update/auth', $middleware.auth, $controller.adminResumeController.updateResumeCategory)
+  router.post('/api/resume/category/save/auth', $middleware.auth, $controller.adminResumeController.saveResumeCategory)
+  router.get('/api/resume/category/delete/auth', $middleware.auth, $controller.adminResumeController.deleteResumeCategory)
+  router.post('/api/resume/place/list/auth', $middleware.auth, $controller.adminResumeController.getResumePlaceList)
+  router.post('/api/resume/place/update/auth', $middleware.auth, $controller.adminResumeController.updateResumePlace)
+  router.post('/api/resume/place/save/auth', $middleware.auth, $controller.adminResumeController.saveResumePlace)
+  router.get('/api/resume/place/delete/auth', $middleware.auth, $controller.adminResumeController.deleteResumePlace)
 
   // 登录
   router.post('/api/login', $controller.adminAuthController.login)

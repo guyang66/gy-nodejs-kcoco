@@ -50,7 +50,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async logout () {
-    // jwt服务端是无状态的，登出由客户端处理即可(清掉缓存)
+    // jwt服务端是无状态的，登出由客户端处理即可(清掉cookie缓存即可)
     const { ctx } = app;
     ctx.body = 'ok'
   }

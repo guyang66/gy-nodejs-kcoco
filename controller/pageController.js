@@ -2497,7 +2497,7 @@ module.exports = app => ({
    */
   async joinus () {
     const { ctx, $config, $service, $model, $helper } = app;
-    const { commonConfig, pageResume, pageResumeDetail, pageResumeCategory, pageResumePlace, pageCommonTag } = $model
+    const { commonConfig, pageResumeColumn, pageResume, pageResumeCategory, pageResumePlace, pageCommonTag } = $model
     const bannerData = require('../mock/about/joinus/banner')
     const envData = require('../mock/about/joinus/env')
     const welfareData = require('../mock/about/joinus/welfare')
@@ -2520,13 +2520,29 @@ module.exports = app => ({
         resumePlaceMap[item.key] = item
       })
 
+      resumePlace = resumePlace.sort((v1,v2)=>{
+        if(v1.order < v2.order ){
+          return 1
+        } else {
+          return -1
+        }
+      })
+
       let resumeCategory = await $service.baseService.query(pageResumeCategory, {status: 1})
       let resumeCategoryMap = {}
       resumeCategory.forEach(item=>{
         resumeCategoryMap[item.key] = item
       })
 
-      let resume = await $service.baseService.query(pageResume, {status: 1})
+      resumeCategory = resumeCategory.sort((v1,v2)=>{
+        if(v1.order < v2.order ){
+          return 1
+        } else {
+          return -1
+        }
+      })
+
+      let resume = await $service.baseService.query(pageResumeColumn, {status: 1})
       let resumeMap = {}
       resume.forEach(item=>{
         resumeMap[item.key] = item
@@ -2541,17 +2557,16 @@ module.exports = app => ({
       for(let i = 0; i < resume.length; i++){
         let item = resume[i]
         // 创建map 表
-        let resumeList = await $service.baseService.query(pageResumeDetail, {status: 1, key: item.key })
+        let resumeList = await $service.baseService.query(pageResume, {status: 1, key: item.key })
         let targetResumeList = []
         resumeList.forEach(detail=>{
-
           let obj = {
             title: detail.title,
             desc: detail.desc,
             category: detail.category,
-            categoryString: resumeCategoryMap[detail.category].name,
+            categoryString: resumeCategoryMap[detail.category] ? resumeCategoryMap[detail.category].name : '',
             place: detail.place,
-            placeString: resumePlaceMap[detail.place].name,
+            placeString: resumePlaceMap[detail.place] ? resumePlaceMap[detail.place].name : '',
             department: detail.department,
             date: detail.date,
             experience: detail.experience,
