@@ -3,7 +3,7 @@
     <div class="swiper-wrapper">
       <% bannerData.forEach(function(banner){ %>
       <div class="swiper-slide swiper-no-swiping" type="<%=banner.type%>" >
-        <div class="full-banner-wrap" style="background-image: url('<%=banner.backgroundImg%>')">
+        <div class="full-banner-wrap <% if(banner.type === 'black'){ %>bg-black<% } %>" style="background-image: url('<%=banner.backgroundImg%>');">
           <div class="banner-content-wrap">
             <div class="main-title <% if(banner.type === 'white'){ %>banner-black<% } %>"><%=banner.title%></div>
             <div class="desc-item-wrap">
@@ -32,7 +32,7 @@
   <div class="column-wrap">
     <div class="column-content">
       <% columnData.forEach(function(columnItem){ %>
-      <a class="column-cell fn-left" href="<%=columnItem.href%>" <% if(columnItem.target){ %>target="<%=columnItem.target%>" <% } %>>
+      <a class="column-cell fn-left" href="<%=columnItem.href%>" <% if(columnItem.target){ %>target="<%=columnItem.target%>" <% if(columnItem.nofollow){ %> ref="nofollow" <% } %> <% } %>>
         <span class="tit main-content-title color-white"><%=columnItem.title%></span>
         <div class="desc color-white"><%=columnItem.text%></div>
       </a>
@@ -53,9 +53,10 @@
       watchSlidesProgress: true,
       autoplayDisableOnInteraction: false,
       watchSlidesVisibility: true,
+
       onSlideChangeStart: function(swiper) {
-        // swiper 左右各有一个复制的cell ，用于过渡
-        if(swiper.activeIndex === 4){
+        // bannerThemes是template中传入的, swiper 左右各有一个复制的cell ，用于过渡，所以需要减1
+        if(bannerThemes[swiper.activeIndex - 1] && bannerThemes[swiper.activeIndex - 1] === 'white'){
           $(".header-content .logo .v-img").attr('src','/images/logo/blue.svg')
           $(".header-content .tel .tel-img").attr('src','/images/phone/phone-blue.svg')
           $(".header-content .tel .tel-t").addClass('tel-t-white')

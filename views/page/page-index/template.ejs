@@ -18,12 +18,17 @@
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="<%=getContext('swiper.css','css')%>">
-
+    <link rel="stylesheet" href="<%=getContext('custombox.min.css','css')%>">
+    <link rel="stylesheet" href="/common/plugins/video-js/video-js.css">
+    
     <!--js-->
     <script src="<%=getContext('jquery.min.js','commonjs')%>"></script>
     <script src="<%=getContext('swiper.js','commonjs')%>"></script>
     <script src="<%=getContext('/countup/jquery.countup.min.js','commonjs')%>"></script>
     <script src="<%=getContext('/countup/jquery.waypoints.min.js','commonjs')%>"></script>
+    <script src="<%=getContext('/custombox.min.js','commonjs')%>"></script>
+    <script src="<%=getContext('/video-js/video.js','commonjs')%>"></script>
+
 
   </head>
   <body>
@@ -44,6 +49,18 @@
                 <%- include('./module-resource');%>
                 <%- include('./module-news');%>
                 <%- include('../../component/form');%>
+
+                <div id="product-video-dialog" style="display: none">
+                  <div class="custom-box-wrap">
+                    <div class="content-view">
+                      <video id="product-video-player" class="video-js vjs-default-skin" controls preload="none" width="600" height="360" poster="" data-setup="{}">
+                        <source src="/common/plugins/video-js/oceans.mp4" type='video/mp4' />
+                        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+                      </video>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </section>
           </section>
@@ -54,6 +71,11 @@
       <%- include('../../component/sideMenus');%>
 
     </div>
+    <script type="text/javascript">
+      // 把服务端的数组插入js中
+      var bannerThemesJSON = '<%- JSON.stringify(bannerThemes) %>'
+      var bannerThemes = JSON.parse(bannerThemesJSON)
+    </script>
     <script src="<%=getContext('common.js')%>"></script>
     <script src="<%=getContext('index/index.js')%>"></script>
     <%- include('../../layout/commonFoot');%>

@@ -121,8 +121,6 @@ module.exports = app => ({
     const filePath = file.path // 文件暂存目录
     const filename = file.name // 文件全名
     const uploadRootPath = path.join(__dirname, '../public', $config.upload.rootPath)
-    console.log(__dirname)
-    console.log(uploadRootPath)
     const newFilePath = path.join(uploadRootPath, dir, filename); // 文件指定存放目录
     const prefix = file.name.split('.')[1]; // 文件后缀
 

@@ -52,7 +52,7 @@
     "renew": false
   },
   "jwt": {
-    "resetWhenReload": true,
+    "resetWhenReload": false,
     "secret": "gy2022"
   },
   "crypto": {

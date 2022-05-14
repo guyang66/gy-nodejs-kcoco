@@ -315,7 +315,7 @@ module.exports = app => ({
   async createToken( data ) {
     let { $config, $jwtKey } = app;
     // 测试环境用固定secret，不然一直重启，管理后台一直需要重新登录，影响开发效率
-    if($config.jwt.resetWhenReload && process.env.NODE_ENV === 'production'){
+    if($config.jwt.resetWhenReload || process.env.NODE_ENV === 'production'){
       return await jwt.sign(data, $jwtKey, {expiresIn: 30 * 24 * 60 * 60 + 's'});
     }
     return await jwt.sign(data, $config.jwt.secret, {expiresIn: 30 * 24 * 60 * 60 + 's'});
@@ -328,7 +328,7 @@ module.exports = app => ({
    */
   async checkToken (token) {
     let { $config, $jwtKey } = app;
-    if($config.jwt.resetWhenReload && process.env.NODE_ENV === 'production'){
+    if($config.jwt.resetWhenReload || process.env.NODE_ENV === 'production'){
       return await jwt.verify(token, $jwtKey)
     }
     return await jwt.verify(token, $config.jwt.secret)

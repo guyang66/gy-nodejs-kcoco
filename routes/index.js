@@ -107,7 +107,6 @@ module.exports = app => {
   // 菜单
   router.get('/api/menu/auth',$middleware.auth, $controller.adminMenuController.getMenu)
 
-
   // 路由
   router.get('/api/route/auth',$middleware.auth, $controller.adminRouteController.getRoute)
 
@@ -116,15 +115,32 @@ module.exports = app => {
   router.post('/api/user/updateUserInfo/auth', $middleware.auth, $controller.adminUserController.updateUserInfo)
   router.post('/api/user/updatePassword/auth', $middleware.auth, $controller.adminUserController.updatePassword)
 
+  // 首页banner
+  router.get('/api/index/banner/auth', $middleware.auth, $controller.adminCommonController.getIndexBanner)
+  router.post('/api/index/banner/update/auth', $middleware.auth, $controller.adminCommonController.updateIndexBanner)
+  router.get('/api/index/banner/action/auth', $middleware.auth, $controller.adminCommonController.getIndexBannersAction)
+
+  // 首页新闻
+  router.get('/api/index/news/auth', $middleware.auth, $controller.adminCommonController.getIndexNews)
+  router.post('/api/index/news/update/auth', $middleware.auth, $controller.adminCommonController.updateIndexNews)
+
+  // 首页栏目
+  router.get('/api/index/column/auth', $middleware.auth, $controller.adminCommonController.getIndexColumn)
+  router.post('/api/index/column/update/auth', $middleware.auth, $controller.adminCommonController.updateIndexColumn)
+
+  // 文章新闻
+  router.get('/api/news/list/online/auth', $middleware.auth, $controller.adminNewsController.getAllOnlineNews)
+
 
   // 登录
   router.post('/api/login', $controller.adminAuthController.login)
   router.get('/api/getCaptcha', $controller.commonController.getCaptcha)
   // router.get('/test', $controller.commonController.test2)
 
-  // 上传
+  // 上传到oss
   router.post('/api/upload/auth', $middleware.auth, $controller.commonController.upload)
   router.post('/api/multiUpload/auth', $middleware.auth, $controller.commonController.multiUpload)
+  // 普通上传
   router.post('/api/uploadV2/auth', $middleware.auth, $controller.commonController.uploadV2)
   // multer单文件上传，必须指定文件名字,
   router.post('/api/uploadV3/auth', $middleware.auth, $middleware.multer.single('userAvatar'), $controller.commonController.uploadV3)

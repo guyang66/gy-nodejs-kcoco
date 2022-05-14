@@ -20,17 +20,28 @@ module.exports = app => ({
     let columnData
     let newsData
     if($config.dataMock){
+      /** 数据走mock **/
       bannerData = require('../mock/index/banner')
       newsData = require('../mock/index/news')
       columnData = require('../mock/index/column')
     } else {
+      /** 数据走数据库 **/
       // todo: 用json string， 方便扩展
       let indexBannerConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_index_banners'})
       bannerData = JSON.parse(indexBannerConfig.v2)
 
       let indexNewsConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_index_news'})
+
       let newsModuleInfo = JSON.parse(indexNewsConfig.v1)
       let newsDataContent = JSON.parse(indexNewsConfig.v2)
+      // 新闻不允许上下线、新增删除，所以不需要过滤status = 1的数据
+      newsDataContent = newsDataContent.sort((v1,v2)=>{
+        if(v1.order < v2.order ){
+          return 1
+        } else {
+          return -1
+        }
+      })
       newsData = {
         title: newsModuleInfo.title || null,
         desc: newsModuleInfo.desc || null,
@@ -39,7 +50,35 @@ module.exports = app => ({
 
       let indexColumnConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_index_columns'})
       columnData = JSON.parse(indexColumnConfig.v2)
+
+      // 排序，让管理后台可以控制banner排序和banner上下线
+      bannerData = bannerData.sort((v1,v2)=>{
+        if(v1.order < v2.order ){
+          return 1
+        } else {
+          return -1
+        }
+      })
+      // 去掉已经下线的
+      bannerData = bannerData.filter(item=>{
+        return item.status === 1 || item.status === '1'
+      })
+
+      columnData = columnData.sort((v1,v2)=>{
+        if(v1.order < v2.order ){
+          return 1
+        } else {
+          return -1
+        }
+      })
+
     }
+
+    let bannerThemes = []
+    bannerData.forEach(item=>{
+      bannerThemes.push(item.type || 'default')
+    })
+
     let pagePath = 'page/page-index/template'
     await ctx.render(pagePath, {
       title: '首页',
@@ -56,7 +95,9 @@ module.exports = app => ({
       certifyData: certifyData,
       resourceData: resourceData,
       newsData: newsData,
-      pageTdk: pageTdk
+      pageTdk: pageTdk,
+
+      bannerThemes: bannerThemes,
     })
   },
 
