@@ -25,10 +25,10 @@ module.exports = app => ({
    * @param options
    * @returns {Promise<*|boolean>}
    */
-  async queryOne (model, options) {
+  async queryOne (model, params, projection = {}, options = {}) {
     const { errorLogger } = app.$log4
     try {
-      return await model.findOne(options)
+      return await model.findOne(params, projection, options)
     } catch (e){
       errorLogger.error('【baseService】—— findOne：' + e.toString())
       console.log(e)
@@ -54,7 +54,7 @@ module.exports = app => ({
     if(!opt){
       queryOptions = { sort: { _id: -1 } }
     } else {
-      queryOptions = Object.assign({},{ sort: { _id: -1 } },opt)
+      queryOptions = opt
     }
     if(opt === 'false' || opt === false){
       queryOptions = {}

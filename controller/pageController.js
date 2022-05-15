@@ -2557,7 +2557,7 @@ module.exports = app => ({
       for(let i = 0; i < resume.length; i++){
         let item = resume[i]
         // 创建map 表
-        let resumeList = await $service.baseService.query(pageResume, {status: 1, key: item.key })
+        let resumeList = await $service.baseService.query(pageResume, {status: 1, key: item.key },{},{sort: {isTop: -1, id: -1}})
         let targetResumeList = []
         resumeList.forEach(detail=>{
           let obj = {

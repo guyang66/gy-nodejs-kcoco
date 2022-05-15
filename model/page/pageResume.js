@@ -12,6 +12,7 @@ module.exports = app => {
 
       title: { type: String, required: [true,'岗位名字不能为空！']}, // 岗位名称
       desc: { type: String, default: '' }, // 岗位描述
+      key: { type: String, default: '' }, // 岗位描述
       category: { type: String, required: [true,'所属类别不能为空！'] },
       department: { type: String, default: '' }, // 部门
       place: { type: String, required: [true,'所属地区不能为空！'] },

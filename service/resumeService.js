@@ -62,7 +62,7 @@ module.exports = app => ({
         searchParams.place = place
       }
     }
-    let sortParam = {_id: 1}
+    let sortParam = { _id: -1}
     let list
     let total = await pageResume.find(searchParams).countDocuments()
     list = await pageResume.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){

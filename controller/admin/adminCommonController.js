@@ -91,4 +91,25 @@ module.exports = app => ({
     ctx.body = $helper.Result.success(r)
   },
 
+  /**
+   * 获取可用标签
+   * @returns {Promise<void>}
+   */
+  async getOnlineTagList () {
+    const { ctx, $service, $helper, $model } = app
+    const { pageCommonTag } = $model
+    const { key } = ctx.query
+    if(!key || key === ''){
+      ctx.body = $helper.Result.fail(-1, '参数缺失（key不存在）！')
+      return
+    }
+    // todo: 这里需要给前端处理一下字段名字把secKey 映射到key 上，和其他数据模型保持一致，方便前端使用
+    let result = await $service.baseService.query(pageCommonTag, {mainKey: key, status: 1}, {key: "$secKey", name: 1, mainKey: 1, desc: 1, remark: 1})
+    if(result){
+      ctx.body = $helper.Result.success(result)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  }
+
 })

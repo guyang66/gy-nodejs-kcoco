@@ -298,5 +298,103 @@ module.exports = app => ({
     } else {
       ctx.body = $helper.Result.fail(-1, '删除失败！')
     }
+  },
+
+  /**
+   * 保存简历
+   * @returns {Promise<void>}
+   */
+  async saveResume () {
+    const { ctx, $service, $helper, $model } = app
+    const { pageResume } = $model
+    const { content } = ctx.request.body
+
+    if(!content.title || content.title === ''){
+      ctx.body = $helper.Result.fail(-1,'参数缺失（title）')
+      return
+    }
+
+    if(!content.key || content.key === ''){
+      ctx.body = $helper.Result.fail(-1,'参数缺失（key——岗位类别）')
+      return
+    }
+
+    if(!content.category || content.category === ''){
+      ctx.body = $helper.Result.fail(-1,'参数缺失（category）')
+      return
+    }
+
+    if(!content.place || content.place === ''){
+      ctx.body = $helper.Result.fail(-1,'参数缺失（place）')
+      return
+    }
+
+    if(!content.contact || content.contact === ''){
+      ctx.body = $helper.Result.fail(-1,'参数缺失（contact）')
+      return
+    }
+
+    if(!content.date || content.date === ''){
+      ctx.body = $helper.Result.fail(-1,'参数缺失（date）')
+      return
+    }
+
+    if(!content.href || content.href === ''){
+      ctx.body = $helper.Result.fail(-1,'参数缺失（href——跳转链接）')
+      return
+    }
+
+    // 找到id最大值
+    let max = await $service.baseService.queryOne(pageResume,{},{id: 1},{sort :{id: -1}})
+    let id = max ? (max.id + 1) : 1
+
+    let instance = {
+      id: id,
+      title: content.title,
+      desc: content.desc || '',
+      key: content.key,
+      department: content.department || '',
+      category: content.category,
+      place: content.place,
+      experience: content.experience || '',
+      education: content.education || '',
+      date: content.date,
+      contact: content.contact,
+      tag: content.tag || [],
+      href: content.href,
+      require: content.require || [],
+      duty: content.duty || [],
+      pluses: content.pluses || [],
+      isTop: 1,
+      status: 1,
+      order: 1,
+    }
+
+    let result = await $service.baseService.save(pageResume, instance)
+    if(result){
+      ctx.body = $helper.Result.success(result)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '保存失败！')
+    }
+  },
+
+  /**
+   * 获取简历详情
+   * @returns {Promise<void>}
+   */
+  async getResumeDetail () {
+    const { ctx, $service, $helper, $model } = app
+    const { pageResume } = $model
+    const { id } = ctx.query
+    if(!id){
+      ctx.body = $helper.Result.fail(-1, '参数缺失（id不存在）！')
+      return
+    }
+    let result = await $service.baseService.queryById(pageResume, id)
+    if(result){
+      ctx.body = $helper.Result.success(result)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
   }
 })

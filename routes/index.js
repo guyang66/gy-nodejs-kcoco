@@ -110,6 +110,9 @@ module.exports = app => {
   // 路由
   router.get('/api/route/auth',$middleware.auth, $controller.adminRouteController.getRoute)
 
+  router.get('/api/tag/online/auth',$middleware.auth, $controller.adminCommonController.getOnlineTagList)
+
+
   // user相关
   router.get('/api/user/getUserInfo/auth', $middleware.auth, $controller.adminUserController.getUserInfo)
   router.post('/api/user/updateUserInfo/auth', $middleware.auth, $controller.adminUserController.updateUserInfo)
@@ -138,6 +141,7 @@ module.exports = app => {
   router.post('/api/resume/list/auth', $middleware.auth, $controller.adminResumeController.getResumeList)
   router.post('/api/resume/update/auth', $middleware.auth, $controller.adminResumeController.updateResume)
   router.get('/api/resume/delete/auth', $middleware.auth, $controller.adminResumeController.deleteResume)
+  router.post('/api/resume/save/auth', $middleware.auth, $controller.adminResumeController.saveResume)
   router.post('/api/resume/category/list/auth', $middleware.auth, $controller.adminResumeController.getResumeCategoryList)
   router.post('/api/resume/category/update/auth', $middleware.auth, $controller.adminResumeController.updateResumeCategory)
   router.post('/api/resume/category/save/auth', $middleware.auth, $controller.adminResumeController.saveResumeCategory)
@@ -146,6 +150,8 @@ module.exports = app => {
   router.post('/api/resume/place/update/auth', $middleware.auth, $controller.adminResumeController.updateResumePlace)
   router.post('/api/resume/place/save/auth', $middleware.auth, $controller.adminResumeController.saveResumePlace)
   router.get('/api/resume/place/delete/auth', $middleware.auth, $controller.adminResumeController.deleteResumePlace)
+
+  router.get('/api/resume/detail/auth', $middleware.auth, $controller.adminResumeController.getResumeDetail)
 
   // 登录
   router.post('/api/login', $controller.adminAuthController.login)
