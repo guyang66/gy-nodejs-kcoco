@@ -1,18 +1,18 @@
-<div class="activity-favorite-wrap">
-  <div class="activity-favorite-content">
-    <% if(favoriteData.title) { %>
-    <div class="c-module-title <% if(!favoriteData.desc){ %>c-module-b-60<% } %>"><%=favoriteData.title%></div>
+<div class="activity-product-wrap">
+  <div class="activity-product-content">
+    <% if(productData.title) { %>
+    <div class="c-module-title <% if(!productData.desc){ %>c-module-b-60<% } %>"><%=productData.title%></div>
     <% } else { %>
-    <div class="c-module-title <% if(!favoriteData.desc){ %>c-module-b-60<% } %>">产品活动</div>
+    <div class="c-module-title <% if(!productData.desc){ %>c-module-b-60<% } %>">产品活动</div>
     <% } %>
 
     <!--描述-->
-    <% if(favoriteData.desc) { %>
-    <div class="c-module-desc"><%=favoriteData.desc%></div>
+    <% if(productData.desc) { %>
+    <div class="c-module-desc"><%=productData.desc%></div>
     <% } %>
 
-    <div class="favorite-view">
-      <% favoriteData.content.forEach(function(item, index){ %>
+    <div class="product-view">
+      <% productData.content.forEach(function(item, index){ %>
       <% if(item.type === 'main') { %>
       <div class="main-cell fn-left">
         <div class="top-wrap">

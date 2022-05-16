@@ -1788,7 +1788,7 @@ module.exports = app => ({
     const { pageActivity, pageHotActivity, pageProductActivity, pageBrandActivity } = $model;
     const bannerData = require('../mock/activity/banner')
     const tabsData = require('../mock/activity/tabsData')
-    let favoriteData
+    let productData
     let brandData
     let hotData
     let pagePath = 'page/activity/page-activity-main/template'
@@ -1801,7 +1801,7 @@ module.exports = app => ({
     if($config.dataMock){
       // 如果不走数据库
       hotData = require('../mock/activity/hot')
-      favoriteData = require('../mock/activity/favorite')
+      productData = require('../mock/activity/product')
       brandData = require('../mock/activity/brand')
     } else {
       // 查找上线（statues=1）
@@ -1812,7 +1812,7 @@ module.exports = app => ({
         {
           sort: {order: -1, _id: -1}
         })
-      let favoriteActivityList = await $service.baseService.query(
+      let productActivityList = await $service.baseService.query(
         pageProductActivity,
         {status: 1},
         {},
@@ -1837,11 +1837,11 @@ module.exports = app => ({
         key: activityMap['hot'].key,
         content: hotActivityList
       }
-      favoriteData = {
-        title: activityMap['favorite'].title,
-        desc: activityMap['favorite'].desc,
-        key: activityMap['favorite'].key,
-        content: favoriteActivityList
+      productData = {
+        title: activityMap['product'].title,
+        desc: activityMap['product'].desc,
+        key: activityMap['product'].key,
+        content: productActivityList
       }
       brandData = {
         title: activityMap['brand'].title,
@@ -1857,7 +1857,7 @@ module.exports = app => ({
       navKey: 'activity',
       hasBanner: true,
       bannerData: bannerData,
-      favoriteData: favoriteData,
+      productData: productData,
       brandData: brandData,
       hotData: hotData,
       tabsData: tabsData,
