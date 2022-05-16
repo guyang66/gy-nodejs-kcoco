@@ -10,7 +10,7 @@ module.exports = app => ({
    * @param category
    * @returns {Promise<{total: *, list: *}>}
    */
-  async getList (page = 1, pageSize = 10, status, column, searchKey, place, category) {
+  async getList (page = 1, pageSize = 10, status, column, searchKey, place, category, orderSort) {
     const { $utils, $log4, $model } = app
     const { errorLogger } = $log4
     const { pageResume } = $model
@@ -62,8 +62,12 @@ module.exports = app => ({
         searchParams.place = place
       }
     }
-    let sortParam = { _id: -1}
-    let list
+    let sortParam = {}
+    if(orderSort && orderSort !== ''){
+      sortParam.order = orderSort === 'ascend' ? -1 : 1
+    }
+    // 按id 排序放最后
+    sortParam._id = -1
     let total = await pageResume.find(searchParams).countDocuments()
     list = await pageResume.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){

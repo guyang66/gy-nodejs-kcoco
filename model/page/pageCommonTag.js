@@ -8,6 +8,7 @@ module.exports = app => {
       desc: { type: String, default: ''}, // 副标题
       mainKey: { type: String, required: [ true, '主 key不能为空！']}, // 主key
       secKey: { type: String, required: [ true,'副 key不能为空！'] }, // 副key
+      order: { type: Number, default: 1 }, // 排序
       remark: { type: String, default: '' } // 其他备注
     }), {
       timestamps: { createdAt: 'createTime', updatedAt: 'modifyTime'},

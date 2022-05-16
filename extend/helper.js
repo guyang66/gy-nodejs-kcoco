@@ -259,9 +259,11 @@ module.exports = app => ({
     array.forEach(item=>{
       let t = {
         key: item,
-        name: map[item].name
+        name: map[item] ? map[item].name : null
       }
-      tmp.push(t)
+      if(t.name){
+        tmp.push(t)
+      }
     })
     return tmp
   },

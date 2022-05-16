@@ -1731,21 +1731,25 @@ module.exports = app => ({
    */
   async caseList () {
     const { ctx, $config, $service, $model } = app;
-    const { pageCase } = $model
+    const { pageCase, pageCommonTag } = $model
     const bannerData = require('../mock/case/banner')
-    const tagData = require('../mock/case/tag')
+    let tagData
     let casesData
 
     if($config.dataMock){
+      tagData = require('../mock/case/tag')
       casesData = require('../mock/case/cases')
+      tagData = tagData.slice(0,4)
     } else {
-      casesData = await $service.baseService.query(pageCase, {status: 1})
+      casesData = await $service.baseService.query(pageCase, {status: 1},{},{sort: {order: -1, id: -1}})
+      // 最多显示4个关键词
+      tagData = await $service.baseService.query(pageCommonTag, { mainKey: 'case_search_tag', status: 1}, {key: "$secKey", name: 1},{sort: {order: -1, id: -1}, limit: 4})
     }
     let pagePath = 'page/case/page-case-main/template'
     await ctx.render(pagePath, {
       title: '客户案例',
       key: 'case',
-      navKey: 'caseS',
+      navKey: 'cases',
       hasBanner: true,
       bannerData: bannerData,
       tagData: tagData,
@@ -2557,7 +2561,7 @@ module.exports = app => ({
       for(let i = 0; i < resume.length; i++){
         let item = resume[i]
         // 创建map 表
-        let resumeList = await $service.baseService.query(pageResume, {status: 1, key: item.key },{},{sort: {isTop: -1, id: -1}})
+        let resumeList = await $service.baseService.query(pageResume, {status: 1, key: item.key },{},{sort: {isTop: -1, order: -1, id: -1}})
         let targetResumeList = []
         resumeList.forEach(detail=>{
           let obj = {

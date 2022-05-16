@@ -51,7 +51,7 @@ module.exports = app => ({
    */
   async getResumeList () {
     const { ctx, $service, $helper } = app
-    let { page, pageSize, status, column, searchKey, place, category } = ctx.request.body
+    let { page, pageSize, status, column, searchKey, place, category, orderSort } = ctx.request.body
     if(!page || page <= 0) {
       page = 1
     }
@@ -59,7 +59,7 @@ module.exports = app => ({
       pageSize = 10
     }
 
-    let r = await $service.resumeService.getList(page, pageSize, status, column, searchKey, place, category)
+    let r = await $service.resumeService.getList(page, pageSize, status, column, searchKey, place, category, orderSort)
     ctx.body = $helper.Result.success(r)
   },
 
@@ -395,6 +395,104 @@ module.exports = app => ({
       ctx.body = $helper.Result.success(result)
     } else {
       ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  },
+
+  /**
+   * 获取简历标签
+   * @returns {Promise<void>}
+   */
+  async getTagList () {
+    const { ctx, $service, $helper, $model } = app
+    const { pageCommonTag } = $model
+    let result = await $service.baseService.query(pageCommonTag, { mainKey: 'resume_tag'}, {key: "$secKey", name: 1, mainKey: 1, status: "$status", remark: 1})
+    if(result){
+      ctx.body = $helper.Result.success(result)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  },
+
+  /**
+   * 更新简历标签
+   * @returns {Promise<void>}
+   */
+  async updateResumeTag () {
+    const { ctx, $service, $helper, $model } = app
+    const { pageCommonTag } = $model
+    const { content, id } = ctx.request.body
+    if(!id){
+      ctx.body = $helper.Result.fail(-1,'id不存在！')
+      return
+    }
+    let r = await $service.baseService.updateById(pageCommonTag, id, content)
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '操作失败！')
+    }
+  },
+
+  /**
+   * 删除简历标签
+   * @returns {Promise<void>}
+   */
+  async deleteResumeTag () {
+    const { ctx, $service, $helper, $model } = app
+    const { pageCommonTag } = $model
+    const { id } = ctx.query
+    if(!id){
+      ctx.body = $helper.Result.fail(-1, '参数缺失（id不存在）！')
+      return
+    }
+    let result = await $service.baseService.delete(id, pageCommonTag)
+    if(result){
+      ctx.body = $helper.Result.success(result)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '删除失败！')
+    }
+  },
+
+  /**
+   * 新增简历标签
+   * @returns {Promise<void>}
+   */
+  async saveResumeTag () {
+    const { ctx, $service, $helper, $model } = app
+    const { pageCommonTag } = $model
+    const { content } = ctx.request.body
+    if(!content){
+      ctx.body = $helper.Result.fail(-1, '没有需要保存的内容！')
+      return
+    }
+    if(!content.name || content.name === ''){
+      ctx.body = $helper.Result.fail(-1, 'name不能为空')
+      return
+    }
+    if(!content.key || content.key === ''){
+      ctx.body = $helper.Result.fail(-1, 'key不能为空')
+      return
+    }
+
+    let mainKey = 'resume_tag'
+
+    let exist = await $service.baseService.queryOne(pageCommonTag, {mainKey: mainKey, secKey: content.key})
+    if(exist){
+      ctx.body = $helper.Result.fail('-1', '当前key已存在，请勿重复保存！')
+      return
+    }
+    let instance = {
+      mainKey: mainKey,
+      secKey: content.key,
+      name: content.name,
+      remark: content.remark || '',
+      status: 1
+    }
+    let result = await $service.baseService.save(pageCommonTag, instance)
+    if(result){
+      ctx.body = $helper.Result.success(result)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '删除失败！')
     }
   }
 })

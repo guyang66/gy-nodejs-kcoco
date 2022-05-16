@@ -142,6 +142,7 @@ module.exports = app => {
   router.post('/api/resume/update/auth', $middleware.auth, $controller.adminResumeController.updateResume)
   router.get('/api/resume/delete/auth', $middleware.auth, $controller.adminResumeController.deleteResume)
   router.post('/api/resume/save/auth', $middleware.auth, $controller.adminResumeController.saveResume)
+  router.get('/api/resume/detail/auth', $middleware.auth, $controller.adminResumeController.getResumeDetail)
   router.post('/api/resume/category/list/auth', $middleware.auth, $controller.adminResumeController.getResumeCategoryList)
   router.post('/api/resume/category/update/auth', $middleware.auth, $controller.adminResumeController.updateResumeCategory)
   router.post('/api/resume/category/save/auth', $middleware.auth, $controller.adminResumeController.saveResumeCategory)
@@ -150,9 +151,20 @@ module.exports = app => {
   router.post('/api/resume/place/update/auth', $middleware.auth, $controller.adminResumeController.updateResumePlace)
   router.post('/api/resume/place/save/auth', $middleware.auth, $controller.adminResumeController.saveResumePlace)
   router.get('/api/resume/place/delete/auth', $middleware.auth, $controller.adminResumeController.deleteResumePlace)
+  router.get('/api/resume/tag/list/auth', $middleware.auth, $controller.adminResumeController.getTagList)
+  router.get('/api/resume/tag/delete/auth', $middleware.auth, $controller.adminResumeController.deleteResumeTag)
+  router.post('/api/resume/tag/save/auth', $middleware.auth, $controller.adminResumeController.saveResumeTag)
+  router.post('/api/resume/tag/update/auth', $middleware.auth, $controller.adminResumeController.updateResumeTag)
 
-  router.get('/api/resume/detail/auth', $middleware.auth, $controller.adminResumeController.getResumeDetail)
-
+  // 案例
+  router.post('/api/case/list/auth', $middleware.auth, $controller.adminCaseController.getCaseList)
+  router.post('/api/case/update/auth', $middleware.auth, $controller.adminCaseController.updateCase)
+  router.get('/api/case/delete/auth', $middleware.auth, $controller.adminCaseController.deleteCase)
+  router.post('/api/case/save/auth', $middleware.auth, $controller.adminCaseController.saveCase)
+  router.get('/api/case/tag/list/auth', $middleware.auth, $controller.adminCaseController.getTagList)
+  router.get('/api/case/tag/delete/auth', $middleware.auth, $controller.adminCaseController.deleteTag)
+  router.post('/api/case/tag/save/auth', $middleware.auth, $controller.adminCaseController.saveCaseTag)
+  router.post('/api/case/tag/update/auth', $middleware.auth, $controller.adminCaseController.updateCaseTag)
   // 登录
   router.post('/api/login', $controller.adminAuthController.login)
   router.get('/api/getCaptcha', $controller.commonController.getCaptcha)
