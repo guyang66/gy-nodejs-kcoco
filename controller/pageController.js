@@ -1785,7 +1785,7 @@ module.exports = app => ({
    */
   async activityList () {
     const { ctx, $service, $config, $model } = app;
-    const { pageActivity, pageHotActivity, pageFavoriteActivity, pageBrandActivity } = $model;
+    const { pageActivity, pageHotActivity, pageProductActivity, pageBrandActivity } = $model;
     const bannerData = require('../mock/activity/banner')
     const tabsData = require('../mock/activity/tabsData')
     let favoriteData
@@ -1805,18 +1805,26 @@ module.exports = app => ({
       brandData = require('../mock/activity/brand')
     } else {
       // 查找上线（statues=1）
-      let hotActivityList = await $service.baseService.query(pageHotActivity, {status: 1})
-      let favoriteActivityList = await $service.baseService.query(
-        pageFavoriteActivity,
+      let hotActivityList = await $service.baseService.query(
+        pageHotActivity,
         {status: 1},
         {},
-        {sort:
-            {
-              order: -1, // 布局需要type = main的放第一个，查询时order 要放在_id前面，优先order排序 ，order越大，越靠前
-              _id: -1,
-            }
+        {
+          sort: {order: -1, _id: -1}
         })
-      let brandActivityList = await $service.baseService.query(pageBrandActivity, {status: 1})
+      let favoriteActivityList = await $service.baseService.query(
+        pageProductActivity,
+        {status: 1},
+        {},
+        {sort: { type: 1, order: -1, _id: -1}
+        })
+      let brandActivityList = await $service.baseService.query(
+        pageBrandActivity,
+        {status: 1},
+        {},
+        {
+          sort: { order: -1, _id: -1}
+        })
 
       // 这里可以降级处理，避免服务端发布，sql还未执行。
       // if(!activity || activity.length < 1){

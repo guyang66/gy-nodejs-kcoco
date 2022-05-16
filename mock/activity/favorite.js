@@ -1,5 +1,5 @@
 module.exports = {
-  title: '猜你喜欢',
+  title: '产品',
   key: 'favorite',
   desc: '大牌特价，猜你喜欢，各种优惠尽请期待',
   content: [

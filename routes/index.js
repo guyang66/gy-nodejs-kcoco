@@ -165,6 +165,15 @@ module.exports = app => {
   router.get('/api/case/tag/delete/auth', $middleware.auth, $controller.adminCaseController.deleteTag)
   router.post('/api/case/tag/save/auth', $middleware.auth, $controller.adminCaseController.saveCaseTag)
   router.post('/api/case/tag/update/auth', $middleware.auth, $controller.adminCaseController.updateCaseTag)
+
+  // 活动
+  router.post('/api/activity/list/auth', $middleware.auth, $controller.adminActivityController.getActivityList)
+  router.post('/api/activity/update/auth', $middleware.auth, $controller.adminActivityController.updateActivity)
+  router.get('/api/activity/delete/auth', $middleware.auth, $controller.adminActivityController.deleteActivity)
+  router.post('/api/activity/save/auth', $middleware.auth, $controller.adminActivityController.saveActivity)
+
+  router.get('/api/activity/main/auth', $middleware.auth, $controller.adminActivityController.setMainActivity)
+
   // 登录
   router.post('/api/login', $controller.adminAuthController.login)
   router.get('/api/getCaptcha', $controller.commonController.getCaptcha)

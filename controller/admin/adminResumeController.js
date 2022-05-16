@@ -60,7 +60,11 @@ module.exports = app => ({
     }
 
     let r = await $service.resumeService.getList(page, pageSize, status, column, searchKey, place, category, orderSort)
-    ctx.body = $helper.Result.success(r)
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
   },
 
   /**
@@ -215,7 +219,7 @@ module.exports = app => ({
       ctx.body = $helper.Result.fail(-1, '参数缺失（id不存在）！')
       return
     }
-    let result = await $service.baseService.delete(id, pageResumeCategory)
+    let result = await $service.baseService.delete(pageResumeCategory, id)
     if(result){
       ctx.body = $helper.Result.success(result)
     } else {
@@ -235,7 +239,7 @@ module.exports = app => ({
       ctx.body = $helper.Result.fail(-1, '参数缺失（id不存在）！')
       return
     }
-    let result = await $service.baseService.delete(id, pageResumePlace)
+    let result = await $service.baseService.delete(pageResumePlace, id)
     if(result){
       ctx.body = $helper.Result.success(result)
     } else {
@@ -292,7 +296,7 @@ module.exports = app => ({
       ctx.body = $helper.Result.fail(-1, '参数缺失（id不存在）！')
       return
     }
-    let result = await $service.baseService.delete(id, pageResume)
+    let result = await $service.baseService.delete(pageResume, id)
     if(result){
       ctx.body = $helper.Result.success(result)
     } else {
@@ -445,7 +449,7 @@ module.exports = app => ({
       ctx.body = $helper.Result.fail(-1, '参数缺失（id不存在）！')
       return
     }
-    let result = await $service.baseService.delete(id, pageCommonTag)
+    let result = await $service.baseService.delete(pageCommonTag, id)
     if(result){
       ctx.body = $helper.Result.success(result)
     } else {
