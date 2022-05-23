@@ -2234,7 +2234,7 @@ module.exports = app => ({
       columnData = require('../mock/service/resource/column')
       downloadData = require('../mock/service/resource/download')
     } else {
-      columnData = await $service.baseService.query(pageResourceColumn, {status: 1})
+      columnData = await $service.baseService.query(pageResourceColumn, {status: 1},{},{sort: {order: -1}})
       let target = {}
       let category = await $service.baseService.query(
         pageResourceCategory,

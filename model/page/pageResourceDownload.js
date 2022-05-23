@@ -7,6 +7,12 @@ module.exports = app => {
       title: { type: String, required: [true,'资源下载标题不能为空！'] },
       desc: { type: String, default: ''}, // 副标题
       key: { type: String, required: [ true,'资源栏目key不能为空！'], }, // 资源栏目key
+      /**
+       * 搜索关键词
+       * 人为添加一些关键词，方便搜索，将一些内容检索不到的关键词和资源联系起来(模仿搜索引擎),需要在相应接口设置
+       * 比如一片关于技术的文章，内容不包含"刘德华"关键词，当在search中加入'刘德华'时，搜索'刘德华'时该文章也能被搜索出来
+       */
+      search: [],
       tag: [], // 标签
       date: { type: String, default: ''}, // 资源上线日期
       download: { type: Number, default: 0 }, // 下载量

@@ -94,10 +94,8 @@ module.exports = app => {
    * 普通接口
    */
   // todo: 普通接口 /api 开头，否则一律返回页面路由，找不到路由就返回404错误页面 ，/api开头找不到的就处理成404错误。
-
   router.get('/api/sms/send', $controller.smsController.send)
   router.get('/api/sms/verify', $controller.smsController.verify)
-
   router.get('/api/clue/save', $controller.clueController.save)
 
   /**
@@ -111,7 +109,6 @@ module.exports = app => {
   router.get('/api/route/auth',$middleware.auth, $controller.adminRouteController.getRoute)
 
   router.get('/api/tag/online/auth',$middleware.auth, $controller.adminCommonController.getOnlineTagList)
-
 
   // user相关
   router.get('/api/user/getUserInfo/auth', $middleware.auth, $controller.adminUserController.getUserInfo)
@@ -171,8 +168,22 @@ module.exports = app => {
   router.post('/api/activity/update/auth', $middleware.auth, $controller.adminActivityController.updateActivity)
   router.get('/api/activity/delete/auth', $middleware.auth, $controller.adminActivityController.deleteActivity)
   router.post('/api/activity/save/auth', $middleware.auth, $controller.adminActivityController.saveActivity)
-
   router.get('/api/activity/main/auth', $middleware.auth, $controller.adminActivityController.setMainActivity)
+
+  // 资源
+  router.post('/api/resource/list/auth', $middleware.auth, $controller.adminResourceController.getResourceList)
+  router.post('/api/resource/update/auth', $middleware.auth, $controller.adminResourceController.updateResource)
+  router.get('/api/resource/delete/auth', $middleware.auth, $controller.adminResourceController.deleteResource)
+  router.get('/api/resource/detail/auth', $middleware.auth, $controller.adminResourceController.getResourceDetail)
+  router.post('/api/resource/save/auth', $middleware.auth, $controller.adminResourceController.saveResource)
+  router.get('/api/resource/column/list/auth', $middleware.auth, $controller.adminResourceController.getColumnList)
+  router.post('/api/resource/column/update/auth', $middleware.auth, $controller.adminResourceController.updateResourceColumn)
+
+  router.get('/api/resource/category/online/auth', $middleware.auth, $controller.adminResourceController.getCategoryOnlineList)
+  router.get('/api/resource/category/list/auth', $middleware.auth, $controller.adminResourceController.getCategoryList)
+  router.post('/api/resource/category/update/auth', $middleware.auth, $controller.adminResourceController.updateCategory)
+  router.post('/api/resource/category/save/auth', $middleware.auth, $controller.adminResourceController.saveCategory)
+  router.get('/api/resource/category/delete/auth', $middleware.auth, $controller.adminResourceController.deleteCategory)
 
   // 登录
   router.post('/api/login', $controller.adminAuthController.login)
