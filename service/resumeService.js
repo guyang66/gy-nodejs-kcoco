@@ -69,7 +69,7 @@ module.exports = app => ({
     // 按id 排序放最后
     sortParam._id = -1
     let total = await pageResume.find(searchParams).countDocuments()
-    list = await pageResume.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
+    let list = await pageResume.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){
         errorLogger.error(err)
       }

@@ -69,6 +69,12 @@ module.exports = {
     description: '该文件已存在（不允许同名覆盖）'
   },
 
+  UPLOAD_SYSTEM_ERROR: {
+    code: 2005,
+    message: '上传资源失败（系统错误）',
+    description: '上传资源失败（系统错误）'
+  },
+
 
   // 短信相关错误
 

@@ -89,44 +89,38 @@ module.exports = app => ({
     const { ctx, $service, $helper, $model } = app
     const { pageResourceDownload } = $model
     const { content } = ctx.request.body
-
     if(!content.title || content.title === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（title）')
+      ctx.body = $helper.Result.fail(-1,'资源名字不能为空！')
       return
     }
 
     if(!content.key || content.key === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（key——岗位类别）')
-      return
-    }
-
-    if(!content.key || content.key === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（category）')
+      ctx.body = $helper.Result.fail(-1,'资源分类不能为空！')
       return
     }
 
     if(!content.size || content.size === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（size）')
+      ctx.body = $helper.Result.fail(-1,'资源大小不能为空！')
       return
     }
 
     if(!content.type || content.type === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（type）')
+      ctx.body = $helper.Result.fail(-1,'资源类型不能为空！')
       return
     }
 
     if(!content.downloadType || content.downloadType === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（downloadType）')
+      ctx.body = $helper.Result.fail(-1,'下载方式不能为空!')
       return
     }
 
     if(!content.date || content.date === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（date）')
+      ctx.body = $helper.Result.fail(-1,'发布日期不能为空！')
       return
     }
 
     if(!content.href || content.href === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（href——跳转链接）')
+      ctx.body = $helper.Result.fail(-1,'跳转链接不能为空！')
       return
     }
 
@@ -140,14 +134,14 @@ module.exports = app => ({
       desc: content.desc || '',
       key: content.key,
       size: content.size || '',
-      type: content.type,
+      type: content.type || '',
       download: content.download || 0,
       downloadType: content.downloadType || '',
       search: content.search || '',
       date: content.date,
       tag: content.tag || [],
       href: content.href,
-      remark: content.remark || [],
+      remark: content.remark || '',
       status: 1,
       order: 1,
     }
@@ -225,6 +219,10 @@ module.exports = app => ({
     }
   },
 
+  /**
+   * 更新分类
+   * @returns {Promise<void>}
+   */
   async updateCategory () {
     const { ctx, $service, $helper, $model } = app
     const { pageResourceCategory } = $model
@@ -252,6 +250,10 @@ module.exports = app => ({
     }
   },
 
+  /**
+   * 新增分类
+   * @returns {Promise<void>}
+   */
   async saveCategory () {
     const { ctx, $service, $helper, $model } = app
     const { pageResourceCategory } = $model
@@ -288,6 +290,10 @@ module.exports = app => ({
     }
   },
 
+  /**
+   * 删除分类
+   * @returns {Promise<void>}
+   */
   async deleteCategory () {
     const { ctx, $service, $helper, $model } = app
     const { pageResourceCategory } = $model

@@ -19,6 +19,12 @@ module.exports = app => {
       cover: { type: String, default: '' }, // 文章头图
       tag: [],
       href: { type: String, default: ''}, // 跳转
+      /**
+       * 搜索关键词
+       * 人为添加一些关键词，方便搜索，将一些内容检索不到的关键词和资源联系起来(模仿搜索引擎),需要在相应接口设置
+       * 比如一片关于技术的文章，内容不包含"刘德华"关键词，当在search中加入'刘德华'时，搜索'刘德华'时该文章也能被搜索出来
+       */
+      search: [],
       description: { type: String, default: 'yy科技是一家很强大的公司。' }, // html description (seo)
       keywords: { type: String, default: '科技,水果,蔬菜,智能系统,供应商'}, // html keywords (seo)
 

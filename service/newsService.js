@@ -1,29 +1,111 @@
 module.exports = app => ({
   /**
    * 分页查询
-   * @param id
-   * @param model
-   * @returns {Promise<*|boolean>}
+   * @param page
+   * @param pageSize
+   * @param status
+   * @param isTop
+   * @param isRecommend
+   * @param isHot
+   * @param searchKey
+   * @param category
+   * @param orderSort
+   * @param viewCountSort
+   * @returns {Promise<{total: *, list: *}>}
    */
-  async getList (page = 1, pageSize = 10, params, sort) {
-    const { errorLogger } = app.$log4
-    const { pageNews } = app.$model
+  async getList (page = 1, pageSize = 10, status, isTop, isRecommend, isHot, searchKey, category, orderSort, viewCountSort) {
+    const { $utils, $log4, $model } = app
+    const { errorLogger } = $log4
+    const { pageNews } = $model
 
-    let list = []
-    let searchParams = {...params}
-
-    let sortParam = sort ? sort : { _id: -1 }
-
-    list = await pageNews.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: pageSize, sort : sortParam }, function (err, docs){
+    let searchParams = {}
+    if(searchKey && searchKey !== ''){
+      let p1 = {
+        "$or": [
+          {
+            "title":new RegExp(searchKey,'i')
+          },
+          {
+            "summary":new RegExp(searchKey,'i')
+          },
+          {
+            "author":new RegExp(searchKey,'i')
+          },
+          {
+            "date":new RegExp(searchKey,'i')
+          },
+          {
+            "search":{
+              $elemMatch: {$regex: new RegExp(searchKey,'i')}
+            }
+          },
+          {
+            "tag":{
+              $elemMatch: {$regex: new RegExp(searchKey,'i')}
+            }
+          }
+        ]
+      }
+      let p2 = {}
+      // status = 0 也会进入false判断
+      if(status !== null && status !== undefined){
+        p2.status = status
+      }
+      if(isTop !== null && isTop !== undefined){
+        p2.isTop = isTop
+      }
+      if(isRecommend !== null && isRecommend !== undefined){
+        p2.isRecommend = isRecommend
+      }
+      if(isHot !== null && isHot !== undefined){
+        p2.isHot = isHot
+      }
+      if(category){
+        p2.type = category
+      }
+      searchParams = $utils.isEmptyObject(p2) ? p1 : {"$and": [p1, p2]}
+    } else {
+      if(status !== null && status !== undefined){
+        searchParams.status = status
+      }
+      if(isTop !== null && isTop !== undefined){
+        searchParams.isTop = isTop
+      }
+      if(isRecommend !== null && isRecommend !== undefined){
+        searchParams.isRecommend = isRecommend
+      }
+      if(isHot !== null && isHot !== undefined){
+        searchParams.isHot = isHot
+      }
+      if(category){
+        searchParams.type = category
+      }
+    }
+    let sortParam = {}
+    if(orderSort && orderSort !== ''){
+      sortParam.order = orderSort === 'ascend' ? -1 : 1
+    }
+    if(viewCountSort && viewCountSort !== ''){
+      sortParam.viewCount = viewCountSort === 'ascend' ? -1 : 1
+    }
+    // 按id 排序放最后
+    sortParam._id = -1
+    let total = await pageNews.find(searchParams).countDocuments()
+    let list = await pageNews.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){
-        errorLogger.error('【newsService】—— getList：' + err.toString())
+        errorLogger.error(err)
       }
     })
-    return list
+
+    return { list, total }
   },
 
   /**
    * 获取官网查询的新闻列表
+   * @param page
+   * @param pageSize
+   * @param params
+   * @returns {Promise<{total: *, list: *}>}
    */
   async getMatchList (page = 1, pageSize = 10, params) {
     const { errorLogger } = app.$log4
@@ -43,6 +125,11 @@ module.exports = app => ({
       let p2 = {
         "$or":
           [
+            {
+              "search":{
+                $elemMatch: {$regex: new RegExp(searchKey,'i')}
+              }
+            },
             {
               "tag": {
                 $elemMatch: {$regex: new RegExp(searchKey,'i')}
@@ -74,9 +161,13 @@ module.exports = app => ({
       }
     }
 
+    // 置顶优先级大于排序
     let sortParam = {
+      isTop: -1,
+      order: -1,
       _id: -1
     }
+
     let total = await pageNews.find(searchParams).countDocuments()
     list = await pageNews.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: pageSize, sort : sortParam }, function (err, docs){
       if(err){

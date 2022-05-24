@@ -49,7 +49,7 @@
                     <% articleList.slice(0,10).forEach(function(news){ %>
                     <div class="article-item">
                       <div class="tit">
-                        <a href="<%=news.href%>"><%=news.title%></a>
+                        <a href="/about/news/detail/<%=news.id%>"><%=news.title%></a>
                         <% if(news.tag && news.tag.length > 0) { %>
                           <% news.tag.forEach(function(tag){ %>
                           <span class="tag"><%=tag%></span>
@@ -68,7 +68,7 @@
                       </div>
                       <% } %>
                       <div class="desc <% if(news.cover){ %>w-small<% } %>"><%=news.summary%></div>
-                      <a class="btn" href="<%=news.href%>">查看详情 ></a>
+                      <a class="btn" href="/about/news/detail/<%=news.id%>">查看详情 ></a>
                       <div class="seq-line"></div>
                     </div>
                     <% }); %>
@@ -109,7 +109,7 @@
                 <div class="news-link-view">
                   <div class="tit">热门文章</div>
                   <% hotArticleList.slice(0,5).forEach(function(news){ %>
-                  <a class="news-item-wrap" href="<%=news.href%>">
+                  <a class="news-item-wrap" href="/about/news/detail/<%=news.id%>">
                     <div class="point fn-left"></div>
                     <div class="news-item fn-left"><%=news.title%></div>
                   </a>
@@ -118,7 +118,7 @@
                 <div class="news-link-view mar-b40">
                   <div class="tit">最新文章</div>
                   <% latestArticleList.slice(0,5).forEach(function(news){ %>
-                  <a class="news-item-wrap" href="<%=news.href%>">
+                  <a class="news-item-wrap" href="/about/news/detail/<%=news.id%>">
                     <div class="point fn-left"></div>
                     <div class="news-item fn-left"><%=news.title%></div>
                   </a>

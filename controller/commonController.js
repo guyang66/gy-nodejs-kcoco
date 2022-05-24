@@ -31,7 +31,7 @@ module.exports = app => ({
   },
 
   /**
-   * 单文件上传(上传阿里云oss上)
+   * 单文件上传(上传阿里云oss上)，多文件上传查看对应文档，或者用promise.all封装多个单文件上传，然后执行拿到返回结果即可。
    * 如果有nginx反向代理，注意nginx可能拦截大资源文件，注意放开nginx的请求实体大小
    * 如果有自己的文件服务器，就上传到自己的文件服务器即可。
    * @returns {Promise<void>}
@@ -85,22 +85,19 @@ module.exports = app => ({
   },
 
   /**
-   * 多文件上传
-   * @returns {Promise<void>}
-   */
-  async multiUpload () {
-
-  },
-
-  /**
    * 上传到服务器上(koa-body + nodejs原生)
    * @returns {Promise<void>}
    */
   async uploadV2 () {
     const { ctx, $config, $helper, $log4 } = app;
     const { errorLogger } = $log4
-    let { name, overwrite, dir } = ctx.request.body
-
+    let { name, overwrite, dir, type } = ctx.request.body
+    /**
+     * 是否是富文本编辑器在上传图片
+     * 富文本编辑器需要返回其满足的response数据格式，不然会报错，需要和前端沟通好
+     * @type {boolean}
+     */
+    const isWange = (type === 'wange')
     // 上传文件格式：form-data，一般element-ui和antd的upload组件都写好的格式
     // 步骤
     // 1.从上传请求的files中获取需要上传的file
@@ -118,6 +115,7 @@ module.exports = app => ({
     // 注意：服务器目录权限，可能会发生没有写入权限的问题
     // 注意：关注一下暂存目录的文件会不会定时被清理，如果没有是否需要手动清理？不然随着上传，服务器磁盘内存会被一点点吃掉
     const file = ctx.request.files[name]
+
     const filePath = file.path // 文件暂存目录
     const filename = file.name // 文件全名
     const uploadRootPath = path.join(__dirname, '../public', $config.upload.rootPath)
@@ -144,20 +142,149 @@ module.exports = app => ({
     const upStream = fs.createWriteStream(newFilePath);
 
     // createWriteStream不抛出异常，它传递一个错误的异步回调，所以用try catch包裹是无法捕获异常的
-    // 不监听error 时间，createWriteStream一旦异常 会导致程序崩溃
+    // 不监听error事件，createWriteStream一旦异常 会导致程序崩溃
     upStream.on('error',function (err){
       console.log(err)
       errorLogger.error('【commonController】 —— uploadV2 —— createWriteStream：', err)
     })
 
-    await reader.pipe(upStream);
+    try {
+      await reader.pipe(upStream);
+    } catch (e) {
+      console.log(e)
+      errorLogger.error('【commonController】 —— uploadV2 —— reader.pipe：', e)
+      ctx.body = isWange ? { errno: -1, data: '上传失败！' } : $helper.Result.error('UPLOAD_SYSTEM_ERROR')
+      return
+    }
 
     let preUrl = $config.upload.devBaseUrl
     if(process.env.NODE_ENV === 'product'){
       preUrl = $config.upload.prdBaseUrl
     }
-    let url = path.join('upload', dir, filename)
-    ctx.body = $helper.Result.success(preUrl + url)
+    let url = preUrl + path.join('upload', dir, filename)
+    ctx.body = isWange ? { errno: 0, data: [url] } : $helper.Result.success(url)
+  },
+
+  /**
+   * 多文件上传()，这里支持了前端wange富文本编辑器的多图片上传，其他的请自行实现上传逻辑
+   * @returns {Promise<void>}
+   */
+  async multiUpload () {
+    const { ctx, $config, $helper, $log4 } = app;
+    const { errorLogger } = $log4
+    let { name, overwrite, dir, type } = ctx.request.body
+    const isWange = (type === 'wange')
+    if(!ctx.request.files){
+      ctx.body = $helper.Result.error('UPLOAD_NO_FILE_ERROR')
+      return
+    }
+
+    const singleFile = ctx.request.files[name]
+    const uploadRootPath = path.join(__dirname, '../public', $config.upload.rootPath)
+    // 处理目录不存在的情况
+    await $helper.pathToDir(path.join(uploadRootPath, dir))
+
+    if(!singleFile && Object.keys(ctx.request.files).length >= 2){
+      // 这里是多个文件上传
+      const wrapPromise = (reader, upStream) => {
+        return new Promise(async (resolve, reject)=>{
+          try {
+            reader.pipe(upStream);
+            resolve(true)
+          } catch (e){
+            reject(e)
+          }
+        })
+      }
+
+      let promiseArray = []
+      let resultArray = []
+      for(let fileKey in ctx.request.files){
+        let file = ctx.request.files[fileKey]
+        let filePath = file.path // 文件暂存目录
+        let filename = file.name // 文件全名
+        let newFilePath = path.join(uploadRootPath, dir, filename); // 文件指定存放目录
+        if(overwrite === 'N'){
+          // 同步读取
+          if(fs.existsSync(newFilePath)){
+            ctx.body = $helper.Result.error('UPLOAD_FILE_EXIST_ERROR')
+            return
+          }
+        }
+
+        // 创建多个读写流，然后用promise.all异步执行，用await同步一个一个执行也行，时间开销大
+        let reader = fs.createReadStream(filePath);
+        reader.on('error',function (err){
+          console.log(err)
+          errorLogger.error('【commonController】 —— uploadV2 —— createReadStream：', err)
+        })
+        let upStream = fs.createWriteStream(newFilePath);
+        upStream.on('error',function (err){
+          console.log(err)
+          errorLogger.error('【commonController】 —— uploadV2 —— createWriteStream：', err)
+        })
+        let p = wrapPromise(reader, upStream)
+        promiseArray.push(p)
+        let preUrl = $config.upload.devBaseUrl
+        if(process.env.NODE_ENV === 'product'){
+          preUrl = $config.upload.prdBaseUrl
+        }
+        let url = preUrl + path.join('upload', dir, filename)
+        resultArray.push(url)
+      }
+
+      try {
+        await Promise.all(promiseArray)
+      } catch (e) {
+        console.log(e)
+        errorLogger.error('【commonController】 —— uploadV2 —— reader.pipe：', e)
+        ctx.body = isWange ? { errno: -1, data: '上传失败！' } : $helper.Result.error('UPLOAD_SYSTEM_ERROR')
+        return
+      }
+      ctx.body = isWange ? { errno: 0, data: resultArray } : $helper.Result.success(url)
+      return
+    }
+
+    // 单文件逻辑
+    let filePath = singleFile.path // 文件暂存目录
+    let filename = singleFile.name // 文件全名
+    let newFilePath = path.join(uploadRootPath, dir, filename); // 文件指定存放目录
+
+    // 判断同名覆盖设置规则
+    if(overwrite === 'N'){
+      // 同步读取
+      if(fs.existsSync(newFilePath)){
+        ctx.body = $helper.Result.error('UPLOAD_FILE_EXIST_ERROR')
+        return
+      }
+    }
+
+    let reader2 = fs.createReadStream(filePath); // reader流
+    reader2.on('error',function (err){
+      console.log(err)
+      errorLogger.error('【commonController】 —— uploadV2 —— createReadStream：', err)
+    })
+    let upStream2 = fs.createWriteStream(newFilePath);
+    upStream2.on('error',function (err){
+      console.log(err)
+      errorLogger.error('【commonController】 —— uploadV2 —— createWriteStream：', err)
+    })
+
+    try {
+      await reader2.pipe(upStream2);
+    } catch (e) {
+      console.log(e)
+      errorLogger.error('【commonController】 —— uploadV2 —— reader.pipe：', e)
+      ctx.body = isWange ? { errno: -1, data: '上传失败！' } : $helper.Result.error('UPLOAD_SYSTEM_ERROR')
+      return
+    }
+
+    let preUrl = $config.upload.devBaseUrl
+    if(process.env.NODE_ENV === 'product'){
+      preUrl = $config.upload.prdBaseUrl
+    }
+    let url = preUrl + path.join('upload', dir, filename)
+    ctx.body = isWange ? { errno: 0, data: [url] } : $helper.Result.success(url)
   },
 
   /**

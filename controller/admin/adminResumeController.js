@@ -314,37 +314,37 @@ module.exports = app => ({
     const { content } = ctx.request.body
 
     if(!content.title || content.title === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（title）')
+      ctx.body = $helper.Result.fail(-1,'标题不能为空！')
       return
     }
 
     if(!content.key || content.key === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（key——岗位类别）')
+      ctx.body = $helper.Result.fail(-1,'岗位类别（key）不能为空！')
       return
     }
 
     if(!content.category || content.category === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（category）')
+      ctx.body = $helper.Result.fail(-1,'岗位分类（category）不能为空！')
       return
     }
 
     if(!content.place || content.place === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（place）')
+      ctx.body = $helper.Result.fail(-1,'岗位地区（place）不能为空！')
       return
     }
 
     if(!content.contact || content.contact === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（contact）')
+      ctx.body = $helper.Result.fail(-1,'联系方式不能为空！')
       return
     }
 
     if(!content.date || content.date === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（date）')
+      ctx.body = $helper.Result.fail(-1,'发布日期不能为空！')
       return
     }
 
     if(!content.href || content.href === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（href——跳转链接）')
+      ctx.body = $helper.Result.fail(-1,'跳转链接不能为空！')
       return
     }
 

@@ -72,22 +72,22 @@ module.exports = app => ({
     const { content } = ctx.request.body
 
     if(!content.title || content.title === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（title）')
+      ctx.body = $helper.Result.fail(-1,'标题不能为空！')
       return
     }
 
     if(!content.desc || content.desc === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（desc）')
+      ctx.body = $helper.Result.fail(-1,'描述不能为空！')
       return
     }
 
     if(!content.icon || content.icon === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（icon）')
+      ctx.body = $helper.Result.fail(-1,'logo不能为空！')
       return
     }
 
     if(!content.href || content.href === ''){
-      ctx.body = $helper.Result.fail(-1,'参数缺失（href——跳转链接）')
+      ctx.body = $helper.Result.fail(-1,'跳转链接不能为空！')
       return
     }
 

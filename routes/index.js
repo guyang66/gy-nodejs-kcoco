@@ -130,6 +130,16 @@ module.exports = app => {
 
   // 文章新闻
   router.get('/api/news/list/online/auth', $middleware.auth, $controller.adminNewsController.getAllOnlineNews)
+  router.post('/api/news/list/auth', $middleware.auth, $controller.adminNewsController.getNewsList)
+  router.post('/api/news/update/auth', $middleware.auth, $controller.adminNewsController.updateNews)
+  router.get('/api/news/delete/auth', $middleware.auth, $controller.adminNewsController.deleteNews)
+  router.get('/api/news/detail/auth', $middleware.auth, $controller.adminNewsController.getNewsDetail)
+  router.post('/api/news/save/auth', $middleware.auth, $controller.adminNewsController.saveNews)
+  router.get('/api/news/category/online/auth', $middleware.auth, $controller.adminNewsController.getCategoryOnline)
+  router.get('/api/news/category/list/auth', $middleware.auth, $controller.adminNewsController.getCategoryList)
+  router.post('/api/news/category/update/auth', $middleware.auth, $controller.adminNewsController.updateCategory)
+  router.get('/api/news/category/delete/auth', $middleware.auth, $controller.adminNewsController.deleteCategory)
+  router.post('/api/news/category/save/auth', $middleware.auth, $controller.adminNewsController.saveCategory)
 
   // 招聘
   router.get('/api/resume/column/auth', $middleware.auth, $controller.adminResumeController.getResumeColumn)
