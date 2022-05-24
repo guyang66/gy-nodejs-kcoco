@@ -10,6 +10,7 @@ module.exports = app => {
       description: {type: String, default: 'yy科技是一家很强大的公司。' },
       keywords: { type: String, default: '科技,水果,蔬菜,智能系统,供应商' },
       remark: { type: String },
+      status: { type: Number, default: 1 }, // 1：启用；0：停用
     }), {
       timestamps: { createdAt: 'createTime', updatedAt: 'modifyTime'},
       collection: "kcoco_page_tdk",

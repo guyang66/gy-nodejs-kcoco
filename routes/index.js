@@ -195,6 +195,12 @@ module.exports = app => {
   router.post('/api/resource/category/save/auth', $middleware.auth, $controller.adminResourceController.saveCategory)
   router.get('/api/resource/category/delete/auth', $middleware.auth, $controller.adminResourceController.deleteCategory)
 
+  // tdk
+  router.post('/api/tdk/list/auth', $middleware.auth, $controller.adminTdkController.getTdkList)
+  router.post('/api/tdk/update/auth', $middleware.auth, $controller.adminTdkController.updateTdk)
+  router.post('/api/tdk/save/auth', $middleware.auth, $controller.adminTdkController.saveTdk)
+  router.get('/api/tdk/delete/auth', $middleware.auth, $controller.adminTdkController.deleteTdk)
+
   // 登录
   router.post('/api/login', $controller.adminAuthController.login)
   router.get('/api/getCaptcha', $controller.commonController.getCaptcha)
