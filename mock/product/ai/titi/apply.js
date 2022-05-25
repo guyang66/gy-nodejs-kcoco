@@ -9,7 +9,7 @@ module.exports = {
       title: '守望者女猎流',
       desc: '战术体系思想：纯女猎流从ROC起就广为流传，但TFT由于甲的更改，HT的天敌逐渐增多，幸好在初期，HT还是最强的初级兵种，远程的肉搏近战攻击（对农民可是加成伤害的噢），能接受虎妞的光环。作为NE玩家，女猎流应该是最基本的战术了吧，配合不同的英雄，风格迥异。好了，我就专门讲一下如何发展。游戏开始后，4W采金，1W造祭坛。',
       buttonText: '联系我们',
-      href: '/form',
+      href: '/form?from=/product/ai/titi&action=apply',
       solutions: [
         '那就是科技流还是暴兵流了。科技流的话就再补一个月井，然后第一时间升2本',
         '暴兵流的话就再补一个BR若干BM月井若干小精灵（到处放）',
@@ -41,7 +41,7 @@ module.exports = {
       title: 'AC流',
       desc: 'AC严格意义上说不算战术，在雇佣兵遇到难度的时候，AC就是NE玩家最喜欢的过度兵种，而AC的存活率也侧面反映了一个玩家的水平，利用好AC的隐身，对战局也是至关重要的。而真正把AC作为主力RUSH的还是娜迦AC流。',
       buttonText: '申请试用',
-      href: '/form',
+      href: '/form?from=/product/ai/titi&action=apply',
       solutions: [
         '和普通的中立开局一样，兵营-月井-祭坛-月井',
         '只是又补一个兵营，当NAGA出来之后，轻巧的MF，升到2级，这时的AC数量已小具规模',

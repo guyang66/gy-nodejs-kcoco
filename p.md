@@ -17,3 +17,5 @@
 16、权限设计
 17、koa-body和multer(包括busboy、koa-multer)都不兼容
 18、koa-multer和koa-router配套使用（和koa-route）不兼容
+19、埋点
+20、权限设计、404处理

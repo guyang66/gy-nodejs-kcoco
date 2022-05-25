@@ -1,12 +1,12 @@
 const parse = require('urlparse')
 
 module.exports = app => {
-  return async function(ctx) {
+  return async function(ctx, next) {
     const { $config } = app
     const parser = parse(ctx.request.url)
     const { path } = parser
     //不是api接口(即官网页面)的全部重定向到首页
-    if(path.indexOf('/api') > 0) {
+    if(path.indexOf('/api') > -1) {
       await next();
       return
     }

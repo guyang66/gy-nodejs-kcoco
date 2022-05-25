@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-  <a class="contact-wrap contact-action" href="/form" target="_blank">
+  <a class="contact-wrap contact-action">
     <div class="contact-text">联系我们</div>
   </a>
   <div class="top-click mar-t20">
@@ -67,5 +67,11 @@
     $('.show-guide-view').css({
       display: 'none'
     })
+  })
+
+  $('.side-menu-wrap .contact-action').on('click',function (){
+    localStorage.setItem('form_from', window.location.pathname)
+    localStorage.setItem('form_action', '侧边栏')
+    window.location.href = '/form'
   })
 </script>

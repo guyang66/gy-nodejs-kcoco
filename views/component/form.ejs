@@ -2,8 +2,17 @@
   <div class="form-view-content">
     <div class="form-title">让您的业务 如指线般增长</div>
     <div class="form-desc">上万家客户值得信赖的合作伙伴</div>
-    <a class="form-button" href="/form">
+    <div class="form-button">
       申请试用
-    </a>
+    </div>
   </div>
 </div>
+<script>
+  // 公共组件的跳转必须要js来做，
+  $('.form-view-wrap .form-view-content .form-button').on('click',function (){
+    localStorage.setItem('form_from', window.location.pathname)
+    localStorage.setItem('form_action','底部表单按钮')
+    window.location.href = '/form'
+  })
+</script>
+

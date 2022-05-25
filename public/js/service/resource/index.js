@@ -59,7 +59,8 @@ $(function() {
         redirect: '' + window.location.pathname + window.location.search
       }
       localStorage.setItem('pageRedirect', JSON.stringify(target))
-      window.location.href = '/form.html?entry=resource'
+      //todo:下载没完成
+      window.location.href = '/form?from=/resource&action=download'
       return
     }
     let a = document.createElement('a')

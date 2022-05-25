@@ -1,6 +1,5 @@
 module.exports = app => {
   const { router, $controller, $middleware } = app;
-
   /**
    * 官网页面路由
    */
@@ -230,6 +229,9 @@ module.exports = app => {
   router.post('/api/tdk/update/auth', $middleware.auth, $controller.adminTdkController.updateTdk)
   router.post('/api/tdk/save/auth', $middleware.auth, $controller.adminTdkController.saveTdk)
   router.get('/api/tdk/delete/auth', $middleware.auth, $controller.adminTdkController.deleteTdk)
+
+  // 线索
+  router.post('/api/clue/list/auth', $middleware.auth, $controller.adminClueController.getClueList)
 
   // 登录
   router.post('/api/login', $controller.adminAuthController.login)

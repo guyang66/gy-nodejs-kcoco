@@ -43,7 +43,7 @@ module.exports = [
     alt: '奈门摩尔',
     type: 'black',
     target: '_blank',
-    href: '/form',
+    href: '/form?from=/index&action=banner',
     order: 60,
     status: 1,
     backgroundImg: '/images/banner/index/3.png',

@@ -242,18 +242,36 @@ $(function() {
 
   // 下一步
   function saveAction() {
+    // 线索来源埋点
+    let actionData = null
+    let fromData = null
+
+    // a标签跳转的就url后面跟上参数
+    if(getQueryVariable('action')){
+      actionData = decodeURI(getQueryVariable('action'))
+    }
+    if(getQueryVariable('from')){
+      fromData = decodeURI(getQueryVariable('from'))
+    }
+    // 如果url参数没有，再去localstorage中取
+    if(!actionData || actionData === ''){
+      actionData = localStorage.getItem('form_action')
+    }
+    if(!fromData || fromData === ''){
+      fromData = localStorage.getItem('form_from')
+    }
     let params = {
       company: $("input[name='company']").val(),
       name: $("input[name='name']").val(),
       phone: $("input[name='phone']").val(),
       need: $("input[name='need']").val(),
       position: $("input[name='position']").val(),
-      originHref: window.location.href,
+      originHref: fromData || window.location.href,
+      type: actionData,
       origin: '官网',
       remark: '',
       date: new Date().toLocaleDateString()
     }
-
     $.get(
       '/api/clue/save',
       params,
@@ -279,6 +297,10 @@ $(function() {
         }
       }
     )
+
+    // 不管接口成功与否，都要删除标记，避免影响下一次的埋点信息
+    localStorage.removeItem('form_from')
+    localStorage.removeItem('form_action')
   }
 
   function nextStep() {
@@ -289,9 +311,6 @@ $(function() {
     $.cookie("name", $("input[name='name']").val(), {
       expires: 1
     })
-
-    console.log('我老了')
-    console.log($.cookie('name'))
     // input全部重置
     $("input[name='phone']").val("")
     $("input[name='code']").val("")
@@ -299,7 +318,6 @@ $(function() {
     $("input[name='company']").val("")
     $("input[name='need']").val("")
     $("input[name='position']").val("")
-
     // 如果是资源中心跳转过来的，还需跳转回去
     if (localStorage.getItem('pageRedirect')) {
       let str = localStorage.getItem('pageRedirect')

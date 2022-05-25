@@ -7,7 +7,7 @@ module.exports = app => ({
   async save () {
     const { ctx, $helper, $service, $model, $utils, $format, $config } = app;
     const { bizClue } = $model
-    let { phone, name, company, need, position, origin, originHref, remark, date } = ctx.query
+    let { phone, name, company, need, position, origin, originHref, remark, date, type } = ctx.query
 
     // 校验必填项
     if($utils.isEmptyString(phone)){
@@ -35,7 +35,7 @@ module.exports = app => ({
       date = $format.formatDate(new Date())
     }
 
-    let r = await $service.baseService.save(bizClue, { phone, name, company, need, position, ip, origin, originHref, remark, date })
+    let r = await $service.baseService.save(bizClue, { phone, name, company, need, position, ip, origin, originHref, remark, date, type })
 
     if($config.clueBackup){
       // 如果开启了线索备份到邮箱，则异步发送到指定邮箱

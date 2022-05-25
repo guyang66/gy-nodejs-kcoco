@@ -110,9 +110,8 @@ module.exports = app => ({
       certifyData: certifyData,
       resourceData: resourceData,
       newsData: newsData,
-      pageTdk: pageTdk,
-
       bannerThemes: bannerThemes,
+      pageTdk: pageTdk,
     })
   },
 
@@ -121,7 +120,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async algorithm () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/ai/algorithm/banner')
     const advantageData = require('../mock/product/ai/algorithm/advantage')
     const coreData = require('../mock/product/ai/algorithm/core')
@@ -141,7 +140,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -150,7 +150,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async speech () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/ai/speech/banner')
     const advantageData = require('../mock/product/ai/speech/advantage')
     const coreData = require('../mock/product/ai/speech/core')
@@ -170,7 +170,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -179,7 +180,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async discriminate () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/ai/discriminate/banner')
     const advantageData = require('../mock/product/ai/discriminate/advantage')
     const coreData = require('../mock/product/ai/discriminate/core')
@@ -199,7 +200,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -208,7 +210,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async enterprise () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/ai/enterprise/banner')
     const advantageData = require('../mock/product/ai/enterprise/advantage')
     const coreData = require('../mock/product/ai/enterprise/core')
@@ -228,7 +230,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -237,7 +240,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async digital () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/ai/digital/banner')
     const advantageData = require('../mock/product/ai/digital/advantage')
     const coreData = require('../mock/product/ai/digital/core')
@@ -257,7 +260,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -266,7 +270,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async qingshui () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/ai/qingshui/banner')
     const advantageData = require('../mock/product/ai/qingshui/advantage')
     const coreData = require('../mock/product/ai/qingshui/core')
@@ -286,7 +290,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -295,7 +300,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async puti () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/ai/puti/banner')
     const advantageData = require('../mock/product/ai/puti/advantage')
     const coreData = require('../mock/product/ai/puti/core')
@@ -315,7 +320,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -324,7 +330,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async shuying () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/ai/shuying/banner')
     const advantageData = require('../mock/product/ai/shuying/advantage')
     const coreData = require('../mock/product/ai/shuying/core')
@@ -344,7 +350,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -353,7 +360,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async tianyan () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/ai/tianyan/banner')
     const advantageData = require('../mock/product/ai/tianyan/advantage')
     const coreData = require('../mock/product/ai/tianyan/core')
@@ -373,7 +380,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -382,7 +390,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async titi () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/ai/titi/banner')
     const advantageData = require('../mock/product/ai/titi/advantage')
     const coreData = require('../mock/product/ai/titi/core')
@@ -402,7 +410,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -411,7 +420,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async colgi () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/ai/colgi/banner')
     const advantageData = require('../mock/product/ai/colgi/advantage')
     const coreData = require('../mock/product/ai/colgi/core')
@@ -431,7 +440,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -440,7 +450,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async xiyu () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/ai/xiyu/banner')
     const advantageData = require('../mock/product/ai/xiyu/advantage')
     const coreData = require('../mock/product/ai/xiyu/core')
@@ -460,7 +470,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -469,7 +480,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async uav () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/ai/uav/banner')
     const advantageData = require('../mock/product/ai/uav/advantage')
     const coreData = require('../mock/product/ai/uav/core')
@@ -489,7 +500,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -498,7 +510,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async cluster () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/dataserver/cluster/banner')
     const advantageData = require('../mock/product/dataserver/cluster/advantage')
     const coreData = require('../mock/product/dataserver/cluster/core')
@@ -518,7 +530,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -527,7 +540,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async offlinealgorithm () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/dataserver/offline-algorithm/banner')
     const advantageData = require('../mock/product/dataserver/offline-algorithm/advantage')
     const coreData = require('../mock/product/dataserver/offline-algorithm/core')
@@ -547,7 +560,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -556,7 +570,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async onlinedevelop () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/dataserver/online-develop/banner')
     const advantageData = require('../mock/product/dataserver/online-develop/advantage')
     const coreData = require('../mock/product/dataserver/online-develop/core')
@@ -576,7 +590,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -585,7 +600,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async offlinedevelop () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/dataserver/offline-develop/banner')
     const advantageData = require('../mock/product/dataserver/offline-develop/advantage')
     const coreData = require('../mock/product/dataserver/offline-develop/core')
@@ -605,7 +620,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -614,7 +630,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async neuralnetwork () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/dataserver/neural-network/banner')
     const advantageData = require('../mock/product/dataserver/neural-network/advantage')
     const coreData = require('../mock/product/dataserver/neural-network/core')
@@ -634,7 +650,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -643,7 +660,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async recommend () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/dataserver/recommend/banner')
     const advantageData = require('../mock/product/dataserver/recommend/advantage')
     const coreData = require('../mock/product/dataserver/recommend/core')
@@ -663,7 +680,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -672,7 +690,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async apple () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/apple/banner')
     const advantageData = require('../mock/product/fruits/apple/advantage')
     const coreData = require('../mock/product/fruits/apple/core')
@@ -692,7 +710,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -701,7 +720,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async banana () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/banana/banner')
     const advantageData = require('../mock/product/fruits/banana/advantage')
     const coreData = require('../mock/product/fruits/banana/core')
@@ -721,7 +740,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -730,7 +750,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async peach () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/peach/banner')
     const advantageData = require('../mock/product/fruits/peach/advantage')
     const coreData = require('../mock/product/fruits/peach/core')
@@ -750,7 +770,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -759,7 +780,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async pomegranate () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/pomegranate/banner')
     const advantageData = require('../mock/product/fruits/pomegranate/advantage')
     const coreData = require('../mock/product/fruits/pomegranate/core')
@@ -779,7 +800,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -788,7 +810,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async kiwi () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/kiwi/banner')
     const advantageData = require('../mock/product/fruits/kiwi/advantage')
     const coreData = require('../mock/product/fruits/kiwi/core')
@@ -808,7 +830,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -817,7 +840,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async avocado () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/avocado/banner')
     const advantageData = require('../mock/product/fruits/avocado/advantage')
     const coreData = require('../mock/product/fruits/avocado/core')
@@ -837,7 +860,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -846,7 +870,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async mongo () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/mongo/banner')
     const advantageData = require('../mock/product/fruits/mongo/advantage')
     const coreData = require('../mock/product/fruits/mongo/core')
@@ -866,7 +890,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -875,7 +900,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async mangosteen () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/mangosteen/banner')
     const advantageData = require('../mock/product/fruits/mangosteen/advantage')
     const coreData = require('../mock/product/fruits/mangosteen/core')
@@ -895,7 +920,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -904,7 +930,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async grape () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/grape/banner')
     const advantageData = require('../mock/product/fruits/grape/advantage')
     const coreData = require('../mock/product/fruits/grape/core')
@@ -924,7 +950,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -933,7 +960,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async lemon () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/lemon/banner')
     const advantageData = require('../mock/product/fruits/lemon/advantage')
     const coreData = require('../mock/product/fruits/lemon/core')
@@ -953,7 +980,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -962,7 +990,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async litchi () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/litchi/banner')
     const advantageData = require('../mock/product/fruits/litchi/advantage')
     const coreData = require('../mock/product/fruits/litchi/core')
@@ -982,7 +1010,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -991,7 +1020,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async piyata () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/piyata/banner')
     const advantageData = require('../mock/product/fruits/piyata/advantage')
     const coreData = require('../mock/product/fruits/piyata/core')
@@ -1011,7 +1040,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1020,7 +1050,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async croissant () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/croissant/banner')
     const advantageData = require('../mock/product/fruits/croissant/advantage')
     const coreData = require('../mock/product/fruits/croissant/core')
@@ -1040,7 +1070,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1049,7 +1080,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async hami () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/hami/banner')
     const advantageData = require('../mock/product/fruits/hami/advantage')
     const coreData = require('../mock/product/fruits/hami/core')
@@ -1069,7 +1100,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1078,7 +1110,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async fig () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/fig/banner')
     const advantageData = require('../mock/product/fruits/fig/advantage')
     const coreData = require('../mock/product/fruits/fig/core')
@@ -1098,7 +1130,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1107,7 +1140,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async jujube () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/jujube/banner')
     const advantageData = require('../mock/product/fruits/jujube/advantage')
     const coreData = require('../mock/product/fruits/jujube/core')
@@ -1127,7 +1160,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1136,7 +1170,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async shaddock () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/shaddock/banner')
     const advantageData = require('../mock/product/fruits/shaddock/advantage')
     const coreData = require('../mock/product/fruits/shaddock/core')
@@ -1156,7 +1190,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1165,7 +1200,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async loquat () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/loquat/banner')
     const advantageData = require('../mock/product/fruits/loquat/advantage')
     const coreData = require('../mock/product/fruits/loquat/core')
@@ -1185,7 +1220,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1194,7 +1230,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async plum () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/plum/banner')
     const advantageData = require('../mock/product/fruits/plum/advantage')
     const coreData = require('../mock/product/fruits/plum/core')
@@ -1214,7 +1250,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1223,7 +1260,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async orange () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/orange/banner')
     const advantageData = require('../mock/product/fruits/orange/advantage')
     const coreData = require('../mock/product/fruits/orange/core')
@@ -1243,7 +1280,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1252,7 +1290,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async cherry () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/cherry/banner')
     const advantageData = require('../mock/product/fruits/cherry/advantage')
     const coreData = require('../mock/product/fruits/cherry/core')
@@ -1272,7 +1310,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1281,7 +1320,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async persimmon () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/fruits/persimmon/banner')
     const advantageData = require('../mock/product/fruits/persimmon/advantage')
     const coreData = require('../mock/product/fruits/persimmon/core')
@@ -1301,7 +1340,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1310,7 +1350,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async radish () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/radish/banner')
     const advantageData = require('../mock/product/vegetables/radish/advantage')
     const coreData = require('../mock/product/vegetables/radish/core')
@@ -1330,7 +1370,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1339,7 +1380,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async onion () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/onion/banner')
     const advantageData = require('../mock/product/vegetables/onion/advantage')
     const coreData = require('../mock/product/vegetables/onion/core')
@@ -1359,7 +1400,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1368,7 +1410,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async cucumber () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/cucumber/banner')
     const advantageData = require('../mock/product/vegetables/cucumber/advantage')
     const coreData = require('../mock/product/vegetables/cucumber/core')
@@ -1388,7 +1430,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1397,7 +1440,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async bolt () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/bolt/banner')
     const advantageData = require('../mock/product/vegetables/bolt/advantage')
     const coreData = require('../mock/product/vegetables/bolt/core')
@@ -1417,7 +1460,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1426,7 +1470,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async amaranthus () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/amaranthus/banner')
     const advantageData = require('../mock/product/vegetables/amaranthus/advantage')
     const coreData = require('../mock/product/vegetables/amaranthus/core')
@@ -1446,7 +1490,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1455,7 +1500,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async lotus () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/lotus/banner')
     const advantageData = require('../mock/product/vegetables/lotus/advantage')
     const coreData = require('../mock/product/vegetables/lotus/core')
@@ -1475,7 +1520,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1484,7 +1530,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async mushroom () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/mushroom/banner')
     const advantageData = require('../mock/product/vegetables/mushroom/advantage')
     const coreData = require('../mock/product/vegetables/mushroom/core')
@@ -1504,7 +1550,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1513,7 +1560,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async cabbage () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/cabbage/banner')
     const advantageData = require('../mock/product/vegetables/cabbage/advantage')
     const coreData = require('../mock/product/vegetables/cabbage/core')
@@ -1533,7 +1580,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1542,7 +1590,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async peas () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/peas/banner')
     const advantageData = require('../mock/product/vegetables/peas/advantage')
     const coreData = require('../mock/product/vegetables/peas/core')
@@ -1562,7 +1610,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1571,7 +1620,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async bilter () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/bilter/banner')
     const advantageData = require('../mock/product/vegetables/bilter/advantage')
     const coreData = require('../mock/product/vegetables/bilter/core')
@@ -1591,7 +1640,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1600,7 +1650,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async celery () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/celery/banner')
     const advantageData = require('../mock/product/vegetables/celery/advantage')
     const coreData = require('../mock/product/vegetables/celery/core')
@@ -1620,7 +1670,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1629,7 +1680,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async ginger () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/ginger/banner')
     const advantageData = require('../mock/product/vegetables/ginger/advantage')
     const coreData = require('../mock/product/vegetables/ginger/core')
@@ -1649,7 +1700,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1658,7 +1710,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async eggplant () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/eggplant/banner')
     const advantageData = require('../mock/product/vegetables/eggplant/advantage')
     const coreData = require('../mock/product/vegetables/eggplant/core')
@@ -1678,7 +1730,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1687,7 +1740,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async chili () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/chili/banner')
     const advantageData = require('../mock/product/vegetables/chili/advantage')
     const coreData = require('../mock/product/vegetables/chili/core')
@@ -1707,7 +1760,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1716,7 +1770,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async pumpkin () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/product/vegetables/pumpkin/banner')
     const advantageData = require('../mock/product/vegetables/pumpkin/advantage')
     const coreData = require('../mock/product/vegetables/pumpkin/core')
@@ -1736,7 +1790,8 @@ module.exports = app => ({
       applyData: applyData,
       historyData: historyData,
       caseData: caseData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1745,7 +1800,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async caseList () {
-    const { ctx, $config, $service, $model } = app;
+    const { ctx, $config, $service, $model, $helper } = app;
     const { pageCase, pageCommonTag } = $model
     const bannerData = require('../mock/case/banner')
     let tagData
@@ -1769,7 +1824,8 @@ module.exports = app => ({
       bannerData: bannerData,
       tagData: tagData,
       casesData: casesData,
-      tabsData: []
+      tabsData: [],
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1778,7 +1834,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async caseDetail () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const detailData = require('../mock/case/example')
     const recommendData = require('../mock/case/recommend')
     let pagePath = 'page/case/page-case-detail/template'
@@ -1790,7 +1846,8 @@ module.exports = app => ({
       bannerData: {},
       detailData: detailData,
       recommendData: recommendData,
-      tabsData: []
+      tabsData: [],
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1799,7 +1856,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async activityList () {
-    const { ctx, $service, $config, $model } = app;
+    const { ctx, $service, $config, $model, $helper } = app;
     const { pageActivity, pageHotActivity, pageProductActivity, pageBrandActivity } = $model;
     const bannerData = require('../mock/activity/banner')
     const tabsData = require('../mock/activity/tabsData')
@@ -1876,6 +1933,7 @@ module.exports = app => ({
       brandData: brandData,
       hotData: hotData,
       tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1884,7 +1942,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async activityDetail () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const detailData = require('../mock/activity/example')
     let pagePath = 'page/activity/page-activity-detail/template'
     await ctx.render(pagePath, {
@@ -1894,7 +1952,8 @@ module.exports = app => ({
       hasBanner: false,
       bannerData: {},
       detailData: detailData,
-      tabsData: []
+      tabsData: [],
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1903,7 +1962,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async education () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/solution/education/banner')
     const painData = require('../mock/solution/education/pain')
     const advantageData = require('../mock/solution/education/advantage')
@@ -1926,7 +1985,8 @@ module.exports = app => ({
       applyData: applyData,
       caseData: caseData,
       recommendData: recommendData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1935,7 +1995,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async bigdata () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/solution/bigdata/banner')
     const painData = require('../mock/solution/bigdata/pain')
     const advantageData = require('../mock/solution/bigdata/advantage')
@@ -1958,7 +2018,8 @@ module.exports = app => ({
       applyData: applyData,
       caseData: caseData,
       recommendData: recommendData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1967,7 +2028,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async finance () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/solution/finance/banner')
     const painData = require('../mock/solution/finance/pain')
     const advantageData = require('../mock/solution/finance/advantage')
@@ -1990,7 +2051,8 @@ module.exports = app => ({
       applyData: applyData,
       caseData: caseData,
       recommendData: recommendData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -1999,7 +2061,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async food () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/solution/food/banner')
     const painData = require('../mock/solution/food/pain')
     const advantageData = require('../mock/solution/food/advantage')
@@ -2022,7 +2084,8 @@ module.exports = app => ({
       applyData: applyData,
       caseData: caseData,
       recommendData: recommendData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -2031,7 +2094,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async game () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/solution/game/banner')
     const painData = require('../mock/solution/game/pain')
     const advantageData = require('../mock/solution/game/advantage')
@@ -2054,7 +2117,8 @@ module.exports = app => ({
       applyData: applyData,
       caseData: caseData,
       recommendData: recommendData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -2063,7 +2127,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async manufacture () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/solution/manufacture/banner')
     const painData = require('../mock/solution/manufacture/pain')
     const advantageData = require('../mock/solution/manufacture/advantage')
@@ -2086,7 +2150,8 @@ module.exports = app => ({
       applyData: applyData,
       caseData: caseData,
       recommendData: recommendData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -2095,7 +2160,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async online () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/solution/online/banner')
     const painData = require('../mock/solution/online/pain')
     const advantageData = require('../mock/solution/online/advantage')
@@ -2118,7 +2183,8 @@ module.exports = app => ({
       applyData: applyData,
       caseData: caseData,
       recommendData: recommendData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -2127,7 +2193,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async personal () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/solution/personal/banner')
     const painData = require('../mock/solution/personal/pain')
     const advantageData = require('../mock/solution/personal/advantage')
@@ -2150,7 +2216,8 @@ module.exports = app => ({
       applyData: applyData,
       caseData: caseData,
       recommendData: recommendData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -2159,7 +2226,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async traffic () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/solution/education/banner')
     const painData = require('../mock/solution/traffic/pain')
     const advantageData = require('../mock/solution/traffic/advantage')
@@ -2182,7 +2249,8 @@ module.exports = app => ({
       applyData: applyData,
       caseData: caseData,
       recommendData: recommendData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -2191,7 +2259,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async contact () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/service/contact/banner')
     const contactData = require('../mock/service/contact/contact')
     const addressData = require('../mock/service/contact/address')
@@ -2207,6 +2275,7 @@ module.exports = app => ({
       contactData: contactData,
       addressData: addressData,
       tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -2215,7 +2284,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async help () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/service/help/banner')
     const quickData = require('../mock/service/help/quick')
     const commonData = require('../mock/service/help/common')
@@ -2231,6 +2300,7 @@ module.exports = app => ({
       quickData: quickData,
       commonData: commonData,
       tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -2285,6 +2355,7 @@ module.exports = app => ({
       columnData: columnData,
       downloadData: downloadData,
       tabsData: [],
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -2293,7 +2364,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async declares () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const detailData = require('../mock/service/declare/main')
     let pagePath = 'page/service/page-declare/template'
     await ctx.render(pagePath, {
@@ -2304,6 +2375,7 @@ module.exports = app => ({
       bannerData: {},
       detailData: detailData,
       tabsData: [],
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -2312,7 +2384,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async company () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const bannerData = require('../mock/about/company/banner')
     const usData = require('../mock/about/company/us')
     const teamData = require('../mock/about/company/team')
@@ -2336,9 +2408,7 @@ module.exports = app => ({
       historyData: historyData,
       prizeData: prizeData,
       tabsData: tabsData,
-      tdk: {
-        title: 111,
-      }
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -2347,7 +2417,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async newsMain () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     ctx.redirect('/about/news/1')
   },
   /**
@@ -2434,12 +2504,10 @@ module.exports = app => ({
       tagList: tagList,
       searchHot: searchHot,
       tabsData: [],
-
       paginationData: paginationData,
       total: total,
       tabActiveKey: type ? type : 'all',
       searchKey: search ? search : '',
-
       pageTdk: pageTdk,
     })
   },
@@ -2513,7 +2581,6 @@ module.exports = app => ({
       article: article,
       next: next,
       prev: prev,
-
       pageTdk: pageTdk,
     })
   },
@@ -2651,7 +2718,8 @@ module.exports = app => ({
       envData: envData,
       welfareData: welfareData,
       resumeData: resumeData,
-      tabsData: tabsData
+      tabsData: tabsData,
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -2660,7 +2728,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async tag () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     const articleList = require('../mock/about/news/list')
     const tagList = require('../mock/about/tag/tag')
     const recommendData = require('../mock/case/recommend')
@@ -2677,7 +2745,8 @@ module.exports = app => ({
       articleList: articleList,
       tagList: tagList,
       recommendData: recommendData,
-      tabsData: []
+      tabsData: [],
+      pageTdk: $helper.getTdkByPath()
     })
   },
 
@@ -2686,7 +2755,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async form () {
-    const { ctx } = app;
+    const { ctx, $helper } = app;
     let pagePath = 'page/page-form/template'
     const logoData = require('../mock/form/logo')
     await ctx.render(pagePath, {
@@ -2697,7 +2766,8 @@ module.exports = app => ({
       hasFooter: false,
       bannerData: {},
       logoData: logoData,
-      tabsData: []
+      tabsData: [],
+      pageTdk: $helper.getTdkByPath()
     })
   }
 

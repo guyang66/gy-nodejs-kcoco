@@ -11,7 +11,8 @@ module.exports = app => {
       ip: { type: String, default: '' },
       need: { type: String, default: '' }, // 需求
       origin: { type: String, default: '官网' }, // 线索来源
-      originHref: { type: String, default: '' }, // 线索来源url
+      originHref: { type: String, default: '' }, // 线索来源url（埋点）
+      type: { type: String, default: '' }, // 线索来源动作（埋点）
       date: { type: String, default: '' }, // 时间戳
       remark: { type: String, default: '' },
     }), {
