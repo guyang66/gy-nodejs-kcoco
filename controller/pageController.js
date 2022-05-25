@@ -5,7 +5,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async index() {
-    const { ctx, $helper, $service, $config, $model } = app;
+    const { ctx, $helper, $service, $config, $model, $nodeCache } = app;
     const { commonConfig } = $model
     const productData = require('../mock/index/product')
     const logoData = require('../mock/index/logo')
@@ -27,10 +27,20 @@ module.exports = app => ({
     } else {
       /** 数据走数据库 **/
       // todo: 用json string， 方便扩展
-      let indexBannerConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_index_banners'})
+      let indexBannerConfig
+      if($nodeCache.get('page_index_banners')){
+        indexBannerConfig = $nodeCache.get('page_index_banners')
+      } else {
+        indexBannerConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_index_banners'})
+      }
       bannerData = JSON.parse(indexBannerConfig.v2)
 
-      let indexNewsConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_index_news'})
+      let indexNewsConfig
+      if($nodeCache.get('page_index_news')){
+        indexNewsConfig = $nodeCache.get('page_index_news')
+      } else {
+        indexNewsConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_index_news'})
+      }
 
       let newsModuleInfo = JSON.parse(indexNewsConfig.v1)
       let newsDataContent = JSON.parse(indexNewsConfig.v2)
@@ -48,7 +58,12 @@ module.exports = app => ({
         content: newsDataContent
       }
 
-      let indexColumnConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_index_columns'})
+      let indexColumnConfig
+      if($nodeCache.get('page_index_columns')){
+        indexColumnConfig = $nodeCache.get('page_index_columns')
+      } else {
+        indexColumnConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_index_columns'})
+      }
       columnData = JSON.parse(indexColumnConfig.v2)
 
       // 排序，让管理后台可以控制banner排序和banner上下线

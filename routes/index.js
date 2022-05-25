@@ -103,17 +103,43 @@ module.exports = app => {
    */
 
   // 菜单
-  router.get('/api/menu/auth',$middleware.auth, $controller.adminMenuController.getMenu)
+  router.get('/api/menu/auth',$middleware.auth, $controller.adminMenuController.getUserMenu)
+  router.post('/api/menu/list/auth',$middleware.auth, $controller.adminMenuController.getMenuList)
+  router.post('/api/menu/update/auth',$middleware.auth, $controller.adminMenuController.updateMenu)
 
   // 路由
   router.get('/api/route/auth',$middleware.auth, $controller.adminRouteController.getRoute)
+  router.post('/api/route/list/auth',$middleware.auth, $controller.adminRouteController.getRouteList)
+  router.post('/api/route/update/auth',$middleware.auth, $controller.adminRouteController.updateRoute)
 
+  // 角色
+  router.get('/api/role/online/auth',$middleware.auth, $controller.adminCommonController.getRoles)
+  router.post('/api/role/list/auth',$middleware.auth, $controller.adminCommonController.getRoleList)
+  router.get('/api/role/delete/auth',$middleware.auth, $controller.adminCommonController.deleteRole)
+  router.post('/api/role/save/auth',$middleware.auth, $controller.adminCommonController.saveRole)
+
+  //缓存
+  router.post('/api/cache/list/auth',$middleware.auth, $controller.adminCommonController.getCaches)
+  router.post('/api/cache/update/auth',$middleware.auth, $controller.adminCommonController.updateCaches)
+  router.get('/api/cache/delete/auth',$middleware.auth, $controller.adminCommonController.deleteCaches)
+  router.post('/api/cache/save/auth',$middleware.auth, $controller.adminCommonController.saveCaches)
+  router.get('/api/cache/refresh/auth',$middleware.auth, $controller.adminCommonController.refreshCaches)
+  router.get('/api/cache/refreshAll/auth',$middleware.auth, $controller.adminCommonController.refreshAllCaches)
+
+  // 权限
+  router.post('/api/permission/url/list/auth',$middleware.auth, $controller.adminCommonController.getUrlPermissionList)
+  router.post('/api/permission/ui/list/auth',$middleware.auth, $controller.adminCommonController.getUiPermissionList)
+  router.get('/api/permission/ui/online/auth',$middleware.auth, $controller.adminCommonController.getUiPermissionOnline)
+
+
+  // 标签
   router.get('/api/tag/online/auth',$middleware.auth, $controller.adminCommonController.getOnlineTagList)
 
   // user相关
   router.get('/api/user/getUserInfo/auth', $middleware.auth, $controller.adminUserController.getUserInfo)
   router.post('/api/user/updateUserInfo/auth', $middleware.auth, $controller.adminUserController.updateUserInfo)
   router.post('/api/user/updatePassword/auth', $middleware.auth, $controller.adminUserController.updatePassword)
+  router.post('/api/user/list/auth', $middleware.auth, $controller.adminUserController.getUserList)
 
   // 首页banner
   router.get('/api/index/banner/auth', $middleware.auth, $controller.adminCommonController.getIndexBanner)

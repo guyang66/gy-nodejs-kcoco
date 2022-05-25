@@ -5,7 +5,8 @@ module.exports = app => ({
    */
   async getAdminMenu () {
     const { userInfo } = app.ctx
-
+    const { adminMenu } = app.$model
+    const { errorLogger } = app.$log4
     let p1 = {
       status: 1,
     }
@@ -29,9 +30,6 @@ module.exports = app => ({
         p2 ? { "$and": [p1, p2]} : p1
       ]
     }
-
-    const { adminMenu } = app.$model
-    const { errorLogger } = app.$log4
 
     let sortParams = {
       order: -1
@@ -77,4 +75,73 @@ module.exports = app => ({
     }
     return collectChildren(allMenus, 1)
   },
+
+  /**
+   * 分页查询菜单列表
+   * @param page
+   * @param pageSize
+   * @param status
+   * @param searchKey
+   * @param isCommon
+   * @param level
+   * @param orderSort
+   * @returns {Promise<{total: *, list: *}>}
+   */
+  async getList (page = 1, pageSize = 10, status, searchKey, isCommon, level, orderSort) {
+    const { $utils, $log4, $model } = app
+    const { errorLogger } = $log4
+    const { adminMenu } = $model
+
+    let searchParams = {}
+    if(searchKey && searchKey !== ''){
+      let p1 = {
+        "$or": [
+          {
+            "title": new RegExp(searchKey,'i')
+          },
+          {
+            "key": new RegExp(searchKey,'i')
+          },
+          {
+            "path": new RegExp(searchKey,'i')
+          }
+        ]
+      }
+      let p2 = {}
+      if( level ){
+        p2.level = level
+      }
+      if(status !== null && status !== undefined){
+        p2.status = status
+      }
+      if(isCommon !== null && isCommon !== undefined){
+        p2.isCommon = isCommon
+      }
+      searchParams = $utils.isEmptyObject(p2) ? p1 : {"$and": [p1, p2]}
+    } else {
+      if(status !== null && status !== undefined){
+        searchParams.status = status
+      }
+      if(isCommon !== null && isCommon !== undefined){
+        searchParams.isCommon = isCommon
+      }
+      if(level){
+        searchParams.level = level
+      }
+    }
+    let sortParam = {}
+    if(orderSort && orderSort !== ''){
+      sortParam.order = orderSort === 'ascend' ? -1 : 1
+    }
+    sortParam._id = 1
+    let list
+    let total = await adminMenu.find(searchParams).countDocuments()
+    list = await adminMenu.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
+      if(err){
+        errorLogger.error(err)
+      }
+    })
+
+    return { list, total }
+  }
 })

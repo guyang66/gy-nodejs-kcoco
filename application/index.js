@@ -200,6 +200,7 @@ class Application {
   beforeAll (app){
     // 初始化page config
     app.$app.use(app.$middleware.cache)
+    app.$app.use(app.$middleware.urlPermission)
   }
 
   /**

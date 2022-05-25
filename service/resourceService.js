@@ -1,5 +1,16 @@
 module.exports = app => ({
 
+  /**
+   * 分页获取资源列表
+   * @param page
+   * @param pageSize
+   * @param status
+   * @param searchKey
+   * @param category
+   * @param orderSort
+   * @param downloadSort
+   * @returns {Promise<{total: *, list: *}>}
+   */
   async getList (page = 1, pageSize = 10, status, searchKey, category, orderSort, downloadSort) {
     const { $utils, $log4, $model } = app
     const { errorLogger } = $log4
