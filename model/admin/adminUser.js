@@ -20,6 +20,7 @@ module.exports = app => {
       jobNumber: { type: Number }, // 工号
 
       remark: { type: String },
+      noModify: { type: Number, default: 0 }, // 不可修改，避免用户全部修改之后无法登录系统...
       status: { type: Number, default: 1 }, // 1：启用；0：停用
     }), {
       timestamps: { createdAt: 'createTime', updatedAt: 'modifyTime'},

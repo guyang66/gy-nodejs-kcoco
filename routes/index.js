@@ -131,15 +131,19 @@ module.exports = app => {
   router.post('/api/permission/ui/list/auth',$middleware.auth, $controller.adminCommonController.getUiPermissionList)
   router.get('/api/permission/ui/online/auth',$middleware.auth, $controller.adminCommonController.getUiPermissionOnline)
 
-
   // 标签
   router.get('/api/tag/online/auth',$middleware.auth, $controller.adminCommonController.getOnlineTagList)
 
   // user相关
   router.get('/api/user/getUserInfo/auth', $middleware.auth, $controller.adminUserController.getUserInfo)
-  router.post('/api/user/updateUserInfo/auth', $middleware.auth, $controller.adminUserController.updateUserInfo)
+  router.post('/api/user/update/auth', $middleware.auth, $controller.adminUserController.updateUserInfo)
+  // todo: 管理员修改和用户自己修改要分开来,路由这边的url都要做权限校验
+  router.post('/api/user/modify/auth', $middleware.auth, $controller.adminUserController.modifyUserInfo)
   router.post('/api/user/updatePassword/auth', $middleware.auth, $controller.adminUserController.updatePassword)
+  router.get('/api/user/resetPassword/auth', $middleware.auth, $controller.adminUserController.resetPassword)
   router.post('/api/user/list/auth', $middleware.auth, $controller.adminUserController.getUserList)
+  router.get('/api/user/delete/auth', $middleware.auth, $controller.adminUserController.deleteUser)
+  router.post('/api/user/create/auth', $middleware.auth, $controller.adminUserController.createUser)
 
   // 首页banner
   router.get('/api/index/banner/auth', $middleware.auth, $controller.adminCommonController.getIndexBanner)

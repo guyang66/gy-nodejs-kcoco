@@ -150,6 +150,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async deleteRole () {
+    // todo: 角色删除的时候连带着所有的关联都需要被删除
     const { ctx, $service, $helper, $model } = app
     const { adminRole } = $model
     const { id } = ctx.query

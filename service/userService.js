@@ -108,6 +108,24 @@ module.exports = app => ({
     })
 
     return { list, total }
+  },
+
+  async createUser (username, password) {
+    const { adminUser } = app.$model
+    await adminUser.create(
+      {
+        username: username,
+        password: password,
+        email: '',
+        name: '默认姓名',
+        roles: ['guest'],
+        defaultRole: 'guest',
+        defaultRoleName: '游客',
+        status: 1
+      }
+    )
+    const query = {username: {$in: username}};
+    return await adminUser.findOne(query, selectUserKey).exec();
   }
 
 })
