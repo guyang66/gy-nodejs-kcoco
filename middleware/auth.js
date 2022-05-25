@@ -18,7 +18,8 @@ module.exports = app => {
     // 4、路由菜单权限（跳转404、403页面）
 
 
-    const { $helper } = app
+    const { $helper, $nodeCache, $model, $service } = app
+    const { adminUrlPermission, adminUser } = $model
     const parser = parse(ctx.request.url)
     const { path } = parser
 
@@ -31,7 +32,6 @@ module.exports = app => {
     // token只能从header中取，前后端约定好。不能从cookie中拿，防止csrf攻击。
     let accessToken = ctx.header.authorization
     let isLogin
-
     try {
       // 解析token，判断是不是服务器下发的token（token由登录接口下发，并保存在客户端）
       isLogin = !!await $helper.checkToken(accessToken)
@@ -45,16 +45,45 @@ module.exports = app => {
     }
 
     let userInfo
-
     try {
       userInfo = await $helper.decodeToken(accessToken)
     } catch (e) {
       ctx.body = $helper.Result.error('SYS_TOKEN_DECODE_ERROR')
     }
 
-    // 挂载userinfo
     ctx.userInfo = userInfo
 
+    // url权限校验
+    let urlPermissionList = $nodeCache.get('page_url_permission')
+    if(!urlPermissionList){
+      // 缓存没有，则立马生成
+      urlPermissionList = await $service.baseService.query(adminUrlPermission, { status: 1 })
+    }
+    let userRoles = ctx.userInfo.roles
+    let checkPermissionResult = false
+    let target = urlPermissionList.find(item=>{
+      return item.key === path || path.indexOf(item.key) > -1 // 前面是匹配单个， 后面是匹配一个组，给某个上级路由都加上权限。
+    })
+
+    if(target){
+      // 存在需要判断的url权限
+      for(let i = 0; i < userRoles.length; i++){
+        let roleItem = userRoles[i]
+        let permissionRolesList = target.roles
+        // 遍历用户的角色列表，去匹配是否有权限操作
+        let exist = permissionRolesList.find(p=>{
+          return p === roleItem
+        })
+        if(exist) {
+          checkPermissionResult = true
+        }
+      }
+
+      if(!checkPermissionResult){
+        ctx.body = $helper.Result.error('NO_PERMISSION')
+        return
+      }
+    }
     await next();
   }
 }

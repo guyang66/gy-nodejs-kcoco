@@ -27,6 +27,12 @@ module.exports = {
     description: '异常错误'
   },
 
+  NO_PERMISSION: {
+    code: 403,
+    message: '无权访问',
+    description: '无权访问'
+  },
+
   MOCK_DATA_ERROR: {
     code: 999,
     message: '当前接口功能不能使用，请设置config.json->dataMock为true，并正确连接数据库',

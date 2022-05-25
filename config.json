@@ -123,5 +123,6 @@
   },
   "dataMock": false,
   "clueBackup": false,
-  "bodyParse": true
+  "bodyParse": true,
+  "redirect": true
 }

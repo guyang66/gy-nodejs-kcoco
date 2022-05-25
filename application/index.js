@@ -209,6 +209,7 @@ class Application {
    */
   afterAll (app) {
     // 在这里初始化定时任务
+    this.$app.use(app.$middleware.redirect)
   }
 
   /**

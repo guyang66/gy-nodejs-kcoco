@@ -252,6 +252,6 @@ module.exports = app => ({
     } else {
       ctx.body = $helper.Result.fail(-1, '创建用户失败！')
     }
-  }
+  },
 
 })
