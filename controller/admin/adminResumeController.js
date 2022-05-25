@@ -166,7 +166,7 @@ module.exports = app => ({
       ctx.body = $helper.Result.fail('-1', '当前key已存在，请勿重复保存！')
       return
     }
-    let result = await $service.baseService.save(pageResumeCategory, content)
+    let result = await $service.baseService.save(pageResumeCategory, {...content, createTime: new Date(), modifyTime: new Date()})
     if(result){
       ctx.body = $helper.Result.success(result)
     } else {
@@ -199,7 +199,7 @@ module.exports = app => ({
       ctx.body = $helper.Result.fail('-1', '当前key已存在，请勿重复保存！')
       return
     }
-    let result = await $service.baseService.save(pageResumePlace, content)
+    let result = await $service.baseService.save(pageResumePlace, {...content, createTime: new Date(), modifyTime: new Date()})
     if(result){
       ctx.body = $helper.Result.success(result)
     } else {
@@ -372,6 +372,8 @@ module.exports = app => ({
       isTop: 1,
       status: 1,
       order: 1,
+      createTime: new Date(),
+      modifyTime: new Date()
     }
 
     let result = await $service.baseService.save(pageResume, instance)
@@ -490,7 +492,9 @@ module.exports = app => ({
       secKey: content.key,
       name: content.name,
       remark: content.remark || '',
-      status: 1
+      status: 1,
+      createTime: new Date(),
+      modifyTime: new Date()
     }
     let result = await $service.baseService.save(pageCommonTag, instance)
     if(result){

@@ -1,4 +1,5 @@
 const BaseSchema = {
+	// todo：注意这里初始化好createTime就是该model在应用启动的时间，不是动态的，所有save操作的时候需要指定createTime和modifyTime
 	createTime: {
 		type:Date,
 		default: new Date()

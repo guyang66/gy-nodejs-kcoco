@@ -91,6 +91,8 @@ module.exports = app => ({
       description: content.description || '',
       title: content.title || '',
       status: 1,
+      createTime: new Date(),
+      modifyTime: new Date()
     }
 
     let result = await $service.baseService.save(pageTdk, instance)

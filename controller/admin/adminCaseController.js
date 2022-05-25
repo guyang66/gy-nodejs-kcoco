@@ -106,6 +106,8 @@ module.exports = app => ({
       icon: content.icon,
       status: 1,
       order: 1,
+      createTime: new Date(),
+      modifyTime: new Date()
     }
 
     let result = await $service.baseService.save(pageCase, instance)
@@ -190,7 +192,9 @@ module.exports = app => ({
       secKey: content.key,
       name: content.name,
       remark: content.remark || '',
-      status: 1
+      status: 1,
+      createTime: new Date(),
+      modifyTime: new Date()
     }
     let result = await $service.baseService.save(pageCommonTag, instance)
     if(result){

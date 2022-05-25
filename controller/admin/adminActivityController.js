@@ -190,6 +190,8 @@ module.exports = app => ({
         order: 1,
         status: 1,
         type: 'normal',
+        createTime: new Date(),
+        modifyTime: new Date()
       }
       result = await $service.baseService.save(pageProductActivity, instance)
     } else if(type === 'hot'){
@@ -205,6 +207,8 @@ module.exports = app => ({
         order: 1,
         status: 1,
         type: '',
+        createTime: new Date(),
+        modifyTime: new Date()
       }
       result = await $service.baseService.save(pageHotActivity, instance)
     } else if(type === 'brand'){
@@ -217,6 +221,8 @@ module.exports = app => ({
         href: content.href,
         order: 1,
         status: 1,
+        createTime: new Date(),
+        modifyTime: new Date()
       }
       result = await $service.baseService.save(pageBrandActivity, instance)
     } else {
