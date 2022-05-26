@@ -205,4 +205,34 @@ module.exports = app => ({
     }
     return  result
   },
+
+  /**
+   * 新闻浏览量排名
+   * @param params
+   * @returns {Promise<this>}
+   * @constructor
+   */
+  async StaticsViewCount (top) {
+    const { $model, $service } = app
+    const { pageNews } = $model
+    let limit = !top ? 100000 : top - 0
+    let result = await $service.baseService.query(pageNews,{},{},{ limit: limit, sort: { viewCount: -1}})
+    let tmp = []
+    result.forEach(item=>{
+      tmp.push(
+        {
+          name: item.title,
+          count: item.viewCount
+        }
+      )
+    })
+    tmp = tmp.sort((v1,v2)=>{
+      if(v1.count > v2.count ){
+        return 1
+      } else {
+        return -1
+      }
+    })
+    return tmp
+  }
 })

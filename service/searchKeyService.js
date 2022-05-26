@@ -40,5 +40,39 @@ module.exports = app => ({
     })
 
     return tmp.slice(0, 20)
+  },
+
+  /**
+   * 获取热门搜索词
+   * @param type
+   * @param count
+   * @returns {Promise<void>}
+   */
+  async getTopKeywords (type, count = 10000) {
+    const { $model } = app
+    const { bizSearchKey } = $model
+    let queryParams = {
+      type: type
+    }
+    // 聚合
+    let groupResult = await bizSearchKey.aggregate(
+      [
+        { $match: { ...queryParams}},
+        { $group: { _id: "$key" , count:  { $sum: 1 }}}
+      ]
+    )
+    let tmp = []
+    groupResult.forEach(item=>{
+      tmp.push(item._id)
+    })
+
+    tmp = tmp.sort((v1,v2)=>{
+      if(v1.count < v2.count ){
+        return 1
+      } else {
+        return -1
+      }
+    })
+    return tmp.slice(0, count)
   }
 })

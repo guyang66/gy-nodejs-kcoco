@@ -164,7 +164,7 @@ module.exports = app => ({
   },
 
   async StaticsName (params) {
-    const { $model, $log4 } = app
+    const { $model } = app
     const { bizResourceRecord, pageResourceDownload } = $model
     const { type, startTime, endTime } = params
 

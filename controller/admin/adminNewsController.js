@@ -301,4 +301,35 @@ module.exports = app => ({
       ctx.body = $helper.Result.fail(-1, '删除失败！')
     }
   },
+
+  /**
+   * 新闻浏览量排名统计数据
+   * @returns {Promise<void>}
+   */
+  async getNewsViewCountRank () {
+    const { ctx, $service, $helper } = app
+    const { top } = ctx.query
+    let r = await $service.newsService.StaticsViewCount(top)
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '操作失败！')
+    }
+  },
+
+  /**
+   * 新闻搜索关键词统计数据
+   * @returns {Promise<void>}
+   */
+  async getNewsStaticsKeywords () {
+    const { ctx, $service, $helper } = app
+    const { date, type } = ctx.query
+    const interval = $helper.getDateInterval(date)
+    let r = await $service.searchKeyService.StaticsKeywords({...interval, type})
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '操作失败！')
+    }
+  },
 })

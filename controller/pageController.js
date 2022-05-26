@@ -2426,8 +2426,7 @@ module.exports = app => ({
    */
   async news () {
     const { ctx, $config, $service, $model, $helper } = app;
-    const { pageNewsCategory, commonConfig, pageNews } = $model
-
+    const { pageNewsCategory, commonConfig, pageNews, bizSearchKey } = $model
     let page = ctx.params._page - 0
     if(!page || page <= 0){
       page = 1
@@ -2471,6 +2470,9 @@ module.exports = app => ({
 
       let newsSearchConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_news_hot_search'})
       searchHot = JSON.parse(newsSearchConfig.v1)
+      let searchHotKey = await $service.searchKeyService.getTopKeywords('newsSearchInput', 3)
+      let hotKey = searchHotKey.concat(searchHot)
+      searchHot = hotKey.slice(0,4)
 
       let searchParams = {
         status: 1
@@ -2480,6 +2482,16 @@ module.exports = app => ({
       }
       if(search && search !== ''){
         searchParams.searchKey = search
+        // 顺带做个埋点
+        let instance = {
+          type: 'newsSearchInput',
+          typeString: '新闻搜索框',
+          key: search,
+          name: ctx.cookies.get('name'),
+          ip: $helper.getClientIP(ctx),
+          phone: ctx.cookies.get('phone'),
+        }
+        await $service.baseService.save(bizSearchKey, instance)
       }
 
       let queryResult = await $service.newsService.getMatchList(page, 10, searchParams)
@@ -2563,6 +2575,9 @@ module.exports = app => ({
         description: article ? article.description : '',
         keywords: article ? article.keywords : '',
       }
+
+      // 增加文章浏览量
+      await pageNews.findByIdAndUpdate(article._id, {$inc: { viewCount: 1}})
     }
 
     //todo: 入库的时候找个html在线压缩,然后图片啥的路径要换一下

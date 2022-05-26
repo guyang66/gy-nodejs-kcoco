@@ -172,6 +172,8 @@ module.exports = app => {
   router.post('/api/news/category/update/auth', $middleware.auth, $controller.adminNewsController.updateCategory)
   router.get('/api/news/category/delete/auth', $middleware.auth, $controller.adminNewsController.deleteCategory)
   router.post('/api/news/category/save/auth', $middleware.auth, $controller.adminNewsController.saveCategory)
+  router.get('/api/news/statics/viewCount/auth', $middleware.auth, $controller.adminNewsController.getNewsViewCountRank)
+  router.get('/api/news/statics/keywords/auth', $middleware.auth, $controller.adminNewsController.getNewsStaticsKeywords)
 
   // 招聘
   router.get('/api/resume/column/auth', $middleware.auth, $controller.adminResumeController.getResumeColumn)
