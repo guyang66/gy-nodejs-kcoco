@@ -6,8 +6,9 @@ module.exports = app => ({
    * @returns {Promise<null|*>}
    */
   async getCommonConfig (key, valueKey) {
-    const { commonConfig } = app.$model
-    const { errorLogger } = app.$log4
+    const { $log4, $model } = app
+    const { errorLogger } = $log4
+    const { commonConfig } = $model
 
     let result = await commonConfig.findOne({ key },function (err){
       if(err){
@@ -30,16 +31,16 @@ module.exports = app => ({
    * @returns {Promise<*>}
    */
   async updateCommonConfig (key, valueKey, content){
-    const { commonConfig } = app.$model
-    const { errorLogger } = app.$log4
+    const { $model, $log4} = app
+    const { commonConfig } = $model
+    const { errorLogger } = $log4
 
     let p = {}
     p[valueKey] = content
-    let result = await commonConfig.findOneAndUpdate({ key }, p, {}, function (err){
+    return await commonConfig.findOneAndUpdate({ key }, p, {}, function (err){
       if(err){
         errorLogger.error(err)
       }
     })
-    return result
   }
 })

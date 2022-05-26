@@ -4,9 +4,10 @@ module.exports = app => ({
    * @returns {Promise<*[]>}
    */
   async getAdminMenu () {
-    const { userInfo } = app.ctx
-    const { adminMenu } = app.$model
-    const { errorLogger } = app.$log4
+    const { $model, $log4, ctx } = app
+    const { userInfo } = ctx
+    const { adminMenu } = $model
+    const { errorLogger } = $log4
     let p1 = {
       status: 1,
     }

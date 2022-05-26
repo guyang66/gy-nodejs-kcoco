@@ -108,8 +108,9 @@ module.exports = app => ({
    * @returns {Promise<{total: *, list: *}>}
    */
   async getMatchList (page = 1, pageSize = 10, params) {
-    const { errorLogger } = app.$log4
-    const { pageNews } = app.$model
+    const { $log4, $model } = app
+    const { errorLogger } = $log4
+    const { pageNews } = $model
     const { searchKey, status, type } = params
 
     let list = []
@@ -184,8 +185,9 @@ module.exports = app => ({
    * @returns {Promise<*|null>}
    */
   async getAdjacentDetailById (id, key){
-    const { pageNews } = app.$model
-    const { errorLogger } = app.$log4
+    const { $log4, $model } = app
+    const { errorLogger } = $log4
+    const { pageNews } = $model
     let result
     try{
       if(key && key === 'prev'){

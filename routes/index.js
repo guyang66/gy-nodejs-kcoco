@@ -96,6 +96,9 @@ module.exports = app => {
   router.get('/api/sms/send', $controller.smsController.send)
   router.get('/api/sms/verify', $controller.smsController.verify)
   router.get('/api/clue/save', $controller.clueController.save)
+  router.get('/api/resource/count/add', $controller.commonController.addResourceDownloadCount)
+  router.get('/api/resource/click', $controller.commonController.resourceClickRecord)
+  router.get('/api/searchKey/save', $controller.commonController.saveSearchKey)
 
   /**
    * 管理后台接口
@@ -223,6 +226,11 @@ module.exports = app => {
   router.post('/api/resource/category/update/auth', $middleware.auth, $controller.adminResourceController.updateCategory)
   router.post('/api/resource/category/save/auth', $middleware.auth, $controller.adminResourceController.saveCategory)
   router.get('/api/resource/category/delete/auth', $middleware.auth, $controller.adminResourceController.deleteCategory)
+
+  router.post('/api/resource/record/list/auth', $middleware.auth, $controller.adminResourceController.getResourceRecordList)
+  router.get('/api/resource/statics/type/auth', $middleware.auth, $controller.adminResourceController.getResourceStaticsType)
+  router.get('/api/resource/statics/resourceName/auth', $middleware.auth, $controller.adminResourceController.getResourceStaticsName)
+  router.get('/api/resource/statics/keywords/auth', $middleware.auth, $controller.adminResourceController.getResourceStaticsKeywords)
 
   // tdk
   router.post('/api/tdk/list/auth', $middleware.auth, $controller.adminTdkController.getTdkList)

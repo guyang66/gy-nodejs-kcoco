@@ -111,7 +111,8 @@ module.exports = app => ({
   },
 
   async createUser (username, password) {
-    const { adminUser } = app.$model
+    const { $model } = app
+    const { adminUser } = $model
     await adminUser.create(
       {
         username: username,

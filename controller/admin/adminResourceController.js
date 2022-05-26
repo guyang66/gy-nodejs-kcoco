@@ -315,4 +315,121 @@ module.exports = app => ({
       ctx.body = $helper.Result.fail(-1, '删除失败！')
     }
   },
+
+  /**
+   * 获取资源埋点数据源
+   * @returns {Promise<void>}
+   */
+  async getResourceRecordList () {
+    const { ctx, $service, $helper } = app
+    let { page, pageSize} = ctx.request.body
+    if(!page || page <= 0) {
+      page = 1
+    }
+    if(!pageSize || pageSize < 0 ){
+      pageSize = 10
+    }
+
+    /**
+     * @type {{total: *, list: *}}
+     * return: {
+     *   total: 1,
+     *   list: [
+     *     {
+     *       // bizResourceRecord model
+     *       _id: xxx,
+     *       name: xxx,
+     *       objectId: {
+     *         // pageResourceDownload model
+     *         _id: xxx,
+     *         title: xxx,
+     *         desc: xxx,
+     *         ...
+     *       }
+     *       ...
+     *     }
+     *     ...
+     *   ]
+     * }
+     */
+    let r = await $service.resourceService.getRecordList(page, pageSize)
+    // 这里是表关联数据，给前端处理一下数据
+    let tmp = []
+    r.list.forEach(item=>{
+      tmp.push({
+        createTime: item.createTime,
+        modifyTime: item.modifyTime,
+        createId: item.createId,
+        modifyId: item.modifyId,
+        isDelete: item.isDelete,
+        type: item.type,
+        typeString: item.typeString,
+        name: item.name,
+        ip: item.ip,
+        phone: item.phone,
+        remark: item.remark,
+        _id: item._id,
+        // 字段拍平
+        resourceId: item.objectId ? item.objectId.id : null,
+        resourceDatabaseId: item.objectId ? item.objectId._id : null,
+        resourceTitle: item.objectId ? item.objectId.title : null,
+        resourceDesc: item.objectId ? item.objectId.desc : null,
+        resourceDownload: item.objectId ? item.objectId.download : null,
+      })
+    })
+    r.list = tmp
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  },
+
+  /**
+   * 资源埋点分类统计数据
+   * @returns {Promise<void>}
+   */
+  async getResourceStaticsType () {
+    const { ctx, $service, $helper } = app
+    const { date } = ctx.query
+    const interval = $helper.getDateInterval(date)
+    let r = await $service.resourceService.StaticsType(interval)
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '操作失败！')
+    }
+  },
+
+  /**
+   * 统计资源浏览分类
+   * @returns {Promise<void>}
+   */
+  async getResourceStaticsName () {
+    const { ctx, $service, $helper } = app
+    const { date, action } = ctx.query
+    const interval = $helper.getDateInterval(date)
+    let r = await $service.resourceService.StaticsName({...interval, type: action})
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '操作失败！')
+    }
+  },
+
+  /**
+   * 获取资源搜索关键词数据统计
+   * @returns {Promise<void>}
+   */
+  async getResourceStaticsKeywords () {
+    const { ctx, $service, $helper } = app
+    const { date, type } = ctx.query
+    const interval = $helper.getDateInterval(date)
+    let r = await $service.searchKeyService.StaticsKeywords({...interval, type})
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '操作失败！')
+    }
+  }
 })

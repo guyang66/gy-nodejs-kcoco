@@ -40,33 +40,126 @@ function cell (item) {
     '    </div>' +
     '  </div>' +
     '' +
-    '  <div class="btn-wrap">' +
-    '    <span class="txt" href="/pdf/1.pdf" download="/pdf/1.pdf">点击下载</span>' +
+    '  <div class="btn-wrap ' + (item.downloadType === 'link' ? 'jump-action' : 'download-action') + '" ' + 'resourceId="' + item.id + '"' + '>' +
+    '    <span class="txt">点击下载</span>' +
     '    <img src="/images/common/xiangyou-fill.svg" alt="下载" />' +
     '  </div>' +
     '</div>'
   return r
 }
 
-$(function() {
+/**
+ * 埋点——记录下载量
+ * @param resourceId
+ * @param name
+ * @param phone
+ */
+function addResourceCount (resourceId,name,phone) {
+  $.get(
+    '/api/resource/count/add',
+    {
+      id: resourceId,
+      name: name,
+      phone: phone,
+    },
+    function (data) {
+      console.log(data)
+    }
+  )
+}
 
-  $('.resource-main-wrap .btn-wrap').on('click', function() {
+/**
+ * 埋点
+ */
+function saveSearchKey (key, name, phone) {
+  $.get(
+    '/api/searchKey/save',
+    {
+      type: 'resourceSearchInput',
+      typeString: '资源搜索框',
+      key: key,
+      name: name,
+      phone: phone,
+    },
+    function (data) {
+      console.log(data)
+    }
+  )
+}
+
+/**
+ * 埋点——记录点击量
+ * @param resourceId
+ * @param name
+ * @param phone
+ */
+function resourceClick (resourceId, name, phone) {
+  $.get(
+    '/api/resource/click',
+    {
+      id: resourceId,
+      name: name,
+      phone: phone,
+    },
+    function (data) {
+      console.log(data)
+    }
+  )
+}
+
+$(function() {
+  $('.resource-main-wrap .download-action').on('click', function() {
     let name = $.cookie("name")
     let phone = $.cookie("phone")
+    // 埋点
+    let resourceId = $(this).attr('resourceId')
+    resourceClick(resourceId,name, phone)
     if (!name || !phone) {
       let target = {
         scrollY: window.scrollY,
         redirect: '' + window.location.pathname + window.location.search
       }
       localStorage.setItem('pageRedirect', JSON.stringify(target))
-      //todo:下载没完成
-      window.location.href = '/form?from=/resource&action=download'
+      window.location.href = '/form?from=/service/resource&action=resourceDownload'
       return
     }
-    let a = document.createElement('a')
-    a.href = '/pdf/1.pdf'
-    a.download = '/pdf/1.pdf'
-    a.click()
+
+    let target = downloadData.content.find(item=>{
+      return item.id + '' === resourceId + ''
+    })
+
+    addResourceCount(resourceId, name, phone)
+    setTimeout(function (){
+      let a = document.createElement('a')
+      a.href = target.href
+      a.download = target.href
+      a.click()
+    },100)
+  })
+
+  $('.resource-main-wrap .jump-action').on('click', function() {
+    let name = $.cookie("name")
+    let phone = $.cookie("phone")
+    // 埋点
+    let resourceId = $(this).attr('resourceId')
+    resourceClick(resourceId, name, phone)
+    if (!name || !phone) {
+      let target = {
+        scrollY: window.scrollY,
+        redirect: '' + window.location.pathname + window.location.search
+      }
+      localStorage.setItem('pageRedirect', JSON.stringify(target))
+      window.location.href = '/form?from=/service/resource&action=resourceDownload'
+      return
+    }
+    let target = downloadData.content.find(item=>{
+      return item.id + '' === resourceId + ''
+    })
+
+    addResourceCount(resourceId,name,phone)
+    setTimeout(function (){
+      window.open(target.href)
+    },100)
   })
 })
 
@@ -263,7 +356,12 @@ function initPagination(list) {
 
 function searchAction() {
   let searchString = $('.resource-view .search-view').find('.input').val();
-  console.log(searchString);
+  if(searchString && searchString !== ''){
+    // 埋点
+    let name = $.cookie("name")
+    let phone = $.cookie("phone")
+    saveSearchKey(searchString, name, phone)
+  }
   let filterList = downloadData.content.filter(function (v) {
     return (
       v.title.toLowerCase().indexOf(searchString.toLowerCase()) >= 0 ||

@@ -116,7 +116,7 @@ function initExtend(app) {
 
 function initMongodb(app) {
   const chalk = require('chalk');
-  const { commonLogger, mongoDBLogger,  } = app.$log4
+  const { commonLogger, mongoDBLogger } = app.$log4
   const utils = require('../extend/utils')
   const { localStringify } = utils(app)
   const mongoose = require('mongoose').set('debug', function (collectionName, method, query, doc) {

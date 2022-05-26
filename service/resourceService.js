@@ -74,4 +74,133 @@ module.exports = app => ({
 
     return { list, total }
   },
+
+  /**
+   * 更新资源下载量
+   * @param id
+   * @param num
+   * @returns {Promise<boolean>}
+   */
+  async updateResourceCount (id, count) {
+    const { $model } = app
+    const { pageResourceDownload } = $model
+    try {
+      await pageResourceDownload.findByIdAndUpdate(id, {$inc: { download: count}})
+      return true
+    } catch (e){
+      console.log(e)
+      return false
+    }
+  },
+
+  /**
+   * 分页获取资源埋点数据列表
+   * @param page
+   * @param pageSize
+   * @returns {Promise<{total: *, list: *}>}
+   */
+  async getRecordList (page = 1, pageSize = 10) {
+    const { $log4, $model } = app
+    const { errorLogger } = $log4
+    const { pageResourceDownload, bizResourceRecord } = $model
+    let searchParams = {}
+    let sortParam = {_id: -1}
+    // 这里需要联表查询
+    const joinFind = new Promise((resolve,reject)=>{
+      bizResourceRecord.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort : sortParam}).populate('objectId').exec((err,docs)=>{
+        if(err){
+          reject(err)
+        } else {
+          resolve(docs)
+        }
+      })
+    })
+    let total = await bizResourceRecord.find(searchParams).countDocuments()
+    let list = await joinFind
+    return { list, total }
+  },
+
+  /**
+   * 获取分类统计数据
+   * @param params
+   * @returns {Promise<boolean|[]>}
+   * @constructor
+   */
+  async StaticsType (params) {
+    const { $model, $log4 } = app
+    const { bizResourceRecord } = $model
+    const { errorLogger } = $log4
+    const { startTime, endTime } = params
+    let p1 = {
+      type: 'download'
+    }
+    let p2 = {
+      type: 'click'
+    }
+    if(startTime && endTime) {
+      p1.createTime = {"$gt": startTime, "$lt": endTime}
+      p2.createTime = {"$gt": startTime, "$lt": endTime}
+    }
+    let list = []
+    try {
+      let r2 = await bizResourceRecord.find(p2).countDocuments()
+      list.push({
+        name: '总点击量',
+        count: r2,
+        type: 'click'
+      })
+      let r1 = await bizResourceRecord.find(p1).countDocuments()
+      list.push({
+        name: '总下载量',
+        count: r1,
+        type: 'download'
+      })
+      return list
+    } catch (e){
+      errorLogger.error(e)
+      console.log(e)
+      return false
+    }
+  },
+
+  async StaticsName (params) {
+    const { $model, $log4 } = app
+    const { bizResourceRecord, pageResourceDownload } = $model
+    const { type, startTime, endTime } = params
+
+    let queryParams = {}
+    if(type && type !== 'all'){
+      queryParams.type = type
+    }
+    if(startTime && endTime) {
+
+      queryParams.createTime = {"$gt": startTime, "$lt": endTime}
+    }
+
+    let list = await bizResourceRecord.distinct('objectId', queryParams)
+    let tmp = []
+    for(let i = 0 ; i < list.length; i++){
+      let resourceDetail = await pageResourceDownload.findById(list[i])
+      let q = { objectId: list[i]}
+      if(startTime && endTime) {
+        q.createTime = {"$gt": startTime, "$lt": endTime}
+      }
+      if(type && type !== 'all'){
+        q.type = type
+      }
+      let total = await bizResourceRecord.find(q).countDocuments()
+      tmp.push({
+        name: resourceDetail.title || '未知',
+        count: total
+      })
+    }
+    tmp = tmp.sort((v1,v2)=>{
+      if(v1.count < v2.count ){
+        return 1
+      } else {
+        return -1
+      }
+    })
+    return tmp
+  },
 })

@@ -7,7 +7,8 @@ module.exports = app => ({
    * @returns {Promise<*|boolean>}
    */
   async queryById (model, id) {
-    const { errorLogger } = app.$log4
+    const { $log4 } = app
+    const { errorLogger } = $log4
 
     // todo: try catch 不是万能的，有些是错误而非异常，错误就应该被可视，然后被解决，try catch处理异常是为了捕获不知道的意外情况。
     try {
@@ -22,11 +23,14 @@ module.exports = app => ({
   /**
    * 查询满足条件的一个记录
    * @param model
+   * @param params
+   * @param projection
    * @param options
    * @returns {Promise<*|boolean>}
    */
   async queryOne (model, params, projection = {}, options = {}) {
-    const { errorLogger } = app.$log4
+    const { $log4 } = app
+    const { errorLogger } = $log4
     try {
       return await model.findOne(params, projection, options)
     } catch (e){
@@ -48,8 +52,8 @@ module.exports = app => ({
    * @returns {Promise<*|boolean>}
    */
   async query (model, params, projection, opt) {
-    const { errorLogger } = app.$log4
-
+    const { $log4 } = app
+    const { errorLogger } = $log4
     let queryOptions
     if(!opt){
       queryOptions = { sort: { _id: -1 } }
@@ -76,7 +80,8 @@ module.exports = app => ({
    * @returns {Promise<boolean>}
    */
   async save (model, content) {
-    const { errorLogger } = app.$log4
+    const { $log4 } = app
+    const { errorLogger } = $log4
     let newInstance = new model({...content, createTime: new Date(), modifyTime: new Date()})
     let p = new Promise((resolve,reject)=>{
       newInstance.save(function(err, doc){
@@ -103,7 +108,8 @@ module.exports = app => ({
    * @returns {Promise<*|boolean>}
    */
   async count (model, params) {
-    const { errorLogger } = app.$log4
+    const { $log4 } = app
+    const { errorLogger } = $log4
     let searchParams = {...params}
     try {
       return  await model.find(searchParams).countDocuments()
@@ -122,7 +128,8 @@ module.exports = app => ({
    * @returns {Promise<*|boolean>}
    */
   async updateById (model, id, data) {
-    const { errorLogger } = app.$log4
+    const { $log4 } = app
+    const { errorLogger } = $log4
     try {
       return await model.findByIdAndUpdate(id, data)
     } catch (e){
@@ -140,7 +147,8 @@ module.exports = app => ({
    * @returns {Promise<*|boolean>}
    */
   async batchUpdate (model, params, data) {
-    const { errorLogger } = app.$log4
+    const { $log4 } = app
+    const { errorLogger } = $log4
     try {
       return await model.update(
         {...params},
@@ -156,14 +164,15 @@ module.exports = app => ({
   },
 
   /**
-   * 更新一个
+   * 更新满足条件的一个记录
    * @param model
    * @param params
-   * @param data
+   * @param content
    * @returns {Promise<*|boolean>}
    */
   async updateOne (model, params, content) {
-    const { errorLogger } = app.$log4
+    const { $log4 } = app
+    const { errorLogger } = $log4
     try {
       return await model.findOneAndUpdate(
         {...params},
@@ -183,7 +192,8 @@ module.exports = app => ({
    * @returns {Promise<boolean>}
    */
   async delete (model, id) {
-    const { errorLogger } = app.$log4
+    const { $log4 } = app
+    const { errorLogger } = $log4
     if(!model){
       return false
     }

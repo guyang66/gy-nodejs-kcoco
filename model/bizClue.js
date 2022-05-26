@@ -1,7 +1,7 @@
 const baseModel = require('./baseModel')
 module.exports = app => {
   const { mongoose } = app;
-  const Code = new mongoose.Schema(
+  const Clue = new mongoose.Schema(
     Object.assign({}, baseModel, {
       company: { type: String,  default: ''},
       email: { type: String, default: '' },
@@ -20,6 +20,6 @@ module.exports = app => {
       collection: "kcoco_biz_clue",
     }
   )
-  return mongoose.model('kcoco_biz_clue', Code);
+  return mongoose.model('kcoco_biz_clue', Clue);
 }
 

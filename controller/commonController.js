@@ -309,6 +309,107 @@ module.exports = app => ({
       console.log(chalk.red('ctx.req.file不存在，如果使用milter上传文件，需要取消koa-body中间使用！'))
       ctx.body = $helper.Result.fail(-3, '上传失败！')
     }
+  },
+
+  /**
+   * 资源下载量+1
+   * @returns {Promise<void>}
+   */
+  async addResourceDownloadCount () {
+    const { ctx, $service, $helper,$model } = app;
+    const { pageResourceDownload, bizResourceRecord } = $model
+    let { id, phone, name } = ctx.query;
+    if(!id){
+      ctx.body = $helper.Result.fail(-1, '参数缺失（id不存在）！')
+      return
+    }
+    let exist = await $service.baseService.queryOne(pageResourceDownload, {id: id})
+    if(!exist){
+      ctx.body = $helper.Result.fail(-1, '未查询到相关数据！')
+      return
+    }
+    // 访问者登录之后才能进行下载操作
+    let instance = {
+      objectId: exist._id,
+      type: 'download',
+      typeString: '下载',
+      name: name || '',
+      ip: $helper.getClientIP(ctx),
+      phone: phone || 'phone',
+    }
+    await $service.baseService.save(bizResourceRecord, instance)
+    let r = await $service.resourceService.updateResourceCount(exist._id, 1)
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '更新失败！')
+    }
+  },
+
+  /**
+   * 记录访问者点击事件
+   * @returns {Promise<void>}
+   */
+  async resourceClickRecord () {
+    const { ctx, $service, $helper,$model } = app;
+    const { pageResourceDownload, bizResourceRecord } = $model
+    let { id, phone, name } = ctx.query;
+    if(!id){
+      ctx.body = $helper.Result.fail(-1, '参数缺失（id不存在）！')
+      return
+    }
+    let exist = await $service.baseService.queryOne(pageResourceDownload, {id: id})
+    if(!exist){
+      ctx.body = $helper.Result.fail(-1, '未查询到相关数据！')
+      return
+    }
+    // 访问者登录之后才能进行下载操作
+    let instance = {
+      objectId: exist._id,
+      type: 'click',
+      typeString: '点击',
+      name: name || '',
+      ip: $helper.getClientIP(ctx),
+      phone: phone || 'phone',
+    }
+    let r = await $service.baseService.save(bizResourceRecord, instance)
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '记录失败！')
+    }
+  },
+
+  /**
+   * 保存埋点搜索词
+   * @returns {Promise<void>}
+   */
+  async saveSearchKey () {
+    const { ctx, $service, $helper,$model } = app;
+    const { bizSearchKey } = $model
+    let { key, phone, name, type, typeString } = ctx.query;
+    if(!type || type === ''){
+      ctx.body = $helper.Result.fail(-1, '埋点类型不能为空！')
+      return
+    }
+    if(!key || key === ''){
+      ctx.body = $helper.Result.fail(-1, '埋点搜索关键词不能为空！')
+      return
+    }
+    let instance = {
+      type: type,
+      typeString: typeString,
+      key: key,
+      name: name || '',
+      ip: $helper.getClientIP(ctx),
+      phone: phone || 'phone',
+    }
+    let r = await $service.baseService.save(bizSearchKey, instance)
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '保存失败！')
+    }
   }
 
 })

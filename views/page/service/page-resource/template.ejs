@@ -17,6 +17,7 @@
   <!--js-->
   <script src="<%=getContext('jquery.min.js','commonjs')%>"></script>
   <script src="/common/plugins/pagination.js"></script>
+  <script src="<%=getContext('jquery.cookie.js','commonjs')%>"></script>
   <script src="<%=getContext('swiper.js','commonjs')%>"></script>
 </head>
 <body>
@@ -127,10 +128,18 @@
                       </div>
                     </div>
 
-                    <div class="btn-wrap">
-                      <span class="txt">点击下载</span>
-                      <img src="/images/common/xiangyou-fill.svg" alt="下载" />
-                    </div>
+                    <% if(item.downloadType === 'link') { %>
+                      <div href="<%=item.href%>" resourceId="<%=item.id%>" class="btn-wrap jump-action">
+                        <span class="txt">点击下载</span>
+                        <img src="/images/common/xiangyou-fill.svg" alt="下载" />
+                      </div>
+                    <% } else { %>
+                      <div class="btn-wrap download-action" resourceId="<%=item.id%>">
+                        <span class="txt">点击下载</span>
+                        <img src="/images/common/xiangyou-fill.svg" alt="下载" />
+                      </div>
+                    <% } %>
+
                   </div>
                   <% }); %>
                 </div>
