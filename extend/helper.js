@@ -391,4 +391,34 @@ module.exports = app => ({
     }
     return mkdirStatus
   },
+
+  /**
+   * 转化日期区间为可用查询条件
+   * @param key
+   * @returns {{startTime: Date, endTime: Date}|{startTime: null, endTime: null}}
+   */
+  getDateInterval(key){
+    let startTime = null
+    let endTime = null
+    if(!key || key === '' || key === 'all'){
+      return { startTime, endTime }
+    }
+    endTime = new Date(new Date().setHours(0,0,0,0) + (24 * 60 * 60 * 1000 - 1))
+    if(key === 'last_one_day'){
+      startTime = new Date(endTime.getTime() - (24 * 60 * 60 * 1000 - 1))
+    } else if (key === 'last_three_day'){
+      startTime = new Date(endTime.getTime() - (3 * 24 * 60 * 60 * 1000 - 1))
+    } else if (key === 'last_one_week'){
+      startTime = new Date(endTime.getTime() - (7 * 24 * 60 * 60 * 1000 - 1))
+    } else if (key === 'last_one_month'){
+      startTime = new Date(endTime.getTime() - (30 * 24 * 60 * 60 * 1000 - 1))
+    } else if (key === 'last_three_month'){
+      startTime = new Date(endTime.getTime() - (90 * 24 * 60 * 60 * 1000 - 1))
+    } else if (key === 'last_one_year'){
+      startTime = new Date(endTime.getTime() - (365 * 24 * 60 * 60 * 1000 - 1))
+    } else {
+      startTime = new Date(endTime.getTime() - (24 * 60 * 60 * 1000 - 1))
+    }
+    return { startTime, endTime }
+  },
 })

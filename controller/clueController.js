@@ -35,7 +35,7 @@ module.exports = app => ({
       date = $format.formatDate(new Date())
     }
 
-    let r = await $service.baseService.save(bizClue, { phone, name, company, need, position, ip, origin, originHref, remark, date, type, createTime: new Date(), modifyTime: new Date() })
+    let r = await $service.baseService.save(bizClue, { phone, name, company, need, position, ip, origin, originHref, remark, date, type })
 
     if($config.clueBackup){
       // 如果开启了线索备份到邮箱，则异步发送到指定邮箱

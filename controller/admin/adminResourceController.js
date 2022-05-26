@@ -144,8 +144,6 @@ module.exports = app => ({
       remark: content.remark || '',
       status: 1,
       order: 1,
-      createTime: new Date(),
-      modifyTime: new Date()
     }
 
     let result = await $service.baseService.save(pageResourceDownload, instance)
@@ -282,9 +280,7 @@ module.exports = app => ({
       key: content.key,
       name: content.name,
       order: 1,
-      status: 1,
-      createTime: new Date(),
-      modifyTime: new Date()
+      status: 1
     }
     let result = await $service.baseService.save(pageResourceCategory, instance)
     if(result){

@@ -164,8 +164,6 @@ module.exports = app => ({
       isTop: 0,
       isRecommend: 0,
       isHot: 0,
-      createTime: new Date(),
-      modifyTime: new Date()
     }
 
     let result = await $service.baseService.save(pageNews, instance)
@@ -295,8 +293,6 @@ module.exports = app => ({
       name: content.name,
       order: 1,
       status: 1,
-      createTime: new Date(),
-      modifyTime: new Date()
     }
     let result = await $service.baseService.save(pageNewsCategory, instance)
     if(result){

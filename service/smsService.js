@@ -95,8 +95,6 @@ module.exports = app => ({
         count: 0,
         dateTag: dateTag,
         lastSendTime: new Date(),
-        createTime: new Date(),
-        modifyTime: new Date()
       })
     } else {
       // 如果查询到有记录，则校验规则
@@ -129,8 +127,6 @@ module.exports = app => ({
       phone: phone,
       code: randomCode,
       used: false,
-      createTime: new Date(),
-      modifyTime: new Date()
     })
 
     // 更新访问记录的次数和时间

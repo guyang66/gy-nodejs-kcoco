@@ -232,6 +232,9 @@ module.exports = app => {
 
   // 线索
   router.post('/api/clue/list/auth', $middleware.auth, $controller.adminClueController.getClueList)
+  router.get('/api/clue/statics/type/auth', $middleware.auth, $controller.adminClueController.getClueStaticsType)
+  router.get('/api/clue/statics/need/auth', $middleware.auth, $controller.adminClueController.getClueStaticsNeed)
+  router.get('/api/clue/statics/originHref/auth', $middleware.auth, $controller.adminClueController.getClueStaticsOriginHref)
 
   // 登录
   router.post('/api/login', $controller.adminAuthController.login)

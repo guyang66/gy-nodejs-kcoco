@@ -77,7 +77,7 @@ module.exports = app => ({
    */
   async save (model, content) {
     const { errorLogger } = app.$log4
-    let newInstance = new model({...content})
+    let newInstance = new model({...content, createTime: new Date(), modifyTime: new Date()})
     let p = new Promise((resolve,reject)=>{
       newInstance.save(function(err, doc){
         if(err){

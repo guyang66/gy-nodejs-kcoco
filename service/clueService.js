@@ -1,5 +1,4 @@
 module.exports = app => ({
-
   /**
    * 分页获取线索
    * @param page
@@ -76,4 +75,138 @@ module.exports = app => ({
 
     return { list, total }
   },
+
+  /**
+   * 统计指定字段分类和sum
+   * @returns {Promise<this>}
+   */
+  async staticsColumn (params) {
+    const { $model } = app
+    const { bizClue } = $model
+    const { startTime, endTime, column } = params
+
+    let queryParams = {}
+    if(startTime && endTime) {
+      queryParams.createTime = {"$gt": startTime, "$lt": endTime}
+    }
+    let list = await bizClue.distinct(column, queryParams)
+    let tmp = []
+    // 数据量大了之后，遍历查询效率会很低。
+    // 这里可以用聚合（类似 group by，请自行查阅文档或者其他示例）来查询，只用一次查询就拿到结果，
+    for(let i = 0 ; i < list.length; i++){
+      let q = {}
+      q[column] = list[i]
+      if(startTime && endTime) {
+        q.createTime = {"$gt": startTime, "$lt": endTime}
+      }
+      let total = await bizClue.find(q).countDocuments()
+      tmp.push({
+        name: list[i],
+        count: total
+      })
+    }
+
+    tmp = tmp.sort((v1,v2)=>{
+      if(v1.count < v2.count ){
+        return 1
+      } else {
+        return -1
+      }
+    })
+
+    return tmp
+  },
+
+  /**
+   * 统计来源入口数据
+   * @param params
+   * @returns {Promise<this>}
+   */
+  async staticsOriginHref (params) {
+    const { $nodeCache, $model } = app
+    const { bizClue } = $model
+    let { startTime, endTime } = params
+    if(startTime){
+      startTime = new Date(startTime)
+    }
+    if(endTime){
+      endTime = new Date(endTime)
+      endTime = new Date(endTime.getTime() + (24 * 60 * 60 * 1000 - 1))
+    }
+    let queryParams = {}
+    if(startTime && endTime) {
+      queryParams.createTime = {"$gt": startTime, "$lt": endTime}
+    }
+    let list = await bizClue.distinct('originHref', queryParams)
+    let tmp = []
+    for(let i = 0 ; i < list.length; i++){
+      let q = {originHref: list[i]}
+      if(startTime && endTime) {
+        q.createTime = {"$gt": startTime, "$lt": endTime}
+      }
+      let total = await bizClue.find(q).countDocuments()
+      tmp.push({
+        name: list[i],
+        count: total
+      })
+    }
+    //合并同一种页面
+    const tdk = $nodeCache.get('page_tdk_config')
+    let tagMap = {}
+    const pushItem = (obj) => {
+      if(tagMap[obj.name]){
+        tagMap[obj.name].count = tagMap[obj.name].count + obj.count
+      } else {
+        tagMap[obj.name] = obj
+      }
+    }
+
+    tmp.forEach(item=>{
+      let target = tdk[item.name]
+      if(target){
+        pushItem({
+          name: target.name,
+          count: item.count
+        })
+      } else if (item.name === '/'){
+        // 首页 / 和 /index 都是首页，合并掉
+        pushItem({
+          name: tdk['/index'].name,
+          count: item.count
+        })
+      } else if (item.name.indexOf('/about/news/') > -1){
+        // 新闻是有分页的需要合并
+        pushItem({
+          name: '新闻列表',
+          count: item.count
+        })
+      } else if (item.name.indexOf('/about/news/detail/') > -1){
+        // 新闻详情是按id处理的，也需要合并
+        pushItem({
+          name: '新闻详情',
+          count: item.count
+        })
+      } else {
+        pushItem({
+          name: '其它',
+          count: item.count
+        })
+      }
+    })
+
+    // 拍平对象
+    let result = []
+    for(let key in tagMap){
+      result.push(tagMap[key])
+    }
+
+    result = result.sort((v1,v2)=>{
+      if(v1.count < v2.count ){
+        return -1
+      } else {
+        return 1
+      }
+    })
+    return result
+  }
 })

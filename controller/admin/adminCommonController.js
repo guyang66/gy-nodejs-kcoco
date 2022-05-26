@@ -193,8 +193,6 @@ module.exports = app => ({
       name: content.name,
       key: content.key,
       status: 1,
-      createTime: new Date(),
-      modifyTime: new Date()
     }
 
     let result = await $service.baseService.save(adminRole, instance)
@@ -309,8 +307,6 @@ module.exports = app => ({
       name: content.name,
       key: content.key,
       status: 1,
-      createTime: new Date(),
-      modifyTime: new Date()
     }
 
     let result = await $service.baseService.save(sysCache, instance)
