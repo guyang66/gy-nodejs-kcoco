@@ -27,7 +27,7 @@
           <% } %>
           <div class="desc"><%=item.desc%></div>
 
-          <a class="btn" href="<%=item.href%>" <% if(item.nofollow){ %> ref="nofollow" <% } %>  <% if(item.target === '_blank'){ %> target="_blank" <% } %> ><%=item.btnText%></a>
+          <a class="btn" href="<%=item.href%>?id=<%=item._id%>&category=hot" <% if(item.nofollow){ %> ref="nofollow" <% } %>  <% if(item.target === '_blank'){ %> target="_blank" <% } %> ><%=item.btnText%></a>
         </div>
 
         <% if(item.type && item.type === 'new') { %>

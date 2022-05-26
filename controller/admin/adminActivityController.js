@@ -1,4 +1,14 @@
 module.exports = app => ({
+  async getActivityCategory () {
+    const { ctx, $service, $helper, $model } = app
+    const { pageActivity } = $model
+    let result = await $service.baseService.query(pageActivity)
+    if(result){
+      ctx.body = $helper.Result.success(result)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  },
   /**
    * 获取活动列表
    * @returns {Promise<void>}
@@ -229,5 +239,21 @@ module.exports = app => ({
     } else {
       ctx.body = $helper.Result.fail(-1, '保存失败！')
     }
-  }
+  },
+
+  async getActivityStaticsVisit () {
+    const { ctx, $service, $helper } = app
+    const { date, top, category } = ctx.query
+    if(!category || category === ''){
+      ctx.body = $helper.Result.fail(-1, '未指定活动模块名字！')
+      return
+    }
+    const interval = $helper.getDateInterval(date)
+    let r = await $service.activityService.StaticsVisit({...interval, top, category })
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '操作失败！')
+    }
+  },
 })

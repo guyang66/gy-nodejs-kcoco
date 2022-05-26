@@ -55,4 +55,46 @@ module.exports = app => ({
 
     return { list, total }
   },
+
+  /**
+   * 案例访问数据
+   * @returns {Promise<this>}
+   * @constructor
+   */
+  async StaticsVisit (params) {
+    const { $model, $service } = app
+    const { pageCase, bizCaseRecord } = $model
+    let { startTime, endTime, top } = params
+    let limit = !top ? 100000 : top - 0
+    let searchParams = {}
+    if(startTime && endTime){
+      searchParams.createTime = {"$gt": startTime, "$lt": endTime}
+    }
+    // 这里需要联表查询
+    let groupResult = await bizCaseRecord.aggregate(
+      [
+        { $match: { ...searchParams}},
+        { $group: { _id: "$objectId" , count:  { $sum: 1 }}}
+      ]
+    )
+    let tmp = []
+    for(let i = 0; i < groupResult.length; i++){
+      // todo：优化：数据一多，这里同步查询肯定慢
+      let caseDetail = await $service.baseService.queryById(pageCase, groupResult[i]._id)
+      tmp.push(
+        {
+          name: caseDetail.title,
+          count: groupResult[i].count
+        }
+      )
+    }
+    tmp = tmp.sort((v1,v2)=>{
+      if(v1.count > v2.count ){
+        return 1
+      } else {
+        return -1
+      }
+    })
+    return tmp.slice(0, limit)
+  }
 })

@@ -220,4 +220,36 @@ module.exports = app => ({
     }
   },
 
+  /**
+   * 案例详情访问统计数据
+   * @returns {Promise<void>}
+   */
+  async getCaseStaticsVisit () {
+    const { ctx, $service, $helper } = app
+    const { date, top } = ctx.query
+    const interval = $helper.getDateInterval(date)
+    let r = await $service.caseService.StaticsVisit({...interval, top: top })
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '操作失败！')
+    }
+  },
+
+  /**
+   * 获取案例搜索关键词统计数据
+   * @returns {Promise<void>}
+   */
+  async getCaseStaticsKeywords () {
+    const { ctx, $service, $helper } = app
+    const { date, type } = ctx.query
+    const interval = $helper.getDateInterval(date)
+    let r = await $service.searchKeyService.StaticsKeywords({...interval, type})
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '操作失败！')
+    }
+  }
+
 })

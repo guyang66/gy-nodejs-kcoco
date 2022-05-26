@@ -206,14 +206,17 @@ module.exports = app => {
   router.get('/api/case/tag/delete/auth', $middleware.auth, $controller.adminCaseController.deleteTag)
   router.post('/api/case/tag/save/auth', $middleware.auth, $controller.adminCaseController.saveCaseTag)
   router.post('/api/case/tag/update/auth', $middleware.auth, $controller.adminCaseController.updateCaseTag)
+  router.get('/api/case/statics/visit/auth', $middleware.auth, $controller.adminCaseController.getCaseStaticsVisit)
+  router.get('/api/case/statics/keywords/auth', $middleware.auth, $controller.adminCaseController.getCaseStaticsKeywords)
 
   // 活动
+  router.get('/api/activity/category/auth', $middleware.auth, $controller.adminActivityController.getActivityCategory)
   router.post('/api/activity/list/auth', $middleware.auth, $controller.adminActivityController.getActivityList)
   router.post('/api/activity/update/auth', $middleware.auth, $controller.adminActivityController.updateActivity)
   router.get('/api/activity/delete/auth', $middleware.auth, $controller.adminActivityController.deleteActivity)
   router.post('/api/activity/save/auth', $middleware.auth, $controller.adminActivityController.saveActivity)
   router.get('/api/activity/main/auth', $middleware.auth, $controller.adminActivityController.setMainActivity)
-
+  router.get('/api/activity/statics/visit/auth', $middleware.auth, $controller.adminActivityController.getActivityStaticsVisit)
   // 资源
   router.post('/api/resource/list/auth', $middleware.auth, $controller.adminResourceController.getResourceList)
   router.post('/api/resource/update/auth', $middleware.auth, $controller.adminResourceController.updateResource)

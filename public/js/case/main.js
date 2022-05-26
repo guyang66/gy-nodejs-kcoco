@@ -1,8 +1,28 @@
 $(function () {
   // 搜索
   // todo: 数据库要入库
+  function saveSearchKey(key, name, phone) {
+    $.get(
+      '/api/searchKey/save',
+      {
+        type: 'caseSearchInput',
+        typeString: '案例搜索框',
+        key: key,
+        name: name,
+        phone: phone,
+      },
+      function (data) {
+        console.log(data)
+      }
+    )
+  }
   function searchAction() {
     let value = $('.search-wrap .search .input').val();
+    if(value && value !== ''){
+      let name = $.cookie("name")
+      let phone = $.cookie("phone")
+      saveSearchKey(value, name, phone)
+    }
     let filterList;
     if (value !== null && value !== undefined && value !== '') {
       filterList = casesList.filter(function (item) {
@@ -33,7 +53,7 @@ $(function () {
         string +
         "<a class='case-btn'" +
         " href='" +
-        item.href +
+        item.href + '?'+ item._id +
         "'>了解详情 ></a>";
       string = string + '</div>';
     });
@@ -89,6 +109,7 @@ $(function () {
       node.children('.case-icon').attr('src', target.icon);
       node.children('.case-title').text(target.title);
       node.children('.case-desc').text(target.desc);
+      node.children('.case-btn').attr('href',target.href + "?id=" + target._id)
       $('.case-main-wrap .case-view').append(node);
     }
 

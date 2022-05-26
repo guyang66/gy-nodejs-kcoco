@@ -1834,10 +1834,26 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async caseDetail () {
-    const { ctx, $helper } = app;
+    const { ctx, $helper, $config, $model, $service } = app;
+    const { bizCaseRecord } =  $model
     const detailData = require('../mock/case/example')
     const recommendData = require('../mock/case/recommend')
     let pagePath = 'page/case/page-case-detail/template'
+
+    if(!$config.dataMock){
+      let _id = ctx.query.id ? ctx.query.id : null
+      if(_id){
+        let instance = {
+          objectId: _id,
+          type: 'visit',
+          typeString: '访问',
+          name: ctx.cookies.get('name'),
+          ip: $helper.getClientIP(ctx),
+          phone: ctx.cookies.get('phone'),
+        }
+        await $service.baseService.save(bizCaseRecord, instance)
+      }
+    }
     await ctx.render(pagePath, {
       title: '案例详情',
       key: 'case-detail',
@@ -1857,7 +1873,7 @@ module.exports = app => ({
    */
   async activityList () {
     const { ctx, $service, $config, $model, $helper } = app;
-    const { pageActivity, pageHotActivity, pageProductActivity, pageBrandActivity } = $model;
+    const { pageActivity, pageHotActivity, pageProductActivity, pageBrandActivity, bizCaseRecord } = $model;
     const bannerData = require('../mock/activity/banner')
     const tabsData = require('../mock/activity/tabsData')
     let productData
@@ -1921,6 +1937,21 @@ module.exports = app => ({
         key: activityMap['brand'].key,
         content: brandActivityList
       }
+
+      // 埋点
+      // let _id = ctx.query.id ? ctx.query.id : null
+      // if(_id){
+      //   console.log(_id)
+      //   let instance = {
+      //     objectId: _id,
+      //     type: 'visit',
+      //     typeString: '访问',
+      //     name: ctx.cookies.get('name'),
+      //     ip: $helper.getClientIP(ctx),
+      //     phone: ctx.cookies.get('phone'),
+      //   }
+      //   await $service.baseService.save(bizCaseRecord, instance)
+      // }
     }
 
     await ctx.render(pagePath, {
@@ -1942,9 +1973,26 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async activityDetail () {
-    const { ctx, $helper } = app;
+    const { ctx, $helper, $config, $service, $model } = app;
+    const { bizActivityRecord } = $model
     const detailData = require('../mock/activity/example')
     let pagePath = 'page/activity/page-activity-detail/template'
+    if(!$config.dataMock){
+      let _id = ctx.query.id ? ctx.query.id : null
+      let category = ctx.query.category ? ctx.query.category : null
+      if(_id){
+        let instance = {
+          objectId: _id,
+          category: category,
+          type: 'visit',
+          typeString: '访问',
+          name: ctx.cookies.get('name'),
+          ip: $helper.getClientIP(ctx),
+          phone: ctx.cookies.get('phone'),
+        }
+        await $service.baseService.save(bizActivityRecord, instance)
+      }
+    }
     await ctx.render(pagePath, {
       title: '活动详情',
       key: 'activity-detail',
@@ -2470,7 +2518,8 @@ module.exports = app => ({
 
       let newsSearchConfig = await $service.baseService.queryOne(commonConfig, {key: 'page_news_hot_search'})
       searchHot = JSON.parse(newsSearchConfig.v1)
-      let searchHotKey = await $service.searchKeyService.getTopKeywords('newsSearchInput', 3)
+      //最多显示4个关键词 用户热门搜索词取2个、数据库自定义热门词取2个
+      let searchHotKey = await $service.searchKeyService.getTopKeywords('newsSearchInput', 2)
       let hotKey = searchHotKey.concat(searchHot)
       searchHot = hotKey.slice(0,4)
 

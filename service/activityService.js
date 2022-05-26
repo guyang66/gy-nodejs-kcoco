@@ -122,5 +122,53 @@ module.exports = app => ({
       errorLogger.eror('【activityService】——setMainProductActivity：' + e.toString())
       return false
     }
+  },
+
+  async StaticsVisit (params) {
+    const { $model, $service } = app
+    const { pageBrandActivity,pageHotActivity,pageProductActivity, bizActivityRecord } = $model
+    let { startTime, endTime, top, category } = params
+    console.log(params)
+    let limit = !top ? 100000 : top - 0
+    let searchParams = {}
+    if(startTime && endTime){
+      searchParams.createTime = {"$gt": startTime, "$lt": endTime}
+    }
+    if(category && category !== ''){
+      searchParams.category = category
+    }
+    // 这里需要联表查询
+    let groupResult = await bizActivityRecord.aggregate(
+      [
+        { $match: { ...searchParams}},
+        { $group: { _id: "$objectId" , count:  { $sum: 1 }}}
+      ]
+    )
+    let tmp = []
+    for(let i = 0; i < groupResult.length; i++){
+      // todo：优化：数据一多，这里同步查询肯定慢
+      let caseDetail
+      if(category === 'hot'){
+        caseDetail = await $service.baseService.queryById(pageHotActivity, groupResult[i]._id)
+      } else if (category === 'product') {
+        caseDetail = await $service.baseService.queryById(pageProductActivity, groupResult[i]._id)
+      } else if (category === 'brand') {
+        caseDetail = await $service.baseService.queryById(pageBrandActivity, groupResult[i]._id)
+      }
+      tmp.push(
+        {
+          name: caseDetail.title,
+          count: groupResult[i].count
+        }
+      )
+    }
+    tmp = tmp.sort((v1,v2)=>{
+      if(v1.count > v2.count ){
+        return 1
+      } else {
+        return -1
+      }
+    })
+    return tmp.slice(0, limit)
   }
 })
