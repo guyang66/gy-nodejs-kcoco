@@ -447,6 +447,39 @@ module.exports = app => ({
   },
 
   /**
+   * 时间区间转化
+   * @param key
+   * @returns {{min: null, max: null}|{min: number, max: number}}
+   */
+  getTimeInterval (key) {
+    let min = null
+    let max = null
+    if(!key || key === '' || key === 'all'){
+      return { min, max }
+    }
+    if(key === '2s-1m'){
+      min = 2
+      max = 60
+    } else if(key === '2s-3m'){
+      min = 2
+      max = 3 * 60
+    } else if(key === '2s-5m'){
+      min = 2
+      max = 5 * 60
+    } else if(key === '2s-10m'){
+      min = 2
+      max = 10 * 60
+    } else if(key === '2s-30m'){
+      min = 2
+      max = 30 * 60
+    } else {
+      min = 2
+      max = 60
+    }
+    return { min, max }
+  },
+
+  /**
    * 时区本地化（无论你处于那个时区，都显示本地时间，避免时差带来的8小时误差，导致统计数据误差很大）
    * @param v
    */

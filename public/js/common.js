@@ -2,6 +2,8 @@ $(function() {
   scrollEvent();
   // pv记录
   checkPageVisit()
+  // tp记录
+  checkTimeOnPage()
 });
 
 function scrollEvent(){
@@ -58,11 +60,54 @@ function checkPageVisit () {
     path: '' + window.location.pathname ,
     name: $.cookie("name"),
     phone: $.cookie("phone"),
-    company: $.cookie("company")
   }
   $.get(
     '/api/statics/pv',
     params,
     function (data){
     })
+}
+
+/**
+ * 埋点-uv
+ * 主要还是存储到localstorage中，进入下一个页面之后取出来保存到服务端，所以缺点就是：会丢失最后一次访问的tp
+ */
+function checkTimeOnPage () {
+  let key = localStorage.getItem('page_tag')
+  if(key && key !== ''){
+    let resultString = localStorage.getItem('page_tag')
+    let result = JSON.parse(resultString)
+    let endTime = new Date().getTime()
+    let interval = endTime - result.startTime
+    let params = {
+      path: result.path,
+      time: interval,
+      name: $.cookie("name"),
+      phone: $.cookie("phone"),
+    }
+
+    $.get(
+      '/api/statics/tp',
+      params,
+      function (data){
+      })
+
+    // 拼接url
+    let path = '' + window.location.pathname
+    let startTime = new Date().getTime()
+    let obj = {
+      path: path,
+      startTime: startTime
+    }
+    localStorage.setItem('page_tag', JSON.stringify(obj))
+  } else {
+    // 第一次进
+    let path = '' + window.location.pathname
+    let startTime = new Date().getTime()
+    let obj = {
+      path: path,
+      startTime: startTime
+    }
+    localStorage.setItem('page_tag', JSON.stringify(obj))
+  }
 }

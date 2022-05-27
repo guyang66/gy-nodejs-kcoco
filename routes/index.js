@@ -100,6 +100,7 @@ module.exports = app => {
   router.get('/api/resource/click', $controller.commonController.resourceClickRecord)
   router.get('/api/searchKey/save', $controller.commonController.saveSearchKey)
   router.get('/api/statics/pv', $controller.commonController.pagePvStatics)
+  router.get('/api/statics/tp', $controller.commonController.pageTpStatics)
 
   /**
    * 管理后台接口
@@ -259,6 +260,10 @@ module.exports = app => {
   router.get('/api/statics/pv/visit/auth', $middleware.auth, $controller.adminCommonController.getPvStaticsVisit)
   router.get('/api/statics/pv/line/auth', $middleware.auth, $controller.adminCommonController.getPvStaticsPvLine)
   router.get('/api/statics/uv/line/auth', $middleware.auth, $controller.adminCommonController.getPvStaticsUvLine)
+  router.post('/api/statics/tp/list/auth', $middleware.auth, $controller.adminCommonController.getTpList)
+  router.get('/api/statics/tp/visit/auth', $middleware.auth, $controller.adminCommonController.getTpStaticsVisit)
+  router.get('/api/statics/tp/total/auth', $middleware.auth, $controller.adminCommonController.getTpStaticsTotal)
+  router.get('/api/statics/tp/trend/auth', $middleware.auth, $controller.adminCommonController.getTpStaticsTrend)
 
   // 登录
   router.post('/api/login', $controller.adminAuthController.login)

@@ -426,7 +426,6 @@ module.exports = app => ({
       return
     }
     let pathUrl = path
-    console.log(path)
     let pageName = tdk[path] ? (tdk[path].name || '未知') : '未知'
     if(path === '/'){
       pageName = '首页'
@@ -451,6 +450,66 @@ module.exports = app => ({
       ctx.body = $helper.Result.success('ok')
     } else {
       ctx.body = $helper.Result.fail(-1,'fail')
+    }
+  },
+
+  /**
+   * 页面tp统计数据
+   * @returns {Promise<void>}
+   */
+  async pageTpStatics () {
+    const { ctx, $helper, $service, $model, $nodeCache } = app;
+    const { bizTp } = $model
+    let { path, time, name, phone } = ctx.query
+    const tdk =  $nodeCache.get('page_tdk_config')
+
+    if(!path || path === ''){
+      ctx.body = $helper.Result.fail(-1,'path不存在！')
+      return
+    }
+    if(!time || time === ''){
+      ctx.body = $helper.Result.fail(-1,'time不存在！')
+      return
+    }
+
+    time = (time - 0) / 1000
+    time = time.toFixed(1)
+    time = Number(time)
+
+    // 停留时间小于1s或者大于30分钟的不保存
+    if(time < 1 || time > 60 * 30){
+      ctx.body = $helper.Result.success('ok!')
+      return
+    }
+
+    let pathUrl = path
+    let pageName = tdk[path] ? (tdk[path].name || '未知') : '未知'
+    if(path === '/'){
+      pageName = '首页'
+      pathUrl = '/index'
+    } else if (path.indexOf('/about/news/detail/') > -1){
+      // 优先匹配detail
+      pageName = '新闻详情'
+      pathUrl = '/about/news/detail'
+    } else if(path.indexOf('/about/news/') > -1){
+      pageName = '新闻列表'
+      pathUrl = '/about/news'
+    }
+
+    let content = {
+      path: path,
+      pageName: pageName,
+      time: time,
+      name: name || '',
+      phone: phone || '',
+      ip: $helper.getClientIP(ctx)
+    }
+
+    let result = await $service.baseService.save(bizTp, content)
+    if(result){
+      ctx.body = $helper.Result.success(result)
+    } else {
+      ctx.body = $helper.Result.fail(-1,'保存失败！')
     }
   }
 

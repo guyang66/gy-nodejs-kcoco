@@ -402,7 +402,7 @@ module.exports = app => ({
   },
 
   /**
-   *
+   * pv记录列表
    * @returns {Promise<void>}
    */
   async getPvList () {
@@ -424,6 +424,28 @@ module.exports = app => ({
   },
 
   /**
+   * tp记录列表
+   * @returns {Promise<void>}
+   */
+  async getTpList () {
+    const { ctx, $service, $helper } = app
+    let { page, pageSize, searchKey, startTime, endTime} = ctx.request.body
+    if(!page || page <= 0) {
+      page = 1
+    }
+    if(!pageSize || pageSize < 0 ){
+      pageSize = 10
+    }
+
+    let r = await $service.recordService.getTpList(page, pageSize, searchKey, startTime, endTime)
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  },
+
+  /**
    * pv页面访问量排行统计数据
    * @returns {Promise<void>}
    */
@@ -432,6 +454,57 @@ module.exports = app => ({
     const { date, top } = ctx.query
     const interval = $helper.getDateInterval(date)
     let r = await $service.recordService.StaticsPvVisit({...interval, top: top })
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  },
+
+  /**
+   * tp统计数据
+   * @returns {Promise<void>}
+   */
+  async getTpStaticsVisit () {
+    const { ctx, $service, $helper } = app
+    const { date, top, time, type } = ctx.query
+    const interval = $helper.getDateInterval(date)
+    const minMax = $helper.getTimeInterval(time)
+    let r = await $service.recordService.StaticsUvVisit({...interval, top, ...minMax, type })
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  },
+
+  /**
+   * 统计当个页面tp数据
+   * @returns {Promise<void>}
+   */
+  async getTpStaticsTotal () {
+    const { ctx, $service, $helper } = app
+    const { date, time, path } = ctx.query
+    const interval = $helper.getDateInterval(date)
+    const minMax = $helper.getTimeInterval(time)
+    let r = await $service.recordService.StaticsTpTotal({...interval, path, ...minMax })
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  },
+
+  /**
+   * 获取单个页面TP趋势
+   * @returns {Promise<void>}
+   */
+  async getTpStaticsTrend () {
+    const { ctx, $service, $helper } = app
+    const { date, time, path, type } = ctx.query
+    const count = $helper.getDateCount(date)
+    const minMax = $helper.getTimeInterval(time)
+    let r = await $service.recordService.StaticsTpTrend({count, path, ...minMax, type })
     if(r){
       ctx.body = $helper.Result.success(r)
     } else {
