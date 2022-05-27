@@ -1,3 +1,4 @@
+const helper = require('./helper')
 module.exports = app => ({
   /**
    *  格式Date 返回格式：YYYY-MM-DD
@@ -55,4 +56,29 @@ module.exports = app => ({
     })
     return copy
   },
+
+  /**
+   * 格式化查询起始时间，起始00:00:00 0001
+   * @param d
+   * @returns {Date}
+   */
+  getCurrentDayStart (d) {
+    let s = this.formatDateYYMMDD(d)
+    let date = new Date(s)
+    date = new Date(date.getTime() + 1)
+    return helper().localTimeZone(date)
+  },
+
+  /**
+   * 格式化查询结束时间，持续到当天23:59:59 999
+   * @param d
+   * @returns {Date}
+   */
+  getCurrentDayEnd (d) {
+    let s = this.formatDateYYMMDD(d)
+    let date = new Date(s)
+    date = new Date(date.getTime() + (24 * 60 * 60 * 1000 - 1))
+    return helper().localTimeZone(date)
+  }
+
 })

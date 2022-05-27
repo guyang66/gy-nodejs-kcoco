@@ -232,7 +232,7 @@ module.exports = app => ({
     if(r){
       ctx.body = $helper.Result.success(r)
     } else {
-      ctx.body = $helper.Result.fail(-1, '操作失败！')
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
     }
   },
 
@@ -248,8 +248,30 @@ module.exports = app => ({
     if(r){
       ctx.body = $helper.Result.success(r)
     } else {
-      ctx.body = $helper.Result.fail(-1, '操作失败！')
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
     }
-  }
+  },
+
+  /**
+   * 获取案例埋点数据源
+   * @returns {Promise<void>}
+   */
+  async getCaseStaticsRecord () {
+    const { ctx, $service, $helper } = app
+    let { page, pageSize, searchKey, startTime, endTime} = ctx.request.body
+    if(!page || page <= 0) {
+      page = 1
+    }
+    if(!pageSize || pageSize < 0 ){
+      pageSize = 10
+    }
+
+    let r = await $service.recordService.getCaseRecordList(page, pageSize, searchKey, startTime, endTime)
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  },
 
 })

@@ -128,7 +128,6 @@ module.exports = app => ({
     const { $model, $service } = app
     const { pageBrandActivity,pageHotActivity,pageProductActivity, bizActivityRecord } = $model
     let { startTime, endTime, top, category } = params
-    console.log(params)
     let limit = !top ? 100000 : top - 0
     let searchParams = {}
     if(startTime && endTime){
@@ -163,7 +162,7 @@ module.exports = app => ({
       )
     }
     tmp = tmp.sort((v1,v2)=>{
-      if(v1.count > v2.count ){
+      if(v1.count < v2.count ){
         return 1
       } else {
         return -1

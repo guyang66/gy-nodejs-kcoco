@@ -5,7 +5,7 @@ module.exports = app => {
     Object.assign({}, baseModel, {
       key: { type: String, default: '' },
       path: { type: String, unique: true, required: [true,'页面路径不能为空！'] },
-      name: { type: String, default: 'default' }, // 页面名称
+      name: { type: String, unique: true, required: [true,'页面名字不能为空！'] }, // 页面名称
       title: { type: String, default: 'yy科技——10000万家供应商的信赖选择' },
       description: {type: String, default: 'yy科技是一家很强大的公司。' },
       keywords: { type: String, default: '科技,水果,蔬菜,智能系统,供应商' },

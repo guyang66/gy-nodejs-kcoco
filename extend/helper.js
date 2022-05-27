@@ -269,11 +269,10 @@ module.exports = app => ({
   },
 
   /**
-   * 获取ip
+   * 获取ip(如果有代理服务器，注意添加转化)
    * @param req
    * @returns {string|null}
    */
-
   getClientIP (req) {
     if(!req.headers){
       return null
@@ -421,4 +420,58 @@ module.exports = app => ({
     }
     return { startTime, endTime }
   },
+
+  /**
+   * 日期分组个数
+   * @param key
+   * @returns {number}
+   */
+  getDateCount (key) {
+    let count = 0
+    if(key === 'last_one_day'){
+      count = 1
+    } else if (key === 'last_three_day'){
+      count = 3
+    } else if (key === 'last_one_week'){
+      count = 7
+    } else if (key === 'last_one_month'){
+      count = 30
+    } else if (key === 'last_three_month'){
+      count = 30 * 3
+    } else if (key === 'last_one_year'){
+      count = 365
+    } else {
+      count = 1
+    }
+    return count
+  },
+
+  /**
+   * 时区本地化（无论你处于那个时区，都显示本地时间，避免时差带来的8小时误差，导致统计数据误差很大）
+   * @param v
+   */
+  localDate(v){
+    const d = new Date(v || Date.now())
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    return d.toISOString()
+  },
+
+  /**
+   * 转化为系统时区（查询的时候）
+   * 比如查询的时候你查询2022-01-02日期的数据，如果不转化时区，则会把2022-01-03凌晨的数据也查询出来，但是前端显示正常（因为数据库的时区和前端时区不一样）
+   * new Date().getTimezoneOffset(): 获取本地时差（分钟），比如我本地（中国）是-480（即相差8个小时）
+   * 解决方案：
+   * 1、数据库设置时区
+   * 2、转化时区，统一的时区下去处理数据。
+   */
+  localTimeZone(v){
+    const d = new Date(v || Date.now())
+    let dateOffset = new Date().getTimezoneOffset()
+    if(dateOffset < 0){
+      // todo:正时差还没测试过，
+      return new Date(d.setMinutes(d.getMinutes() + d.getTimezoneOffset()))
+    }
+    return d
+  },
+
 })

@@ -1,5 +1,7 @@
 $(function() {
   scrollEvent();
+  // pv记录
+  checkPageVisit()
 });
 
 function scrollEvent(){
@@ -46,4 +48,21 @@ function scrollEvent(){
     var offTop = $(".tabs-content-wrap").eq(i).offset().top - 50;
     $('html, body').animate({scrollTop: offTop}, 500);
   })
+}
+
+/**
+ * 埋点-pv，（todo:不能通过后端路由统计，因为会有一些爬虫来访问，除非你能剔除掉爬虫访问）
+ */
+function checkPageVisit () {
+  let params = {
+    path: '' + window.location.pathname ,
+    name: $.cookie("name"),
+    phone: $.cookie("phone"),
+    company: $.cookie("company")
+  }
+  $.get(
+    '/api/statics/pv',
+    params,
+    function (data){
+    })
 }

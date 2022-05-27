@@ -99,6 +99,7 @@ module.exports = app => {
   router.get('/api/resource/count/add', $controller.commonController.addResourceDownloadCount)
   router.get('/api/resource/click', $controller.commonController.resourceClickRecord)
   router.get('/api/searchKey/save', $controller.commonController.saveSearchKey)
+  router.get('/api/statics/pv', $controller.commonController.pagePvStatics)
 
   /**
    * 管理后台接口
@@ -208,6 +209,7 @@ module.exports = app => {
   router.post('/api/case/tag/update/auth', $middleware.auth, $controller.adminCaseController.updateCaseTag)
   router.get('/api/case/statics/visit/auth', $middleware.auth, $controller.adminCaseController.getCaseStaticsVisit)
   router.get('/api/case/statics/keywords/auth', $middleware.auth, $controller.adminCaseController.getCaseStaticsKeywords)
+  router.post('/api/case/record/list/auth', $middleware.auth, $controller.adminCaseController.getCaseStaticsRecord)
 
   // 活动
   router.get('/api/activity/category/auth', $middleware.auth, $controller.adminActivityController.getActivityCategory)
@@ -217,6 +219,8 @@ module.exports = app => {
   router.post('/api/activity/save/auth', $middleware.auth, $controller.adminActivityController.saveActivity)
   router.get('/api/activity/main/auth', $middleware.auth, $controller.adminActivityController.setMainActivity)
   router.get('/api/activity/statics/visit/auth', $middleware.auth, $controller.adminActivityController.getActivityStaticsVisit)
+  router.post('/api/activity/record/list/auth', $middleware.auth, $controller.adminActivityController.getActivityStaticsRecord)
+
   // 资源
   router.post('/api/resource/list/auth', $middleware.auth, $controller.adminResourceController.getResourceList)
   router.post('/api/resource/update/auth', $middleware.auth, $controller.adminResourceController.updateResource)
@@ -242,12 +246,19 @@ module.exports = app => {
   router.post('/api/tdk/update/auth', $middleware.auth, $controller.adminTdkController.updateTdk)
   router.post('/api/tdk/save/auth', $middleware.auth, $controller.adminTdkController.saveTdk)
   router.get('/api/tdk/delete/auth', $middleware.auth, $controller.adminTdkController.deleteTdk)
+  router.get('/api/tdk/pageName/auth', $middleware.auth, $controller.adminTdkController.getAllPageNameByTdk)
 
   // 线索
   router.post('/api/clue/list/auth', $middleware.auth, $controller.adminClueController.getClueList)
   router.get('/api/clue/statics/type/auth', $middleware.auth, $controller.adminClueController.getClueStaticsType)
   router.get('/api/clue/statics/need/auth', $middleware.auth, $controller.adminClueController.getClueStaticsNeed)
   router.get('/api/clue/statics/originHref/auth', $middleware.auth, $controller.adminClueController.getClueStaticsOriginHref)
+
+  // pv/uv/tp
+  router.post('/api/statics/pv/list/auth', $middleware.auth, $controller.adminCommonController.getPvList)
+  router.get('/api/statics/pv/visit/auth', $middleware.auth, $controller.adminCommonController.getPvStaticsVisit)
+  router.get('/api/statics/pv/line/auth', $middleware.auth, $controller.adminCommonController.getPvStaticsPvLine)
+  router.get('/api/statics/uv/line/auth', $middleware.auth, $controller.adminCommonController.getPvStaticsUvLine)
 
   // 登录
   router.post('/api/login', $controller.adminAuthController.login)

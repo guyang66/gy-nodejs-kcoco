@@ -124,4 +124,20 @@ module.exports = app => ({
       ctx.body = $helper.Result.fail(-1, '删除失败！')
     }
   },
+
+  /**
+   * 获取官网所有页面（通过tdk配置）
+   * 注：严格来说需要一个单独的表来维护官网所有页面名字，这里直接用tdk的配置表来做，新增页面的时候注意tdk中也跟着加配置即可。
+   * @returns {Promise<void>}
+   */
+  async getAllPageNameByTdk () {
+    const { ctx, $service, $helper, $model } = app
+    const { pageTdk } = $model
+    let r = await $service.baseService.query(pageTdk,{ name: {$nin : ['default'] }, status: 1},{ name: 1, path: 1})
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  }
 })

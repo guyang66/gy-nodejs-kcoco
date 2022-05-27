@@ -399,6 +399,78 @@ module.exports = app => ({
     } else {
       ctx.body = $helper.Result.fail(-1, '查询失败！')
     }
+  },
+
+  /**
+   *
+   * @returns {Promise<void>}
+   */
+  async getPvList () {
+    const { ctx, $service, $helper } = app
+    let { page, pageSize, searchKey, startTime, endTime} = ctx.request.body
+    if(!page || page <= 0) {
+      page = 1
+    }
+    if(!pageSize || pageSize < 0 ){
+      pageSize = 10
+    }
+
+    let r = await $service.recordService.getPvList(page, pageSize, searchKey, startTime, endTime)
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  },
+
+  /**
+   * pv页面访问量排行统计数据
+   * @returns {Promise<void>}
+   */
+  async getPvStaticsVisit () {
+    const { ctx, $service, $helper } = app
+    const { date, top } = ctx.query
+    const interval = $helper.getDateInterval(date)
+    let r = await $service.recordService.StaticsPvVisit({...interval, top: top })
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  },
+
+  /**
+   * pv总趋势统计数据
+   * @returns {Promise<void>}
+   */
+  async getPvStaticsPvLine () {
+    const { ctx, $service, $helper } = app
+    const { date, path } = ctx.query
+    // 计算需要group分组的日期个数
+    const count = $helper.getDateCount(date)
+    let r = await $service.recordService.StaticsPvLine({count, path})
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
+  },
+
+  /**
+   * uv总趋势统计数据
+   * @returns {Promise<void>}
+   */
+  async getPvStaticsUvLine () {
+    const { ctx, $service, $helper } = app
+    const { date, path } = ctx.query
+    // 计算需要group分组的日期个数
+    const count = $helper.getDateCount(date)
+    let r = await $service.recordService.StaticsUvLine({count, path})
+    if(r){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
   }
 
 })

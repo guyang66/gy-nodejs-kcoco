@@ -410,6 +410,48 @@ module.exports = app => ({
     } else {
       ctx.body = $helper.Result.fail(-1, '保存失败！')
     }
+  },
+
+  /**
+   * 页面pv统计数据
+   * @returns {Promise<void>}
+   */
+  async pagePvStatics () {
+    const { ctx, $helper, $service, $nodeCache, $model } = app
+    const { bizPv } = $model
+    const tdk =  $nodeCache.get('page_tdk_config')
+    let { path, name, phone } = ctx.query
+    if(!path || path === ''){
+      ctx.body = $helper.Result.fail(-1, 'pv——path不存在')
+      return
+    }
+    let pathUrl = path
+    console.log(path)
+    let pageName = tdk[path] ? (tdk[path].name || '未知') : '未知'
+    if(path === '/'){
+      pageName = '首页'
+      pathUrl = '/index'
+    } else if (path.indexOf('/about/news/detail/') > -1){
+      // 优先匹配detail
+      pageName = '新闻详情'
+      pathUrl = '/about/news/detail'
+    } else if(path.indexOf('/about/news/') > -1){
+      pageName = '新闻列表'
+      pathUrl = '/about/news'
+    }
+    let content = {
+      path: pathUrl,
+      pageName: pageName,
+      name: name || '',
+      phone: phone || '',
+      ip: $helper.getClientIP(ctx)
+    }
+    let result = await $service.baseService.save(bizPv, content)
+    if(result){
+      ctx.body = $helper.Result.success('ok')
+    } else {
+      ctx.body = $helper.Result.fail(-1,'fail')
+    }
   }
 
 })

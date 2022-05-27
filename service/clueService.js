@@ -9,15 +9,14 @@ module.exports = app => ({
    * @returns {Promise<{total: *, list: *}>}
    */
   async getList (page = 1, pageSize = 10, searchKey, startTime, endTime) {
-    const { $utils, $log4, $model } = app
+    const { $utils, $log4, $model, $format } = app
     const { errorLogger } = $log4
     const { bizClue } = $model
 
     let searchParams = {}
     if(startTime && endTime) {
-      startTime = new Date(startTime)
-      endTime = new Date(endTime)
-      endTime = new Date(endTime.getTime() + (24 * 60 * 60 * 1000 - 1))
+      startTime = $format.getCurrentDayStart(startTime)
+      endTime = $format.getCurrentDayEnd(endTime)
     }
 
     if(searchKey && searchKey !== ''){
@@ -174,16 +173,15 @@ module.exports = app => ({
           name: tdk['/index'].name,
           count: item.count
         })
+      } else if (item.name.indexOf('/about/news/detail/') > -1){
+        pushItem({
+          name: '新闻详情',
+          count: item.count
+        })
       } else if (item.name.indexOf('/about/news/') > -1){
         // 新闻是有分页的需要合并
         pushItem({
           name: '新闻列表',
-          count: item.count
-        })
-      } else if (item.name.indexOf('/about/news/detail/') > -1){
-        // 新闻详情是按id处理的，也需要合并
-        pushItem({
-          name: '新闻详情',
           count: item.count
         })
       } else {
