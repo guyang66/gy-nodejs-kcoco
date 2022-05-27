@@ -206,5 +206,28 @@ module.exports = app => ({
       }
     })
     return result
+  },
+
+  /**
+   * 计算区间内线索总数量
+   */
+  async staticsCount (startTime, endTime) {
+    const { $model, $format } = app
+    const { bizClue } = $model
+    let searchParams = {}
+    if(startTime && endTime) {
+      startTime = $format.getCurrentDayStart(startTime)
+      endTime = $format.getCurrentDayEnd(endTime)
+    }
+    if(startTime && endTime) {
+      searchParams.createTime = {"$gt": startTime, "$lt": endTime}
+    }
+    let total
+    total = await bizClue.find(searchParams).countDocuments()
+    if(total !== null && total !== undefined){
+      return total
+    } else {
+      return false
+    }
   }
 })

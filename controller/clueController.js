@@ -35,6 +35,10 @@ module.exports = app => ({
       date = $format.formatDate(new Date())
     }
 
+    if(!originHref || originHref === ''){
+      originHref = '表单'
+    }
+
     let r = await $service.baseService.save(bizClue, { phone, name, company, need, position, ip, origin, originHref, remark, date, type })
 
     if($config.clueBackup){

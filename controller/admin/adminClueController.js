@@ -67,5 +67,20 @@ module.exports = app => ({
     } else {
       ctx.body = $helper.Result.fail(-1, '查询失败！')
     }
+  },
+
+  /**
+   * 查询时间
+   * @returns {Promise<void>}
+   */
+  async getClueCount () {
+    const { ctx, $service, $helper } = app
+    const { startTime, endTime } = ctx.query
+    let r = await $service.clueService.staticsCount(startTime, endTime)
+    if(r !== null && r !== undefined){
+      ctx.body = $helper.Result.success(r)
+    } else {
+      ctx.body = $helper.Result.fail(-1, '查询失败！')
+    }
   }
 })

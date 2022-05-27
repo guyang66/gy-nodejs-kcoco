@@ -266,7 +266,8 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async getActivityStaticsRecord () {
-    const { ctx, $service, $helper } = app
+    const { ctx, $service, $helper, $model } = app
+    const {pageBrandActivity, pageHotActivity, pageProductActivity} = $model
     let { page, pageSize, searchKey, startTime, endTime, category} = ctx.request.body
     if(!page || page <= 0) {
       page = 1
@@ -276,6 +277,36 @@ module.exports = app => ({
     }
 
     let r = await $service.recordService.getActivityRecordList(page, pageSize, category, searchKey, startTime, endTime)
+
+    // 活动表没设计好，所有这里走了背包路...，还得再查一次找到活动详情,所以这个接口响应时间也会变慢...
+    let tmp = []
+    for(let i = 0; i < r.list.length;i++){
+      let item = r.list[i]
+      let activityDetail
+      if(item.category === 'hot'){
+        activityDetail = await $service.baseService.queryById(pageHotActivity,item.objectId)
+      } else if (item.category === 'brand'){
+        activityDetail = await $service.baseService.queryById(pageBrandActivity,item.objectId)
+      } else if (item.category === 'product'){
+        activityDetail = await $service.baseService.queryById(pageProductActivity,item.objectId)
+      }
+      if(activityDetail){
+        tmp.push(
+          {
+            createTime: item.createTime,
+            modifyTime: item.modifyTime,
+            type: item.type,
+            typeString: item.typeString,
+            name: item.name,
+            ip: item.ip,
+            category: item.category,
+            phone: item.phone,
+            _id: item._id,
+            title: activityDetail.title
+          })
+      }
+    }
+    r.list = tmp
     if(r){
       ctx.body = $helper.Result.success(r)
     } else {

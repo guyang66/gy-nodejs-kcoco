@@ -42,13 +42,19 @@ module.exports = app => ({
     let sortParam = {
       _id: -1
     }
-    let list
-    let total = await bizCaseRecord.find(searchParams).countDocuments()
-    list = await bizCaseRecord.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
-      if(err){
-        errorLogger.error(err)
-      }
+
+    const joinFind = new Promise((resolve,reject)=>{
+      bizCaseRecord.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort : sortParam}).populate('objectId').exec((err,docs)=>{
+        if(err){
+          reject(err)
+        } else {
+          resolve(docs)
+        }
+      })
     })
+
+    let total = await bizCaseRecord.find(searchParams).countDocuments()
+    let list = await joinFind
 
     return { list, total }
   },
@@ -175,6 +181,7 @@ module.exports = app => ({
     let sortParam = {
       _id: -1
     }
+
     let list
     let total = await bizPv.find(searchParams).countDocuments()
     list = await bizPv.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){

@@ -100,9 +100,8 @@ module.exports = app => ({
    * @returns {Promise<{total: *, list: *}>}
    */
   async getRecordList (page = 1, pageSize = 10) {
-    const { $log4, $model } = app
-    const { errorLogger } = $log4
-    const { pageResourceDownload, bizResourceRecord } = $model
+    const { $model } = app
+    const { bizResourceRecord } = $model
     let searchParams = {}
     let sortParam = {_id: -1}
     // 这里需要联表查询

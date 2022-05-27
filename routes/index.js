@@ -254,6 +254,7 @@ module.exports = app => {
   router.get('/api/clue/statics/type/auth', $middleware.auth, $controller.adminClueController.getClueStaticsType)
   router.get('/api/clue/statics/need/auth', $middleware.auth, $controller.adminClueController.getClueStaticsNeed)
   router.get('/api/clue/statics/originHref/auth', $middleware.auth, $controller.adminClueController.getClueStaticsOriginHref)
+  router.get('/api/clue/statics/count/auth', $middleware.auth, $controller.adminClueController.getClueCount)
 
   // pv/uv/tp
   router.post('/api/statics/pv/list/auth', $middleware.auth, $controller.adminCommonController.getPvList)
