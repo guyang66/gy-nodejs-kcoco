@@ -418,6 +418,8 @@ module.exports = app => ({
     } else {
       startTime = new Date(endTime.getTime() - (24 * 60 * 60 * 1000 - 1))
     }
+    // startTime = this.localTimeZone(startTime,true)
+    // endTime = this.localTimeZone(endTime,true)
     return { startTime, endTime }
   },
 
@@ -490,12 +492,15 @@ module.exports = app => ({
   },
 
   /**
-   * 转化为系统时区（查询的时候）
+   * 转化为系统时区（查询的时候）自动转化为零时区
    * 比如查询的时候你查询2022-01-02日期的数据，如果不转化时区，则会把2022-01-03凌晨的数据也查询出来，但是前端显示正常（因为数据库的时区和前端时区不一样）
-   * new Date().getTimezoneOffset(): 获取本地时差（分钟），比如我本地（中国）是-480（即相差8个小时）
+   * new Date().getTimezoneOffset() = -480: 获取本地时差（分钟），比如我本地（中国）是-480（即相差8个小时）
+   *
    * 解决方案：
    * 1、数据库设置时区
-   * 2、转化时区，统一的时区下去处理数据。
+   * 2、转化时区，统一的时区下去处理数据，如给save加一层拦截器
+   * 3、mongoose-timezone用插件来做，插件也可能有问题，
+   * 4、将日期存储为字符串，需要用的时候取出来解析成日期
    */
   localTimeZone(v){
     const d = new Date(v || Date.now())
@@ -505,6 +510,5 @@ module.exports = app => ({
       return new Date(d.setMinutes(d.getMinutes() + d.getTimezoneOffset()))
     }
     return d
-  },
-
+  }
 })

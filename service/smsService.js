@@ -31,11 +31,9 @@ const sendAction = async function(config, phone, code) {
         code: code
       })
     }
-
     let requestOption = {
       method: 'POST'
     }
-
     try {
       let r = await smsClient.request('SendSms', smsParams, requestOption)
       smsLogger.info('【阿里云短信服务】短信订单：','phone:' + phone + ';','code:' + code + ';')
@@ -193,5 +191,4 @@ module.exports = app => ({
     smsLogger.info('【短信验证码校验】验证码校验成功：' + JSON.stringify({phone, code}))
     return $helper.wrapResult(true, '验证成功')
   }
-
 })

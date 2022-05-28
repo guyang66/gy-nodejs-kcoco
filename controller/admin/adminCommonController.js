@@ -470,7 +470,7 @@ module.exports = app => ({
     const { date, top, time, type } = ctx.query
     const interval = $helper.getDateInterval(date)
     const minMax = $helper.getTimeInterval(time)
-    let r = await $service.recordService.StaticsUvVisit({...interval, top, ...minMax, type })
+    let r = await $service.recordService.StaticsTpVisit({...interval, top, ...minMax, type })
     if(r){
       ctx.body = $helper.Result.success(r)
     } else {

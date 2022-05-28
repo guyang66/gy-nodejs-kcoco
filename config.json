@@ -124,5 +124,7 @@
   "dataMock": false,
   "clueBackup": false,
   "bodyParse": true,
-  "redirect": true
+  "redirect": true,
+  "timeZone": 480,
+  "timeZoneString": "+08:00"
 }

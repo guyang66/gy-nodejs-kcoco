@@ -1,7 +1,7 @@
 const selectUserKey = { path: 1, roles: 1, _id: 0, key: 1, backUrl: 1, exact: 1, name: 1 };
 module.exports = app => ({
   /**
-   * 获取可用权限路由
+   * 获取客户端可用权限路由
    * @returns {Promise<*>}
    */
   async getAdminRoute () {
@@ -11,7 +11,8 @@ module.exports = app => ({
     // 获取正在使用的路由
     return await adminRoute.find( { status: 1}, selectUserKey, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【getAdminRoute】- getAdminRoute：' + err.toString())
       }
     })
   },
@@ -28,7 +29,6 @@ module.exports = app => ({
     const { $utils, $log4, $model } = app
     const { errorLogger } = $log4
     const { adminRoute } = $model
-
     let searchParams = {}
     if(searchKey && searchKey !== ''){
       let p1 = {
@@ -57,14 +57,13 @@ module.exports = app => ({
     let sortParam = {
       _id: 1
     }
-    let list
     let total = await adminRoute.find(searchParams).countDocuments()
-    list = await adminRoute.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
+    let list = await adminRoute.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【routeService】- getList:' + err.toString())
       }
     })
-
     return { list, total }
   }
 })

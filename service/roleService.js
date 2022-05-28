@@ -36,14 +36,13 @@ module.exports = app => ({
     let sortParam = {
       _id: -1
     }
-    let list
     let total = await adminRole.find(searchParams).countDocuments()
-    list = await adminRole.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
+    let list = await adminRole.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【roleService】- getList:' + err.toString())
       }
     })
-
     return { list, total }
   },
 })

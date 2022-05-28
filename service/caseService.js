@@ -5,6 +5,7 @@ module.exports = app => ({
    * @param pageSize
    * @param status
    * @param searchKey
+   * @param orderSort
    * @returns {Promise<{total: *, list: *}>}
    */
   async getList (page = 1, pageSize = 10, status, searchKey, orderSort) {
@@ -45,14 +46,13 @@ module.exports = app => ({
       sortParam.order = orderSort === 'ascend' ? -1 : 1
     }
     sortParam._id = -1
-    let list
     let total = await pageCase.find(searchParams).countDocuments()
-    list = await pageCase.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
+    let list = await pageCase.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【caseService】- getList:' + err.toString())
       }
     })
-
     return { list, total }
   },
 
@@ -62,7 +62,8 @@ module.exports = app => ({
    * @constructor
    */
   async StaticsVisit (params) {
-    const { $model, $service } = app
+    const { $model, $service, $log4 } = app
+    const { errorLogger } = $log4
     const { pageCase, bizCaseRecord } = $model
     let { startTime, endTime, top } = params
     let limit = !top ? 100000 : top - 0
@@ -75,12 +76,23 @@ module.exports = app => ({
       [
         { $match: { ...searchParams}},
         { $group: { _id: "$objectId" , count:  { $sum: 1 }}}
-      ]
+      ],
+      function (err) {
+        if(err){
+          errorLogger.error('【clueService】- StaticsVisit - aggregate:' + err.toString())
+        }
+      }
     )
     let tmp = []
     for(let i = 0; i < groupResult.length; i++){
       // todo：优化：数据一多，这里同步查询肯定慢
-      let caseDetail = await $service.baseService.queryById(pageCase, groupResult[i]._id)
+      let caseDetail
+      try {
+        caseDetail = await $service.baseService.queryById(pageCase, groupResult[i]._id)
+      } catch (e) {
+        console.log(e)
+        errorLogger.error('【caseService】- StaticsVisit - queryById:' + e.toString())
+      }
       tmp.push(
         {
           name: caseDetail.title,

@@ -201,7 +201,7 @@ module.exports = app => ({
       await model.findByIdAndRemove(id)
       return true
     } catch (e){
-      errorLogger.error('删除失败！' + e)
+      errorLogger.error('【baseService】- delete' + e)
       console.log(e)
       return false
     }

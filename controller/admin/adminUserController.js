@@ -18,8 +18,12 @@ module.exports = app => ({
       ctx.body = $helper.Result.fail(-1, '用户信息不存在或未登录')
       return
     }
-    let realUser = await $service.userService.getUserInfoById(user._id)
-    ctx.body = $helper.Result.success(realUser)
+    let r = await $service.userService.getUserInfoById(user._id)
+    if(r.result){
+      ctx.body = $helper.Result.success(r.data)
+    } else {
+      ctx.body = $helper.Result.fail(r.errorCode, r.errorMessage)
+    }
   },
 
   /**

@@ -55,7 +55,8 @@ module.exports = app => ({
     let total = await pageProductActivity.find(getSearchParam(searchKey, status)).countDocuments()
     let list = await pageProductActivity.find(getSearchParam(searchKey, status), null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParams }, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【activityService】- getProductActivityList:' + err.toString())
       }
     })
     return { list, total }
@@ -77,7 +78,8 @@ module.exports = app => ({
     let total = await pageHotActivity.find(getSearchParam(searchKey, status)).countDocuments()
     let list = await pageHotActivity.find(getSearchParam(searchKey, status), null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: getSortParam(orderSort) }, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【activityService】- getHotActivityList:' + err.toString())
       }
     })
     return { list, total }
@@ -99,7 +101,8 @@ module.exports = app => ({
     let total = await pageBrandActivity.find(getSearchParam(searchKey, status)).countDocuments()
     let list = await pageBrandActivity.find(getSearchParam(searchKey, status), null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: getSortParam(orderSort) }, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【activityService】- getBrandActivityList:' + err.toString())
       }
     })
     return { list, total }
@@ -119,14 +122,22 @@ module.exports = app => ({
       await pageProductActivity.findByIdAndUpdate(id, {$set: {type: 'main'}})
       return true
     } catch (e) {
-      errorLogger.eror('【activityService】——setMainProductActivity：' + e.toString())
+      console.log(e)
+      errorLogger.error('【activityService】——setMainProductActivity：' + e.toString())
       return false
     }
   },
 
+  /**
+   * 活动访问统计数据
+   * @param params
+   * @returns {Promise<any[]>}
+   * @constructor
+   */
   async StaticsVisit (params) {
-    const { $model, $service } = app
-    const { pageBrandActivity,pageHotActivity,pageProductActivity, bizActivityRecord } = $model
+    const { $model, $service, $log4 } = app
+    const { errorLogger } = $log4
+    const { pageBrandActivity, pageHotActivity, pageProductActivity, bizActivityRecord } = $model
     let { startTime, endTime, top, category } = params
     let limit = !top ? 100000 : top - 0
     let searchParams = {}
@@ -141,7 +152,12 @@ module.exports = app => ({
       [
         { $match: { ...searchParams}},
         { $group: { _id: "$objectId" , count:  { $sum: 1 }}}
-      ]
+      ],
+      function (err) {
+        if(err){
+          errorLogger.error('【activityService】- StaticsVisit - aggregate:' + err.toString())
+        }
+      }
     )
     let tmp = []
     for(let i = 0; i < groupResult.length; i++){

@@ -17,7 +17,6 @@ module.exports = app => ({
     const { $utils, $log4, $model } = app
     const { errorLogger } = $log4
     const { pageNews } = $model
-
     let searchParams = {}
     if(searchKey && searchKey !== ''){
       let p1 = {
@@ -93,15 +92,15 @@ module.exports = app => ({
     let total = await pageNews.find(searchParams).countDocuments()
     let list = await pageNews.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【newsService】- getList：' + err.toString())
       }
     })
-
     return { list, total }
   },
 
   /**
-   * 获取官网查询的新闻列表
+   * （客户端）分页获取新闻列表
    * @param page
    * @param pageSize
    * @param params
@@ -112,7 +111,6 @@ module.exports = app => ({
     const { errorLogger } = $log4
     const { pageNews } = $model
     const { searchKey, status, type } = params
-
     let list = []
     let searchParams = {}
     if(searchKey && searchKey !== ''){
@@ -168,7 +166,6 @@ module.exports = app => ({
       order: -1,
       _id: -1
     }
-
     let total = await pageNews.find(searchParams).countDocuments()
     list = await pageNews.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: pageSize, sort : sortParam }, function (err, docs){
       if(err){
@@ -179,7 +176,7 @@ module.exports = app => ({
   },
 
   /**
-   * 客户端获取相邻文章
+   * （客户端）获取相邻文章
    * @param id
    * @param key
    * @returns {Promise<*|null>}
@@ -196,6 +193,7 @@ module.exports = app => ({
         result = await pageNews.findOne({'id': { '$gt': id }}).sort({ _id: 1})
       }
     } catch (e) {
+      console.log(e)
       errorLogger.error('【newsService】—— getAdjacentDetailById：' + e.toString())
       return null
     }
@@ -208,15 +206,22 @@ module.exports = app => ({
 
   /**
    * 新闻浏览量排名
-   * @param params
+   * @param top
    * @returns {Promise<this>}
    * @constructor
    */
   async StaticsViewCount (top) {
-    const { $model, $service } = app
+    const { $model, $service, $log4 } = app
+    const { errorLogger } = $log4
     const { pageNews } = $model
     let limit = !top ? 100000 : top - 0
-    let result = await $service.baseService.query(pageNews,{},{},{ limit: limit, sort: { viewCount: -1}})
+    let result
+    try {
+      await $service.baseService.query(pageNews,{},{},{ limit: limit, sort: { viewCount: -1}})
+    } catch (e) {
+      console.log(e)
+      errorLogger('【newsService】- StaticsViewCount:' + e.toString())
+    }
     let tmp = []
     result.forEach(item=>{
       tmp.push(

@@ -12,13 +12,11 @@ module.exports = app => ({
     const { $utils, $log4, $model, $format } = app
     const { errorLogger } = $log4
     const { bizClue } = $model
-
     let searchParams = {}
     if(startTime && endTime) {
       startTime = $format.getCurrentDayStart(startTime)
       endTime = $format.getCurrentDayEnd(endTime)
     }
-
     if(searchKey && searchKey !== ''){
       let p1 = {
         "$or": [
@@ -61,14 +59,12 @@ module.exports = app => ({
         searchParams.createTime = {"$gt": startTime, "$lt": endTime}
       }
     }
-    let sortParam = {
-      _id: -1
-    }
-    let list
+    let sortParam = {_id: -1}
     let total = await bizClue.find(searchParams).countDocuments()
-    list = await bizClue.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
+    let list = await bizClue.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【clueService】- getList:' + err.toString())
       }
     })
 
@@ -80,10 +76,10 @@ module.exports = app => ({
    * @returns {Promise<this>}
    */
   async staticsColumn (params) {
-    const { $model } = app
+    const { $model, $log4 } = app
+    const { errorLogger } = $log4
     const { bizClue } = $model
     const { startTime, endTime, column } = params
-
     let queryParams = {}
     if(startTime && endTime) {
       queryParams.createTime = {"$gt": startTime, "$lt": endTime}
@@ -98,13 +94,18 @@ module.exports = app => ({
       if(startTime && endTime) {
         q.createTime = {"$gt": startTime, "$lt": endTime}
       }
-      let total = await bizClue.find(q).countDocuments()
+      let total
+      try {
+        total = await bizClue.find(q).countDocuments()
+      } catch (e) {
+        console.log(e)
+        errorLogger.error('【clueService】- staticsColumn:' + e.toString())
+      }
       tmp.push({
         name: list[i],
         count: total
       })
     }
-
     tmp = tmp.sort((v1,v2)=>{
       if(v1.count < v2.count ){
         return 1
@@ -112,7 +113,6 @@ module.exports = app => ({
         return -1
       }
     })
-
     return tmp
   },
 
@@ -122,7 +122,8 @@ module.exports = app => ({
    * @returns {Promise<this>}
    */
   async staticsOriginHref (params) {
-    const { $nodeCache, $model } = app
+    const { $nodeCache, $model, $log4 } = app
+    const { errorLogger } = $log4
     const { bizClue } = $model
     let { startTime, endTime } = params
     if(startTime){
@@ -136,14 +137,27 @@ module.exports = app => ({
     if(startTime && endTime) {
       queryParams.createTime = {"$gt": startTime, "$lt": endTime}
     }
-    let list = await bizClue.distinct('originHref', queryParams)
+    let list
+    try {
+      list = await bizClue.distinct('originHref', queryParams)
+    } catch (e) {
+      console.log(e)
+      errorLogger.error('【clueService】- staticsOriginHref - distinct:' + e.toString())
+    }
     let tmp = []
     for(let i = 0 ; i < list.length; i++){
       let q = {originHref: list[i]}
       if(startTime && endTime) {
         q.createTime = {"$gt": startTime, "$lt": endTime}
       }
-      let total = await bizClue.find(q).countDocuments()
+      let total
+      // 用 try catch 保证不退出循环
+      try {
+        total = await bizClue.find(q).countDocuments()
+      } catch (e) {
+        console.log(e)
+        errorLogger.error('【clueService】- staticsOriginHref - countDocuments:' + e.toString())
+      }
       tmp.push({
         name: list[i],
         count: total
@@ -159,7 +173,6 @@ module.exports = app => ({
         tagMap[obj.name] = obj
       }
     }
-
     tmp.forEach(item=>{
       let target = tdk[item.name]
       if(target){
@@ -212,7 +225,8 @@ module.exports = app => ({
    * 计算区间内线索总数量
    */
   async staticsCount (startTime, endTime) {
-    const { $model, $format } = app
+    const { $model, $format, $log4 } = app
+    const { errorLogger } = $log4
     const { bizClue } = $model
     let searchParams = {}
     if(startTime && endTime) {
@@ -223,7 +237,12 @@ module.exports = app => ({
       searchParams.createTime = {"$gt": startTime, "$lt": endTime}
     }
     let total
-    total = await bizClue.find(searchParams).countDocuments()
+    try {
+      total = await bizClue.find(searchParams).countDocuments()
+    } catch (e) {
+      console.log(e)
+      errorLogger.error('【clueService】- staticsCount:' + e.toString())
+    }
     if(total !== null && total !== undefined){
       return total
     } else {

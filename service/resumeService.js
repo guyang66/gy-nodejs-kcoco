@@ -14,7 +14,6 @@ module.exports = app => ({
     const { $utils, $log4, $model } = app
     const { errorLogger } = $log4
     const { pageResume } = $model
-
     let searchParams = {}
     if(searchKey && searchKey !== ''){
       let p1 = {
@@ -71,10 +70,10 @@ module.exports = app => ({
     let total = await pageResume.find(searchParams).countDocuments()
     let list = await pageResume.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【resumeService】- getList:' + err.toString())
       }
     })
-
     return { list, total }
   },
 
@@ -85,7 +84,7 @@ module.exports = app => ({
    * @param status
    * @returns {Promise<{total: *, list: *}>}
    */
-  async getCategoryList (page = 1, pageSize = 100, status) {
+  async getCategoryList (page = 1, pageSize = 10, status) {
     const { $log4, $model } = app
     const { errorLogger } = $log4
     const { pageResumeCategory } = $model
@@ -97,7 +96,8 @@ module.exports = app => ({
     let total = await pageResumeCategory.find(searchParams).countDocuments()
     let list = await pageResumeCategory.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【resumeService】- getCategoryList:' + err.toString())
       }
     })
     return { list, total }
@@ -110,7 +110,7 @@ module.exports = app => ({
    * @param status
    * @returns {Promise<{total: *, list: *}>}
    */
-  async getPlaceList (page = 1, pageSize = 100, status) {
+  async getPlaceList (page = 1, pageSize = 10, status) {
     const { $log4, $model } = app
     const { errorLogger } = $log4
     const { pageResumePlace } = $model
@@ -122,7 +122,8 @@ module.exports = app => ({
     let total = await pageResumePlace.find(searchParams).countDocuments()
     let list = await pageResumePlace.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【resumeService】- getPlaceList:' + err.toString())
       }
     })
     return { list, total }

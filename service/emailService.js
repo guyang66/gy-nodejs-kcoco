@@ -1,11 +1,5 @@
 const nodemailer = require('nodemailer')
-
-/**
- * 发送邮件
- * @param transporter
- * @param mailOptions
- * @returns {Promise<unknown>}
- */
+/** 发送邮件 **/
 const trySend = (transporter, mailOptions) =>{
   return new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, async function (error, info){
@@ -18,22 +12,10 @@ const trySend = (transporter, mailOptions) =>{
   })
 }
 
-/**
- * 初始化邮箱客户端
- * @param emailConfig
- * @returns {Mail}
- */
 const getEmailTransporter = (emailConfig) => {
   return nodemailer.createTransport(emailConfig)
 }
 
-/**
- * 配置邮箱格式
- * @param from
- * @param to
- * @param content
- * @returns {{subject: string, from, html: null, to, text: string}}
- */
 const getEmailConfigOptions = (from, to, subject, content)=> {
   return {
     from: from,
@@ -50,7 +32,6 @@ module.exports = app => ({
    * 把线索发送到指定邮件
    * @returns {Promise<void>}
    */
-
   async clueToEmail (content) {
     const { $helper, $config, $utils, $log4 } = app
     const { smtp } = $config
@@ -64,9 +45,7 @@ module.exports = app => ({
       }
     }
     const emailTransporter = getEmailTransporter(qqEmailConfig)
-
     let emailContent = $utils.plainObjectToString(content,'\n')
-
     const mailOptions = getEmailConfigOptions(smtp.qq.auth.user, smtp.receiver.common, '官网线索', emailContent)
     try {
       commonLogger.info('发送邮件成功' + emailContent)
@@ -77,7 +56,6 @@ module.exports = app => ({
       return $helper.wrapResult(false, e.toString(), -3)
     }
   },
-
 
   /**
    * 预警邮件

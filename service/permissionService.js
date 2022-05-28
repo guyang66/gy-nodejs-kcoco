@@ -1,5 +1,4 @@
 module.exports = app => ({
-
   /**
    * 分页url权限列表
    * @param page
@@ -12,7 +11,6 @@ module.exports = app => ({
     const { $utils, $log4, $model } = app
     const { errorLogger } = $log4
     const { adminUrlPermission } = $model
-
     let searchParams = {}
     if(searchKey && searchKey !== ''){
       let p1 = {
@@ -35,17 +33,14 @@ module.exports = app => ({
         searchParams.status = status
       }
     }
-    let sortParam = {
-      _id: -1
-    }
-    let list
+    let sortParam = {_id: -1}
     let total = await adminUrlPermission.find(searchParams).countDocuments()
-    list = await adminUrlPermission.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
+    let list = await adminUrlPermission.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【permissionService】- getUrlPermissionList:' + err.toString())
       }
     })
-
     return { list, total }
   },
 
@@ -61,7 +56,6 @@ module.exports = app => ({
     const { $utils, $log4, $model } = app
     const { errorLogger } = $log4
     const { adminUiPermission } = $model
-
     let searchParams = {}
     if(searchKey && searchKey !== ''){
       let p1 = {
@@ -87,14 +81,12 @@ module.exports = app => ({
     let sortParam = {
       _id: -1
     }
-    let list
     let total = await adminUiPermission.find(searchParams).countDocuments()
-    list = await adminUiPermission.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
+    let list = await adminUiPermission.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){
-        errorLogger.error(err)
-      }
+        console.log(err)
+        errorLogger.error('【permissionService】- getUiPermissionList:' + err.toString())      }
     })
-
     return { list, total }
   },
 })

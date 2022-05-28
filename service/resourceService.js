@@ -1,5 +1,4 @@
 module.exports = app => ({
-
   /**
    * 分页获取资源列表
    * @param page
@@ -68,7 +67,8 @@ module.exports = app => ({
     let total = await pageResourceDownload.find(searchParams).countDocuments()
     list = await pageResourceDownload.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort: sortParam }, function (err){
       if(err){
-        errorLogger.error(err)
+        console.log(err)
+        errorLogger.error('【resourceService】- getList：' + err.toString())
       }
     })
 
@@ -100,7 +100,8 @@ module.exports = app => ({
    * @returns {Promise<{total: *, list: *}>}
    */
   async getRecordList (page = 1, pageSize = 10) {
-    const { $model } = app
+    const { $model, $log4 } = app
+    const { errorLogger } = $log4
     const { bizResourceRecord } = $model
     let searchParams = {}
     let sortParam = {_id: -1}
@@ -108,6 +109,8 @@ module.exports = app => ({
     const joinFind = new Promise((resolve,reject)=>{
       bizResourceRecord.find(searchParams, null, {skip: pageSize * (page < 1 ? 0 : (page - 1)), limit: (pageSize - 0), sort : sortParam}).populate('objectId').exec((err,docs)=>{
         if(err){
+          console.log(err)
+          errorLogger.error('【resourceService】-getRecordList - joinFind:' + err.toString())
           reject(err)
         } else {
           resolve(docs)
@@ -156,30 +159,46 @@ module.exports = app => ({
       })
       return list
     } catch (e){
-      errorLogger.error(e)
+      errorLogger.error('【resourceService】- StaticsType:' + e.toString())
       console.log(e)
       return false
     }
   },
 
+  /**
+   * 分类统计资源名字
+   * @param params
+   * @returns {Promise<this>}
+   * @constructor
+   */
   async StaticsName (params) {
-    const { $model } = app
+    const { $model,$log4 } = app
+    const { errorLogger } = $log4
     const { bizResourceRecord, pageResourceDownload } = $model
     const { type, startTime, endTime } = params
-
     let queryParams = {}
     if(type && type !== 'all'){
       queryParams.type = type
     }
     if(startTime && endTime) {
-
       queryParams.createTime = {"$gt": startTime, "$lt": endTime}
     }
-
-    let list = await bizResourceRecord.distinct('objectId', queryParams)
+    let list
+    try {
+      list = await bizResourceRecord.distinct('objectId', queryParams)
+    } catch (e){
+      console.log(e)
+      errorLogger.error('【resourceService】- StaticsName - distinct:' + e.toString())
+    }
     let tmp = []
     for(let i = 0 ; i < list.length; i++){
-      let resourceDetail = await pageResourceDownload.findById(list[i])
+      let resourceDetail
+      try {
+        resourceDetail = await pageResourceDownload.findById(list[i])
+      } catch (e) {
+        console.log(e)
+        errorLogger.error('【resourceService】- StaticsName - findById:' + e.toString())
+      }
       let q = { objectId: list[i]}
       if(startTime && endTime) {
         q.createTime = {"$gt": startTime, "$lt": endTime}
@@ -187,7 +206,14 @@ module.exports = app => ({
       if(type && type !== 'all'){
         q.type = type
       }
-      let total = await bizResourceRecord.find(q).countDocuments()
+
+      let total
+      try {
+        total = await bizResourceRecord.find(q).countDocuments()
+      } catch (e) {
+        console.log(e)
+        errorLogger.error('【resourceService】- StaticsName - countDocuments:' + e.toString())
+      }
       tmp.push({
         name: resourceDetail.title || '未知',
         count: total
