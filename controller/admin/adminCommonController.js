@@ -150,7 +150,7 @@ module.exports = app => ({
    * @returns {Promise<void>}
    */
   async deleteRole () {
-    // todo: 角色删除的时候连带着所有的关联都需要被删除
+    // todo: 角色删除的时候连带着所有的关联都需要被删除，关系型数据库的外键就比较舒服了
     const { ctx, $service, $helper, $model } = app
     const { adminRole } = $model
     const { id } = ctx.query
