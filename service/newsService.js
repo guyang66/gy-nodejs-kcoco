@@ -217,7 +217,7 @@ module.exports = app => ({
     let limit = !top ? 100000 : top - 0
     let result
     try {
-      await $service.baseService.query(pageNews,{},{},{ limit: limit, sort: { viewCount: -1}})
+      result = await $service.baseService.query(pageNews,{},{},{ limit: limit, sort: { viewCount: -1}})
     } catch (e) {
       console.log(e)
       errorLogger('【newsService】- StaticsViewCount:' + e.toString())

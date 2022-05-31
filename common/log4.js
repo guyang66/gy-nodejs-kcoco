@@ -34,6 +34,12 @@ log4js.configure({
       filename: path.join(`${rootPath}`, 'sms.log'), //生成文件名
       backups: 10, // 仅保留最新的30个日志文件
     },
+    schedule: {
+      type: 'file',
+      filename: path.join(`${rootPath}`, 'schedule.log'), //生成文件名
+      maxLogSize: 10485760 * 10, // 100mb,日志文件大小,超过该size则自动创建新的日志文件
+      backups: 10,
+    },
     out: {
       type: 'console'
     },
@@ -56,11 +62,16 @@ log4js.configure({
     sms: {
       appenders: ['sms'],
       level: 'all'
+    },
+    schedule: {
+      appenders: ['schedule'],
+      level:  'all'
     }
   }
 })
 const errorLogger = log4js.getLogger('error')
 const mongoDBLogger = log4js.getLogger('mongodb')
 const commonLogger = log4js.getLogger('common')
+const scheduleLogger = log4js.getLogger('schedule')
 const smsLogger = log4js.getLogger('sms')
-module.exports = { commonLogger, errorLogger, mongoDBLogger, smsLogger }
+module.exports = { commonLogger, errorLogger, mongoDBLogger, scheduleLogger, smsLogger }

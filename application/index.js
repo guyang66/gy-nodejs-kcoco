@@ -19,6 +19,7 @@ const {
   initMongodb,
   initJwtKey,
   initSession,
+  initSchedule,
   initMongoDBModel,
   initOss,
 } = require('./loader')
@@ -172,7 +173,7 @@ class Application {
       async: true
     }))
 
-    // 公共数据
+    // 页面公共数据
     const menus = require('../mock/menu/index.js')
     const footerData = require('../mock/menu/footer.js')
     this.$app.use(async (ctx,next)=>{
@@ -209,6 +210,8 @@ class Application {
    */
   afterAll (app) {
     // 在这里初始化定时任务
+    this.$schedule = initSchedule(app)
+    // 404重定向（最后所有路由匹配不到，再重定向）
     this.$app.use(app.$middleware.redirect)
   }
 
@@ -217,7 +220,7 @@ class Application {
    * @param port
    */
   start(port){
-    let server = this.$app.listen(port, ()=>{
+    const server = this.$app.listen(port, ()=>{
       console.log(chalk.green('============== server start on ' + port + ' =============='))
     });
     // server.timeout = 1000 * 60 * 5

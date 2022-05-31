@@ -3,7 +3,8 @@ const fs = require('fs')
 const Router = require('koa-router');
 const Session = require("koa-session")
 const OSS = require('ali-oss');
-const {errorLogger} = require('../common/log4')
+const {errorLogger, commonLogger} = require('../common/log4')
+const chalk = require('chalk');
 
 //自动扫指定目录下面的文件并且加载
 
@@ -28,9 +29,6 @@ function scanFilesByFolder(dir, cb) {
       // 剔除一些隐藏文件（如.DS_Store）这些隐藏文件会导致加载失败，本地没啥问题，但是服务器上可能会有 todo:后续可以再优化
       // pm2 默认日志  root/.pm2/log
       if(file.match(/.DS/)){
-        return;
-      }
-      if(file.match(/._v/)){
         return;
       }
 
@@ -115,7 +113,6 @@ function initExtend(app) {
 }
 
 function initMongodb(app) {
-  const chalk = require('chalk');
   const { commonLogger, mongoDBLogger } = app.$log4
   const utils = require('../extend/utils')
   const { localStringify } = utils(app)
@@ -175,13 +172,18 @@ function initNodeCache () {
 
 function initSchedule (app) {
   const schedule = require('node-schedule');
-  const { $log4, $helper, $service, $nodeCache } = app
-  let scheduleTag = '30 * * * * *' // 每分钟的第30秒执行一次任务函数
-
-  app.$schedule = schedule.scheduleJob(scheduleTag, async ()=>{
-    console.log(new Date().toString() + '：执行定时器任务')
-    // todo: 这里写入你需要的定时任务逻辑，比如定时插入一些数据，删除一些数据之类的。
-  });
+  let schedules = {}
+  scanFilesByFolder('../schedule',(filename, scheduler)=>{
+    if(scheduler(app).open){
+      schedules[filename] = schedule.scheduleJob(scheduler(app).interval,scheduler(app).handler)
+      console.log(chalk.yellow('定时器：' + filename, '已启动'));
+      commonLogger.info('定时器：' + filename, '已启动')
+    } else {
+      console.log(chalk.cyan('定时器：' + filename, '设置为不启动！'));
+      commonLogger.info('定时器：' + filename, '设置为不启动！')
+    }
+  })
+  return schedules;
 }
 
 function initJwtKey (app) {
