@@ -1,0 +1,8 @@
+{"_id":{"$oid":"627fbc9f6f39bd3936cae585"},"key":"brand","name":"品牌","status":1.0,"order":10.0,"createTime":{"$date":"2022-05-14T14:28:47.128Z"},"modifyTime":{"$date":"2022-05-14T14:28:47.128Z"}}
+{"_id":{"$oid":"627fbc9f6f39bd3936cae586"},"key":"function","name":"职能","status":1.0,"order":20.0,"createTime":{"$date":"2022-05-14T14:28:47.128Z"},"modifyTime":{"$date":"2022-05-14T14:28:47.128Z"}}
+{"_id":{"$oid":"627fbc9f6f39bd3936cae587"},"key":"data","name":"数据","status":1.0,"order":30.0,"createTime":{"$date":"2022-05-14T14:28:47.128Z"},"modifyTime":{"$date":"2022-05-14T14:28:47.128Z"}}
+{"_id":{"$oid":"627fbc9f6f39bd3936cae588"},"key":"sells","name":"销售","status":1.0,"order":40.0,"createTime":{"$date":"2022-05-14T14:28:47.128Z"},"modifyTime":{"$date":"2022-05-14T14:28:47.128Z"}}
+{"_id":{"$oid":"627fbc9f6f39bd3936cae589"},"key":"product","name":"产品","status":1.0,"order":50.0,"createTime":{"$date":"2022-05-14T14:28:47.128Z"},"modifyTime":{"$date":"2022-05-14T14:28:47.128Z"}}
+{"_id":{"$oid":"627fbc9f6f39bd3936cae58a"},"key":"operating","name":"运营","status":1,"order":60.0,"createTime":{"$date":"2022-05-14T14:28:47.128Z"},"modifyTime":{"$date":"2022-05-27T10:41:57.980Z"}}
+{"_id":{"$oid":"627fc516bf875b4baae9ddc4"},"createTime":{"$date":"2022-05-14T15:04:49.258Z"},"modifyTime":{"$date":"2022-05-14T15:04:49.258Z"},"createId":1,"modifyId":1,"isDelete":false,"order":1,"status":1,"desc":"","remark":"","key":"2","name":"2","__v":0}
+{"_id":{"$oid":"627fcc4fbd9a274d7eeda285"},"createTime":{"$date":"2022-05-14T15:31:17.144Z"},"modifyTime":{"$date":"2022-05-14T15:31:17.144Z"},"createId":1,"modifyId":1,"isDelete":false,"order":1,"status":1,"desc":"","remark":"","key":"hh","name":"hh","__v":0}

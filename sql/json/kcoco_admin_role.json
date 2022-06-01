@@ -1,0 +1,6 @@
+{"_id":{"$oid":"628d8716afcd10dba6d5c5be"},"key":"superAdmin","name":"超级系统管理员","status":1.0,"createTime":{"$date":"2022-05-25T01:32:06.085Z"},"modifyTime":{"$date":"2022-05-25T01:32:06.085Z"}}
+{"_id":{"$oid":"628d8716afcd10dba6d5c5bf"},"key":"admin","name":"系统管理员","status":1.0,"createTime":{"$date":"2022-05-25T01:32:06.085Z"},"modifyTime":{"$date":"2022-05-25T01:32:06.085Z"}}
+{"_id":{"$oid":"628d8716afcd10dba6d5c5c0"},"key":"guest","name":"访客","status":1.0,"createTime":{"$date":"2022-05-25T01:32:06.085Z"},"modifyTime":{"$date":"2022-05-25T01:32:06.085Z"}}
+{"_id":{"$oid":"628d8716afcd10dba6d5c5c1"},"key":"web","name":"官网内容管理员","status":1.0,"createTime":{"$date":"2022-05-25T01:32:06.085Z"},"modifyTime":{"$date":"2022-05-25T01:32:06.085Z"}}
+{"_id":{"$oid":"628d8716afcd10dba6d5c5c2"},"key":"hr","name":"招聘管理员","status":1.0,"createTime":{"$date":"2022-05-25T01:32:06.085Z"},"modifyTime":{"$date":"2022-05-25T01:32:06.085Z"}}
+{"_id":{"$oid":"628d8716afcd10dba6d5c5c3"},"key":"data","name":"数据管理员","status":1.0,"createTime":{"$date":"2022-05-25T01:32:06.085Z"},"modifyTime":{"$date":"2022-05-25T01:32:06.085Z"}}

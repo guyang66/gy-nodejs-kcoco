@@ -1,0 +1,5 @@
+{"_id":{"$oid":"628d9ad6afcd10dba6d5c5cc"},"key":"page_tdk_config","name":"官网tdk缓存","status":1,"createTime":{"$date":"2022-05-25T02:56:22.033Z"},"modifyTime":{"$date":"2022-05-25T03:54:02.982Z"}}
+{"_id":{"$oid":"628d9ad6afcd10dba6d5c5cd"},"key":"page_url_permission","name":"url权限缓存","status":1.0,"createTime":{"$date":"2022-05-25T02:56:22.033Z"},"modifyTime":{"$date":"2022-05-25T02:56:22.033Z"}}
+{"_id":{"$oid":"628d9ad6afcd10dba6d5c5ce"},"key":"page_index_news","name":"首页新闻缓存","status":1.0,"createTime":{"$date":"2022-05-25T02:56:22.033Z"},"modifyTime":{"$date":"2022-05-25T02:56:22.033Z"}}
+{"_id":{"$oid":"628d9ad6afcd10dba6d5c5cf"},"key":"page_index_banners","name":"首页banner缓存","status":1.0,"createTime":{"$date":"2022-05-25T02:56:22.033Z"},"modifyTime":{"$date":"2022-05-25T02:56:22.033Z"}}
+{"_id":{"$oid":"628d9ad6afcd10dba6d5c5d0"},"key":"page_index_columns","name":"首页column缓存","status":1,"createTime":{"$date":"2022-05-25T02:56:22.033Z"},"modifyTime":{"$date":"2022-05-25T03:57:28.873Z"}}

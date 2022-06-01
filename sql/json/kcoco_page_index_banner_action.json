@@ -1,0 +1,2 @@
+{"_id":{"$oid":"6296c7df9c8578edc111d80b"},"key":"link","name":"跳转链接","status":1.0,"createTime":{"$date":"2022-06-01T01:58:55.586Z"},"modifyTime":{"$date":"2022-06-01T01:58:55.586Z"}}
+{"_id":{"$oid":"6296c7df9c8578edc111d80c"},"key":"product_video","name":"打开产品视频","status":1.0,"createTime":{"$date":"2022-06-01T01:58:55.586Z"},"modifyTime":{"$date":"2022-06-01T01:58:55.586Z"}}

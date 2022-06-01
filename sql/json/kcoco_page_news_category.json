@@ -1,0 +1,4 @@
+{"_id":{"$oid":"6273d97bd17860236687b44b"},"key":"activity","name":"精彩活动","status":1.0,"order":144,"createTime":{"$date":"2022-05-05T14:04:43.926Z"},"modifyTime":{"$date":"2022-05-24T03:11:17.654Z"}}
+{"_id":{"$oid":"6273d97bd17860236687b44c"},"key":"brand","name":"品牌公关","status":1.0,"order":1.0,"createTime":{"$date":"2022-05-05T14:04:43.926Z"},"modifyTime":{"$date":"2022-05-05T14:04:43.926Z"}}
+{"_id":{"$oid":"6273d97bd17860236687b44d"},"key":"product","name":"产品","status":0,"order":2,"createTime":{"$date":"2022-05-05T14:04:43.926Z"},"modifyTime":{"$date":"2022-05-24T03:33:42.718Z"}}
+{"_id":{"$oid":"6273d97bd17860236687b44e"},"key":"all","name":"全部","status":1.0,"order":10000.0,"createTime":{"$date":"2022-05-05T14:04:43.926Z"},"modifyTime":{"$date":"2022-05-05T14:04:43.926Z"}}

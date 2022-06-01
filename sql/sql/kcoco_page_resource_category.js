@@ -1,0 +1,50 @@
+db.kcoco_page_resource_category.insertMany([
+{
+	key: 'share',
+	name: '内容分享',
+	status: 1,
+	order: 1,
+	createTime: new Date(),
+	modifyTime: new Date(),
+},
+{
+	key: 'report',
+	name: '行业报告',
+	status: 1,
+	order: 1,
+	createTime: new Date(),
+	modifyTime: new Date(),
+},
+{
+	key: 'product',
+	name: '产品文档',
+	status: 1,
+	order: 1,
+	createTime: new Date(),
+	modifyTime: new Date(),
+},
+{
+	key: 'course',
+	name: '课程课件',
+	status: 1,
+	order: 1,
+	createTime: new Date(),
+	modifyTime: new Date(),
+},
+{
+	key: 'whitePage',
+	name: '白皮书',
+	status: 1,
+	order: 1,
+	createTime: new Date(),
+	modifyTime: new Date(),
+},
+{
+	key: 'all',
+	name: '全部',
+	status: 1,
+	order: 10000,
+	createTime: new Date(),
+	modifyTime: new Date(),
+}
+])

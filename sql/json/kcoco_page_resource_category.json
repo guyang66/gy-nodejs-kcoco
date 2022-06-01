@@ -1,0 +1,6 @@
+{"_id":{"$oid":"628b2b601e31867be7425669"},"key":"share","name":"内容分享","status":1.0,"order":1.0,"createTime":{"$date":"2022-05-23T06:36:16.808Z"},"modifyTime":{"$date":"2022-05-23T06:36:16.808Z"}}
+{"_id":{"$oid":"628b2b601e31867be742566a"},"key":"report","name":"行业报告","status":1.0,"order":1.0,"createTime":{"$date":"2022-05-23T06:36:16.808Z"},"modifyTime":{"$date":"2022-05-23T06:36:16.808Z"}}
+{"_id":{"$oid":"628b2b601e31867be742566b"},"key":"product","name":"产品文档","status":1.0,"order":1.0,"createTime":{"$date":"2022-05-23T06:36:16.808Z"},"modifyTime":{"$date":"2022-05-23T06:36:16.808Z"}}
+{"_id":{"$oid":"628b2b601e31867be742566c"},"key":"course","name":"课程课件","status":1.0,"order":999,"createTime":{"$date":"2022-05-23T06:36:16.808Z"},"modifyTime":{"$date":"2022-05-23T06:38:45.444Z"}}
+{"_id":{"$oid":"628b2b601e31867be742566d"},"key":"whitePage","name":"白皮书","status":1,"order":1.0,"createTime":{"$date":"2022-05-23T06:36:16.808Z"},"modifyTime":{"$date":"2022-05-24T03:09:57.874Z"}}
+{"_id":{"$oid":"628b2b601e31867be742566e"},"key":"all","name":"全部","status":1.0,"order":10000.0,"createTime":{"$date":"2022-05-23T06:36:16.808Z"},"modifyTime":{"$date":"2022-05-23T06:36:16.808Z"}}

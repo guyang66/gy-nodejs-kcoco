@@ -1,4 +1,4 @@
-db.kcoco_page_resume.insertMany([
+db.kcoco_page_resume_column.insertMany([
 {
 	key: 'practice',
 	name: '岗前实习',
