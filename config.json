@@ -3,9 +3,9 @@
   "mongodb": {
     "local":{
       "servername": "localhost",
-      "database": "kcoco",
+      "database": "kcoco_t",
       "port": 27017,
-      "user": "gy",
+      "user": "ggyy2",
       "pass": "123456"
     },
     "dev": {

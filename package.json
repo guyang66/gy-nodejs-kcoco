@@ -15,7 +15,10 @@
     "build": "rimraf ./logs/* & cross-env NODE_ENV=production npm run gulp",
     "prd": "cross-env NODE_ENV=production pm2 start app.js -n gy-nodejs-kcoco",
     "gulp": "gulp",
-    "test": "jest --colors --coverage --verbose ./test/unit/specs"
+    "test": "jest --colors --coverage --verbose ./test/unit/specs",
+    "insert": "sh ./scripts/excuteSql/insert.sh",
+    "export": "sh ./scripts/excuteSql/export.sh"
+
   },
   "dependencies": {
     "@alicloud/dysmsapi20170525": "^2.0.9",

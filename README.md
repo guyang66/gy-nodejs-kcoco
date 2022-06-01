@@ -67,9 +67,18 @@ koa + mongodb
     ├─ index.js                      页面/api接口路由
 ├─ schedule                          定时任务
     ├─ cooperateSchedule.js          定时任务:商务合作邮件定时发送任务
+├─ scripts                           service模块
+    ├─ excuteSql                     
+        ├─ insert.sh                 数据库数据（sql）自动化导入脚本(和export.sh脚本是相反操作)
+        ├─ export.sh                 数据库数据导出脚本   
 ├─ service                           service模块
     ├─ ...
 ├─ sql                               mongodb数据sql（应用初始化数据）
+    ├─ sql                           sql（原始）语句
+    ├─ export                        使用mongodump全库导出的源数据（可以直接导入数据库）
+    ├─ json                          单边json数据
+    ├─ preview                       演示预览图   
+    ├─ README.md                     数据库数据导入说明   
 ├─ test 
     ├─ unit                          单元测试      
 ├─ views
@@ -154,15 +163,57 @@ koa + mongodb
 + timeZone：时区差（未使用该配置项）
 + timeZoneString：时区差字符串（未使用该配置项）
 
-### 注意实现
+### 启动
 
-### 本地 先安装mongodb，并执行/sql目录下的sql（非必须，部分测试接口的数据）
-npm run start
+- #### 开发环境（连接数据库）
+  ```
+  npm run start
+  ```
+  如果未安装数据库或不想连接数据库启动项目，需要设置config->dataMock为true，此时官网页面能正常访问（为静态数据）
+  部分api接口将会异常
+- #### 生产部署
+  ```
+  npm run build // 打包压缩js和css等文件，
+  ```
+  ```
+  npm run prd
+  ```
+### 其他命令
 
-### dev 不用本地安装mongodb，使用服务器上已安装的数据库（已执行sql）
-npm run start1
+- #### 杀死进程
+  ```
+  npm run kill
+  ```
 
-### 生产环境 安装nodejs（>15.0）和pm2 (以守护进程启动nodejs)
-npm run prd
-
+- #### 清空日志
+  ```
+  npm run clear
+  ```
+- #### 启动qa环境（qa环境下短信服务将在测试环境生效，即测试环境能真正收到短信验证码）
+  注：因为没有买短信服务（要花钱的 - -），所以该功能未实现，需要的同学请自行实现逻辑，等同于：npm run start
+  ```
+  npm run qa
+  ```
+- #### 前端打包css、js
+  ```
+  npm run gulp
+  ```
+- #### 单元测试
+  注：目前只测试通过了utils中的一个方法（通过单元测试测试功能，避免造真正的数据来测试，太麻烦）
+  需要更多的单元测试，请自行测试，如需更进阶的单元测试，请查阅karma、mocha、sinon、chai等单元测试工具
+  ```
+  npm run test
+  ```
+- #### 数据库数据导出
+  注：需要本地安装数据库服务并开启，数据库管理员账号已注册，且能正确访问
+  更多细节请查看：scripts/excuteSql/export.sh
+  ```
+  npm run export
+  ```
+- #### 数据库数据导入
+  注：需要本地安装数据库服务并开启，数据库管理员账号已注册，且能正确访问，确保sql/json目录下有文件
+  更多细节请查看：scripts/excuteSql/insert.sh
+  ```
+  npm run insert
+  ```
 
