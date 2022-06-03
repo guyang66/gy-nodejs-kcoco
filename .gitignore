@@ -12,6 +12,7 @@ run/
 *.sw*
 *.un~
 config_local.json
+config_prd.json
 public/css
 public/javascripts
 public/upload

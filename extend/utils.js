@@ -66,11 +66,11 @@ module.exports = app => ({
    */
 
   validateCodeFormat (value, length) {
-    const { $constants } = app
+    const { $constants, $config } = app
     const { SMS_CODE_LENGTH } = $constants
 
     // 开发环境跳过验证码校验
-    if(process.env.NODE_ENV !== 'production' && process.env.SMS_ENV !== 'qa'){
+    if(process.env.NODE_ENV !== 'production' || $config.smsMock){
       return true
     }
 

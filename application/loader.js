@@ -60,7 +60,13 @@ function scanFilesByFolder(dir, cb) {
 
 const initConfig = function () {
   let config = {};
-  const projectConfig = require('../config.json')
+  let projectConfig
+  if(process.env.NODE_ENV === 'production'){
+    projectConfig = require('../config_prd.json')
+  } else {
+    // 生产环境请复制config.json一份到config_prd.json，然后修改相关服务的配置项
+    projectConfig = require('../config.json')
+  }
   // 使用本地的配置文件
   // const projectConfig = require('../config_local.json')
   config = {...config, ...projectConfig};

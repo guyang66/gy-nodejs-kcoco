@@ -10,7 +10,13 @@ ecoco项目使用的是ejs，而ejs模板引擎是有客户端和服务端之分
 
 在开发的时候也看了git上面很多开源项目，借鉴了github上一些优秀的nodejs项目，尤其是quick-h5（https://github.com/huangwei9527/quark-h5）
 
-####架构方面：
+***
+### 双子项目——管理后台项目（配合kcoco效果更佳）
+是官网内容管理后台（类似crm），采用react + webpack + stylus 架构的单页面应用
+项目源码地址：[react-rcoco](https://github.com/guyang66/gy-react-rcoco)
+*** 
+
+#### 架构方面：
 前端部分：
 ```
 ejs + stylus + gulp + jquery
@@ -25,6 +31,8 @@ koa + mongodb
 ![官网](index.gif)
 产品页：
 ![官网](product.gif)
+
+*** 
 
 ### 项目结构
 ```
@@ -68,6 +76,8 @@ koa + mongodb
 ├─ schedule                          定时任务
     ├─ cooperateSchedule.js          定时任务:商务合作邮件定时发送任务
 ├─ scripts                           service模块
+    ├─ deploy                        一键(迭代)部署脚本 
+    ├─ tar                           压缩代码包脚本
     ├─ excuteSql                     
         ├─ insert.sh                 数据库数据（sql）自动化导入脚本(和export.sh脚本是相反操作)
         ├─ export.sh                 数据库数据导出脚本   
@@ -94,6 +104,7 @@ koa + mongodb
 ├─ ...                                                
                                 
 ```
+***
 
 ### 项目配置文件介绍
 + port：应用端口号
@@ -117,7 +128,7 @@ koa + mongodb
     + key：session key
     + ...
 + jwt：单点登录json web token 配置
-    + resetWhenReload：为ture时应用重启时重置jwt初始化key，强制客户端登录失效（生产环境强制开启）
+    + resetWhenReload：为ture时应用重启时重置jwt初始化key，强制客户端登录失效（生产环境强制开启）,开发环境建议管理，避免反复登录
     + secret：jwt 公钥
 + crypto：（用户密码）加密公钥
 + smtp：邮件服务
@@ -163,6 +174,8 @@ koa + mongodb
 + timeZone：时区差（未使用该配置项）
 + timeZoneString：时区差字符串（未使用该配置项）
 
+*** 
+
 ### 启动
 
 - #### 开发环境（连接数据库）
@@ -171,26 +184,40 @@ koa + mongodb
   ```
   如果未安装数据库或不想连接数据库启动项目，需要设置config->dataMock为true，此时官网页面能正常访问（为静态数据）
   部分api接口将会异常
+  
 - #### 生产部署
   ```
   npm run build // 打包压缩js和css等文件，
   ```
+  待js、css打包好之后执行下面命令
   ```
   npm run prd
   ```
+
+- #### 脚本部署
+  ```
+  // 先打包css、js
+  npm run build
+  ```
+  ```
+  // 退出 或重新打开一个新的终端
+  npm run deploy
+  ```
 ### 其他命令
 
-- #### 杀死进程
+- #### 杀死当前进程
+  有时候可能退出编辑器后，进程还在，使用kill命令杀死当前端口进程
   ```
   npm run kill
   ```
 
 - #### 清空日志
+  如果发布生产环境是scp（而非在服务端安装git，通过push分支发布），则务必清掉本地日志
   ```
   npm run clear
   ```
 - #### 启动qa环境（qa环境下短信服务将在测试环境生效，即测试环境能真正收到短信验证码）
-  注：因为没有买短信服务（要花钱的 - -），所以该功能未实现，需要的同学请自行实现逻辑，等同于：npm run start
+  注：因为没有买短信服务（要花钱的 - -），所以该功能未实现，需要的同学请自行实现逻辑，现等同于：npm run start
   ```
   npm run qa
   ```
@@ -199,21 +226,104 @@ koa + mongodb
   npm run gulp
   ```
 - #### 单元测试
-  注：目前只测试通过了utils中的一个方法（通过单元测试测试功能，避免造真正的数据来测试，太麻烦）
-  需要更多的单元测试，请自行测试，如需更进阶的单元测试，请查阅karma、mocha、sinon、chai等单元测试工具
+  注：目前只测试通过了utils中的一个分页器方法（通过单元测试，测试其功能是否异常，避免去造真正的数据来测试，显然早数据太麻烦！）
+  需要更多的单元测试，请自行写相关测试用力。如需更进阶的单元测试，请查阅并集成karma、mocha、sinon、chai等单元测试工具
   ```
   npm run test
   ```
 - #### 数据库数据导出
   注：需要本地安装数据库服务并开启，数据库管理员账号已注册，且能正确访问
-  更多细节请查看：scripts/excuteSql/export.sh
+  更多细节请查看：scripts/excuteSql/export.sh，更多文档介绍请查看：/sql/README.md
   ```
   npm run export
   ```
 - #### 数据库数据导入
   注：需要本地安装数据库服务并开启，数据库管理员账号已注册，且能正确访问，确保sql/json目录下有文件
-  更多细节请查看：scripts/excuteSql/insert.sh
+  更多细节请查看：scripts/excuteSql/insert.sh，更多文档介绍请查看：/sql/README.md
   ```
   npm run insert
   ```
+***
+### 生产环境发布/部署
+1、安装nodejs、数据库服务、启动数据库...
+2、安装pm2
+```
+npm install pm2 -g
+```
+3、上传代码，在项目所在目录建立日志目录
+```
+mkdir logs
+cd logs
+mkdir kcoco
+```
+确保logs目录被访问，给予读写权限
+```
+cd ..
+chmod -R 777 logs
+```
+4、给public目录权限，避免资源上传功能写入文件失败
+```
+cd gy-nodejs-kcoco
+chmod -R 777 public
+```
+5、启动应用
+```
+npm run prd
+```
+6、配置nginx，监听80端口，/ 转发到8090 ，/admin 转发到8091
+```
+http {
+    ...
+    # 放开限制，不然客户端上传大文件资源会被nginx拦掉
+    client_body_buffer_size 1024k;
+    client_max_body_size 1024m;
+    server {
+            listen       80;
+            server_name  localhost;
+    
+            location / {
+                # 设置proxy，把host带过去，不然服务端获取到的ip就和开发环境一样，永远是1
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header REMOTE_HOST $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                root   html;
+                index  index.html index.htm;
+                proxy_pass http://localhost:8090/;
+            }
+    
+            # 以下是管理后台（rcoco）配置、如果不配置rcoco，下面的配置可不要，甚至nginx都可以不用配置，直接访问8090端口
+            location /admin/ {
+                root   html;
+                index  index.html index.htm;
+                proxy_pass http://localhost:8091/;
+            }
+    
+            location /admin/api/ {
+                # 设置proxy，把host带过去，不然服务端获取到的ip就和开发环境一样，永远是1
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header REMOTE_HOST $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                root   html;
+                index  index.html index.htm;
+                proxy_pass http://localhost:8090/api/;
+            }
+    
+        }
+    }
+```
 
+7、域名映射
+
+***
+### License
+
+MIT
+
+***
+
+### 作者联系方式
+
+wx：gy668991
+email：13588295865@163.com

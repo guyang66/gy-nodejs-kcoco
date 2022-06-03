@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const fs = require('fs')
 const path = require('path')
 
+
 const getRandom = function (n, m) {
   n = Number(n);
   m = Number(m);
@@ -294,10 +295,10 @@ module.exports = app => ({
    * @returns {string}
    */
   getRandomCode () {
-    const {SMS_CODE_LENGTH, SMS_CODE_CHAR_LENGTH, SMS_CODE_CHAR_SET } = app.$constants
+    let { $config, $constants } = app;
+    const {SMS_CODE_LENGTH, SMS_CODE_CHAR_LENGTH, SMS_CODE_CHAR_SET } = $constants
     // 开发环境没必要发真的验证码，直接返回1，固定死
-    // todo: 增加一个qa环境，方便测试环境也能真正的发送验证码，方便测试
-    if(process.env.NODE_ENV !== 'production' && process.env.SMS_ENV !== 'qa'){
+    if(process.env.NODE_ENV !== 'production' || $config.smsMock){
       return '1'
     }
     let str = '';

@@ -1,6 +1,6 @@
 const path = require('path')
 const multer = require('koa-multer')
-const config = require('../config.json')
+const config = process.env.NODE_ENV === 'production' ? require('../config_prd.json') : require('../config.json')
 const storage = multer.diskStorage({
   destination: path.resolve(config.upload.multerPath),
   filename: (ctx, file, cb)=>{

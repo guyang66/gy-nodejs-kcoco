@@ -4,10 +4,12 @@
         a、登录mongodb命令行
         b、数据量不大的直接复制到命令行执行，数据量大的用mongoimport命令导入
 - ### 查看本地sql语句执行日志
-  cd logs
+  ```
+  cd logs 
   tail -1000f mongodb.log
+  ```
   
-- ### 数据初始化
+- ### 数据初始化(推荐使用脚本自动插入数据)
   #### 前置
   1、mongodb数据库安装： 安装过程因为操作系统不同而不同，但是都较为简单，这里略过（请自行百度相关资料，如菜鸟教程）
     如果了解并会使用docker，推荐使用docker安装
@@ -19,7 +21,7 @@
     ```
     which mongo  // 输出你的mongodb安装目录，进入bin目录
     cd xxxx/bin
-    ./mongo     // 不出意外，以进入命令行模式
+    ./mongo     // 不出意外，会进入命令行模式
     ```
     成功进入命令行模式界面如下：
     ![m](preview/m1.png)
@@ -29,16 +31,18 @@
     ```
     3、直接将/sql/sql/下的js文件内容复制到命令行，敲回车即可（如何内容太多，可能执行会失败，此时需要用mongodbimport命令执行）
     ![m](preview/m2.png)
+  
     执行成功界面：
+  
     ![m](preview/m3.png)
-    4、将/sql/sql/下的所以js文件，复制内容，重复步骤3，导入全部数据
+    4、将/sql/sql/下的所有（sql）js文件，复制其内容，重复步骤3，直至导入全部数据
   
   #### 可视化工具导入(以 NoSQLBooster for MongoDB 为例)
-    1、设置数据库连接参数，点击可视化工具左上角Connect->+Create,添加连接设置
+    1、设置数据库连接参数，点击可视化工具左上角Connect -> +Create,添加连接设置
     ![m](preview/k1.png)
     ![m](preview/k2.png)
-    设置完毕，点击Connect即可
-    2、点击SQL窗口，创建（切换）数据库（注意：kcoco后面不要加;(分号),不然就是"kcoco;"，首次创建空文档的数据库会不显示，待插入数据后刷新即可显示）
+    设置完毕，点击Connect即可连接成功
+    2、点击SQL窗口，创建（切换）数据库（注意：kcoco后面不要加;(分号),不然数据库名会是"kcoco;"，首次创建空文档的数据库会不显示，待插入数据后刷新即可显示）
     ```
      use kcoco
     ```
@@ -95,3 +99,7 @@
   ```
   mongoimport --port 27017 -h localhost -u gy -p 123456 -d kcoco -c kcoco_admin_menu --type=json --file --upsert --drop ./adminMenu.json
   ```
+
+***
+### 如果是docker安装的mongodb
+使用docker cp  把sql和执行脚本复制到容器内执行即可。

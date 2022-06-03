@@ -1,7 +1,7 @@
 const log4 = require('../common/log4');
-const sendAction = async function(config, phone, code) {
+const sendAction = async function(config, phone, code, mock) {
   const { smsLogger } = log4
-  if(process.env.NODE_ENV !== 'production' && process.env.SMS_ENV !== 'qa'){
+  if(process.env.NODE_ENV !== 'production' || mock){
     return {
       result: true,
       data: ''
@@ -112,7 +112,7 @@ module.exports = app => ({
     }
 
     const randomCode = $helper.getRandomCode()
-    let sendResult = await sendAction($config.sms, phone, randomCode)
+    let sendResult = await sendAction($config.sms, phone, randomCode, $config.smsMock)
     if(!sendResult.result){
       errorLogger.error('【短信验证码发送】验证码服务出错：' + JSON.stringify({phone, ipString, dateTag}))
       errorLogger.error('【短信验证码发送】服务错误原因：' + sendResult.errorMessage)

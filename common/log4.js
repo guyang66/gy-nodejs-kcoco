@@ -1,6 +1,6 @@
 const path = require('path');
 const log4js = require('koa-log4');
-const config = require('../config.json')
+const config = process.env.NODE_ENV === 'production' ? require('../config_prd.json') : require('../config.json')
 // 生产环境日志级别自己定义，可保留必要的日志，避免日志太多，占服务器内存
 // 生产环境的日志不要放到项目中，统一放到专门的日志目录
 // todo: 日志的作用就是定位错误，所以尽可能的多记录信息，方便快速找到出错的地方比如，用【】特殊标记，标准才是规矩，才是不出错的保证
