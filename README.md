@@ -185,6 +185,19 @@ koa + mongodb
   如果未安装数据库或不想连接数据库启动项目，需要设置config->dataMock为true，此时官网页面能正常访问（为静态数据）
   部分api接口将会异常
   
+  注：如果完全是不懂数据库的，如何连接数据库有如下两个办法
+  1、查看sql/README.md文档，能尽量帮助你解决数据库数据的问题
+  2、直接连接我备份的数据库，只需要将config.json->mongodb->local改为如下配置
+    
+```
+  "local":{
+      "servername": "120.48.51.123",
+      "database": "kcoco_dev",
+      "port": 27017,
+      "user": "gg",
+      "pass": "123456"
+    },
+```
 - #### 生产部署
   ```
   npm run build // 打包压缩js和css等文件，

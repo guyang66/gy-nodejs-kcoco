@@ -290,21 +290,19 @@ module.exports = app => ({
       } else if (item.category === 'product'){
         activityDetail = await $service.baseService.queryById(pageProductActivity,item.objectId)
       }
-      if(activityDetail){
-        tmp.push(
-          {
-            createTime: item.createTime,
-            modifyTime: item.modifyTime,
-            type: item.type,
-            typeString: item.typeString,
-            name: item.name,
-            ip: item.ip,
-            category: item.category,
-            phone: item.phone,
-            _id: item._id,
-            title: activityDetail.title
-          })
-      }
+      tmp.push(
+        {
+          createTime: item.createTime,
+          modifyTime: item.modifyTime,
+          type: item.type,
+          typeString: item.typeString,
+          name: item.name,
+          ip: item.ip,
+          category: item.category,
+          phone: item.phone,
+          _id: item._id,
+          title: activityDetail ? activityDetail.title : '未知'
+        })
     }
     r.list = tmp
     if(r){

@@ -71,4 +71,18 @@ db.kcoco_admin_user.insertMany([
 	status: 1,
 	remark: '系统导入'
 },
+{
+	username: 'data',
+	password: '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', // 密码是1
+	name: '数据管理员',
+	email: '',
+	avatar: '',
+	position: '无',
+	department: '无',
+	roles: ['data'],
+	defaultRole: 'data',
+	defaultRoleName: '数据管理员',
+	status: 1,
+	remark: '系统导入'
+}
 ])

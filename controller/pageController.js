@@ -1847,7 +1847,7 @@ module.exports = app => ({
           objectId: _id,
           type: 'visit',
           typeString: '访问',
-          name: ctx.cookies.get('name'),
+          name: ctx.cookies.get('name') ? decodeURI(ctx.cookies.get('name')) : '',
           ip: $helper.getClientIP(ctx),
           phone: ctx.cookies.get('phone'),
         }
@@ -1946,7 +1946,7 @@ module.exports = app => ({
       //     objectId: _id,
       //     type: 'visit',
       //     typeString: '访问',
-      //     name: ctx.cookies.get('name'),
+      //     name: ctx.cookies.get('name') ? decodeURI(ctx.cookies.get('name')) : '',
       //     ip: $helper.getClientIP(ctx),
       //     phone: ctx.cookies.get('phone'),
       //   }
@@ -1986,7 +1986,7 @@ module.exports = app => ({
           category: category,
           type: 'visit',
           typeString: '访问',
-          name: ctx.cookies.get('name'),
+          name: ctx.cookies.get('name') ? decodeURI(ctx.cookies.get('name')) : '',
           ip: $helper.getClientIP(ctx),
           phone: ctx.cookies.get('phone'),
         }
@@ -2536,7 +2536,7 @@ module.exports = app => ({
           type: 'newsSearchInput',
           typeString: '新闻搜索框',
           key: search,
-          name: ctx.cookies.get('name'),
+          name: ctx.cookies.get('name') ? decodeURI(ctx.cookies.get('name')) : '',
           ip: $helper.getClientIP(ctx),
           phone: ctx.cookies.get('phone'),
         }

@@ -46,7 +46,7 @@ module.exports = app => ({
    * @param format 使用指定符号链接
    * @returns {string}
    */
-  plainObjectToString (object, format = '') {
+  plainObjectToString (object, format = '\n') {
     if(!object){
       return ''
     }

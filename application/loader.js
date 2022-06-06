@@ -148,6 +148,7 @@ function initMongodb(app) {
 
   db.on('error', (error)=>{
     commonLogger.error('数据库连接失败！' + error)
+    errorLogger.error('数据库连接失败！' + error)
     console.log(chalk.red('数据库连接失败！' + error));
   });
   db.once('open', ()=> {

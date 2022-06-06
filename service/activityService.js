@@ -172,7 +172,7 @@ module.exports = app => ({
       }
       tmp.push(
         {
-          name: caseDetail.title,
+          name: caseDetail ? caseDetail.title : '',
           count: groupResult[i].count
         }
       )

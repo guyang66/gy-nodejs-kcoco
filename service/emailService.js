@@ -75,8 +75,8 @@ module.exports = app => ({
     }
 
     let endTime = new Date(new Date().setHours(0,0,0,0) - 1)
-    let startTime = new Date(endTime.getTime() - (24 * 60 * 60 * 1000 * 2 - 1))
-    let queryParams = {createTime: {"$gt": startTime, "$lt": endTime}}
+    let startTime = new Date(endTime.getTime() - (24 * 60 * 60 * 1000 - 1))
+    let queryParams = {createTime: {"$gt": startTime, "$lt": endTime}, need: '商务合作'}
     let list = await $service.baseService.query(bizClue, queryParams ,{name: 1, phone: 1, email: 1, company: 1, position: 1})
     if(list.length < 1){
       scheduleLogger.info('本次任务没有需要发送的数据！')
@@ -100,7 +100,6 @@ module.exports = app => ({
         emailContent = emailContent + '\n' + '================================' + '\n\n'
       }
     })
-    console.log(emailContent)
     const emailTransporter = getEmailTransporter(qqEmailConfig)
     const mailOptions = getEmailConfigOptions(smtp.qq.auth.user, smtp.receiver.partner, $format.formatDateYYMMDD(startTime) + '：商务合作', emailContent)
     try {
